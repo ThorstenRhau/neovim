@@ -35,9 +35,9 @@ local function getPreferredTheme()
     interfaceHandleStyle:close()
 
     if result and string.find(result, "Dark") then
-        return "onedark" -- Dark theme
+        return "nightfox" -- Dark theme
     else
-        return "onelight" -- Light theme
+        return "dayfox" -- Light theme
     end
 end
 
