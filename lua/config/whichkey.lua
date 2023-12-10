@@ -11,6 +11,7 @@ local wk = require("which-key")
 wk.register({
     ["<leader>l"] = { "<cmd>Lazy<cr>", "Lazy plugin manager" },
     ["<leader>T"] = { "<cmd>Telescope<cr>", "Telescope search" },
+    ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce!" },
     -- Switch between open tabs
     ["<leader>1"] = { "1gt<cr>", "Tab 1" },
     ["<leader>2"] = { "2gt<cr>", "Tab 2" },
