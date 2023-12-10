@@ -1,6 +1,5 @@
 local opt = vim.opt
 
-opt.termguicolors = true
 opt.mouse = "nv"
 opt.clipboard = ""
 opt.cursorline = true
