@@ -18,8 +18,22 @@ wk.register({
     ["<leader>"] = {
         c = {
             name = "code",
-            m = { "<cmd>Mason<cr>", "Mason" },
             u = { "<cmd>Telescope undo<cr>", "undo changes" },
+            a = { "<cmd>Lspsaga code_action<CR>", "Action" },
+            c = { "<cmd>ColorizerToggle<CR>", "Colorize color codes" },
+            C = { "<cmd>ChatGPTCompleteCodec<CR>", "Complete code with ChatGPT" },
+            e = { "<cmd>ChatGPTEditWithInstructions<CR>", "Edit with ChatGPT" },
+            f = { "<cmd>lua vim.lsp.buf.format({ timeout_ms = 2000 })<CR>", "Format" },
+            g = { "<cmd>Lspsaga goto_definition<CR>", "Go to definition" },
+            h = { "<cmd>set list!<CR>", "Hidden Characters Toggle" },
+            k = { "<cmd>Lspsaga hover_doc<CR>", "LSP Doc" },
+            l = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
+            m = { "<cmd>Mason<cr>", "Mason" },
+            o = { "<cmd>SymbolsOutline<CR>", "Outline" },
+            p = { "<cmd>PickColor<CR>", "Pick Color" },
+            r = { "<cmd>Lspsaga rename<CR>", "Rename" },
+            t = { "<cmd>Lspsaga term_toggle<CR>", "Terminal as overlay" },
+            w = { "<cmd>set wrap!<CR>", "Wrap text toggle" },
         },
         f = {
             name = "Find",
