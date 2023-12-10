@@ -23,7 +23,7 @@ lsp_zero.on_attach(function(client, bufnr)
         vim.diagnostic.open_float()
     end, opts)
     vim.keymap.set("n", "<C-n>", function()
-    vim.diagnostic.goto_next()
+        vim.diagnostic.goto_next()
     end, opts)
     vim.keymap.set("n", "<C-p>", function()
         vim.diagnostic.goto_prev()
@@ -43,7 +43,9 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 require("mason").setup({})
+
 require("mason-lspconfig").setup({
+    automatic_installation = true,
     ensure_installed = {
         "pyright",
         "taplo",
