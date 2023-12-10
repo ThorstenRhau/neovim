@@ -16,6 +16,10 @@ wk.register({
     ["<leader>2"] = { "2gt<cr>", "Tab 2" },
     ["<leader>3"] = { "3gt<cr>", "Tab 3" },
     ["<leader>"] = {
+        c = {
+            name = "code",
+            u = { "<cmd>Telescope undo<cr>", "undo changes" },
+        },
         f = {
             name = "Find",
             B = { "<cmd>Telescope file_browser<cr>", "File Browser" },
