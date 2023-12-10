@@ -25,7 +25,7 @@ require("config.whichkey")
 require("config.autocmd")
 
 require("config.lspzero")
-require("config.none-ls")
+require("config.null-ls")
 
 -- vim.cmd.colorscheme("habamax")
 local function getPreferredTheme()
