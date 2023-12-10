@@ -40,7 +40,7 @@ local function getPreferredTheme()
     if result and string.find(result, "Dark") then
         return "nightfox" -- Dark theme
     else
-        return "dayfox"   -- Light theme
+        return "dayfox" -- Light theme
     end
 end
 
