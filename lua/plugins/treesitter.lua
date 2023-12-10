@@ -36,5 +36,5 @@ return {
                 "yaml",
             },
         })
-    end
+    end,
 }
