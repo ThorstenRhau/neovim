@@ -1,0 +1,44 @@
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.opt.termguicolors = true
+
+require("lazy").setup({
+	{ import = "plugins" },
+	{ import = "themes" },
+})
+
+require("config.options")
+require("config.whichkey")
+require("config.autocmd")
+
+-- vim.cmd.colorscheme("habamax")
+local function getPreferredTheme()
+    local interfaceHandleStyle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+    if not interfaceHandleStyle then
+        return "habamax"
+    end
+
+    local result = interfaceHandleStyle:read("*a")
+    interfaceHandleStyle:close()
+
+    if result and string.find(result, "Dark") then
+        return "onedark" -- Dark theme
+    else
+        return "onelight" -- Light theme
+    end
+end
+
+vim.cmd.colorscheme(getPreferredTheme())
