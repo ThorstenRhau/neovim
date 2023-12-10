@@ -1,0 +1,30 @@
+--[[
+getPreferredTheme() -> str
+
+This function retrieves the preferred theme for the user's interface.
+It uses the `defaults read` command to check the value of the
+`AppleInterfaceStyle` key in the global defaults database.
+If the key is not found or an error occurs during the retrieval process,
+the function returns the default theme "habamax".
+
+Returns:
+- str: The preferred theme for the user's interface.
+--]]
+
+local function getPreferredTheme()
+    local interfaceHandleStyle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+    if not interfaceHandleStyle then
+        return "habamax"
+    end
+
+    local result = interfaceHandleStyle:read("*a")
+    interfaceHandleStyle:close()
+
+    if result and string.find(result, "Dark") then
+        return "onedark" -- Dark theme
+    else
+        return "onelight" -- Light theme
+    end
+end
+
+vim.cmd.colorscheme(getPreferredTheme())
