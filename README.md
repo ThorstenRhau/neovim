@@ -6,7 +6,7 @@ This setup is "by me for me", intended for my personal use.
 
 
 ```sh
-brew install ripgrep fd cmake git node wget
+brew install ripgrep fd cmake git node wget shellcheck
 ```
 
 
