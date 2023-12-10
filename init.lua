@@ -24,6 +24,8 @@ require("config.options")
 require("config.whichkey")
 require("config.autocmd")
 
+require("config.lspzero")
+
 -- vim.cmd.colorscheme("habamax")
 local function getPreferredTheme()
     local interfaceHandleStyle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")

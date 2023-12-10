@@ -18,6 +18,7 @@ wk.register({
     ["<leader>"] = {
         c = {
             name = "code",
+            m = { "<cmd>Mason<cr>", "Mason" },
             u = { "<cmd>Telescope undo<cr>", "undo changes" },
         },
         f = {
