@@ -40,7 +40,7 @@ return {
                 scroll_up = "<c-u>",
             },
             window = {
-                border = "single",
+                border = "rounded",
                 position = "bottom",
                 margin = { 1, 0.03, 2, 0.03 },
                 padding = { 1, 2, 1, 2 },

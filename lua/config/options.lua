@@ -39,8 +39,8 @@ opt.wildmode = "longest:full,full"
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
+    pattern = "*",
+    command = "set nopaste",
 })
 
 -- Add asterisks in block comments
@@ -56,10 +56,10 @@ opt.expandtab = true
 vim.cmd([[ autocmd FileType * set formatoptions-=cro ]])
 
 opt.listchars = {
-	-- Definíng symbols for hidden characters
-	eol = "↴",
-	tab = ">-",
-	space = "⋅",
+    -- Definíng symbols for hidden characters
+    eol = "↴",
+    tab = ">-",
+    space = "⋅",
 }
 
 -- Disable yank/copy for 'x'
@@ -77,3 +77,18 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+
+-- Configuring borders for "popup windows"
+local _border = "single"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = _border,
+})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = _border,
+})
+
+vim.diagnostic.config({
+    float = { border = _border },
+})

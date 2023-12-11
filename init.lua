@@ -16,8 +16,35 @@ vim.g.maplocalleader = " "
 vim.opt.termguicolors = true
 
 require("lazy").setup({
-    { import = "plugins" },
-    { import = "themes" },
+    spec = {
+        { import = "plugins" },
+        { import = "themes" },
+    },
+    defaults = {
+        lazy = true,
+        version = false,
+    },
+    install = { colorscheme = { "tokyonight", "habamax" } },
+    checker = { enabled = true },
+    performance = {
+        rtp = {
+            -- disable some rtp plugins
+            disabled_plugins = {
+                "gzip",
+                -- "matchit",
+                -- "matchparen",
+                -- "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
+    ui = {
+        size = { width = 0.9, height = 0.9 },
+        border = "rounded",
+    },
 })
 
 require("config.options")
@@ -39,7 +66,7 @@ local function getPreferredTheme()
     if result and string.find(result, "Dark") then
         return "tokyonight-moon" -- Dark theme
     else
-        return "tokyonight-day" -- Light theme
+        return "tokyonight-day"  -- Light theme
     end
 end
 
