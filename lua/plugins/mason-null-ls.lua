@@ -5,8 +5,6 @@ return {
     dependencies = {
         {
             "williamboman/mason.nvim",
-            lazy = true,
-            event = "VeryLazy",
             opts = {
                 ui = {
                     check_outdated_packages_on_open = true,
