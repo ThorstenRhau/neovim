@@ -24,7 +24,6 @@ require("config.options")
 require("config.whichkey")
 require("config.autocmd")
 
-require("config.lspzero")
 require("config.null-ls")
 
 -- vim.cmd.colorscheme("habamax")
