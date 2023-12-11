@@ -13,6 +13,7 @@ wk.register({
     ["<leader>T"] = { "<cmd>Telescope<cr>", "Telescope search" },
     ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce!" },
     ["<leader>u"] = { "<cmd>Telescope undo<cr>", "Pounce!" },
+    ["<leader>o"] = { "<cmd>Oil --float<cr>", "Oil file manager" },
     ["<leader>"] = {
         c = {
             name = "code",
@@ -41,6 +42,7 @@ wk.register({
             h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
             o = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
             s = { "<cmd>Telescope grep_string<cr>", "Grep strings" },
+            y = { "<cmd>Telescope neoclip<cr>", "Old Yanks" },
         },
         g = {
             name = "Git",
