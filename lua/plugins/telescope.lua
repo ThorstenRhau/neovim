@@ -9,6 +9,7 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         "debugloop/telescope-undo.nvim",
         "nvim-telescope/telescope-file-browser.nvim",
+        "AckslD/nvim-neoclip.lua",
     },
     opts = {
         defaults = {
