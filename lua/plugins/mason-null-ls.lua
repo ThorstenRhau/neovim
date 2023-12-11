@@ -1,10 +1,10 @@
 return {
     "jay-babu/mason-null-ls.nvim",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     dependencies = {
-        "williamboman/mason.nvim",
-        "nvimtools/none-ls.nvim",
+        { "williamboman/mason.nvim" },
+        { "nvimtools/none-ls.nvim" },
     },
     config = function()
         require("mason-null-ls").setup({
@@ -16,7 +16,7 @@ return {
                 "prettier",
                 "isort",
                 "marksman",
-            }
+            },
         })
     end,
 }
