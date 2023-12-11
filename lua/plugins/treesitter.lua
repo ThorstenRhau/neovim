@@ -4,7 +4,7 @@ return {
     version = false,
     build = ":TSUpdate",
     lazy = true,
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = function()
         require("nvim-treesitter.configs").setup({
             auto_install = true,
