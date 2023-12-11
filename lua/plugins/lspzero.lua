@@ -137,6 +137,16 @@ return {
                         --    local lua_opts = lsp_zero.nvim_lua_ls()
                         --    require("lspconfig").lua_ls.setup(lua_opts)
                         --end,
+                        pyright = function()
+                            require("lspconfig").pyright.setup({
+                                -- Disabling things that are handled by "ruff"
+                                disableLanguageServices = true,
+                                disableOrganizeImports = true,
+                                reportMissingModuleSource = "none",
+                                reportMissingImports = "none",
+                                reportUndefinedVariable = "none",
+                            })
+                        end,
                     },
                 })
             end,
