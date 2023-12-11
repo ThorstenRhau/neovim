@@ -12,14 +12,10 @@ wk.register({
     ["<leader>l"] = { "<cmd>Lazy<cr>", "Lazy plugin manager" },
     ["<leader>T"] = { "<cmd>Telescope<cr>", "Telescope search" },
     ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce!" },
-    -- Switch between open tabs
-    ["<leader>1"] = { "1gt<cr>", "Tab 1" },
-    ["<leader>2"] = { "2gt<cr>", "Tab 2" },
-    ["<leader>3"] = { "3gt<cr>", "Tab 3" },
+    ["<leader>u"] = { "<cmd>Telescope undo<cr>", "Pounce!" },
     ["<leader>"] = {
         c = {
             name = "code",
-            u = { "<cmd>Telescope undo<cr>", "undo changes" },
             a = { "<cmd>Lspsaga code_action<CR>", "Action" },
             c = { "<cmd>ColorizerToggle<CR>", "Colorize color codes" },
             C = { "<cmd>ChatGPTCompleteCodec<CR>", "Complete code with ChatGPT" },
@@ -53,7 +49,7 @@ wk.register({
             L = { "<cmd>Git log<cr>", "log" },
             l = { "<cmd>Git log --oneline<cr>", "log --oneline" },
             p = { "<cmd>Git pull<cr>", "Pull" },
-            s = { "<cmd>Git status<cr>", "Status" },
+            s = { "<cmd>Telescope git_status<cr>", "Status" },
         },
         x = {
             name = "Trouble",
