@@ -73,6 +73,9 @@ return {
                 { "saadparwaiz1/cmp_luasnip" },
             },
             config = function()
+                -- Setting rounded border on LSP windows
+                require("lspconfig.ui.windows").default_options.border = "rounded"
+
                 -- This is where all the LSP shenanigans will live
                 local lsp_zero = require("lsp-zero")
                 lsp_zero.extend_lspconfig()
