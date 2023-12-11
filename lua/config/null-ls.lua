@@ -5,10 +5,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.jq,
 		null_ls.builtins.formatting.isort,
+		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.diagnostics.ruff,
-		null_ls.builtins.formatting.ruff,
 	},
 })

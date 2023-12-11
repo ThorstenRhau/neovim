@@ -22,11 +22,12 @@ return {
             ensure_installed = {
                 "stylua",
                 "jq",
-                "black",
+                "pyright",
                 "shfmt",
                 "prettier",
                 "isort",
                 "marksman",
+                "black",
             },
         })
     end,
