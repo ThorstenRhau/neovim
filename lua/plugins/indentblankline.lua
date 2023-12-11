@@ -4,12 +4,17 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             indent = {
-                char = "│",
-                tab_char = "│",
+                char = "┆",
+                tab_char = "┆",
             },
-            scope = { enabled = false },
+            scope = {
+                enabled = true,
+                injected_languages = true,
+                highlight = { "Function", "Label" },
+            },
             exclude = {
                 filetypes = {
+                    "alpha",
                     "help",
                     "lazy",
                     "mason",
