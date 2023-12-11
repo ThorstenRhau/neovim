@@ -3,7 +3,20 @@ return {
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-        { "williamboman/mason.nvim" },
+        {
+            "williamboman/mason.nvim",
+            lazy = true,
+            event = "VeryLazy",
+            opts = {
+                ui = {
+                    check_outdated_packages_on_open = true,
+                    border = "rounded",
+                    width = 0.9,
+                    height = 0.9,
+                },
+            },
+        },
+
         { "nvimtools/none-ls.nvim" },
     },
     config = function()
