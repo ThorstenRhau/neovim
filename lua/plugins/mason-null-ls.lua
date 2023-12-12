@@ -15,7 +15,14 @@ return {
             },
         },
 
-        { "nvimtools/none-ls.nvim" },
+        {
+            "nvimtools/none-ls.nvim",
+            lazy = true,
+            event = "VeryLazy",
+            opts = {
+                border = "rounded",
+            },
+        },
     },
     config = function()
         require("mason-null-ls").setup({
