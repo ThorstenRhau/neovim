@@ -23,6 +23,7 @@ return {
                 "stylua",
                 "jq",
                 "pyright",
+                "ruff",
                 "shfmt",
                 "shellcheck",
                 "prettierd",
