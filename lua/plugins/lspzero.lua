@@ -128,7 +128,7 @@ return {
                         "bashls",
                         "lua_ls",
                         "marksman",
-                        "pyright",
+                        "jedi_language_server",
                     },
                     handlers = {
                         lsp_zero.default_setup,
