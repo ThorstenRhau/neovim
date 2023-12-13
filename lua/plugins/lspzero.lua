@@ -124,11 +124,11 @@ return {
 
                 require("mason-lspconfig").setup({
                     ensure_installed = {
-                        "pyright",
                         "taplo",
                         "bashls",
                         "lua_ls",
                         "marksman",
+                        "pyright",
                     },
                     handlers = {
                         lsp_zero.default_setup,
