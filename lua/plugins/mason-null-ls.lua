@@ -22,14 +22,14 @@ return {
             ensure_installed = {
                 "stylua",
                 "jq",
-                "pyright",
+                --"pylint",
+                "isort",
+                "black",
                 "shfmt",
                 "shellcheck",
                 "prettierd",
                 "markdownlint",
-                "isort",
                 "marksman",
-                "black",
             },
         })
     end,

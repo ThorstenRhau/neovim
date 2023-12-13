@@ -6,6 +6,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.jq,
 		null_ls.builtins.formatting.isort,
 		null_ls.builtins.formatting.black,
+		--null_ls.builtins.diagnostics.pylint,
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.formatting.prettierd,
