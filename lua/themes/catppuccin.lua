@@ -80,8 +80,8 @@ return {
                 symbols_outline = true,
                 lsp_trouble = true,
                 illuminate = {
-                    enabled = true,
-                    lsp = true,
+                    enabled = false,
+                    lsp = false,
                 },
                 which_key = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
