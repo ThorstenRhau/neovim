@@ -34,6 +34,17 @@ return {
                 local cmp_action = lsp_zero.cmp_action()
 
                 cmp.setup({
+                    window = {
+                        completion = { -- rounded border; thin-style scrollbar
+                            border = "rounded",
+                            scrollbar = "║",
+                        },
+                        documentation = { -- no border; native-style scrollbar
+                            border = nil,
+                            scrollbar = "",
+                            -- other options
+                        },
+                    },
                     formatting = lsp_zero.cmp_format(),
                     mapping = cmp.mapping.preset.insert({
                         -- `Enter` key to confirm completion
