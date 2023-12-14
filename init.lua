@@ -24,7 +24,7 @@ require("lazy").setup({
         lazy = true,
         version = false,
     },
-    --install = { colorscheme = { "tokyonight", "habamax" } },
+    install = { colorscheme = { "catppuccin", "habamax" } },
     checker = {
         enabled = true,
         notify = true,
@@ -72,7 +72,7 @@ local function getPreferredTheme()
     interfaceHandleStyle:close()
 
     if result and string.find(result, "Dark") then
-        return "catppuccin-mocha" -- Dark theme
+        return "catppuccin-macchiato" -- Dark theme
     else
         return "catppuccin-latte"  -- Light theme
     end
