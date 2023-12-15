@@ -3,8 +3,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter-context",
     version = false,
     build = ":TSUpdate",
-    lazy = true,
-    event = "VeryLazy",
+    lazy = false,
     opts = function()
         require("nvim-treesitter.configs").setup({
             auto_install = true,
