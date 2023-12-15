@@ -72,7 +72,7 @@ local function getPreferredTheme()
     interfaceHandleStyle:close()
 
     if result and string.find(result, "Dark") then
-        return "catppuccin-macchiato" -- Dark theme
+        return "catppuccin-frappe" -- Dark theme
     else
         return "catppuccin-latte"  -- Light theme
     end
