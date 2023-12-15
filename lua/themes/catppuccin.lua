@@ -7,34 +7,34 @@ return {
         lazy = false,
         opts = {
             flavour = "mocha", -- latte, frappe, macchiato, mocha
-            background = {     -- :h background
+            background = {
                 light = "latte",
-                dark = "mocha",
+                dark = "frappe",
             },
-            transparent_background = false, -- disables setting the background color.
-            show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
-            term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+            transparent_background = false,     -- disables setting the background color.
+            show_end_of_buffer = false,         -- shows the '~' characters after the end of buffers
+            term_colors = false,                -- sets terminal colors (e.g. `g:terminal_color_0`)
             dim_inactive = {
-                enabled = false,            -- dims the background color of inactive window
+                enabled = false,                -- dims the background color of inactive window
                 shade = "dark",
-                percentage = 0.20,          -- percentage of the shade to apply to the inactive window
+                percentage = 0.20,              -- percentage of the shade to apply to the inactive window
             },
-            no_italic = false,              -- Force no italic
-            no_bold = false,                -- Force no bold
-            no_underline = false,           -- Force no underline
+            no_italic = false,                  -- Force no italic
+            no_bold = false,                    -- Force no bold
+            no_underline = false,               -- Force no underline
             styles = {
-                comments = { "italic" },    -- Comments: Less prominent, italicized
-                conditionals = { "bold" },  -- Conditionals: Important, bold
-                loops = { "bold" },         -- Loops: Important, bold
-                functions = { "bold" },     -- Functions: Key logic, bold
-                keywords = { "bold" },      -- Keywords: Core language constructs, bold
-                strings = {},               -- Strings: Distinct, but not stylized here
-                variables = {},             -- Variables: Standard, blend with main code
-                numbers = { "bold" },       -- Numbers: Stand out for identification, bold
-                booleans = { "bold" },      -- Booleans: Important for logic, bold
-                properties = { "italic" },  -- Properties: Subtle distinction, italicized
-                types = { "italic" },       -- Types: Subtly distinct, italicized
-                operators = {},             -- Operators: Integral but not emphasized
+                comments = { "italic" },        -- Comments: Less prominent, italicized
+                conditionals = {},              -- Conditionals: Important, bold
+                loops = {},                     -- Loops: Important, bold
+                functions = { "bold, italic" }, -- Functions: Key logic, bold
+                keywords = { "italic" },        -- Keywords: Core language constructs, bold
+                strings = {},                   -- Strings: Distinct, but not stylized here
+                variables = {},                 -- Variables: Standard, blend with main code
+                numbers = {},                   -- Numbers: Stand out for identification, bold
+                booleans = {},                  -- Booleans: Important for logic, bold
+                properties = {},                -- Properties: Subtle distinction, italicized
+                types = { "bold" },             -- Types: Subtly distinct, italicized
+                operators = {},                 -- Operators: Integral but not emphasized
             },
 
             color_overrides = {},
