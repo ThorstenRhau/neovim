@@ -25,15 +25,15 @@ return {
                 lualine_y = {},
                 lualine_z = {},
             },
-            tabline = {
-                lualine_a = {
-                    {
-                        "buffers",
-                        right_padding = 2,
-                        symbols = { alternate_file = "" },
-                    },
-                },
-            },
+            --  tabline = {
+            --      lualine_a = {
+            --          {
+            --              "buffers",
+            --              right_padding = 2,
+            --              symbols = { alternate_file = "" },
+            --          },
+            --      },
+            --  },
             extensions = {
                 "fugitive",
                 "fzf",
