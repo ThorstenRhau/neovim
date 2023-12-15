@@ -15,3 +15,5 @@ npm install -g neovim
 ```sh
 python3 -m pip install --upgrade --user pynvim
 ```
+
+When you have all the dependencies installed clone the repo in to _~/.config/nvim/_
