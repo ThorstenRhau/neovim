@@ -60,6 +60,7 @@ require("config.whichkey")
 require("config.autocmd")
 
 require("config.null-ls")
+require("config.harpoon")
 
 -- vim.cmd.colorscheme("habamax")
 local function getPreferredTheme()
