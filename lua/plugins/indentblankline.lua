@@ -8,7 +8,7 @@ return {
                 tab_char = "┆",
             },
             scope = {
-                enabled = true,
+                enabled = false,
                 injected_languages = true,
                 highlight = { "Function", "Label" },
             },
