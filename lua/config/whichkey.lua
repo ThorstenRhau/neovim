@@ -46,10 +46,12 @@ wk.register({
         },
         g = {
             name = "Git",
-            b = { "<cmd>Gitsigns blame_line<cr>", "blame" },
+            C = { "<cmd>Git commit --verbose %<cr>", "commit the current file" },
+            A = { "<cmd>Git commit -a --verbose<cr>", "commit all changes" },
+            b = { "<cmd>Git blame<cr>", "blame" },
             d = { "<cmd>Git diff<cr>", "Diff" },
-            L = { "<cmd>Git log<cr>", "log" },
-            l = { "<cmd>Git log --oneline<cr>", "log --oneline" },
+            h = { "<cmd>Git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short<cr>", "history" },
+            l = { "<cmd>Git log --oneline<cr>", "log" },
             p = { "<cmd>Git pull<cr>", "Pull" },
             s = { "<cmd>Telescope git_status<cr>", "Status" },
         },
@@ -68,6 +70,9 @@ wk.register({
             x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
             r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
             l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+        },
+        u = {
+            name = "User Interface",
         },
         x = {
             name = "Trouble",
