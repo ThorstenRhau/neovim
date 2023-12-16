@@ -8,7 +8,18 @@ return {
         min_count_to_highlight = 1,
         large_file_cutoff = 2000,
         large_file_overrides = {
-            providers = { "lsp" },
+            providers = {
+                "lsp",
+            },
+        },
+        filetypes_denylist = {
+            "dirbuf",
+            "dirvish",
+            "fugitive",
+            "mason",
+            "lazy",
+            "help",
+            "checkhealth",
         },
     },
     config = function(_, opts)
