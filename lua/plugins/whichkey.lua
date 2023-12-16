@@ -25,6 +25,7 @@ return {
                     g = true,
                 },
             },
+            operators = { go = "Comments" },
             key_labels = {},
             motions = {
                 count = true,
