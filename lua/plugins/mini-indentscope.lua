@@ -11,15 +11,11 @@ return {
             pattern = {
                 "help",
                 "alpha",
-                "dashboard",
                 "neo-tree",
-                "Trouble",
                 "trouble",
                 "lazy",
                 "mason",
-                "notify",
-                "toggleterm",
-                "lazyterm",
+                "checkhealth",
             },
             callback = function()
                 vim.b.miniindentscope_disable = true
