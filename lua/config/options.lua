@@ -8,8 +8,8 @@ opt.cmdheight = 1
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
-opt.number = true
-opt.relativenumber = true
+opt.number = false
+opt.relativenumber = false
 opt.scrolloff = 8
 opt.winbar = "%=%m\\ %f"
 opt.ignorecase = true
