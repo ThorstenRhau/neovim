@@ -60,7 +60,6 @@ require("config.whichkey")
 require("config.autocmd")
 
 require("config.null-ls")
-require("config.harpoon")
 
 -- vim.cmd.colorscheme("habamax")
 local function getPreferredTheme()
@@ -75,7 +74,7 @@ local function getPreferredTheme()
     if result and string.find(result, "Dark") then
         return "catppuccin-macchiato" -- Dark theme
     else
-        return "catppuccin-latte"  -- Light theme
+        return "catppuccin-latte"     -- Light theme
     end
 end
 
