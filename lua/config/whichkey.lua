@@ -9,11 +9,13 @@ vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
 -- Setting up register for 'which key' with keymappings
 local wk = require("which-key")
 wk.register({
-    ["<leader>l"] = { "<cmd>Lazy<cr>", "lazy plugin manager" },
-    ["<leader>t"] = { "<cmd>Telescope<cr>", "telescope" },
-    ["<leader>p"] = { "<cmd>Pounce<cr>", "pounce" },
-    ["<leader>U"] = { "<cmd>Telescope undo<cr>", "undo" },
-    ["<leader>o"] = { "<cmd>Oil --float<cr>", "oil file manager" },
+    ["<leader>l"] = { "<cmd>Lazy<cr>", "Lazy" },
+    ["<leader>t"] = { "<cmd>Telescope<cr>", "Telescope" },
+    ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce" },
+    ["<leader>U"] = { "<cmd>Telescope undo<cr>", "Undo" },
+    ["<leader>o"] = { "<cmd>Oil --float<cr>", "Oil file manager" },
+    ["<leader>s"] = { [[<cmd> lua require("persistence").load() <cr>]], "Restore last session" },
+
     ["<leader>"] = {
         b = {
             name = "Buffer",
