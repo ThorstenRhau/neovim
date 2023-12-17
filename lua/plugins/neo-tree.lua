@@ -15,9 +15,9 @@ return {
             function()
                 require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
             end,
-            desc = "Explorer NeoTree",
+            desc = "NeoTree",
         },
-        { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
+        { "<leader>e", "<leader>fe", desc = "NeoTree", remap = true },
         {
             "<leader>ge",
             function()
