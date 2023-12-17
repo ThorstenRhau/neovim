@@ -60,6 +60,7 @@ require("config.whichkey")
 require("config.autocmd")
 
 require("config.intro")
+require("config.my-status-line")
 require("config.null-ls")
 
 -- vim.cmd.colorscheme("habamax")
