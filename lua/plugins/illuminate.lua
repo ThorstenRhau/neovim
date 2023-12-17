@@ -13,6 +13,7 @@ return {
             },
         },
         filetypes_denylist = {
+            "alpha",
             "dirbuf",
             "dirvish",
             "fugitive",
