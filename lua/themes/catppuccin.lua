@@ -11,32 +11,32 @@ return {
                 light = "latte",
                 dark = "frappe",
             },
-            transparent_background = false,     -- disables setting the background color.
-            show_end_of_buffer = false,         -- shows the '~' characters after the end of buffers
-            term_colors = false,                -- sets terminal colors (e.g. `g:terminal_color_0`)
+            transparent_background = false,
+            show_end_of_buffer = false,
+            term_colors = false,
             dim_inactive = {
-                enabled = true,                 -- dims the background color of inactive window
+                enabled = true,
                 shade = "dark",
-                percentage = 0.10,              -- percentage of the shade to apply to the inactive window
+                percentage = 0.10,
             },
-            no_italic = false,                  -- Force no italic
-            no_bold = false,                    -- Force no bold
-            no_underline = false,               -- Force no underline
+            no_italic = false,
+            no_bold = false,
+            no_underline = false,
             styles = {
-                comments = { "italic" },        -- Comments: Less prominent, italicized
-                conditionals = {},              -- Conditionals: Important, bold
-                loops = {},                     -- Loops: Important, bold
-                functions = { "bold, italic" }, -- Functions: Key logic, bold
-                keywords = { "italic" },        -- Keywords: Core language constructs, bold
-                strings = {},                   -- Strings: Distinct, but not stylized here
-                variables = {},                 -- Variables: Standard, blend with main code
-                numbers = {},                   -- Numbers: Stand out for identification, bold
-                booleans = {},                  -- Booleans: Important for logic, bold
-                properties = {},                -- Properties: Subtle distinction, italicized
-                types = { "bold" },             -- Types: Subtly distinct, italicized
-                operators = {},                 -- Operators: Integral but not emphasized
+                comments = { "italic" },
+                conditionals = {},
+                loops = {},
+                constants = { "bold" },
+                functions = { "bold, italic" },
+                keywords = { "italic" },
+                strings = { "italic" },
+                variables = { "bold" },
+                numbers = {},
+                booleans = {},
+                properties = {},
+                types = { "bold" },
+                operators = {},
             },
-
             color_overrides = {},
             custom_highlights = {},
             integrations = {
@@ -60,10 +60,10 @@ return {
                         information = { "italic" },
                     },
                     underlines = {
-                        errors = { "underline" },
-                        hints = { "underline" },
+                        errors = { "undercurl" },
+                        hints = { "underdotted" },
                         warnings = { "underline" },
-                        information = { "underline" },
+                        information = { "underdashed" },
                     },
                     inlay_hints = {
                         background = true,
