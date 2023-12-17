@@ -1,6 +1,8 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
+        enabled = false,
+        lazy = true,
         event = "VeryLazy",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
@@ -25,15 +27,15 @@ return {
                 lualine_y = {},
                 lualine_z = {},
             },
-          --  tabline = {
-          --      lualine_a = {
-          --          {
-          --              "buffers",
-          --              right_padding = 2,
-          --              symbols = { alternate_file = "" },
-          --          },
-          --      },
-          --  },
+            --  tabline = {
+            --      lualine_a = {
+            --          {
+            --              "buffers",
+            --              right_padding = 2,
+            --              symbols = { alternate_file = "" },
+            --          },
+            --      },
+            --  },
             extensions = {
                 "fugitive",
                 "fzf",
