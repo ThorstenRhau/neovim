@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- wrap and check for spell in text filetypes
+-- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("wrap_spell"),
     pattern = { "gitcommit", "markdown" },
