@@ -55,7 +55,8 @@ vim.cmd([[ autocmd FileType * set formatoptions-=cro ]])
 
 opt.listchars = {
     -- Definíng symbols for hidden characters
-    eol = "↴",
+    --eol = "↴",
+    eol = "⏎",
     tab = ">-",
     space = "⋅",
 }
