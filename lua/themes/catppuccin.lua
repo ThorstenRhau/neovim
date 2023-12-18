@@ -37,7 +37,13 @@ return {
                 types = { "bold" },
                 operators = {},
             },
-            color_overrides = {},
+            color_overrides = {
+                all = {},
+                latte = {},
+                frappe = {},
+                macchiato = {},
+                mocha = {},
+            },
             custom_highlights = {},
             integrations = {
                 alpha = true,
