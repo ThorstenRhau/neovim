@@ -46,17 +46,24 @@ return {
             },
             custom_highlights = {},
             integrations = {
-                alpha = true,
                 cmp = true,
                 fidget = true,
                 gitsigns = true,
+                illuminate = {
+                    enabled = false,
+                    lsp = false,
+                },
                 indent_blankline = {
                     enabled = true,
-                    scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
                     colored_indent_levels = false,
                 },
+                lsp_trouble = true,
                 lsp_saga = true,
                 markdown = true,
+                mini = {
+                    enabled = true,
+                },
+                neotree = true,
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
@@ -75,19 +82,14 @@ return {
                         background = true,
                     },
                 },
+                pounce = true,
                 semantic_tokens = true,
                 treesitter = true,
                 treesitter_context = true,
-                mini = {
-                    enabled = false,
-                    indentscope_color = "",
-                },
-                pounce = true,
                 symbols_outline = true,
-                lsp_trouble = true,
-                illuminate = {
-                    enabled = false,
-                    lsp = false,
+                telescope = {
+                    enabled = true,
+                    style = "lazy",
                 },
                 which_key = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
