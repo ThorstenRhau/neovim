@@ -18,6 +18,7 @@ return {
         { "nvimtools/none-ls.nvim" },
     },
     config = function()
+        ---@diagnostic disable-next-line: missing-fields
         require("mason-null-ls").setup({
             ensure_installed = {
                 "stylua",
@@ -27,8 +28,8 @@ return {
                 "black",
                 "shfmt",
                 "shellcheck",
-                "prettierd",
-                "markdownlint",
+                "prettier",
+                --"markdownlint",
                 "marksman",
             },
         })
