@@ -77,6 +77,7 @@ return {
             cmd = { "LspInfo", "LspInstall", "LspStart" },
             event = { "BufReadPre", "BufNewFile" },
             dependencies = {
+                { "folke/neodev.nvim",                opts = {} },
                 { "hrsh7th/cmp-nvim-lsp" },
                 { "williamboman/mason-lspconfig.nvim" },
                 { "hrsh7th/cmp-buffer" },
