@@ -77,6 +77,7 @@ wk.register({
         },
         u = {
             name = "User Interface",
+            C = { "<cmd>set colorcolumn=80<CR>", "Colorcolumn at 80" },
             c = { "<cmd>ColorizerToggle<CR>", "Colorize color codes" },
             h = { "<cmd>set list!<CR>", "Hidden Characters Toggle" },
             i = { "<cmd>IlluminateToggle<cr>", "Illuminate word highlighting" },
