@@ -37,11 +37,11 @@ return {
                     window = {
                         completion = { -- rounded border; thin-style scrollbar
                             border = "rounded",
-                            scrollbar = "║",
+                            scrollbar = true,
                         },
                         documentation = { -- no border; native-style scrollbar
                             border = nil,
-                            scrollbar = "",
+                            scrollbar = true,
                             -- other options
                         },
                     },
