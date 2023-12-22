@@ -35,6 +35,8 @@ opt.wildignore:append({ "*/node_modules/*" })
 opt.wildmenu = true
 opt.wildmode = "longest:full,full"
 opt.signcolumn = "yes:1"
+opt.cmdheight = 0
+opt.cmdwinheight = 10
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
