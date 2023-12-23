@@ -2,7 +2,6 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     lazy = true,
     cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
-    build = "MasonToolsInstall",
     opts = {
         ensure_installed = {
             "bashls",
