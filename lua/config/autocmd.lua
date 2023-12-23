@@ -73,3 +73,26 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.spell = true
     end,
 })
+
+-- Sort visual block
+-- Function to sort the lines in a visually selected block
+local function sort_visual_block()
+    -- Get the start and end of the visual selection
+    local start_line, _, end_line, _ = unpack(vim.fn.getpos("'<"), 2, 5), unpack(vim.fn.getpos("'>"), 2, 5)
+
+    -- Adjust for zero-based indexing
+    start_line = start_line - 1
+    end_line = end_line - 1
+
+    -- Get the lines in the range
+    local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line + 1, false)
+
+    -- Sort the lines
+    table.sort(lines)
+
+    -- Replace the lines in the buffer
+    vim.api.nvim_buf_set_lines(0, start_line, end_line + 1, false, lines)
+end
+
+-- Map the function to a command for easy use
+vim.api.nvim_create_user_command("SortVisualBlock", sort_visual_block, { range = true })

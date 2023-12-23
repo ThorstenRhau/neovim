@@ -1,0 +1,26 @@
+return {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = true,
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+    build = "MasonToolsInstall",
+    opts = {
+        ensure_installed = {
+            "bashls",
+            "black",
+            "isort",
+            "jedi_language_server",
+            "lua_ls",
+            "markdownlint",
+            "marksman",
+            "prettier",
+            "pylint",
+            "shellcheck",
+            "shfmt",
+            "stylua",
+            "taplo",
+            run_on_start = true,
+            start_delay = 1500,
+            auto_update = false,
+        },
+    },
+}
