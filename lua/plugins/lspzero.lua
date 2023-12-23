@@ -108,17 +108,16 @@ return {
                     ---@diagnostic disable-next-line: lowercase-global
                     preserve_mappings = true
                     local opts = { buffer = bufnr, remap = false }
-                    -- local opts = { buffer = bufnr }
 
                     vim.keymap.set("n", "gd", function()
                         vim.lsp.buf.definition()
                     end, opts)
-                    vim.keymap.set("n", "K", function()
-                        vim.lsp.buf.hover()
+                    vim.keymap.set({ "n" }, "<leader>K", "<CMD>Lspsaga hover_doc<cr>", { desc = "Show documentation" })
+                    vim.keymap.set("n", "<leader>cs", function()
+                        -- The next parameter will be prompted
+                        ---@diagnostic disable-next-line: missing-parameter
+                        vim.lsp.buf.workspace_symbol()
                     end, opts)
-                    -- vim.keymap.set("n", "<leader>cs", function()
-                    --     vim.lsp.buf.workspace_symbol()
-                    -- end, opts)
                     vim.keymap.set("n", "<leader>cd", function()
                         vim.diagnostic.open_float()
                     end, opts)
@@ -128,16 +127,11 @@ return {
                     vim.keymap.set("n", "<C-p>", function()
                         vim.diagnostic.goto_prev()
                     end, opts)
-                    vim.keymap.set("n", "<leader>ca", function()
-                        vim.lsp.buf.code_action()
-                    end, opts)
-                    vim.keymap.set("n", "<leader>ca", "Lspsaga code_action")
+                    vim.keymap.set({ "n" }, "<leader>ca", "<CMD>Lspsaga code_action<cr>", { desc = "Code action" })
                     vim.keymap.set("n", "gr", function()
                         vim.lsp.buf.references()
                     end, opts)
-                    vim.keymap.set("n", "<leader>cr", function()
-                        vim.lsp.buf.rename()
-                    end, opts)
+                    vim.keymap.set({ "n" }, "<leader>cr", "<CMD>Lspsaga rename<cr>", { desc = "Rename" })
                     vim.keymap.set("i", "<C-h>", function()
                         vim.lsp.buf.signature_help()
                     end, opts)
@@ -145,11 +139,7 @@ return {
 
                 require("mason-lspconfig").setup({
                     ensure_installed = {
-                        --                        "taplo",
-                        --                        "bashls",
-                        --                        "lua_ls",
-                        --                        "marksman",
-                        --                        "jedi_language_server",
+                        -- This is handled by a separate plugin
                     },
                     handlers = {
                         lsp_zero.default_setup,
