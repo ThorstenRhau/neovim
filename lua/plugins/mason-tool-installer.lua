@@ -18,7 +18,6 @@ return {
             "stylua",
             "taplo",
             run_on_start = true,
-            start_delay = 1500,
             auto_update = false,
         },
     },
