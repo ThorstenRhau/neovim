@@ -26,7 +26,7 @@ wk.register({
         c = {
             name = "Code",
             a = { "<cmd>Lspsaga code_action<CR>", "Action" },
-            f = { "<cmd>LspZeroFormat timeout=2000<CR>", "Format" },
+            -- f = { "<cmd>LspZeroFormat timeout=2000<CR>", "Format" },
             g = { "<cmd>Lspsaga goto_definition<CR>", "Go to definition" },
             k = { "<cmd>Lspsaga hover_doc<CR>", "LSP Doc" },
             m = { "<cmd>Mason<cr>", "Mason" },

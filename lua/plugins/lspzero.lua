@@ -73,7 +73,7 @@ return {
                         { name = "nvim_lsp" },
                         { name = "luasnip" },
                         { name = "path" },
-                        { name = "buffer",  keyword_length = 4 },
+                        { name = "buffer", keyword_length = 4 },
                     }),
                 })
             end,
@@ -85,7 +85,7 @@ return {
             cmd = { "LspInfo", "LspInstall", "LspStart" },
             event = { "BufReadPre", "BufNewFile" },
             dependencies = {
-                { "folke/neodev.nvim",                opts = {} },
+                { "folke/neodev.nvim", opts = {} },
                 { "hrsh7th/cmp-nvim-lsp" },
                 { "williamboman/mason-lspconfig.nvim" },
                 { "hrsh7th/cmp-buffer" },
