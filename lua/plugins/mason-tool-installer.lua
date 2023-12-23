@@ -1,7 +1,8 @@
 return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = true,
+    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim"},
     cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+    build = "MasonToolsInstall",
     opts = {
         ensure_installed = {
             "bashls",
