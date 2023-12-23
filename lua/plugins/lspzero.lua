@@ -15,6 +15,14 @@ return {
             "williamboman/mason.nvim",
             lazy = false,
             config = true,
+            opts = {
+                ui = {
+                    check_outdated_packages_on_open = true,
+                    border = "rounded",
+                    width = 0.9,
+                    height = 0.9,
+                },
+            },
         },
 
         -- Autocompletion
@@ -108,9 +116,9 @@ return {
                     vim.keymap.set("n", "K", function()
                         vim.lsp.buf.hover()
                     end, opts)
-                    vim.keymap.set("n", "<leader>cs", function()
-                        vim.lsp.buf.workspace_symbol()
-                    end, opts)
+                    -- vim.keymap.set("n", "<leader>cs", function()
+                    --     vim.lsp.buf.workspace_symbol()
+                    -- end, opts)
                     vim.keymap.set("n", "<leader>cd", function()
                         vim.diagnostic.open_float()
                     end, opts)
