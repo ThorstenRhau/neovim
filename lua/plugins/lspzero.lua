@@ -144,11 +144,11 @@ return {
 
                 require("mason-lspconfig").setup({
                     ensure_installed = {
-                        "taplo",
-                        "bashls",
-                        "lua_ls",
-                        "marksman",
-                        "jedi_language_server",
+                        --                        "taplo",
+                        --                        "bashls",
+                        --                        "lua_ls",
+                        --                        "marksman",
+                        --                        "jedi_language_server",
                     },
                     handlers = {
                         lsp_zero.default_setup,
