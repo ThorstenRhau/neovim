@@ -106,9 +106,9 @@ return {
                     -- to learn the available actions
                     lsp_zero.default_keymaps({ buffer = bufnr })
                     ---@diagnostic disable-next-line: lowercase-global
-                    preserve_mappings = false
-                    --local opts = {buffer = bufnr, remap = false}
-                    local opts = { buffer = bufnr }
+                    preserve_mappings = true
+                    local opts = { buffer = bufnr, remap = false }
+                    -- local opts = { buffer = bufnr }
 
                     vim.keymap.set("n", "gd", function()
                         vim.lsp.buf.definition()
@@ -131,6 +131,7 @@ return {
                     vim.keymap.set("n", "<leader>ca", function()
                         vim.lsp.buf.code_action()
                     end, opts)
+                    vim.keymap.set("n", "<leader>ca", "Lspsaga code_action")
                     vim.keymap.set("n", "gr", function()
                         vim.lsp.buf.references()
                     end, opts)
