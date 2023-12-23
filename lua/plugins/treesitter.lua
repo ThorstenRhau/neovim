@@ -18,15 +18,6 @@ return {
             indent = {
                 enable = true,
             },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gna", -- set to `false` to disable one of the mappings
-                    node_incremental = "false",
-                    scope_incremental = "false",
-                    node_decremental = "false",
-                },
-            },
             ensure_installed = {
                 "bash",
                 "comment",
