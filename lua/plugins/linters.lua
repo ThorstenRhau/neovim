@@ -8,6 +8,7 @@ return {
 
         lint.linters_by_ft = {
             gitcommit = { "gitlint" },
+            lua = { "selene" }, -- Install 'selene' via homebrew instead of Mason
             python = { "pylint" },
             sh = { "shellcheck" },
         }
