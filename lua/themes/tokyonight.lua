@@ -9,9 +9,9 @@ return {
             light_style = "day",
             transparent = false,
             terminal_colors = true,
-            styles = {                        -- Style to be applied to different syntax groups
+            styles = { -- Style to be applied to different syntax groups
                 comments = { italic = true }, -- Value is any valid attr-list value `:help attr-list`
-                conditionals = {},            -- Value is any valid attr-list value for `:help nvim_set_hl`
+                conditionals = {}, -- Value is any valid attr-list value for `:help nvim_set_hl`
                 constants = { bold = true },
                 functions = { bold = true, italic = true },
                 keywords = { italic = true },
