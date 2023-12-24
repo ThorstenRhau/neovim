@@ -25,13 +25,49 @@ wk.register({
         },
         c = {
             name = "Code",
-            a = { "<cmd>Lspsaga code_action<CR>", "Action" },
-            g = { "<cmd>Lspsaga goto_definition<CR>", "Go to definition" },
-            k = { "<cmd>Lspsaga hover_doc<CR>", "LSP Doc" },
+            a = {
+                function()
+                    vim.lsp.buf.code_action()
+                end,
+                "Code action",
+            },
+            d = {
+                function()
+                    vim.lsp.buf.definition()
+                end,
+                "Go to definition",
+            },
+            D = {
+                function()
+                    vim.lsp.buf.declaration()
+                end,
+                "Go to declaration",
+            },
+            i = {
+                function()
+                    vim.lsp.buf.implementation()
+                end,
+                "List implementations",
+            },
             m = { "<cmd>Mason<cr>", "Mason" },
-            o = { "<cmd>SymbolsOutline<CR>", "Outline" },
-            r = { "<cmd>Lspsaga rename<CR>", "Rename" },
-            t = { "<cmd>Lspsaga term_toggle<CR>", "Terminal" },
+            r = {
+                function()
+                    vim.lsp.buf.rename()
+                end,
+                "Rename",
+            },
+            s = {
+                function()
+                    vim.lsp.buf.signature_help()
+                end,
+                "Signature help",
+            },
+            t = {
+                function()
+                    vim.lsp.buf.type_definition()
+                end,
+                "Jump to definition",
+            },
             L = {
                 function()
                     function ListActiveLinters()
@@ -66,14 +102,11 @@ wk.register({
         },
         g = {
             name = "Git",
-            A = { "<cmd>Git commit -a --verbose<cr>", "Commit all changes" },
             b = { "<cmd>Git blame<cr>", "Blame" },
-            C = { "<cmd>Git commit --verbose %<cr>", "Commit the current file" },
             c = { "<cmd>Telescope git_commits<cr>", "Shows previous commits" },
             d = { "<cmd>Git diff<cr>", "Diff" },
             h = { "<cmd>Git log --all --decorate --oneline --graph<cr>", "History" },
             l = { "<cmd>Git pull<cr>", "Pull" },
-            P = { "<cmd>Git push<cr>", "Push" },
             s = { "<cmd>Telescope git_status<cr>", "Status" },
         },
         u = {
@@ -85,6 +118,7 @@ wk.register({
             l = { "<cmd>loadview<cr>", "Load view" },
             m = { "<cmd>mkview<cr>", "Make (save) view" },
             n = { "<cmd>set number!<cr>", "Line number toggle" },
+            o = { "<cmd>SymbolsOutline<CR>", "Outline" },
             p = { "<cmd>PickColor<CR>", "Pick Color" },
             r = { "<cmd>set relativenumber!<cr>", "Relative line number toggle" },
             w = { "<cmd>set wrap!<cr>", "Wrap line toggle" },
