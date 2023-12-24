@@ -32,6 +32,24 @@ wk.register({
             o = { "<cmd>SymbolsOutline<CR>", "Outline" },
             r = { "<cmd>Lspsaga rename<CR>", "Rename" },
             t = { "<cmd>Lspsaga term_toggle<CR>", "Terminal" },
+            L = {
+                function()
+                    function ListActiveLinters()
+                        local linters = require("lint").linters_by_ft[vim.bo.filetype]
+                        if linters then
+                            print("Active linters for filetype '" .. vim.bo.filetype .. "':")
+                            for _, linter in ipairs(linters) do
+                                print(linter)
+                            end
+                        else
+                            print("No active linters for filetype '" .. vim.bo.filetype .. "'.")
+                        end
+                    end
+
+                    ListActiveLinters()
+                end,
+                "Linters list",
+            },
         },
         f = {
             name = "Find",
