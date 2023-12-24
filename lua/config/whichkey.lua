@@ -104,7 +104,8 @@ wk.register({
             name = "Git",
             b = { "<cmd>Git blame<cr>", "Blame" },
             c = { "<cmd>Telescope git_commits<cr>", "Shows previous commits" },
-            d = { "<cmd>Git diff<cr>", "Diff" },
+            g = { "<cmd>Git<cr>", "Interactive Git" },
+            d = { "<cmd>Git difftool<cr>", "Difftool" },
             h = { "<cmd>Git log --all --decorate --oneline --graph<cr>", "History" },
             l = { "<cmd>Git pull<cr>", "Pull" },
             s = { "<cmd>Telescope git_status<cr>", "Status" },
@@ -121,6 +122,7 @@ wk.register({
             o = { "<cmd>SymbolsOutline<CR>", "Outline" },
             p = { "<cmd>PickColor<CR>", "Pick Color" },
             r = { "<cmd>set relativenumber!<cr>", "Relative line number toggle" },
+            t = { "<cmd>ToggleTerm direction=float<cr>", "Terminal toggle" },
             w = { "<cmd>set wrap!<cr>", "Wrap line toggle" },
         },
         x = {
