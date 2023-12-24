@@ -1,4 +1,4 @@
 return {
-  "shaunsingh/nord.nvim",
-  enabled = false,
+    "shaunsingh/nord.nvim",
+    enabled = false,
 }

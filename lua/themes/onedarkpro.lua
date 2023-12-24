@@ -18,7 +18,6 @@ return {
             parameters = "NONE",
             conditionals = "italic",
             virtual_text = "NONE",
-
         },
     },
 }
