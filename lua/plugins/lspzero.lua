@@ -50,19 +50,14 @@ return {
                         documentation = { -- no border; native-style scrollbar
                             border = nil,
                             scrollbar = true,
-                            -- other options
                         },
                     },
                     formatting = lsp_zero.cmp_format(),
                     mapping = cmp.mapping.preset.insert({
-                        -- `Enter` key to confirm completion
                         ["<CR>"] = cmp.mapping.confirm({ select = false }),
-                        -- Ctrl+Space to trigger completion menu
                         ["<C-Space>"] = cmp.mapping.complete(),
-                        -- Scroll up and down in the completion documentation
                         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
                         ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                        -- Navigate between snippet placeholder
                         ["<C-f>"] = cmp_action.luasnip_jump_forward(),
                         ["<C-b>"] = cmp_action.luasnip_jump_backward(),
                         -- Supertab
@@ -100,54 +95,16 @@ return {
                 local lsp_zero = require("lsp-zero")
                 lsp_zero.extend_lspconfig()
 
-                ---@diagnostic disable-next-line: unused-local
                 lsp_zero.on_attach(function(client, bufnr)
                     -- see :help lsp-zero-keybindings
                     -- to learn the available actions
                     lsp_zero.default_keymaps({ buffer = bufnr })
-                    ---@diagnostic disable-next-line: lowercase-global
-                    preserve_mappings = true
-                    local opts = { buffer = bufnr, remap = false }
-
-                    vim.keymap.set("n", "gd", function()
-                        vim.lsp.buf.definition()
-                    end, opts)
-                    vim.keymap.set({ "n" }, "<leader>K", "<CMD>Lspsaga hover_doc<cr>", { desc = "Show documentation" })
-                    vim.keymap.set("n", "<leader>cs", function()
-                        -- The next parameter will be prompted
-                        ---@diagnostic disable-next-line: missing-parameter
-                        vim.lsp.buf.workspace_symbol()
-                    end, opts)
-                    vim.keymap.set("n", "<leader>cd", function()
-                        vim.diagnostic.open_float()
-                    end, opts)
-                    vim.keymap.set("n", "<C-n>", function()
-                        vim.diagnostic.goto_next()
-                    end, opts)
-                    vim.keymap.set("n", "<C-p>", function()
-                        vim.diagnostic.goto_prev()
-                    end, opts)
-                    vim.keymap.set({ "n" }, "<leader>ca", "<CMD>Lspsaga code_action<cr>", { desc = "Code action" })
-                    vim.keymap.set("n", "gr", function()
-                        vim.lsp.buf.references()
-                    end, opts)
-                    vim.keymap.set({ "n" }, "<leader>cr", "<CMD>Lspsaga rename<cr>", { desc = "Rename" })
-                    vim.keymap.set("i", "<C-h>", function()
-                        vim.lsp.buf.signature_help()
-                    end, opts)
                 end)
 
                 require("mason-lspconfig").setup({
-                    ensure_installed = {
-                        -- This is handled by a separate plugin
-                    },
+                    ensure_installed = {}, -- This is done by lua/plugins/mason-tool-installer.lua
                     handlers = {
                         lsp_zero.default_setup,
-                        --lua_ls = function()
-                        --    -- (Optional) Configure lua language server for neovim
-                        --    local lua_opts = lsp_zero.nvim_lua_ls()
-                        --    require("lspconfig").lua_ls.setup(lua_opts)
-                        --end,
                     },
                 })
             end,
