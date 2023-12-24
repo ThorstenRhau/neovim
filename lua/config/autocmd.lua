@@ -20,6 +20,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Setting textwidth to 80 for markdown
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt_local.textwidth = 80
+        vim.opt_local.colorcolumn = "80"
+    end,
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
