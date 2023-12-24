@@ -3,6 +3,8 @@ return {
     dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
     cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
     opts = {
+        run_on_start = false,
+        auto_update = false,
         ensure_installed = {
             "bashls",
             "black",
@@ -18,8 +20,6 @@ return {
             "shfmt",
             "stylua",
             "taplo",
-            auto_update = false,
-            run_on_start = true,
         },
     },
 }
