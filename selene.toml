@@ -1,4 +1,6 @@
 std = "neovim"
 
 [rules]
-mixed_table = "allow"
+lowercase_global = "allow"
+mixed_table      = "allow"
+unused_variable  = "allow"
