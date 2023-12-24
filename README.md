@@ -59,5 +59,5 @@ you set of on your editing adventures.
 
 ## Thank you
 
-There are many individuals and projects that I have learnt from and taken
-inspiration from. Thank you to all of the fantastic Neovim community 🙏🏻.
+There are many individuals and projects that I have learnt and taken inspiration
+from. Thank you to all of the fantastic Neovim community 🙏.
