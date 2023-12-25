@@ -8,5 +8,15 @@ return {
     lazy = true,
     cmd = { "Neogit" },
     config = true,
-    opts = {},
+    opts = {
+        graph_style = "unicode",
+        kind = "replace",
+        status = {
+            recent_commit_count = 20,
+        },
+        integrations = {
+            telescope = true,
+            diffview = true,
+        },
+    },
 }
