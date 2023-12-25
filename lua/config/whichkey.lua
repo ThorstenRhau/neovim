@@ -19,8 +19,8 @@ wk.register({
     ["<leader>"] = {
         b = {
             name = "Buffer",
-
             b = { "<cmd>bprev<CR>", "Previous" },
+            e = { "<cmd>Neotree buffers<CR>", "Neotree buffers" },
             l = { "<cmd>ls<CR>", "List" },
         },
         c = {
