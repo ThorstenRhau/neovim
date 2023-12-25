@@ -17,6 +17,14 @@ return {
         cmdline = {
             view = "cmdline_popup", -- cmdline_popup or cmdline
         },
+        views = { -- Position of the command window
+            cmdline_popup = {
+                position = {
+                    row = "80%",
+                    col = "10%",
+                },
+            },
+        },
         lsp = {
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
             override = {
