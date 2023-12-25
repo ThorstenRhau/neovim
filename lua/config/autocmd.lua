@@ -13,7 +13,7 @@ vim.cmd([[ autocmd FileType * set formatoptions-=cro ]])
 
 -- Setting textwidth to 72 for git commit messages
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "gitcommit",
+    pattern = { "gitcommit", "NeogitCommitMessage" },
     callback = function()
         vim.opt_local.textwidth = 72
         vim.opt_local.colorcolumn = "72"
@@ -76,7 +76,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("wrap_spell"),
-    pattern = { "gitcommit", "markdown" },
+    pattern = { "gitcommit", "markdown", "NeogitCommitMessage" },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
