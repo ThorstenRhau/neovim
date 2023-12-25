@@ -82,6 +82,7 @@ return {
                         background = true,
                     },
                 },
+                notify = true,
                 pounce = true,
                 semantic_tokens = true,
                 treesitter = true,
