@@ -15,9 +15,6 @@ return {
             },
         },
         cmdline = {
-            format = {
-                cmdline = { pattern = "^:", icon = "", lang = "vim" },
-            },
             view = "cmdline_popup", -- cmdline_popup or cmdline
         },
         lsp = {
