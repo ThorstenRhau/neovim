@@ -104,10 +104,9 @@ wk.register({
             name = "Git",
             b = { "<cmd>Git blame<cr>", "Blame" },
             c = { "<cmd>Telescope git_commits<cr>", "Shows previous commits" },
-            g = { "<cmd>Git<cr>", "Interactive Git" },
-            d = { "<cmd>Git difftool<cr>", "Difftool" },
-            h = { "<cmd>Git log --all --decorate --oneline --graph<cr>", "History" },
+            g = { "<cmd>Neogit<cr>", "Interactive Git" },
             l = { "<cmd>Git pull<cr>", "Pull" },
+            P = { "<cmd>Git push<cr>", "Pull" },
             s = { "<cmd>Telescope git_status<cr>", "Status" },
         },
         u = {
