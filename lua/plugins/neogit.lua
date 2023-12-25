@@ -9,8 +9,13 @@ return {
     cmd = { "Neogit" },
     config = true,
     opts = {
+        disable_insert_on_commit = true,
         graph_style = "unicode",
         kind = "replace",
+        filewatcher = {
+            interval = 1000,
+            enabled = true,
+        },
         status = {
             recent_commit_count = 20,
         },
