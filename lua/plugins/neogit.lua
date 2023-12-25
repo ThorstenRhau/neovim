@@ -13,7 +13,7 @@ return {
         graph_style = "unicode",
         kind = "replace",
         filewatcher = {
-            interval = 1000,
+            interval = 2500,
             enabled = true,
         },
         status = {
