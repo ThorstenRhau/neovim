@@ -102,7 +102,7 @@ wk.register({
         },
         g = {
             name = "Git",
-            b = { "<cmd>Git blame<cr>", "Blame" },
+            b = { "<cmd>GitBlameToggle<cr>", "Blame toggle" },
             c = { "<cmd>Telescope git_commits<cr>", "Shows previous commits" },
             g = { "<cmd>Neogit<cr>", "Interactive Git" },
             l = { "<cmd>Git pull<cr>", "Pull" },
