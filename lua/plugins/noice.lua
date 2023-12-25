@@ -8,6 +8,18 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {
+        routes = {
+            {
+                view = "notify",
+                filter = { event = "msg_showmode" },
+            },
+        },
+        cmdline = {
+            format = {
+                cmdline = { pattern = "^:", icon = "", lang = "vim" },
+            },
+            view = "cmdline_popup", -- cmdline_popup or cmdline
+        },
         lsp = {
             -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
             override = {
@@ -23,14 +35,18 @@ return {
                 -- This seems to collide with lspzero
                 enabled = false,
             },
-        },
-        -- you can enable a preset for easier configuration
-        presets = {
-            bottom_search = true, -- use a classic bottom cmdline for search
-            command_palette = true, -- position the cmdline and popupmenu together
-            long_message_to_split = true, -- long messages will be sent to a split
-            inc_rename = false, -- enables an input dialog for inc-rename.nvim
-            lsp_doc_border = true, -- add a border to hover docs and signature help
+            -- you can enable a preset for easier configuration
+            presets = {
+                bottom_search = true, -- use a classic bottom cmdline for search
+                command_palette = true, -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = false, -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = true, -- add a border to hover docs and signature help
+            },
+            notify = {
+                enabled = true,
+                view = "notify",
+            },
         },
     },
 }
