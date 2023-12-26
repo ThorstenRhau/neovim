@@ -107,10 +107,6 @@ wk.register({
             g = { "<cmd>Neogit<cr>", "Interactive Git" },
             s = { "<cmd>Telescope git_status<cr>", "Status" },
         },
-        h = {
-            -- Mappings are done in the plugin
-            name = "Harpoon",
-        },
         u = {
             name = "User Interface",
             C = { "<cmd>set colorcolumn=80<CR>", "Colorcolumn at 80" },
