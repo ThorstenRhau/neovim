@@ -68,7 +68,7 @@ opt.listchars = {
 vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
 
 -- Setting up providers
---vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"
 
 -- Disabling some providers that I do not use
 vim.g.loaded_perl_provider = 0
