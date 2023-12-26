@@ -4,7 +4,6 @@ return {
     cmd = { "ConformInfo" },
     keys = {
         {
-            -- Customize or remove this keymap to your liking
             "<leader>cf",
             function()
                 require("conform").format({ async = true, lsp_fallback = true })
@@ -13,9 +12,8 @@ return {
             desc = "Format buffer",
         },
     },
-    -- Everything in opts will be passed to setup()
     opts = {
-        -- Define your formatters
+        -- Define formatters by filetype.
         formatters_by_ft = {
             css = { "prettier" },
             html = { "prettier" },
@@ -30,6 +28,7 @@ return {
         },
         -- Set up format-on-save
         format_on_save = { timeout_ms = 1000, lsp_fallback = true },
+        notify_on_error = true,
         -- Customize formatters
         -- formatters = {
         -- 	shfmt = {
