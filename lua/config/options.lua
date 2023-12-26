@@ -38,12 +38,6 @@ opt.signcolumn = "yes:1"
 opt.cmdheight = 0
 opt.cmdwinheight = 10
 
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    command = "set nopaste",
-})
-
 -- Add asterisks in block comments
 vim.opt.formatoptions:append({ "r" })
 
@@ -52,9 +46,6 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.shiftround = true
 opt.expandtab = true
-
--- Format options ,no help with comments :-)
-vim.cmd([[ autocmd FileType * set formatoptions-=cro ]])
 
 opt.listchars = {
     -- Definíng symbols for hidden characters
