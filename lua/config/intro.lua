@@ -10,23 +10,23 @@ local lines = {
     {
         chunks = {
             {
-                text = "Neovim :: by thorre",
+                text = "Neovim",
                 hl = "Normal",
             },
-            -- {
-            --     text = " - by me for me",
-            --     hl = "NonText",
-            -- },
-        },
-    },
-    {
-        chunks = {
             {
-                text = "press <space> or <c-g>",
+                text = " :: by thorre",
                 hl = "NonText",
             },
         },
     },
+    --{
+    --    chunks = {
+    --        {
+    --            text = "leader is <space>",
+    --            hl = "NonText",
+    --        },
+    --    },
+    --},
 }
 
 ---Window configuration for the intro message floating window
@@ -70,6 +70,7 @@ end
 -- Create the scratch buffer to display the intro message
 -- Set eventignore to avoid triggering plugin lazy-loading handlers
 local eventignore = vim.go.eventignore
+---@diagnostic disable-next-line: param-type-mismatch
 vim.opt.eventignore:append({
     "BufNew",
     "OptionSet",
