@@ -8,7 +8,6 @@ return {
         ensure_installed = {
             "bashls",
             "black",
-            "gitlint",
             "isort",
             "lua_ls",
             "markdownlint",
