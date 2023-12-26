@@ -44,9 +44,8 @@ return {
             use_libuv_file_watcher = true,
         },
         window = {
-            mappings = {
-                ["<space>"] = "none",
-            },
+            position = "right",
+            width = 20,
         },
         default_component_configs = {
             indent = {
