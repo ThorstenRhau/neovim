@@ -1,6 +1,7 @@
 return {
     "folke/noice.nvim",
     dependencies = {
+        "VonHeikemen/lsp-zero.nvim",
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
         "nvim-treesitter/nvim-treesitter",
@@ -33,12 +34,10 @@ return {
                 ["cmp.entry.get_documentation"] = true,
             },
             hover = {
-                -- This seems to collide with lspzero
-                enabled = false,
+                enabled = true,
             },
             signature = {
-                -- This seems to collide with lspzero
-                enabled = false,
+                enabled = true,
             },
             -- you can enable a preset for easier configuration
             presets = {
