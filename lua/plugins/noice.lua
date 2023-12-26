@@ -8,20 +8,20 @@ return {
     lazy = true,
     event = "VeryLazy",
     opts = {
-        routes = {
-            {
-                view = "notify",
-                filter = { event = "msg_showmode" },
-            },
-        },
+        -- routes = {
+        --     {
+        --         view = "notify",
+        --         filter = { event = "msg_showmode" },
+        --     },
+        -- },
         cmdline = {
             view = "cmdline_popup", -- cmdline_popup or cmdline
         },
         views = { -- Position of the command window
             cmdline_popup = {
                 position = {
-                    row = "80%",
-                    col = "10%",
+                    row = "65%",
+                    col = "50%",
                 },
             },
         },
