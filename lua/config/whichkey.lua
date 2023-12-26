@@ -115,7 +115,7 @@ wk.register({
             h = { "<cmd>set list!<CR>", "Hidden Characters Toggle" },
             i = { "<cmd>IlluminateToggle<cr>", "Illuminate word highlighting" },
             l = { "<cmd>set number!<cr>", "Line number toggle" },
-            o = { "<cmd>SymbolsOutline<CR>", "Outline" },
+            o = { "<cmd>AerialToggle!<CR>", "Outline" },
             p = { "<cmd>PickColor<CR>", "Pick Color" },
             r = { "<cmd>set relativenumber!<cr>", "Relative line number toggle" },
             t = { "<cmd>ToggleTerm direction=float<cr>", "Terminal toggle" },
