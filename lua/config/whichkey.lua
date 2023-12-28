@@ -10,11 +10,12 @@ vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
 local wk = require("which-key")
 wk.register({
     ["<leader>l"] = { "<cmd>Lazy<cr>", "Lazy" },
-    ["<leader>t"] = { "<cmd>Telescope<cr>", "Telescope" },
-    ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce" },
-    ["<leader>U"] = { "<cmd>Telescope undo<cr>", "Undo" },
+    ["<leader>m"] = { "<cmd>Mason<cr>", "Mason" },
     ["<leader>o"] = { "<cmd>Oil --float<cr>", "Oil file manager" },
+    ["<leader>p"] = { "<cmd>Pounce<cr>", "Pounce" },
     ["<leader>s"] = { [[<cmd> lua require("persistence").load() <cr>]], "Restore last session" },
+    ["<leader>t"] = { "<cmd>Telescope<cr>", "Telescope" },
+    ["<leader>U"] = { "<cmd>Telescope undo<cr>", "Undo" },
 
     ["<leader>"] = {
         b = {
@@ -49,7 +50,6 @@ wk.register({
                 end,
                 "List implementations",
             },
-            m = { "<cmd>Mason<cr>", "Mason" },
             r = {
                 function()
                     vim.lsp.buf.rename()
