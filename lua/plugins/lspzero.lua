@@ -30,7 +30,15 @@ return {
             "hrsh7th/nvim-cmp",
             event = "InsertEnter",
             dependencies = {
-                { "L3MON4D3/LuaSnip" },
+                {
+                    "hrsh7th/cmp-nvim-lsp",
+                    "L3MON4D3/LuaSnip",
+                    "hrsh7th/cmp-buffer",
+                    "hrsh7th/cmp-path",
+                    "saadparwaiz1/cmp_luasnip",
+                    "hrsh7th/cmp-nvim-lua",
+                    "hrsh7th/cmp-cmdline",
+                },
             },
             config = function()
                 -- Here is where you configure the autocompletion settings.
@@ -65,10 +73,12 @@ return {
                         ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
                     }),
                     sources = cmp.config.sources({
-                        { name = "nvim_lsp" },
                         { name = "luasnip" },
+                        { name = "nvim_lsp" },
                         { name = "path" },
+                        { name = "cmdline" },
                         { name = "buffer", keyword_length = 4 },
+                        { name = "nvim_lua" },
                     }),
                 })
             end,
