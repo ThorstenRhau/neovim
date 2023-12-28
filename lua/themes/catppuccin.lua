@@ -46,8 +46,8 @@ return {
             },
             custom_highlights = {},
             integrations = {
+                aerial = true,
                 cmp = true,
-                fidget = true,
                 gitsigns = true,
                 illuminate = {
                     enabled = false,
@@ -58,12 +58,10 @@ return {
                     colored_indent_levels = false,
                 },
                 lsp_trouble = true,
-                lsp_saga = true,
                 markdown = true,
                 mini = {
                     enabled = true,
                 },
-                neotree = true,
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
@@ -82,16 +80,18 @@ return {
                         background = true,
                     },
                 },
+                neogit = true,
+                neotree = true,
+                noice = true,
                 notify = true,
                 pounce = true,
                 semantic_tokens = true,
+                telescope = {
+                    enabled = true,
+                },
                 treesitter = true,
                 treesitter_context = true,
                 symbols_outline = true,
-                telescope = {
-                    enabled = true,
-                    style = "lazy",
-                },
                 which_key = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
