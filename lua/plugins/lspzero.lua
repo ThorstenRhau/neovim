@@ -37,7 +37,6 @@ return {
                     "hrsh7th/cmp-path",
                     "saadparwaiz1/cmp_luasnip",
                     "hrsh7th/cmp-nvim-lua",
-                    "hrsh7th/cmp-cmdline",
                 },
             },
             config = function()
@@ -76,7 +75,6 @@ return {
                         { name = "nvim_lsp" },
                         { name = "luasnip" },
                         { name = "path" },
-                        { name = "cmdline" },
                         { name = "buffer", keyword_length = 4 },
                         { name = "nvim_lua" },
                     }),
