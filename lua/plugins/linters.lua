@@ -7,9 +7,11 @@ return {
         local lint = require("lint")
 
         lint.linters_by_ft = {
+            json = { "jsonlint" },
             lua = { "selene" }, -- Install 'selene' via homebrew instead of Mason
             python = { "pylint" },
             sh = { "shellcheck" },
+            yaml = { "yamllint" },
         }
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

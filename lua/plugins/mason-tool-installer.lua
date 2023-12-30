@@ -9,6 +9,8 @@ return {
             "bashls",
             "black",
             "isort",
+            "jsonls",
+            "jsonlint",
             "lua_ls",
             "markdownlint",
             "marksman",
@@ -19,6 +21,8 @@ return {
             "shfmt",
             "stylua",
             "taplo",
+            "yamlls",
+            "yamllint",
         },
     },
 }
