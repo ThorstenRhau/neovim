@@ -31,9 +31,8 @@ return {
             },
             icons = {
                 breadcrumb = "»",
-                -- separator = "➜",
-                separator = "",
-                group = "+",
+                separator = " ",
+                group = "  ",
             },
             popup_mappings = {
                 scroll_down = "<c-d>",
