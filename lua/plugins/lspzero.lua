@@ -37,6 +37,7 @@ return {
                     "hrsh7th/cmp-path",
                     "saadparwaiz1/cmp_luasnip",
                     "hrsh7th/cmp-nvim-lua",
+                    "onsails/lspkind.nvim",
                 },
             },
             config = function()
@@ -53,13 +54,27 @@ return {
                         completion = { -- rounded border; thin-style scrollbar
                             border = "rounded",
                             scrollbar = true,
+                            side_padding = 0,
                         },
                         documentation = { -- no border; native-style scrollbar
                             border = nil,
                             scrollbar = true,
                         },
                     },
-                    formatting = lsp_zero.cmp_format(),
+                    --formatting = lsp_zero.cmp_format(),
+                    ---@diagnostic disable-next-line: missing-fields
+                    formatting = {
+                        fields = { "kind", "abbr", "menu" },
+                        format = function(entry, vim_item)
+                            local kind =
+                                require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                            kind.kind = " " .. (strings[1] or "") .. " "
+                            kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+                            return kind
+                        end,
+                    },
                     mapping = cmp.mapping.preset.insert({
                         ["<CR>"] = cmp.mapping.confirm({ select = false }),
                         ["<C-Space>"] = cmp.mapping.complete(),
