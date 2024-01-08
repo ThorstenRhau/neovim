@@ -70,3 +70,6 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+
+-- Setting global variable for lspzero borders
+vim.g.lsp_zero_ui_float_border = "rounded"
