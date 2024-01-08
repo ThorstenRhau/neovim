@@ -63,7 +63,6 @@ return {
                         }),
                     },
                     --formatting = lsp_zero.cmp_format(),
-                    ---@diagnostic disable-next-line: missing-fields
                     formatting = {
                         fields = { "kind", "abbr", "menu" },
                         format = function(entry, vim_item)
@@ -75,6 +74,7 @@ return {
 
                             return kind
                         end,
+                        expandable_indicator = true,
                     },
                     mapping = cmp.mapping.preset.insert({
                         ["<CR>"] = cmp.mapping.confirm({ select = false }),
