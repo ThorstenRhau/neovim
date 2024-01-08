@@ -20,7 +20,7 @@ I use macOS so here are the instructions for how to install dependencies with
 homebrew on mac.
 
 ```
-brew install ripgrep fd cmake git node wget shellcheck python3 selene hg
+brew install ripgrep fd cmake git node wget shellcheck python3 selene hg nvim
 ```
 
 ```
