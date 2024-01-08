@@ -51,15 +51,16 @@ return {
 
                 cmp.setup({
                     window = {
-                        completion = { -- rounded border; thin-style scrollbar
+                        completion = cmp.config.window.bordered({
                             border = "rounded",
                             scrollbar = true,
                             side_padding = 0,
-                        },
-                        documentation = { -- no border; native-style scrollbar
-                            border = nil,
+                        }),
+                        documentation = cmp.config.window.bordered({
+                            border = "rounded",
                             scrollbar = true,
-                        },
+                            side_padding = 0,
+                        }),
                     },
                     --formatting = lsp_zero.cmp_format(),
                     ---@diagnostic disable-next-line: missing-fields
