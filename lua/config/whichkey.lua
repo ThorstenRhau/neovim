@@ -9,6 +9,7 @@ vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
 -- Setting up register for 'which key' with keymappings
 local wk = require("which-key")
 wk.register({
+    ["<leader>E"] = { "<cmd>Explore<cr>", "Explore" },
     ["<leader>l"] = { "<cmd>Lazy<cr>", "Lazy" },
     ["<leader>m"] = { "<cmd>Mason<cr>", "Mason" },
     ["<leader>o"] = { "<cmd>Oil --float<cr>", "Oil file manager" },
