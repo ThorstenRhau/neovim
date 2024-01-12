@@ -24,6 +24,7 @@ return {
             python = { "isort", "black" },
             sh = { "shfmt" },
             toml = { "taplo" },
+            typescript = { "prettier" },
             yaml = { "prettier" },
         },
         -- Set up format-on-save
