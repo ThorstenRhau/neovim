@@ -8,9 +8,10 @@ return {
         ensure_installed = {
             "bashls",
             "black",
+            "html",
             "isort",
-            "jsonls",
             "jsonlint",
+            "jsonls",
             "lua_ls",
             "markdownlint",
             "marksman",
@@ -21,8 +22,10 @@ return {
             "shfmt",
             "stylua",
             "taplo",
-            "yamlls",
+            "tsx",
+            "typescript",
             "yamllint",
+            "yamlls",
         },
     },
 }
