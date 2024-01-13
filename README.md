@@ -12,6 +12,13 @@ documented and I hope that no breaking changes slip through the cracks.
 If you want to make this configuration your own, just clone it and remove the
 _.git_ directory from the root folder.
 
+## Showcase
+
+![greeter](./img/greeter.png) ![lazy](./img/lazy.png)
+![git log](./img/gitlog.png) ![bash_ls](./img/bashls.png)
+![import](./img/import.png) ![which-key](./img/whichkey.png)
+![LSP](./img/lsp.png)
+
 ## Installation
 
 ### Dependencies
