@@ -18,9 +18,27 @@ return {
             indent = {
                 enable = true,
             },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "gnn", -- set to `false` to disable one of the mappings
+                    node_incremental = "grn",
+                    scope_incremental = "grc",
+                    node_decremental = "grm",
+                },
+            },
+            ---@diagnostic disable-next-line: unused-local
+            disable = function(lang, buf)
+                local max_filesize = 500 * 1024 -- 500 KB
+                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                if ok and stats and stats.size > max_filesize then
+                    return true
+                end
+            end,
             ensure_installed = {
                 "bash",
                 "comment",
+                "css",
                 "diff",
                 "git_config",
                 "git_rebase",
@@ -29,16 +47,35 @@ return {
                 "gitignore",
                 "html",
                 "http",
+                "javascript",
+                "json",
+                "json5",
                 "jsonc",
                 "lua",
                 "luadoc",
-                "python",
+                "make",
                 "markdown",
                 "markdown_inline",
+                "passwd",
+                "pem",
+                "perl",
+                "php",
+                "phpdoc",
+                "properties",
+                "pymanifest",
+                "python",
                 "regex",
+                "requirements",
+                "ruby",
+                "scheme",
+                "sql",
+                "ssh_config",
+                "todotxt",
                 "toml",
+                "typescript",
                 "vim",
                 "vimdoc",
+                "xml",
                 "yaml",
             },
         })
