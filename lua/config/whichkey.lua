@@ -87,7 +87,7 @@ wk.register({
                 end,
                 "Linters list",
             },
-            b = { "<Cmd>CBlabox<CR>", "Box Title" },
+            b = { "<Cmd>CBcabox<CR>", "Box Title" },
             T = { "<Cmd>CBllline<CR>", "Titled Line" },
         },
         f = {
