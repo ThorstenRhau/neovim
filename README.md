@@ -1,4 +1,4 @@
-# My NeoVim setup
+# My NeoVim configuration
 
 This setup is "by me for me", intended for my personal use.
 
@@ -17,7 +17,7 @@ _.git_ directory from the root folder.
 ### Dependencies
 
 I use macOS so here are the instructions for how to install dependencies with
-homebrew on mac.
+homebrew on a mac.
 
 ```
 brew install ripgrep fd cmake git node wget shellcheck python3 selene hg nvim
@@ -33,7 +33,7 @@ python3 -m pip install --upgrade --user pynvim
 
 ### Cloning the repository
 
-When you have all the dependencies installed clone the repo in to
+When you have all the dependencies installed, clone the repo in to
 _~/.config/nvim/_
 
 Example:
@@ -45,17 +45,16 @@ git clone https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 ### First launch
 
 When you launch Neovim for the first time after cloning the repository you will
-se a lot going on. Plugins should be installed by Lazy and Treesitter should
-install some (~20) essential parsers. Thereafter you can run
-**_:MasonToolsInstall_** to install all needed Mason components for this
-configuration. When this is done it is a good idea to quit Neovim.
+see a lot going on. Plugins should be installed by Lazy and Treesitter should
+install language parsers. Thereafter you can run **_:MasonToolsInstall_** to
+install all LSPs, Linters, and Formatters for this configuration. When this is
+done it is a good idea to quit or re-start Neovim.
 
 ### Verify your installation
 
-Launch Neovim and run _:Lazy load all_ to load all the plugins. There should be
-no error messages on screen. After you have loaded all the plugins you can run
-_:checkhealth_ to see that everything is configured and working properly before
-you set of on your editing adventures.
+Launch Neovim and run _:Lazy load all_ to load all the plugins. After you have
+loaded all the plugins you can run _:checkhealth_ to see that everything is
+configured and working properly before you start to use Neovim for your editing.
 
 ## Thank you
 
