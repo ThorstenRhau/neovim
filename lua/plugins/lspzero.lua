@@ -88,11 +88,11 @@ return {
                         ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
                     }),
                     sources = cmp.config.sources({
-                        { name = "nvim_lsp" },
-                        { name = "luasnip" },
-                        { name = "path" },
-                        { name = "buffer", keyword_length = 4 },
-                        { name = "nvim_lua" },
+                        { name = "nvim_lsp", priority = 100 },
+                        { name = "luasnip", priority = 80 },
+                        { name = "path", priority = 60 },
+                        { name = "buffer", keyword_length = 4, priority = 40 },
+                        { name = "nvim_lua", priority = 20 },
                     }),
                 })
             end,
