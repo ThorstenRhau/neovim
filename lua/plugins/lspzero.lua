@@ -93,6 +93,7 @@ return {
                         { name = "path", priority = 60 },
                         { name = "buffer", keyword_length = 4, priority = 40 },
                         { name = "nvim_lua", priority = 20 },
+                        { name = "nvim_lsp_signature_help", priority = 10 },
                     }),
                 })
             end,
