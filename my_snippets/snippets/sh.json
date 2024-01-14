@@ -1,0 +1,16 @@
+{
+    "isRoot": {
+        "prefix": "isroot",
+        "description": "If the user is not root the script is aborted",
+        "body": [
+            "is_root_user() {",
+            "    if [ \"$(id -u)\" -ne 0 ]; then",
+            "        echo 'Please run this script as the root user'",
+            "        exit 1",
+            "    fi",
+            "}",
+            "",
+            "is_root_user"
+        ]
+    }
+}
