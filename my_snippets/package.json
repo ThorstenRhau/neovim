@@ -10,6 +10,12 @@
             },
             {
                 "language": [
+                    "python"
+                ],
+                "path": "./snippets/python.json"
+            },
+            {
+                "language": [
                     "sh"
                 ],
                 "path": "./snippets/sh.json"
