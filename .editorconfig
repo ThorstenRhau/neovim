@@ -10,3 +10,6 @@ max_line_length = 80
 
 [lua]
 max_line_length = 120
+
+[gitcommit]
+max_line_length = 72
