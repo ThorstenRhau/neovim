@@ -19,6 +19,7 @@ return {
             callback = function()
                 local ignore_filetypes = {
                     "aerial",
+                    "checkhealth",
                     "help",
                     "lazy",
                     "leetcode.nvim",
