@@ -30,7 +30,7 @@ require("lazy").setup({
     checker = {
         enabled = true,
         notify = true,
-        frequency = 86400, -- Check for updates every day
+        frequency = 604800, -- Check for updates every week
     },
     performance = {
         cache = {
