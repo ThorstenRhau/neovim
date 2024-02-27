@@ -39,7 +39,7 @@ opt.cmdheight = 0
 opt.cmdwinheight = 10
 
 -- Add asterisks in block comments
-vim.opt.formatoptions:append({ "r" })
+opt.formatoptions:append({ "r" })
 
 -- use spaces for tabs and whatnot
 opt.tabstop = 4
@@ -66,10 +66,11 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 -- Setting up undo
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+---@diagnostic disable-next-line: assign-type-mismatch
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
 -- Setting global variable for lspzero borders
 vim.g.lsp_zero_ui_float_border = "rounded"
