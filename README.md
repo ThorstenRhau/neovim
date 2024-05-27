@@ -34,10 +34,6 @@ brew install ripgrep fd cmake git node wget shellcheck python3 selene hg nvim
 npm install -g neovim
 ```
 
-```
-python3 -m pip install --upgrade --user pynvim
-```
-
 ### Cloning the repository
 
 When you have all the dependencies installed, clone the repo in to
