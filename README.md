@@ -28,6 +28,7 @@ homebrew on a mac.
 
 ```
 brew install ripgrep fd cmake git node wget shellcheck python3 selene hg nvim
+luarocks
 ```
 
 ```
