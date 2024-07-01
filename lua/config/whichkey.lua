@@ -6,6 +6,19 @@ vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 -- Launch Telescope main window
 vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
 
+-- Function to toggle virtual text
+local function toggle_virtual_text()
+    local current_value = vim.diagnostic.config().virtual_text
+    vim.diagnostic.config({
+        virtual_text = not current_value,
+    })
+    if current_value then
+        print("Virtual text disabled")
+    else
+        print("Virtual text enabled")
+    end
+end
+
 -- Setting up register for 'which key' with keymappings
 local wk = require("which-key")
 wk.register({
@@ -121,6 +134,7 @@ wk.register({
             p = { "<cmd>PickColor<CR>", "Pick Color" },
             r = { "<cmd>set relativenumber!<cr>", "Relative line number toggle" },
             t = { "<cmd>ToggleTerm direction=float<cr>", "Terminal toggle" },
+            v = { toggle_virtual_text, "Toggle Virtual Text" },
             w = { "<cmd>set wrap!<cr>", "Wrap line toggle" },
         },
         x = {
