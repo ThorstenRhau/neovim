@@ -133,4 +133,6 @@ wk.add({
     { "<leader>ut", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal toggle" },
     { "<leader>uv", toggle_virtual_text, desc = "Toggle Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap line toggle" },
+    --
+    { "<leader>x", group = "Trouble" },
 })
