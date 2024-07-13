@@ -83,7 +83,7 @@ wk.add({
         desc = "Rename",
     },
     {
-        "<leader>cs",
+        "<leader>cS",
         function()
             vim.lsp.buf.signature_help()
         end,
