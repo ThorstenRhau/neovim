@@ -33,28 +33,6 @@ require("lazy").setup({
         size = { width = 0.9, height = 0.9 },
         border = "rounded",
     },
-    performance = {
-        cache = {
-            enabled = true,
-        },
-        reset_packpath = true, -- reset the package path to improve startup time
-        rtp = {
-            reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-            ---@type string[]
-            paths = {}, -- add any custom paths here that you want to includes in the rtp
-            ---@type string[] list any plugins you want to disable here
-            disabled_plugins = {
-                "gzip",
-                "matchit",
-                "matchparen",
-                "netrwPlugin",
-                "tarPlugin",
-                "tohtml",
-                "tutor",
-                "zipPlugin",
-            },
-        },
-    },
 })
 
 require("config.options")
@@ -64,21 +42,27 @@ require("config.autocmd")
 require("config.intro")
 require("config.gp-keys")
 
--- vim.cmd.colorscheme("habamax")
+-- Check macOS light / dark user interface state and return theme accordingly
 local function getPreferredTheme()
-    local interfaceHandleStyle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-    if not interfaceHandleStyle then
+    local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+    if not handle then
         return "habamax"
     end
 
-    local result = interfaceHandleStyle:read("*a")
-    interfaceHandleStyle:close()
+    local result = handle:read("*a")
+    handle:close()
 
-    if result and string.find(result, "Dark") then
+    if result and result:match("Dark") then
         return "catppuccin-macchiato" -- Dark theme
     else
         return "catppuccin-latte" -- Light theme
     end
 end
 
-vim.cmd.colorscheme(getPreferredTheme())
+-- Apply the preferred theme
+local preferred_theme = getPreferredTheme()
+if preferred_theme then
+    vim.cmd.colorscheme(preferred_theme)
+else
+    vim.cmd.colorscheme("default")
+end
