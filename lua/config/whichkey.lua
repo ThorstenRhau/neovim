@@ -35,7 +35,6 @@ end
 -- Setting up register for 'which key' with keymappings
 local wk = require("which-key")
 wk.add({
-    { "<leader>E", "<cmd>Explore<cr>", desc = "Explore" },
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo" },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
