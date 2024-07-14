@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.opt.termguicolors = true
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
 
 require("lazy").setup({
     spec = {
@@ -24,13 +22,17 @@ require("lazy").setup({
     },
     defaults = {
         lazy = true,
-        version = false,
+        version = "*",
     },
-    install = { colorscheme = { "catppuccin", "habamax" } },
+    install = { colorscheme = { "catppuccin", "default" } },
     checker = {
         enabled = true,
         notify = true,
         frequency = 604800, -- Check for updates every week
+    },
+    ui = {
+        size = { width = 0.9, height = 0.9 },
+        border = "rounded",
     },
     performance = {
         cache = {
@@ -38,22 +40,21 @@ require("lazy").setup({
         },
         reset_packpath = true, -- reset the package path to improve startup time
         rtp = {
-            -- disable some rtp plugins
+            reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+            ---@type string[]
+            paths = {}, -- add any custom paths here that you want to includes in the rtp
+            ---@type string[] list any plugins you want to disable here
             disabled_plugins = {
                 "gzip",
-                -- "matchit",
-                -- "matchparen",
-                -- "netrwPlugin",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
                 "tarPlugin",
                 "tohtml",
                 "tutor",
                 "zipPlugin",
             },
         },
-    },
-    ui = {
-        size = { width = 0.9, height = 0.9 },
-        border = "rounded",
     },
 })
 
