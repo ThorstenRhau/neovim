@@ -37,12 +37,22 @@ local wk = require("which-key")
 wk.add({
     { "<leader>E", "<cmd>Explore<cr>", desc = "Explore" },
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo" },
-    --
+    { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
+    { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
+    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
+    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce - motion" },
+    { "<leader>s", '<cmd> lua require("persistence").load() <cr>', desc = "Restore last session" },
+    { "<leader>t", "<cmd>Telescope<cr>", desc = "Telescope - fuzzy finder" },
+    --                                  ╭────────╮
+    --                                  │ Buffer │
+    --                                  ╰────────╯
     { "<leader>b", group = "Buffer" },
     { "<leader>bb", "<cmd>bprev<CR>", desc = "Previous" },
     { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree buffers" },
     { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
-    --
+    --                                   ╭──────╮
+    --                                   │ Code │
+    --                                   ╰──────╯
     { "<leader>c", group = "Code" },
     {
         "<leader>cD",
@@ -96,7 +106,9 @@ wk.add({
         end,
         desc = "Jump to definition",
     },
-    --
+    --                                   ╭──────╮
+    --                                   │ Find │
+    --                                   ╰──────╯
     { "<leader>f", group = "Find" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files" },
@@ -108,19 +120,17 @@ wk.add({
     { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in buffer" },
     { "<leader>fy", "<cmd>Telescope neoclip<cr>", desc = "Old Yanks" },
     { "<leader>fz", "<cmd>Telescope spell_suggest<cr>", desc = "Spelling suggestions" },
-    --
+    --                                    ╭─────╮
+    --                                    │ Git │
+    --                                    ╰─────╯
     { "<leader>g", group = "Git" },
     { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame toggle" },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Shows previous commits" },
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Interactive Git" },
     { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
-    { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
-    { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
-    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
-    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce - motion" },
-    { "<leader>s", '<cmd> lua require("persistence").load() <cr>', desc = "Restore last session" },
-    { "<leader>t", "<cmd>Telescope<cr>", desc = "Telescope - fuzzy finder" },
-    --
+    --                                 ╭───────────╮
+    --                                 │ Interface │
+    --                                 ╰───────────╯
     { "<leader>u", group = "User Interface" },
     { "<leader>uC", "<cmd>set colorcolumn=80<CR>", desc = "Colorcolumn at 80" },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
@@ -133,6 +143,9 @@ wk.add({
     { "<leader>ut", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal toggle" },
     { "<leader>uv", toggle_virtual_text, desc = "Toggle Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap line toggle" },
-    --
+    --                                  ╭─────────╮
+    --                                  │ Trouble │
+    --                                  ╰─────────╯
+    -- The mappings are done in the Trouble plugin configuration
     { "<leader>x", group = "Trouble" },
 })
