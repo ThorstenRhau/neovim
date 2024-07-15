@@ -119,7 +119,7 @@ wk.add({
     { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Notify messages" },
     { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
     { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find in buffer" },
-    { "<leader>fy", "<cmd>Telescope neoclip<cr>", desc = "Old Yanks" },
+    { "<leader>fy", "<cmd>Telescope neoclip<cr>", desc = "Yanks" },
     { "<leader>fz", "<cmd>Telescope spell_suggest<cr>", desc = "Spelling suggestions" },
     --                                    ╭─────╮
     --                                    │ Git │
