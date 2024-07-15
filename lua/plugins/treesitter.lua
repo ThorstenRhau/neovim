@@ -2,11 +2,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-context",
-        "windwp/nvim-ts-autotag",
     },
     version = false,
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    event = { "BufReadPost", "BufNewFile" },
     opts = function()
         require("nvim-treesitter.configs").setup({
             modules = {},
