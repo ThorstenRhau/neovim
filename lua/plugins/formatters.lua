@@ -28,7 +28,7 @@ return {
             yaml = { "prettier" },
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 2500, lsp_fallback = true },
+        format_on_save = { timeout_ms = 5000, lsp_fallback = true },
         notify_on_error = true,
         -- Customize formatters
         -- formatters = {
