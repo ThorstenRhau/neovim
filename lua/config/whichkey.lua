@@ -41,7 +41,7 @@ wk.add({
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce - motion" },
     { "<leader>s", '<cmd> lua require("persistence").load() <cr>', desc = "Restore last session" },
-    { "<leader>t", "<cmd>Telescope<cr>", desc = "Telescope - fuzzy finder" },
+    { "<leader>t", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal" },
     --                                  ╭────────╮
     --                                  │ Buffer │
     --                                  ╰────────╯
@@ -133,7 +133,17 @@ wk.add({
     --                                 │ Interface │
     --                                 ╰───────────╯
     { "<leader>u", group = "User Interface" },
-    { "<leader>uC", "<cmd>set colorcolumn=80<CR>", desc = "Colorcolumn at 80" },
+    {
+        "<leader>uC",
+        function()
+            if vim.wo.colorcolumn == "" then
+                vim.wo.colorcolumn = "80"
+            else
+                vim.wo.colorcolumn = ""
+            end
+        end,
+        desc = "Toggle Colorcolumn at 80",
+    },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters Toggle" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
@@ -141,7 +151,6 @@ wk.add({
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line number toggle" },
-    { "<leader>ut", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal toggle" },
     { "<leader>uv", toggle_virtual_text, desc = "Toggle Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap line toggle" },
     --                                  ╭─────────╮
