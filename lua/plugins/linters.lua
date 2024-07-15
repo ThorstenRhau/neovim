@@ -1,8 +1,7 @@
 local vim = vim
 return {
     "mfussenegger/nvim-lint",
-    lazy = true,
-    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    event = { "LspAttach" },
     config = function()
         local lint = require("lint")
 
