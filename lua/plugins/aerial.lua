@@ -2,7 +2,6 @@ return {
     "stevearc/aerial.nvim",
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
-        --"nvim-tree/nvim-web-devicons",
         "echasnovski/mini.icons",
     },
     cmd = "AerialToggle",
