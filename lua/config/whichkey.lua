@@ -132,7 +132,7 @@ wk.add({
     --                                 ╭───────────╮
     --                                 │ Interface │
     --                                 ╰───────────╯
-    { "<leader>u", group = "User Interface" },
+    { "<leader>u", group = "Interface" },
     {
         "<leader>uC",
         function()
