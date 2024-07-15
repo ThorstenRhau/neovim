@@ -105,3 +105,13 @@ end
 
 -- Map the function to a command for easy use
 vim.api.nvim_create_user_command("SortVisualBlock", sort_visual_block, { range = true })
+
+-- If neovim is opened with a directory as argument open oil-filemanager
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local first_arg = vim.v.argv[3]
+        if first_arg and vim.fn.isdirectory(first_arg) == 1 then
+            vim.cmd.Oil(first_arg)
+        end
+    end,
+})
