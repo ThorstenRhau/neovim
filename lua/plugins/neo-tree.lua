@@ -43,7 +43,7 @@ return {
         },
         window = {
             position = "right",
-            width = 20,
+            width = 26,
         },
         default_component_configs = {
             indent = {
