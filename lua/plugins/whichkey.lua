@@ -1,5 +1,9 @@
 return {
     "folke/which-key.nvim",
+    dependencies = {
+        "echasnovski/mini.icons",
+    },
+    lazy = true,
     event = "VeryLazy",
     opts = {
         preset = "modern",
