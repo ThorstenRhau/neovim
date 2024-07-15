@@ -6,7 +6,6 @@ return {
         "rcarriga/nvim-notify",
         "nvim-treesitter/nvim-treesitter",
     },
-    lazy = true,
     event = "VeryLazy",
     opts = {
         presets = {

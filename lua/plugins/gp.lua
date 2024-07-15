@@ -1,6 +1,5 @@
 return {
     "robitx/gp.nvim",
-    lazy = true,
     cmd = {
         "GpChatNew",
         "GpChatPaste",

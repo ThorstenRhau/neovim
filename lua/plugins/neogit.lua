@@ -5,7 +5,6 @@ return {
         "sindrets/diffview.nvim",
         "nvim-telescope/telescope.nvim",
     },
-    lazy = true,
     cmd = { "Neogit" },
     config = true,
     opts = {

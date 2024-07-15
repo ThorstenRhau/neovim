@@ -3,7 +3,6 @@ return {
     dependencies = {
         "echasnovski/mini.icons",
     },
-    lazy = true,
     cmd = "Oil",
     opts = {},
 }

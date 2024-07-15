@@ -3,6 +3,7 @@ return {
     dependencies = "rafamadriz/friendly-snippets",
     version = "v2.*",
     build = "make install_jsregexp",
+    event = "InsertEnter",
     config = function()
         require("luasnip.loaders.from_vscode").lazy_load({ paths = "~/.config/nvim/my_snippets" })
         require("luasnip.loaders.from_vscode").lazy_load()
