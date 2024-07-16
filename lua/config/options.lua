@@ -20,7 +20,7 @@ opt.pumblend = 0
 opt.title = true
 opt.autoindent = true
 opt.smartindent = true
-opt.hlsearch = false
+opt.hlsearch = true
 opt.incsearch = true
 opt.showcmd = true
 opt.laststatus = 2
@@ -74,3 +74,6 @@ opt.undofile = true
 
 -- Setting global variable for lspzero borders
 vim.g.lsp_zero_ui_float_border = "rounded"
+
+-- Clear search highlights by pressing <esc><esc>
+vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":noh<CR>", { noremap = true, silent = true })
