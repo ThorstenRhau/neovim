@@ -7,9 +7,8 @@ return {
     opts = {
         preset = "modern",
         icons = {
-            breadcrumb = "»",
-            separator = " ",
-            group = "  ",
+            rules = false, -- Disabling all icons
+            separator = ">",
         },
         delay = 350,
     },
