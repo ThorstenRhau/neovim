@@ -157,6 +157,15 @@ return {
                                 },
                             })
                         end,
+                        pyright = function()
+                            require("lspconfig").pyright.setup({
+                                settings = {
+                                    python = {
+                                        pythonPath = vim.fn.getcwd() .. "/.venv/bin/python",
+                                    },
+                                },
+                            })
+                        end,
                     },
                 })
             end,
