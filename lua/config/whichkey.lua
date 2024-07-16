@@ -125,7 +125,7 @@ wk.add({
     --                                    │ Git │
     --                                    ╰─────╯
     { "<leader>g", group = "Git" },
-    { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame toggle" },
+    { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Shows previous commits" },
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Interactive Git" },
     { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
@@ -142,17 +142,17 @@ wk.add({
                 vim.wo.colorcolumn = ""
             end
         end,
-        desc = "Toggle Colorcolumn at 80",
+        desc = "Colorcolumn",
     },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
-    { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters Toggle" },
+    { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
-    { "<leader>ul", "<cmd>set number!<cr>", desc = "Line number toggle" },
+    { "<leader>ul", "<cmd>set number!<cr>", desc = "Line numbers" },
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
-    { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line number toggle" },
-    { "<leader>uv", toggle_virtual_text, desc = "Toggle Virtual Text" },
-    { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap line toggle" },
+    { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },
+    { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
+    { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap lines" },
     --                                  ╭─────────╮
     --                                  │ Trouble │
     --                                  ╰─────────╯
