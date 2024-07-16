@@ -36,6 +36,7 @@ end
 local wk = require("which-key")
 wk.add({
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>e", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
