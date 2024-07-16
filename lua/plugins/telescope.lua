@@ -8,6 +8,7 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         "debugloop/telescope-undo.nvim",
         "AckslD/nvim-neoclip.lua",
+        "nvim-telescope/telescope-file-browser.nvim",
     },
     config = function()
         require("telescope").setup({
@@ -44,11 +45,16 @@ return {
                     },
                 },
                 neoclip = {},
+                file_browser = {
+                    theme = "ivy",
+                    hijack_netrw = false,
+                },
             },
             require("telescope").load_extension("fzf"),
             require("telescope").load_extension("undo"),
             require("telescope").load_extension("neoclip"),
             require("telescope").load_extension("notify"),
+            require("telescope").load_extension("file_browser"),
         })
     end,
 }
