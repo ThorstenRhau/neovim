@@ -16,7 +16,7 @@ return {
             end,
             desc = "NeoTree",
         },
-        { "<leader>e", "<leader>fe", desc = "NeoTree", remap = true },
+        { "<leader>E", "<leader>fe", desc = "NeoTree", remap = true },
         {
             "<leader>ge",
             function()
