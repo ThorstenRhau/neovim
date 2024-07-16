@@ -1,3 +1,13 @@
+local function get_python_path(workspace)
+    local util = require("lspconfig/util")
+    local path = util.path
+    local python_path = path.join(workspace, ".venv", "bin", "python")
+    if vim.fn.executable(python_path) == 1 then
+        return python_path
+    end
+    return nil
+end
+
 return {
     {
         {
@@ -159,11 +169,9 @@ return {
                         end,
                         pyright = function()
                             require("lspconfig").pyright.setup({
-                                settings = {
-                                    python = {
-                                        pythonPath = vim.fn.getcwd() .. "/.venv/bin/python",
-                                    },
-                                },
+                                on_init = function(client)
+                                    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+                                end,
                             })
                         end,
                     },
