@@ -1,8 +1,7 @@
 return {
     "stevearc/oil.nvim",
-    dependencies = {
-        "echasnovski/mini.icons",
-    },
+    dependencies = "echasnovski/mini.icons",
+
     cmd = "Oil",
     opts = {
         default_file_explorer = true,
