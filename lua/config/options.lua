@@ -74,6 +74,3 @@ opt.undofile = true
 
 -- Setting global variable for lspzero borders
 vim.g.lsp_zero_ui_float_border = "rounded"
-
--- Clear search highlights by pressing <esc><esc>
-vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":noh<CR>", { noremap = true, silent = true })
