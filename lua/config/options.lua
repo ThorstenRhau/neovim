@@ -1,4 +1,5 @@
 local opt = vim.opt
+local o = vim.o
 
 opt.mouse = "nv"
 opt.clipboard = ""
@@ -37,6 +38,7 @@ opt.wildmode = "longest:full,full"
 opt.signcolumn = "yes:1"
 opt.cmdheight = 0
 opt.cmdwinheight = 10
+o.updatetime = 1000
 
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
