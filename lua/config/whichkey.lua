@@ -36,7 +36,6 @@ end
 local wk = require("which-key")
 wk.add({
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo" },
-    { "<leader>e", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
@@ -113,7 +112,6 @@ wk.add({
     --                                   ╰──────╯
     { "<leader>f", group = "Find" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-    { "<leader>fB", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
     { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
