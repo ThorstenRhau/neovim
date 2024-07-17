@@ -127,9 +127,29 @@ return {
                 vim.diagnostic.config({
                     virtual_text = false,
                 })
-                -- Show line diagnostics automatically in hover window
-                vim.o.updatetime = 250
-                vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+
+                -- Show line diagnostics automatically in hover window with a delay
+                vim.o.updatetime = 1000
+
+                local diagnostic_hover_augroup = vim.api.nvim_create_augroup("DiagnosticHover", { clear = true })
+                vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                    group = diagnostic_hover_augroup,
+                    callback = function()
+                        local diagnostic_popup_timer = vim.loop.new_timer()
+                        diagnostic_popup_timer:start(
+                            500, -- updatetime + this value (in ms) is the total time for popup delay
+                            0,
+                            vim.schedule_wrap(function()
+                                vim.diagnostic.open_float(nil, {
+                                    focus = false,
+                                    scope = "cursor",
+                                    close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
+                                })
+                            end)
+                        )
+                    end,
+                })
+
                 -- Setting rounded border on LSP windows
                 require("lspconfig.ui.windows").default_options.border = "rounded"
 
