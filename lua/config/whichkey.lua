@@ -153,6 +153,7 @@ wk.add({
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },
+    { "<leader>us", "<cmd>noh<cr>", desc = "Hide search results" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap lines" },
     --                                  ╭─────────╮
