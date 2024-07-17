@@ -29,7 +29,7 @@ return {
                 constants = { "bold" },
                 functions = { "bold, italic" },
                 keywords = { "italic" },
-                strings = { "italic" },
+                strings = {},
                 variables = { "bold" },
                 numbers = {},
                 booleans = {},
