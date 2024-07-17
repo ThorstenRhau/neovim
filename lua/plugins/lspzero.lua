@@ -114,14 +114,14 @@ return {
             cmd = { "LspInfo", "LspInstall", "LspStart" },
             event = { "BufReadPre", "BufNewFile" },
             dependencies = {
-                { "folke/neodev.nvim", opts = {} },
-                { "hrsh7th/cmp-nvim-lsp" },
-                { "williamboman/mason-lspconfig.nvim" },
-                { "hrsh7th/cmp-buffer" },
-                { "hrsh7th/cmp-path" },
-                { "saadparwaiz1/cmp_luasnip" },
-                { "b0o/schemastore.nvim" },
-                { "sontungexpt/better-diagnostic-virtual-text" },
+                -- { "folke/neodev.nvim", opts = {} },
+                "hrsh7th/cmp-nvim-lsp",
+                "williamboman/mason-lspconfig.nvim",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+                "saadparwaiz1/cmp_luasnip",
+                "b0o/schemastore.nvim",
+                "sontungexpt/better-diagnostic-virtual-text",
             },
             config = function()
                 -- Setting up virtual text configuration
