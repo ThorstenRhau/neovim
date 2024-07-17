@@ -121,33 +121,12 @@ return {
                 { "hrsh7th/cmp-path" },
                 { "saadparwaiz1/cmp_luasnip" },
                 { "b0o/schemastore.nvim" },
+                { "sontungexpt/better-diagnostic-virtual-text" },
             },
             config = function()
                 -- Setting up virtual text configuration
                 vim.diagnostic.config({
                     virtual_text = false,
-                })
-
-                -- Show line diagnostics automatically in hover window with a delay
-                vim.o.updatetime = 1000
-
-                local diagnostic_hover_augroup = vim.api.nvim_create_augroup("DiagnosticHover", { clear = true })
-                vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-                    group = diagnostic_hover_augroup,
-                    callback = function()
-                        local diagnostic_popup_timer = vim.loop.new_timer()
-                        diagnostic_popup_timer:start(
-                            500, -- updatetime + this value (in ms) is the total time for popup delay
-                            0,
-                            vim.schedule_wrap(function()
-                                vim.diagnostic.open_float(nil, {
-                                    focus = false,
-                                    scope = "cursor",
-                                    close_events = { "CursorMoved", "CursorMovedI", "BufHidden", "InsertCharPre" },
-                                })
-                            end)
-                        )
-                    end,
                 })
 
                 -- Setting rounded border on LSP windows
@@ -162,6 +141,7 @@ return {
                     -- see :help lsp-zero-keybindings
                     -- to learn the available actions
                     lsp_zero.default_keymaps({ buffer = bufnr })
+                    require("better-diagnostic-virtual-text.api").setup_buf(bufnr, {})
                 end)
 
                 require("mason-lspconfig").setup({
