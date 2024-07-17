@@ -3,6 +3,8 @@ lazy-lock.json
 lazyvim.json
 # Compiled Lua sources
 luac.out
+# macOS files created by Finder.app
+**/.DS_Store
 
 # luarocks build files
 *.src.rock
