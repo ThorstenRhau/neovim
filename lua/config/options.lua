@@ -38,8 +38,14 @@ o.wildmode = "longest:full,full"
 o.signcolumn = "yes:1"
 o.cmdheight = 0
 o.cmdwinheight = 10
-o.updatetime = 2000
-
+-- Performance related settings
+o.updatetime = 500
+o.ttyfast = true
+o.synmaxcol = 200
+o.maxmempattern = 5000
+if vim.fn.executable("rg") == 1 then
+    o.grepprg = "rg --vimgrep --smart-case --follow"
+end
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
 
