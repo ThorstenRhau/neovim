@@ -14,7 +14,7 @@ local lines = {
                 hl = "Normal",
             },
             {
-                text = " :: by thorre",
+                text = " :: by Thorsten",
                 hl = "NonText",
             },
         },
