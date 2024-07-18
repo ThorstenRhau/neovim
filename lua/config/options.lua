@@ -38,7 +38,7 @@ o.wildmode = "longest:full,full"
 o.signcolumn = "yes:1"
 o.cmdheight = 0
 o.cmdwinheight = 10
-o.updatetime = 1000
+o.updatetime = 2000
 
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
