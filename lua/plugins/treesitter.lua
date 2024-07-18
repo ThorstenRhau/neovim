@@ -1,8 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter-context",
-    },
+    dependencies = "nvim-treesitter/nvim-treesitter-context",
+
     version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
@@ -34,6 +33,7 @@ return {
             ---@diagnostic disable-next-line: unused-local
             disable = function(lang, buf)
                 local max_filesize = 500 * 1024 -- 500 KB
+                ---@diagnostic disable-next-line: undefined-field
                 local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
                 if ok and stats and stats.size > max_filesize then
                     return true
