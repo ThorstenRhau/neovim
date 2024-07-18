@@ -73,13 +73,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
--- Wrap and check for spell in text filetypes
+-- Wrap text and check spelling
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("wrap_spell"),
-    pattern = { "gitcommit", "markdown", "NeogitCommitMessage" },
+    pattern = { "gitcommit", "markdown" },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
+    end,
+})
+
+-- Override neogit default settings
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("neogit_spell_override"),
+    pattern = "NeogitCommitMessage",
+    callback = function()
+        vim.schedule(function()
+            vim.wo.spell = true
+            vim.wo.wrap = true
+        end)
     end,
 })
 
