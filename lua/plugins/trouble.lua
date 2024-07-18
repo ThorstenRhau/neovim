@@ -1,7 +1,9 @@
 return {
     {
         "folke/trouble.nvim",
-        opts = {},
+        opts = {
+            auto_close = true, -- Close when last error is fixed
+        },
         cmd = "Trouble",
         keys = {
             {
