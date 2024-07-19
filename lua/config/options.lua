@@ -68,7 +68,7 @@ opt.listchars = {
 -- Disable yank/copy for 'x'
 vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
 
--- Disable Python 3 provider
+-- Python 3 provider
 vim.g.loaded_python3_provider = 1
 
 -- Disabling some providers that I do not use
