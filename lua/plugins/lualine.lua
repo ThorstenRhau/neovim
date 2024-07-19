@@ -36,6 +36,7 @@ return {
                 disabled_filetypes = {
                     "alpha",
                     "intro",
+                    "checkhealth",
                     statusline = {},
                     winbar = {},
                 },
