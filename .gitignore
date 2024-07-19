@@ -5,8 +5,6 @@ lazyvim.json
 luac.out
 # macOS files created by Finder.app
 **/.DS_Store
-# Speling dictionary
-/spell/**
 
 # luarocks build files
 *.src.rock
