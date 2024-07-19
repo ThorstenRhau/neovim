@@ -155,6 +155,7 @@ wk.add({
     { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
     { "<leader>ul", "<cmd>set number!<cr>", desc = "Line numbers" },
+    { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown render" },
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },

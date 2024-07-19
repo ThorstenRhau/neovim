@@ -7,9 +7,9 @@ return {
     end,
     keys = {
         {
-            "<leader>um",
+            "<leader>uM",
             "<cmd>MarkdownPreviewToggle<cr>",
-            desc = "Markdown preview toggle",
+            desc = "Markdown preview",
         },
     },
 }
