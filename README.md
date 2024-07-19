@@ -14,10 +14,7 @@ _.git_ directory from the root folder.
 
 ## Showcase
 
-![greeter](./img/greeter.png) ![lazy](./img/lazy.png) ![mason](./img/mason.png)
-![git log](./img/gitlog.png) ![bash_ls](./img/bashls.png)
-![import](./img/import.png) ![which-key](./img/whichkey.png)
-![hoverdoc](./img/hoverdoc.png)
+![hoverdoc](./.images/neovim.png)
 
 ## Installation
 
