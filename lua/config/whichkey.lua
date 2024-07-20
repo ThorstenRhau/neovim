@@ -79,7 +79,21 @@ wk.add({
         desc = "Go to declaration",
     },
     { "<leader>cF", "<cmd>ConformInfo<CR>", desc = "Formatters list" },
+    {
+        "<leader>cI",
+        function()
+            vim.lsp.buf.incoming_calls()
+        end,
+        desc = "Incoming calls",
+    },
     { "<leader>cL", ListActiveLinters, desc = "Linters list" },
+    {
+        "<leader>cO",
+        function()
+            vim.lsp.buf.outgoing_calls()
+        end,
+        desc = "Outgoign calls",
+    },
     {
         "<leader>cS",
         function()
