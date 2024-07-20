@@ -6,5 +6,6 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
     opts = {
         enabled = true,
+        latex = { enabled = false },
     },
 }
