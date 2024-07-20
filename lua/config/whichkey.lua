@@ -48,17 +48,17 @@ wk.add({
     --                                 ╭───────────╮
     --                                 │ Root menu │
     --                                 ╰───────────╯
-    { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo" },
+    { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo", icon = { icon = "󰕌 ", color = "green" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
-    { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
-    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
-    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce" },
+    { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
+    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
+    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>t", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal" },
     --                                  ╭────────╮
     --                                  │ Buffer │
     --                                  ╰────────╯
-    { "<leader>b", group = "Buffer" },
+    { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
     { "<leader>ba", "<cmd>b#<CR>", desc = "Switch to alternate" },
     { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree" },
     { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find" },
@@ -163,7 +163,7 @@ wk.add({
     --                                 ╭───────────╮
     --                                 │ Interface │
     --                                 ╰───────────╯
-    { "<leader>u", group = "Interface" },
+    { "<leader>u", group = "Interface", icon = { icon = " ", color = "azure" } },
     {
         "<leader>uC",
         function()
@@ -199,5 +199,5 @@ wk.add({
     --                                  │ Trouble │
     --                                  ╰─────────╯
     -- The mappings are done in the Trouble plugin configuration
-    { "<leader>x", group = "Trouble" },
+    { "<leader>x", group = "Trouble", icon = { icon = "󰨰 ", color = "orange" } },
 })
