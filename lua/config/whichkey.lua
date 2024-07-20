@@ -41,7 +41,7 @@ wk.add({
     --                                 │ Root menu │
     --                                 ╰───────────╯
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo", icon = { icon = "󰕌 ", color = "green" } },
-    { "<leader>,", "<cmd>:b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
+    { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
@@ -52,8 +52,8 @@ wk.add({
     --                                  │ Buffer │
     --                                  ╰────────╯
     { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
-    { "<leader>bb", "<cmd>:b#<CR>", desc = "Switch to alternate" },
-    { "<leader>bd", "<cmd>:bd<CR>", desc = "Delete" },
+    { "<leader>bb", "<cmd>b#<CR>", desc = "Switch to alternate" },
+    { "<leader>bd", "<cmd>bd<CR>", desc = "Delete" },
     { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree" },
     { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find" },
     { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
