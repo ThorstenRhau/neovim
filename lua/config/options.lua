@@ -49,6 +49,7 @@ if vim.fn.executable("rg") == 1 then
 end
 o.winbar = nil
 o.tabline = nil
+o.smoothscroll = true
 
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
