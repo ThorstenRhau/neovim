@@ -47,11 +47,18 @@ return {
             custom_highlights = {},
             integrations = {
                 aerial = true,
+                barbecue = {
+                    dim_dirname = true,
+                    bold_basename = true,
+                    dim_context = false,
+                    alt_background = false,
+                },
                 cmp = true,
+                diffview = true,
                 gitsigns = true,
                 illuminate = {
-                    enabled = false,
-                    lsp = false,
+                    enabled = true,
+                    lsp = true,
                 },
                 indent_blankline = {
                     enabled = true,
@@ -59,15 +66,16 @@ return {
                 },
                 lsp_trouble = true,
                 markdown = true,
+                mason = true,
                 mini = {
                     enabled = true,
                 },
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
-                        errors = {},
-                        hints = {},
-                        warnings = {},
+                        errors = { "italic" },
+                        hints = { "italic" },
+                        warnings = { "italic" },
                         information = { "italic" },
                     },
                     underlines = {
