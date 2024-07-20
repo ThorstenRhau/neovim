@@ -59,6 +59,7 @@ require("lazy").setup({
 require("config.options")
 require("config.whichkey")
 require("config.autocmd")
+require("config.keymaps")
 
 require("config.intro")
 require("config.gp-keys")
