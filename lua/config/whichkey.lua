@@ -1,11 +1,3 @@
--- Navigate vim panes better
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
--- Launch Telescope main window
-vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
-
 --                            ╭─────────────────────╮
 --                            │ Toggle virtual text │
 --                            ╰─────────────────────╯
@@ -59,7 +51,8 @@ wk.add({
     --                                  │ Buffer │
     --                                  ╰────────╯
     { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
-    { "<leader>ba", "<cmd>b#<CR>", desc = "Switch to alternate" },
+    { "<leader>bb", "<cmd>b#<CR>", desc = "Switch to alternate" },
+    { "<leader>bd", "<cmd>:bd<CR>", desc = "Delete" },
     { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree" },
     { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find" },
     { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
@@ -184,7 +177,6 @@ wk.add({
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },
-    { "<leader>us", "<cmd>noh<cr>", desc = "Hide search results" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap lines" },
     --                                  ╭─────────╮
