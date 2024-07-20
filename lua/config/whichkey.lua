@@ -161,7 +161,7 @@ wk.add({
         end,
         desc = "Colorcolumn",
     },
-    { "<leader>ub", "<cmd>Barbecue tiggle<CR>", desc = "Barbecue winbar" },
+    { "<leader>ub", "<cmd>Barbecue toggle<CR>", desc = "Barbecue winbar" },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
