@@ -42,6 +42,7 @@ wk.add({
     --                                 ╰───────────╯
     { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo", icon = { icon = "󰕌 ", color = "green" } },
     { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
+    { "<leader>-", "<C-W>s", desc = "Split window", icon = { icon = " ", color = "grey" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
@@ -185,8 +186,8 @@ wk.add({
     --                                  ╰─────────╯
     { "<leader>w", group = "Window" },
     { "<leader>wc", "<cmd>close<cr>", desc = "Close" },
+    { "<leader>wh", "<cmd>split<cr>", desc = "Split horizontal" },
     { "<leader>wo", "<cmd>only<cr>", desc = "Close all but not current" },
-    { "<leader>ws", "<cmd>split<cr>", desc = "Split horizontal" },
     { "<leader>wv", "<cmd>vsplit<cr>", desc = "Split vertical" },
     --                                  ╭─────────╮
     --                                  │ Trouble │
