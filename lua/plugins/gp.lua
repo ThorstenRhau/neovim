@@ -57,6 +57,16 @@ return {
                     gp.Prompt(params, gp.Target.enew("markdown"), nil, agent.model, template, agent.system_prompt)
                 end,
             },
+            agents = {
+                {
+                    name = "gpt-4o-mini",
+                    provider = "openai",
+                    chat = true,
+                    command = true,
+                    model = { model = "gpt-4o-mini" },
+                    system_prompt = "You are a helpful AI",
+                },
+            },
         })
     end,
 }
