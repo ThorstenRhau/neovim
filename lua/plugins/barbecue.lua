@@ -7,5 +7,7 @@ return {
         "echasnovski/mini.icons",
     },
     cmd = "Barbecue",
-    opts = {},
+    opts = {
+        theme = "catppuccin",
+    },
 }
