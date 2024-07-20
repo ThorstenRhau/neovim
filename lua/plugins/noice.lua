@@ -4,7 +4,6 @@ return {
         "VonHeikemen/lsp-zero.nvim",
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
-        "nvim-treesitter/nvim-treesitter",
     },
     event = "VeryLazy",
     opts = {
