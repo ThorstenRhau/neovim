@@ -40,7 +40,7 @@ o.wildmode = "longest:full,full"
 o.signcolumn = "yes:1"
 o.cmdheight = 0
 o.cmdwinheight = 10
-o.updatetime = 500
+o.updatetime = 250
 o.ttyfast = true
 o.synmaxcol = 200
 o.maxmempattern = 5000
@@ -50,6 +50,8 @@ end
 o.winbar = nil
 o.tabline = nil
 o.smoothscroll = true
+o.splitbelow = true
+opt.spelllang = { "en", "sv" }
 
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
@@ -89,6 +91,7 @@ opt.backup = false
 ---@diagnostic disable-next-line: assign-type-mismatch
 o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.undofile = true
+o.undolevels = 10000
 
 -- Setting global variable for lspzero borders
 vim.g.lsp_zero_ui_float_border = "rounded"
