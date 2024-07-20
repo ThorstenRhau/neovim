@@ -12,11 +12,11 @@ return {
         {
             "<leader>fe",
             function()
-                require("neo-tree.command").execute({ toggle = true, dir = vim.fn.getcwd() })
+                require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
             end,
             desc = "NeoTree",
         },
-        { "<leader>E", "<leader>fe", desc = "NeoTree", remap = true },
+        { "<leader>e", "<leader>fe", desc = "NeoTree", remap = true },
         {
             "<leader>ge",
             function()
