@@ -6,8 +6,12 @@ vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 -- Launch Telescope main window
 vim.keymap.set("n", "<c-t>", ":Telescope<CR>")
 
--- Function to toggle virtual text
+--                            ╭─────────────────────╮
+--                            │ Toggle virtual text │
+--                            ╰─────────────────────╯
+
 local function toggle_virtual_text()
+    ---@diagnostic disable-next-line: undefined-field
     local current_value = vim.diagnostic.config().virtual_text
     vim.diagnostic.config({
         virtual_text = not current_value,
@@ -19,7 +23,10 @@ local function toggle_virtual_text()
     end
 end
 
---Function to list active linters
+--                            ╭─────────────────────╮
+--                            │ List active linters │
+--                            ╰─────────────────────╯
+
 local function ListActiveLinters()
     local linters = require("lint").linters_by_ft[vim.bo.filetype]
     if linters then
@@ -32,7 +39,10 @@ local function ListActiveLinters()
     end
 end
 
--- Setting up register for 'which key' with keymappings
+--           ╭──────────────────────────────────────────────────────╮
+--           │ Setting up register for 'which key' with keymappings │
+--           ╰──────────────────────────────────────────────────────╯
+
 local wk = require("which-key")
 wk.add({
     --                                 ╭───────────╮
@@ -42,7 +52,7 @@ wk.add({
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager" },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager" },
-    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce - motion" },
+    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce" },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>t", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal" },
     --                                  ╭────────╮
@@ -151,6 +161,7 @@ wk.add({
         end,
         desc = "Colorcolumn",
     },
+    { "<leader>ub", "<cmd>Barbecue tiggle<CR>", desc = "Barbecue winbar" },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
