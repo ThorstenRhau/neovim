@@ -12,7 +12,23 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
-                layout_strategy = "vertical",
+                layout_strategy = "flex",
+                layout_config = {
+                    horizontal = {
+                        width = 0.9,
+                        height = 0.9,
+                        preview_width = 0.6,
+                    },
+                    vertical = {
+                        width = 0.9,
+                        height = 0.9,
+                        preview_height = 0.5,
+                    },
+                },
+                path_display = { "truncate" },
+                prompt_prefix = "🔍 ",
+                selection_caret = "➤ ",
+                file_ignore_patterns = { "node_modules", ".git" },
             },
             extensions = {
                 fzf = {
