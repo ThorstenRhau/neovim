@@ -133,6 +133,7 @@ wk.add({
         end,
         desc = "Jump to definition",
     },
+    { "<leader>cv", "<cmd>VenvSelect<cr>", desc = "Venv select", icon = { icon = "󰌠 ", color = "yellow" } },
     --                                   ╭──────╮
     --                                   │ Find │
     --                                   ╰──────╯
