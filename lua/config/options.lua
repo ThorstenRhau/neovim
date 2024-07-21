@@ -1,58 +1,57 @@
 local opt = vim.opt
 local o = vim.o
 
-o.mouse = "nv"
-o.clipboard = ""
-o.cursorline = true
+o.autoindent = true
 o.autoread = true
+o.breakindent = true
+o.clipboard = ""
+o.cmdheight = 0
 o.cmdheight = 1
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
+o.cmdwinheight = 10
+o.cursorline = true
 o.foldenable = false
+o.foldexpr = "nvim_treesitter#foldexpr()"
 o.foldlevel = 99
 o.foldlevelstart = 99
+o.foldmethod = "expr"
+o.hlsearch = true
+o.ignorecase = true
+o.inccommand = "split"
+o.incsearch = true
+o.laststatus = 2
+o.linebreak = true
+o.maxmempattern = 5000
+o.mouse = "nv"
 o.number = false
+o.pumblend = 0
 o.relativenumber = false
 o.scrolloff = 8
-o.winbar = "%=%m\\ %f"
-o.ignorecase = true
-o.smartcase = true
-o.winblend = 0
-o.wildoptions = "pum"
-o.pumblend = 0
-o.title = true
-o.autoindent = true
-o.smartindent = true
-o.hlsearch = true
-o.incsearch = true
 o.showcmd = true
-o.laststatus = 2
-o.inccommand = "split"
+o.signcolumn = "yes:1"
+o.smartcase = true
+o.smartindent = true
 o.smarttab = true
-o.breakindent = true
-o.linebreak = true
+o.smoothscroll = true
+o.splitbelow = true
+o.synmaxcol = 200
+o.tabline = nil
+o.title = true
+o.ttyfast = true
+o.updatetime = 250
+o.wildmenu = true
+o.wildmode = "longest:full,full"
+o.wildoptions = "pum"
+o.winbar = "%=%m\\ %f"
+o.winbar = nil
+o.winblend = 0
 o.wrap = false
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" })
+opt.spelllang = { "en", "sv" }
 opt.wildignore:append({ "*/node_modules/*" })
-o.wildmenu = true
-o.wildmode = "longest:full,full"
-o.signcolumn = "yes:1"
-o.cmdheight = 0
-o.cmdwinheight = 10
-o.updatetime = 250
-o.ttyfast = true
-o.synmaxcol = 200
-o.maxmempattern = 5000
 if vim.fn.executable("rg") == 1 then
     o.grepprg = "rg --vimgrep --smart-case --follow"
 end
-o.winbar = nil
-o.tabline = nil
-o.smoothscroll = true
-o.splitbelow = true
-opt.spelllang = { "en", "sv" }
-
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
 
