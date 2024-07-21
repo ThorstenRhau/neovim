@@ -12,17 +12,13 @@ return {
     config = function()
         require("telescope").setup({
             defaults = {
-                layout_strategy = "flex",
+                layout_strategy = "horizontal",
                 layout_config = {
                     horizontal = {
-                        width = 0.9,
-                        height = 0.9,
-                        preview_width = 0.6,
-                    },
-                    vertical = {
-                        width = 0.9,
-                        height = 0.9,
-                        preview_height = 0.5,
+                        width = 0.95,
+                        height = 0.95,
+                        preview_width = 0.65,
+                        preview_cutoff = 100,
                     },
                 },
                 path_display = { "truncate" },
