@@ -146,6 +146,14 @@ wk.add({
     { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Notifications" },
     { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
     { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "FZF in buffer" },
+    {
+        "<leader>ft",
+        function()
+            local cwd = vim.fn.getcwd()
+            vim.cmd("TodoTelescope cwd=" .. cwd)
+        end,
+        desc = "TODO",
+    },
     { "<leader>fy", "<cmd>Telescope neoclip<cr>", desc = "Yanks" },
     { "<leader>fz", "<cmd>Telescope spell_suggest<cr>", desc = "Spelling suggestions" },
     --                                    ╭─────╮
@@ -180,6 +188,7 @@ wk.add({
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },
+    { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo location list" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
     { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap lines" },
     --                                  ╭─────────╮
