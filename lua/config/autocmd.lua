@@ -95,9 +95,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Map the function to a command for easy use
-vim.api.nvim_create_user_command("SortVisualBlock", sort_visual_block, { range = true })
-
 -- If neovim is opened with a directory as argument open oil-filemanager
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
