@@ -21,7 +21,7 @@ return {
             json = { "prettier" },
             lua = { "stylua" },
             markdown = { "prettier" },
-            python = { "isort", "black" },
+            python = { "ruff_format" },
             sh = { "shfmt" },
             toml = { "taplo" },
             typescript = { "prettier" },
