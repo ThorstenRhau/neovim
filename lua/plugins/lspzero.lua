@@ -140,6 +140,7 @@ return {
                     -- see :help lsp-zero-keybindings
                     -- to learn the available actions
                     lsp_zero.default_keymaps({ buffer = bufnr })
+                    ---@diagnostic disable-next-line: missing-fields
                     require("better-diagnostic-virtual-text.api").setup_buf(bufnr, {})
                 end)
 
@@ -178,6 +179,16 @@ return {
                                 on_init = function(client)
                                     client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
                                 end,
+                                settings = {
+                                    python = {
+                                        analysis = {
+                                            typeCheckingMode = "standard", -- "off", "basic", "standard", "strict"
+                                            autoSearchPaths = true,
+                                            useLibraryCodeForTypes = true, -- May slow things down
+                                            pythonPlatform = "Darwin", -- "Windows", "Darwin", "Linux", or "All"
+                                        },
+                                    },
+                                },
                             })
                         end,
                     },
