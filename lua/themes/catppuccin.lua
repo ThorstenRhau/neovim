@@ -93,13 +93,14 @@ return {
                 noice = true,
                 notify = true,
                 pounce = true,
+                render_markdown = true,
                 semantic_tokens = true,
+                symbols_outline = true,
                 telescope = {
                     enabled = true,
                 },
                 treesitter = true,
                 treesitter_context = true,
-                symbols_outline = true,
                 which_key = true,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
