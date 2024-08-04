@@ -59,6 +59,18 @@ return {
                 local cmp_action = lsp_zero.cmp_action()
 
                 cmp.setup({
+                    completion = {
+                        keyword_length = 3, -- Minimum length of word to trigger completion
+                        throttle = 200, -- Delay for autocompletion suggestions
+                    },
+                    performance = {
+                        debounce = 200, -- Delay for debouncing events
+                        throttle = 200, -- Throttle time for completion
+                        fetching_timeout = 500, -- Timeout for completion
+                        confirm_resolve_timeout = 200, -- Timeout for resolving completion item
+                        async_budget = 150, -- Budget for async operations (in ms)
+                        max_view_entries = 50, -- Maximum number of entries to show in the completion menu
+                    },
                     window = {
                         completion = cmp.config.window.bordered({
                             border = "rounded",
@@ -126,6 +138,10 @@ return {
                 -- Setting up virtual text configuration
                 vim.diagnostic.config({
                     virtual_text = false,
+                    update_in_insert = false, -- Don't update diagnostics in insert mode
+                    float = {
+                        delay = 250, -- Delay before showing float
+                    },
                 })
 
                 -- Setting rounded border on LSP windows
@@ -140,8 +156,19 @@ return {
                     -- see :help lsp-zero-keybindings
                     -- to learn the available actions
                     lsp_zero.default_keymaps({ buffer = bufnr })
-                    ---@diagnostic disable-next-line: missing-fields
-                    require("better-diagnostic-virtual-text.api").setup_buf(bufnr, {})
+                    require("better-diagnostic-virtual-text.api").setup_buf(bufnr, {
+                        ui = {
+                            wrap_line_after = true, -- wrap the line after this length to avoid the virtual text is too long
+                            left_kept_space = 3, --- the number of spaces kept on the left side of the virtual text, make sure it enough to custom for each line
+                            right_kept_space = 3, --- the number of spaces kept on the right side of the virtual text, make sure it enough to custom for each line
+                            arrow = "  ",
+                            up_arrow = "  ",
+                            down_arrow = "  ",
+                            above = false, -- the virtual text will be displayed above the line
+                        },
+                        priority = 2003, -- the priority of virtual text
+                        inline = true,
+                    })
                 end)
 
                 require("mason-lspconfig").setup({
