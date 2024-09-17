@@ -6,7 +6,7 @@ return {
         symbol = "│",
         options = { try_as_border = true },
         draw = {
-            delay = 250, -- ms delay before drawing line
+            -- delay = 250, -- ms delay before drawing line
             priority = 2,
             animation = function()
                 return 0

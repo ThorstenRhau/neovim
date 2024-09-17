@@ -62,14 +62,14 @@ return {
                     completion = {
                         keyword_length = 3, -- Minimum length of word to trigger completion
                     },
-                    performance = {
-                        debounce = 250, -- Delay for debouncing events
-                        throttle = 50, -- Throttle time for completion
-                        fetching_timeout = 350, -- Timeout for completion
-                        confirm_resolve_timeout = 350, -- Timeout for resolving completion item
-                        async_budget = 200, -- Budget for async operations (in ms)
-                        max_view_entries = 75, -- Maximum number of entries to show in the completion menu
-                    },
+                    -- performance = {
+                    --     debounce = 250, -- Delay for debouncing events
+                    --     throttle = 50, -- Throttle time for completion
+                    --     fetching_timeout = 350, -- Timeout for completion
+                    --     confirm_resolve_timeout = 350, -- Timeout for resolving completion item
+                    --     async_budget = 200, -- Budget for async operations (in ms)
+                    --     max_view_entries = 75, -- Maximum number of entries to show in the completion menu
+                    -- },
                     window = {
                         completion = cmp.config.window.bordered({
                             border = "rounded",
@@ -138,9 +138,9 @@ return {
                 vim.diagnostic.config({
                     virtual_text = false,
                     update_in_insert = false, -- Don't update diagnostics in insert mode
-                    float = {
-                        delay = 250, -- Delay before showing float
-                    },
+                    -- float = {
+                    --     delay = 250, -- Delay before showing float
+                    -- },
                 })
 
                 -- Setting rounded border on LSP windows
