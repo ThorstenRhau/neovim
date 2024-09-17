@@ -63,12 +63,12 @@ return {
                         keyword_length = 3, -- Minimum length of word to trigger completion
                     },
                     performance = {
-                        debounce = 100, -- Delay for debouncing events
-                        throttle = 100, -- Throttle time for completion
-                        fetching_timeout = 500, -- Timeout for completion
-                        confirm_resolve_timeout = 200, -- Timeout for resolving completion item
-                        async_budget = 150, -- Budget for async operations (in ms)
-                        max_view_entries = 50, -- Maximum number of entries to show in the completion menu
+                        debounce = 250, -- Delay for debouncing events
+                        throttle = 50, -- Throttle time for completion
+                        fetching_timeout = 350, -- Timeout for completion
+                        confirm_resolve_timeout = 350, -- Timeout for resolving completion item
+                        async_budget = 200, -- Budget for async operations (in ms)
+                        max_view_entries = 75, -- Maximum number of entries to show in the completion menu
                     },
                     window = {
                         completion = cmp.config.window.bordered({
