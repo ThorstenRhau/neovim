@@ -9,7 +9,7 @@ return {
         icons = {
             separator = ">",
         },
-        delay = 300,
+        delay = 250,
     },
     keys = {
         {
