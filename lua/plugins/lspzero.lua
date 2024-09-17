@@ -61,11 +61,10 @@ return {
                 cmp.setup({
                     completion = {
                         keyword_length = 3, -- Minimum length of word to trigger completion
-                        throttle = 200, -- Delay for autocompletion suggestions
                     },
                     performance = {
-                        debounce = 200, -- Delay for debouncing events
-                        throttle = 200, -- Throttle time for completion
+                        debounce = 100, -- Delay for debouncing events
+                        throttle = 100, -- Throttle time for completion
                         fetching_timeout = 500, -- Timeout for completion
                         confirm_resolve_timeout = 200, -- Timeout for resolving completion item
                         async_budget = 150, -- Budget for async operations (in ms)
@@ -140,7 +139,7 @@ return {
                     virtual_text = false,
                     update_in_insert = false, -- Don't update diagnostics in insert mode
                     float = {
-                        delay = 250, -- Delay before showing float
+                        delay = 100, -- Delay before showing float
                     },
                 })
 
