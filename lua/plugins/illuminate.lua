@@ -2,7 +2,7 @@ return {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-        delay = 350,
+        delay = 100,
         under_cursor = false,
         min_count_to_highlight = 1,
         large_file_cutoff = 2000,
