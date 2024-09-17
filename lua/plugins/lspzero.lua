@@ -139,7 +139,7 @@ return {
                     virtual_text = false,
                     update_in_insert = false, -- Don't update diagnostics in insert mode
                     float = {
-                        delay = 100, -- Delay before showing float
+                        delay = 250, -- Delay before showing float
                     },
                 })
 
