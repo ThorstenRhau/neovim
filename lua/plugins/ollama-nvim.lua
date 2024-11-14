@@ -18,7 +18,7 @@ return {
         },
     },
     opts = {
-        model = "qwen2.5-coder",
+        model = "qwen2.5-coder:latest",
         url = "http://127.0.0.1:11434",
         serve = {
             on_start = false,
