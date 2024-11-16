@@ -24,7 +24,7 @@ return {
                 path_display = { "truncate" },
                 prompt_prefix = "🔍 ",
                 selection_caret = "➤ ",
-                file_ignore_patterns = { "node_modules", ".git" },
+                -- file_ignore_patterns = { "node_modules", ".git" },
             },
             extensions = {
                 fzf = {
