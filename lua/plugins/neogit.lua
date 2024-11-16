@@ -2,10 +2,17 @@ return {
     "NeogitOrg/neogit",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim",
         "nvim-telescope/telescope.nvim",
+        {
+            "sindrets/diffview.nvim",
+            cmd = {
+                "DiffviewOpen",
+                "DiffviewClose",
+                "DiffviewFileHistory",
+            },
+        },
     },
-    cmd = { "Neogit" },
+    cmd = "Neogit",
     config = true,
     opts = {
         disable_insert_on_commit = true,
