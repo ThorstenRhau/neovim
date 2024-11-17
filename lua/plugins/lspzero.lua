@@ -170,6 +170,12 @@ return {
                     })
                 end)
 
+                -- nushell LSP configuration
+                require("lspconfig").nushell.setup({
+                    cmd = { "nu", "--lsp" },
+                    filetypes = { "nu" },
+                })
+
                 require("mason-lspconfig").setup({
                     ensure_installed = {}, -- This is done by lua/plugins/mason-tool-installer.lua
                     handlers = {
