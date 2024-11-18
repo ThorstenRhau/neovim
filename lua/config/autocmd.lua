@@ -33,23 +33,32 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
     pattern = {
-        "qf",
+        "Git",
+        "PlenaryTestPopup",
+        "checkhealth",
         "help",
+        "lspinfo",
         "man",
         "notify",
-        "lspinfo",
+        "qf",
         "spectre_panel",
         "startuptime",
         "tsplayground",
-        "PlenaryTestPopup",
-        "Git",
-        "checkhealth",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+        vim.keymap.set("n", "q", "<cmd>lua Close_or_quit()<cr>", { buffer = event.buf, silent = true })
     end,
 })
+
+function Close_or_quit()
+    local win_count = #vim.api.nvim_list_wins()
+    if win_count == 1 and #vim.api.nvim_list_bufs() == 1 then
+        vim.cmd.quit()
+    else
+        vim.cmd.close()
+    end
+end
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
