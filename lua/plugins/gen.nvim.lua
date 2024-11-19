@@ -1,7 +1,7 @@
 return {
     "David-Kunz/gen.nvim",
     opts = {
-        model = "qwen2.5-coder:7b",
+        model = "qwen2.5-coder:3b",
         quit_map = "q",
         retry_map = "<c-r>",
         accept_map = "<c-cr>",
