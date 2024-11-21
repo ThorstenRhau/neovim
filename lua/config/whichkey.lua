@@ -45,7 +45,7 @@ wk.add({
     { "<leader>-", "<C-W>s", desc = "Split window", icon = { icon = " ", color = "grey" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
-    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
+    { "<leader>O", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>t", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal" },
