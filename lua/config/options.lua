@@ -80,10 +80,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- Disabling some providers that I do not use
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-
 -- Setting up undo
 opt.swapfile = false
 opt.backup = false
