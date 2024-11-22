@@ -66,7 +66,6 @@ require("config.autocmd")
 require("config.keymaps")
 
 require("config.intro")
-require("config.gp-keys")
 
 -- Check macOS light / dark user interface state and return theme accordingly
 local function getPreferredTheme()
