@@ -1,5 +1,6 @@
 return {
     "David-Kunz/gen.nvim",
+    enabled = false,
     opts = {
         model = "qwen2.5-coder:3b",
         quit_map = "q",
@@ -16,7 +17,7 @@ return {
     },
     keys = {
         {
-            "<C-o>",
+            "<leader>o",
             ":Gen<CR>",
             desc = "Ollama prompt",
             mode = { "n", "v" },
