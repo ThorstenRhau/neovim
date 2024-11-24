@@ -8,7 +8,49 @@ return {
         "MeanderingProgrammer/render-markdown.nvim",
         "stevearc/dressing.nvim",
     },
-    config = true,
+    config = function()
+        require("codecompanion").setup({
+            strategies = {
+                chat = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
+                inline = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
+                cmd = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
+                agent = { adapter = "ollama_custom", temperature = 0.3 },
+            },
+
+            adapters = {
+                -- Register only the adapters you want to use
+                ollama_custom = function()
+                    return require("codecompanion.adapters").extend("ollama", {
+                        name = "ollama_custom", -- Give this adapter a unique name
+                        schema = {
+                            model = {
+                                default = "qwen2.5-coder:7b",
+                            },
+                            num_ctx = {
+                                default = 4096,
+                            },
+                            num_predict = {
+                                default = -1,
+                            },
+                            temperature = {
+                                default = 0.3,
+                            },
+                            top_p = {
+                                default = 0.8,
+                            },
+                            frequency_penalty = {
+                                default = 0.0,
+                            },
+                            presence_penalty = {
+                                default = 0.0,
+                            },
+                        },
+                    })
+                end,
+            },
+        })
+    end,
+
     cmd = {
         "CodeCompanion",
         "CodeCompanionCmd",
@@ -43,9 +85,9 @@ return {
     },
     opts = {
         strategies = {
-            chat = { adapter = "ollama" },
-            inline = { adapter = "ollama" },
-            cmd = { adapter = "ollama" },
+            chat = { adapter = "ollama", model = "qwen2.5-coder:7b" },
+            inline = { adapter = "ollama", model = "qwen2.5-coder:7b" },
+            cmd = { adapter = "ollama", model = "qwen2.5-coder:7b" },
         },
         display = {
             chat = {
