@@ -47,16 +47,25 @@ vim.api.nvim_create_autocmd("FileType", {
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        vim.keymap.set("n", "q", "<cmd>lua Close_or_quit()<cr>", { buffer = event.buf, silent = true })
+        vim.keymap.set("n", "q", function()
+            Close_or_quit()
+        end, { buffer = event.buf, silent = true })
     end,
 })
 
 function Close_or_quit()
     local win_count = #vim.api.nvim_list_wins()
-    if win_count == 1 and #vim.api.nvim_list_bufs() == 1 then
-        vim.cmd.quit()
+
+    -- If there's only one window, try quitting Neovim
+    if win_count == 1 then
+        if #vim.api.nvim_list_bufs() > 1 then
+            vim.notify("Cannot close the last window without quitting Neovim.", vim.log.levels.WARN)
+        else
+            vim.cmd.quit()
+        end
     else
-        vim.cmd.close()
+        -- Safely close the current window
+        pcall(vim.cmd.close) -- Use pcall to prevent errors if `close` fails
     end
 end
 
