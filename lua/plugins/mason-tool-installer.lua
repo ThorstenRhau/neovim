@@ -20,7 +20,6 @@ return {
             "shfmt",
             "stylua",
             "taplo",
-            "tsserver",
             "yamllint",
             "yamlls",
         },
