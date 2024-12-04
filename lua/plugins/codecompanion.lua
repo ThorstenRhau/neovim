@@ -11,14 +11,27 @@ return {
     config = function()
         require("codecompanion").setup({
             strategies = {
-                chat = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
-                inline = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
-                cmd = { adapter = "ollama_custom", model = "qwen2.5-coder:7b", temperature = 0.3 },
-                agent = { adapter = "ollama_custom", temperature = 0.3 },
+                chat = { adapter = "lm_studio" },
+                inline = { adapter = "lm_studio" },
+                cmd = { adapter = "lm_studio" },
+                agent = { adapter = "lm_studio" },
             },
 
             adapters = {
-                -- Register only the adapters you want to use
+                lm_studio = function()
+                    return require("codecompanion.adapters").extend("openai_compatible", {
+                        name = "lm_studio",
+                        env = {
+                            url = "http://127.0.0.1:1234",
+                            chat_url = "/v1/chat/completions",
+                        },
+                        schema = {
+                            model = {
+                                default = "qwen2.5-coder-7b-instruct",
+                            },
+                        },
+                    })
+                end,
                 ollama_custom = function()
                     return require("codecompanion.adapters").extend("ollama", {
                         name = "ollama_custom", -- Give this adapter a unique name
