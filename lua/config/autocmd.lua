@@ -12,20 +12,20 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.cmd([[ autocmd FileType * set formatoptions-=cro ]])
 
 -- Setting textwidth to 72 for git commit messages
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "gitcommit", "NeogitCommitMessage" },
-    callback = function()
-        vim.bo.textwidth = 72
-        vim.wo.colorcolumn = "50,73"
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "gitcommit", "NeogitCommitMessage" },
+--     callback = function()
+--         vim.bo.textwidth = 72
+--         vim.wo.colorcolumn = "50,73"
+--     end,
+-- })
 
 -- Setting textwidth to 80 for markdown
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
-        vim.opt_local.textwidth = 80
-        vim.opt_local.colorcolumn = "80"
+        vim.bo.textwidth = 80
+        vim.wo.colorcolumn = "80"
     end,
 })
 
@@ -101,14 +101,27 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Override neogit default settings
+-- -- Override neogit default settings
+-- vim.api.nvim_create_autocmd("FileType", {
+--     group = augroup("neogit_spell_override"),
+--     pattern = "NeogitCommitMessage",
+--     callback = function()
+--         vim.schedule(function()
+--             vim.wo.spell = true
+--             vim.wo.wrap = true
+--         end)
+--     end,
+-- })
+
 vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("neogit_spell_override"),
-    pattern = "NeogitCommitMessage",
+    group = vim.api.nvim_create_augroup("commit_message_settings", { clear = true }),
+    pattern = { "gitcommit", "NeogitCommitMessage" },
     callback = function()
-        vim.schedule(function()
-            vim.wo.spell = true
-            vim.wo.wrap = true
+        vim.bo.textwidth = 72 -- Set text width for wrapping
+        vim.wo.colorcolumn = "50,73" -- Visual guide for 50/72 rule
+        vim.schedule(function() -- Schedule to avoid race conditions
+            vim.wo.spell = true -- Enable spell checking
+            vim.wo.wrap = true -- Enable line wrapping
         end)
     end,
 })
