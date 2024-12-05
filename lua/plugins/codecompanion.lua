@@ -25,20 +25,12 @@ return {
                             url = "http://127.0.0.1:1234",
                             chat_url = "/v1/chat/completions",
                         },
-                        schema = {
-                            model = {
-                                default = "qwen2.5-coder-7b-instruct",
-                            },
-                        },
                     })
                 end,
                 ollama_custom = function()
                     return require("codecompanion.adapters").extend("ollama", {
                         name = "ollama_custom", -- Give this adapter a unique name
                         schema = {
-                            model = {
-                                default = "qwen2.5-coder:7b",
-                            },
                             num_ctx = {
                                 default = 4096,
                             },
