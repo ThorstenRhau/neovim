@@ -160,7 +160,7 @@ wk.add({
     --                                    │ Git │
     --                                    ╰─────╯
     { "<leader>g", group = "Git" },
-    { "<leader>gb", "<cmd>GitBlameToggle<cr>", desc = "Blame" },
+    { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<cr>", desc = "Blame" },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Interactive" },
     { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
