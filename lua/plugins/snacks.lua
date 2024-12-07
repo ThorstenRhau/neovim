@@ -7,7 +7,7 @@ return {
         git = { enabled = true },
         gitbrowse = { enabled = true },
         lazygit = { enabled = false },
-        notifier = { enabled = true, timeout = 5000 },
+        notifier = { enabled = true, timeout = 3000 },
         quickfile = { enabled = true },
         statuscolumn = { enabled = true },
         words = { enabled = true },
