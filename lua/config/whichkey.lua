@@ -48,7 +48,6 @@ wk.add({
     { "<leader>O", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
-    { "<leader>t", "<cmd>ToggleTerm direction=float<cr>", desc = "Terminal" },
     --                                  ╭────────╮
     --                                  │ Buffer │
     --                                  ╰────────╯
@@ -178,18 +177,15 @@ wk.add({
         end,
         desc = "Colorcolumn",
     },
-    { "<leader>ub", "<cmd>Barbecue<CR>", desc = "Barbecue winbar" },
+    { "<leader>uB", "<cmd>Barbecue<CR>", desc = "Barbecue winbar" },
     { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
-    { "<leader>uh", "<cmd>set list!<CR>", desc = "Hidden Characters" },
+    { "<leader>uH", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
-    { "<leader>ul", "<cmd>set number!<cr>", desc = "Line numbers" },
     { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown render" },
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
-    { "<leader>ur", "<cmd>set relativenumber!<cr>", desc = "Relative line numbers" },
     { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo location list" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
-    { "<leader>uw", "<cmd>set wrap!<cr>", desc = "Wrap lines" },
     --                                  ╭─────────╮
     --                                  │ Window  │
     --                                  ╰─────────╯
