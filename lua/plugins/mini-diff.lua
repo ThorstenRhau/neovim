@@ -14,9 +14,9 @@ return {
         view = {
             style = "sign",
             signs = {
-                add = " ", -- Checked box
-                change = " ", -- Wrench or diff icon
-                delete = " ", -- Close box
+                add = "▎",
+                change = "▎",
+                delete = "",
             },
         },
     },
