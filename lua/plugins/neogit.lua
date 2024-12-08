@@ -16,6 +16,10 @@ return {
     config = true,
     opts = {
         disable_insert_on_commit = true,
+        filewatcher = {
+            interval = 1000,
+            enabled = true,
+        },
         graph_style = "unicode",
         kind = "tab",
         status = {
