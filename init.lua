@@ -78,9 +78,9 @@ local function getPreferredTheme()
     handle:close()
 
     if result and result:match("Dark") then
-        return "catppuccin-mocha" -- Dark theme
+        return "tokyonight-night" -- Dark theme
     else
-        return "catppuccin-latte" -- Light theme
+        return "tokyonight-day" -- Light theme
     end
 end
 
