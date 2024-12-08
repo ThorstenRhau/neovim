@@ -6,14 +6,10 @@ return {
         bigfile = { enabled = true },
         git = { enabled = true },
         gitbrowse = { enabled = true },
-        lazygit = { enabled = false },
         notifier = {
             enabled = true,
             timeout = 3000,
         },
-        quickfile = { enabled = true },
-        statuscolumn = { enabled = false },
-        words = { enabled = true },
         styles = {
             notification = {
                 wo = { wrap = true }, -- Wrap notifications
