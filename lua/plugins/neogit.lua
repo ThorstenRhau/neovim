@@ -21,6 +21,11 @@ return {
             enabled = true,
         },
         graph_style = "unicode",
+        highlight = {
+            italic = true,
+            bold = true,
+            underline = true,
+        },
         kind = "tab",
         status = {
             recent_commit_count = 20,
