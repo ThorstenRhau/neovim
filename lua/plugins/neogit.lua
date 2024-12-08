@@ -17,7 +17,7 @@ return {
     opts = {
         disable_insert_on_commit = true,
         graph_style = "unicode",
-        kind = "replace",
+        kind = "tab",
         status = {
             recent_commit_count = 20,
         },
