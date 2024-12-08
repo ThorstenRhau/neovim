@@ -38,6 +38,7 @@ o.synmaxcol = 200
 o.tabline = nil
 o.title = true
 o.ttyfast = true
+o.updatetime = 250
 o.wildmenu = true
 o.wildmode = "longest:full,full"
 o.wildoptions = "pum"
