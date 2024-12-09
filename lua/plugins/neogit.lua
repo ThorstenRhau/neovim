@@ -20,7 +20,7 @@ return {
             interval = 1000,
             enabled = true,
         },
-        graph_style = "kitty",
+        graph_style = "unicode",
         console_timeout = 2000,
         auto_show_console = true,
         auto_close_console = true,
