@@ -6,6 +6,7 @@ return {
         bigfile = { enabled = true },
         git = { enabled = true },
         gitbrowse = { enabled = true },
+        notify = { enabled = true },
         notifier = {
             enabled = true,
             timeout = 3000,
