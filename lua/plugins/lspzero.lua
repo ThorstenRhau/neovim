@@ -178,6 +178,7 @@ return {
 
                 require("mason-lspconfig").setup({
                     ensure_installed = {}, -- This is done by lua/plugins/mason-tool-installer.lua
+                    automatic_installation = true,
                     handlers = {
                         lsp_zero.default_setup,
                         jsonls = function()
