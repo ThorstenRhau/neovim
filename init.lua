@@ -65,8 +65,6 @@ require("config.whichkey")
 require("config.autocmd")
 require("config.keymaps")
 
-require("config.intro")
-
 -- Check macOS light / dark user interface state and return theme accordingly
 local function getPreferredTheme()
     local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
