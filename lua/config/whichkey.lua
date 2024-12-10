@@ -166,19 +166,8 @@ wk.add({
     --                                 │ Interface │
     --                                 ╰───────────╯
     { "<leader>u", group = "Interface", icon = { icon = " ", color = "azure" } },
-    {
-        "<leader>uC",
-        function()
-            if vim.wo.colorcolumn == "" then
-                vim.wo.colorcolumn = "80"
-            else
-                vim.wo.colorcolumn = ""
-            end
-        end,
-        desc = "Colorcolumn",
-    },
     { "<leader>uB", "<cmd>Barbecue<CR>", desc = "Barbecue winbar" },
-    { "<leader>uc", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
+    { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uH", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
     { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown render" },
