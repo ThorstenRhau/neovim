@@ -41,8 +41,10 @@ return {
                 "markdown",
                 "markdown_inline",
                 "python",
+                "regex",
                 "vim",
                 "vimdoc",
+                "yaml",
             },
         })
     end,
