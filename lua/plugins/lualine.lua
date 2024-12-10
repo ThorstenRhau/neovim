@@ -36,6 +36,7 @@ return {
                     "alpha",
                     "intro",
                     "checkhealth",
+                    "snacks_dashboard",
                     statusline = {},
                     winbar = {},
                 },
