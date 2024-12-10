@@ -1,5 +1,6 @@
 return {
     "RRethy/vim-illuminate",
+    enabled = false,
     event = { "BufReadPost", "BufNewFile" },
     opts = {
         under_cursor = false,
