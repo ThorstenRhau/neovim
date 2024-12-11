@@ -36,6 +36,7 @@ return {
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
         terminal = { enabled = true },
+        toggle = { enabled = true },
         words = { enabled = true },
     },
 
