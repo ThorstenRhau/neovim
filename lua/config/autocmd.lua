@@ -138,3 +138,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])
+
+-- Snacks notifications
+local ok, snacks = pcall(require, "Snacks.notify()")
+if ok then
+    vim.notify = function(msg, level, opts)
+        Snacks.notify(msg, opts)
+    end
+end
