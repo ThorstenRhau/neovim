@@ -37,7 +37,7 @@ return {
         statuscolumn = { enabled = true },
         terminal = { enabled = true },
         toggle = { enabled = true },
-        words = { enabled = true },
+        words = { modes = { "n", "c" } }, -- No word highlights in insert mode
     },
 
     keys = {
