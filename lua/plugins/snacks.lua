@@ -30,7 +30,6 @@ return {
             timeout = 3000,
             style = "compact",
         },
-        notify = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },
