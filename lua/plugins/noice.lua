@@ -1,5 +1,6 @@
 return {
     "folke/noice.nvim",
+    enabled = false,
     dependencies = {
         "VonHeikemen/lsp-zero.nvim",
         "MunifTanjim/nui.nvim",
