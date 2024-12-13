@@ -26,6 +26,13 @@ return {
         git = { enabled = true },
         gitbrowse = { enabled = true },
         indent = { enabled = true },
+        input = {
+            enabled = true,
+            icon = " ",
+            icon_hl = "SnacksInputIcon",
+            win = { style = "input" },
+            expand = true,
+        },
         notifier = {
             timeout = 3000,
             style = "compact",
