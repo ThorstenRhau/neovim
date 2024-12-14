@@ -4,7 +4,7 @@ return {
         "VonHeikemen/lsp-zero.nvim",
         "MunifTanjim/nui.nvim",
     },
-    event = { "CmdlineEnter", "BufReadPre" },
+    event = "VeryLazy",
     opts = {
         presets = {
             bottom_search = true,
