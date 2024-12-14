@@ -3,9 +3,8 @@ return {
     dependencies = {
         "VonHeikemen/lsp-zero.nvim",
         "MunifTanjim/nui.nvim",
-        -- "rcarriga/nvim-notify",
     },
-    event = "VeryLazy",
+    event = { "CmdlineEnter", "BufReadPre" },
     opts = {
         presets = {
             bottom_search = true,

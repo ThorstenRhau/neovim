@@ -3,7 +3,6 @@ return {
     dependencies = {
         "echasnovski/mini.icons",
     },
-    event = "VeryLazy",
     opts = {
         preset = "modern",
         icons = {
@@ -19,5 +18,6 @@ return {
             end,
             desc = "Buffer Local Keymaps (which-key)",
         },
+        "<leader>",
     },
 }

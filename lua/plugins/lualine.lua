@@ -25,7 +25,7 @@ return {
         enabled = true,
         event = "VeryLazy",
         dependencies = {
-            "echasnovski/mini.icons",
+            { "echasnovski/mini.icons", lazy = true },
         },
         opts = {
             options = {
@@ -33,8 +33,6 @@ return {
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
                 disabled_filetypes = {
-                    "alpha",
-                    "intro",
                     "checkhealth",
                     "snacks_dashboard",
                     statusline = {},
@@ -71,16 +69,10 @@ return {
                 lualine_z = {},
             },
             extensions = {
-                "fugitive",
                 "fzf",
                 "lazy",
-                "man",
                 "mason",
-                "neo-tree",
                 "oil",
-                "quickfix",
-                "symbols-outline",
-                "toggleterm",
                 "trouble",
             },
         },
