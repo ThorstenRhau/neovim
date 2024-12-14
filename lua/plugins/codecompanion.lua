@@ -9,6 +9,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",
     },
+    enabled = false,
     config = function()
         require("codecompanion").setup({
             opts = {
