@@ -5,7 +5,7 @@ return {
     opts = {
         style = "night",
         light_style = "day",
-        transparent = true,
+        transparent = false,
         styles = {
             comments = { italic = true },
             keywords = { italic = true },
