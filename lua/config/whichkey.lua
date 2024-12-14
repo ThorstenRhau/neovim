@@ -40,12 +40,11 @@ wk.add({
     --                                 ╭───────────╮
     --                                 │ Root menu │
     --                                 ╰───────────╯
-    { "<leader>U", "<cmd>Telescope undo<cr>", desc = "Undo", icon = { icon = "󰕌 ", color = "green" } },
     { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
     { "<leader>-", "<C-W>s", desc = "Split window", icon = { icon = " ", color = "grey" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
-    { "<leader>O", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
+    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     --                                  ╭────────╮
@@ -55,7 +54,7 @@ wk.add({
     { "<leader>bb", "<cmd>b#<CR>", desc = "Switch to alternate" },
     { "<leader>bd", "<cmd>bd<CR>", desc = "Delete" },
     { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree" },
-    { "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find" },
+    { "<leader>bf", "<cmd>FzfLua buffers<cr>", desc = "Find" },
     { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
     { "<leader>bm", "<cmd>bm<CR>", desc = "Go to next modified" },
     { "<leader>bn", "<cmd>bnext<CR>", desc = "Previous" },
@@ -137,31 +136,22 @@ wk.add({
     --                                   │ Find │
     --                                   ╰──────╯
     { "<leader>f", group = "Find" },
-    { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "File" },
-    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
-    { "<leader>fm", "<cmd>Telescope man_pages<cr>", desc = "man pages" },
-    { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Notifications" },
-    { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
-    { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "FZF in buffer" },
-    {
-        "<leader>ft",
-        function()
-            local cwd = vim.fn.getcwd()
-            vim.cmd("TodoTelescope cwd=" .. cwd)
-        end,
-        desc = "TODO",
-    },
-    { "<leader>fy", "<cmd>Telescope neoclip<cr>", desc = "Yanks" },
-    { "<leader>fz", "<cmd>Telescope spell_suggest<cr>", desc = "Spelling suggestions" },
+    { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Grep" },
+    { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "File" },
+    { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help" },
+    { "<leader>fm", "<cmd>FzfLua manpages<cr>", desc = "man pages" },
+    { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
+    { "<leader>fr", "<cmd>FzfLua registers<cr>", desc = "Registers" },
+    { "<leader>fs", "<cmd>FzfLua grep<cr>", desc = "FZF in buffer" },
+    { "<leader>fz", "<cmd>FzfLua spell_suggest<cr>", desc = "Spelling suggestions" },
     --                                    ╭─────╮
     --                                    │ Git │
     --                                    ╰─────╯
     { "<leader>g", group = "Git" },
-    { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
+    { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Commits" },
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Interactive" },
-    { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
+    { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Status" },
     --                                 ╭───────────╮
     --                                 │ Interface │
     --                                 ╰───────────╯
