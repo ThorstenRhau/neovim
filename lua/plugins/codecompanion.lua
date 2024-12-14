@@ -1,15 +1,35 @@
 return {
     "olimorris/codecompanion.nvim",
     dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-treesitter/nvim-treesitter",
-        "hrsh7th/nvim-cmp",
-        "nvim-telescope/telescope.nvim",
         "MeanderingProgrammer/render-markdown.nvim",
+        "echasnovski/mini.diff",
+        "hrsh7th/nvim-cmp",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim",
+        "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",
     },
     config = function()
         require("codecompanion").setup({
+            opts = {
+                log_level = "ERROR",
+            },
+            display = {
+                diff = {
+                    enabled = true,
+                    provider = "mini_diff",
+                },
+                action_palette = {
+                    width = 95,
+                    height = 10,
+                    prompt = "Prompt ", -- Prompt used for interactive LLM calls
+                    provider = "telescope", -- default|telescope|mini_pick
+                    opts = {
+                        show_default_actions = true, -- Show the default actions in the action palette?
+                        show_default_prompt_library = true, -- Show the default prompt library in the action palette?
+                    },
+                },
+            },
             strategies = {
                 chat = { adapter = "lm_studio" },
                 inline = { adapter = "lm_studio" },
@@ -27,6 +47,7 @@ return {
                         },
                     })
                 end,
+
                 ollama_custom = function()
                     return require("codecompanion.adapters").extend("ollama", {
                         name = "ollama_custom", -- Give this adapter a unique name
@@ -86,18 +107,6 @@ return {
             mode = "v",
             noremap = true,
             silent = true,
-        },
-    },
-    opts = {
-        strategies = {
-            chat = { adapter = "ollama", model = "qwen2.5-coder:7b" },
-            inline = { adapter = "ollama", model = "qwen2.5-coder:7b" },
-            cmd = { adapter = "ollama", model = "qwen2.5-coder:7b" },
-        },
-        display = {
-            chat = {
-                render_headers = false,
-            },
         },
     },
 }
