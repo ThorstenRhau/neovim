@@ -33,6 +33,7 @@ return {
         git = { enabled = true },
         gitbrowse = { enabled = true },
         indent = { enabled = true },
+        input = { enabled = true },
         notifier = {
             style = "compact",
             timeout = 8000,
