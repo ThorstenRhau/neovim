@@ -22,7 +22,7 @@ return {
             enabled = true,
         },
         graph_style = "unicode",
-        auto_show_console_on = "output",
+        auto_show_console_on = "error",
         highlight = {
             italic = true,
             bold = true,
