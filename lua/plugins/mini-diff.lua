@@ -1,6 +1,6 @@
 return {
     "echasnovski/mini.diff",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufWritePre" },
     keys = {
         {
             "<leader>go",
