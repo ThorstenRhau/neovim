@@ -16,14 +16,13 @@ return {
     config = true,
     opts = {
         disable_insert_on_commit = true,
+        disable_hint = true,
         filewatcher = {
             interval = 1000,
             enabled = true,
         },
         graph_style = "unicode",
-        console_timeout = 2000,
-        auto_show_console = true,
-        auto_close_console = true,
+        auto_show_console = false,
         notification_icon = "󰊢",
         highlight = {
             italic = true,
