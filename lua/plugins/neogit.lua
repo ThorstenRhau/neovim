@@ -38,8 +38,8 @@ return {
             recent_commit_count = 20,
         },
         integrations = {
-            telescope = true,
             diffview = true,
+            fzf_lua = true,
         },
     },
 }
