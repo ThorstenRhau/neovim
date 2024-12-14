@@ -25,7 +25,11 @@ return -- lazy.nvim
                     chat = true,
                     command = true,
                     model = { model = "qwen2.5-coder-7b-instruct-mlx" },
-                    system_prompt = "You are a helpful coding assistant",
+                    system_prompt = [[
+                    You are a precise and context-aware AI coding assistant. 
+                    You help the use concise answers. If you are uncertain
+                    you ask for more information, you do not guess.
+                    ]],
                 },
             },
         }
@@ -57,17 +61,6 @@ return -- lazy.nvim
                 { "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", desc = "Visual Rewrite" },
                 { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
                 { "<C-g>t", ":<C-u>'<,'>GpChatToggle<cr>", desc = "Visual Toggle Chat" },
-                -- { "<C-g>w", group = "Whisper" },
-                -- { "<C-g>wa", ":<C-u>'<,'>GpWhisperAppend<cr>", desc = "Whisper Append" },
-                -- { "<C-g>wb", ":<C-u>'<,'>GpWhisperPrepend<cr>", desc = "Whisper Prepend" },
-                -- { "<C-g>we", ":<C-u>'<,'>GpWhisperEnew<cr>", desc = "Whisper Enew" },
-                -- { "<C-g>wn", ":<C-u>'<,'>GpWhisperNew<cr>", desc = "Whisper New" },
-                -- { "<C-g>wp", ":<C-u>'<,'>GpWhisperPopup<cr>", desc = "Whisper Popup" },
-                -- { "<C-g>wr", ":<C-u>'<,'>GpWhisperRewrite<cr>", desc = "Whisper Rewrite" },
-                -- { "<C-g>wt", ":<C-u>'<,'>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
-                -- { "<C-g>wv", ":<C-u>'<,'>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
-                -- { "<C-g>ww", ":<C-u>'<,'>GpWhisper<cr>", desc = "Whisper" },
-                -- { "<C-g>x", ":<C-u>'<,'>GpContext<cr>", desc = "Visual GpContext" },
             },
 
             -- NORMAL mode mappings
@@ -92,17 +85,6 @@ return -- lazy.nvim
                 { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite" },
                 { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
                 { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat" },
-                -- { "<C-g>w", group = "Whisper" },
-                -- { "<C-g>wa", "<cmd>GpWhisperAppend<cr>", desc = "Whisper Append (after)" },
-                -- { "<C-g>wb", "<cmd>GpWhisperPrepend<cr>", desc = "Whisper Prepend (before)" },
-                -- { "<C-g>we", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew" },
-                -- { "<C-g>wn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New" },
-                -- { "<C-g>wp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup" },
-                -- { "<C-g>wr", "<cmd>GpWhisperRewrite<cr>", desc = "Whisper Inline Rewrite" },
-                -- { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
-                -- { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
-                -- { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
-                -- { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
             },
 
             -- INSERT mode mappings
@@ -127,17 +109,6 @@ return -- lazy.nvim
                 { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite" },
                 { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
                 { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat" },
-                -- { "<C-g>w", group = "Whisper" },
-                -- { "<C-g>wa", "<cmd>GpWhisperAppend<cr>", desc = "Whisper Append (after)" },
-                -- { "<C-g>wb", "<cmd>GpWhisperPrepend<cr>", desc = "Whisper Prepend (before)" },
-                -- { "<C-g>we", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew" },
-                -- { "<C-g>wn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New" },
-                -- { "<C-g>wp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup" },
-                -- { "<C-g>wr", "<cmd>GpWhisperRewrite<cr>", desc = "Whisper Inline Rewrite" },
-                -- { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
-                -- { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
-                -- { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
-                -- { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
             },
         })
     end,
