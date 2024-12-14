@@ -20,7 +20,7 @@ return {
         views = { -- Position of the command window
             cmdline_popup = {
                 position = {
-                    row = "90%",
+                    row = "55%",
                     col = "50%",
                 },
             },
