@@ -22,8 +22,7 @@ return {
             enabled = true,
         },
         graph_style = "unicode",
-        auto_show_console = false,
-        notification_icon = "󰊢",
+        auto_show_console_on = "output",
         highlight = {
             italic = true,
             bold = true,
