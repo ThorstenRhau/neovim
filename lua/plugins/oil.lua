@@ -18,7 +18,7 @@ return {
         },
         win_options = {
             wrap = true,
-            cursorcolumn = true,
+            cursorcolumn = false,
         },
         watch_for_changes = true,
         use_default_keymaps = true,
