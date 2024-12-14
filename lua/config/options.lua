@@ -62,14 +62,6 @@ o.shiftwidth = 4
 o.shiftround = true
 o.expandtab = true
 
-opt.listchars = {
-    -- Definíng symbols for hidden characters
-    --eol = "↴",
-    eol = "⏎",
-    tab = ">-",
-    space = "⋅",
-}
-
 -- Disable yank/copy for 'x'
 vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
 
