@@ -1,8 +1,11 @@
 return {
     "stevearc/dressing.nvim",
-    enabled = false,
     event = "VeryLazy",
-    opts = {
-        input = { enabled = false },
-    },
+    opts = function()
+        require("dressing").setup({
+            input = {
+                enabled = false, -- Set to false to disable the vim.ui.input implementation
+            },
+        })
+    end,
 }
