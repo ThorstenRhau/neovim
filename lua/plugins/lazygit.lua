@@ -16,4 +16,12 @@ return {
     keys = {
         { "<leader>gg", "<cmd>:LazyGit<cr>", desc = "LazyGit" },
     },
+    config = function()
+        -- Keymap to open Lazygit in a new buffer
+        vim.keymap.set("n", "<leader>gg", function()
+            vim.cmd("enew") -- Open a new buffer
+            vim.fn.termopen("LazyGit") -- Launch Lazygit in the terminal
+            vim.cmd("startinsert") -- Enter insert mode for interaction
+        end, { desc = "LazyGit in New Buffer" })
+    end,
 }
