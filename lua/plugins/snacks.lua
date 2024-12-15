@@ -44,6 +44,7 @@ return {
         },
         quickfile = { enabled = true },
         scope = { enabled = true },
+        scratch = { enabled = false },
         scroll = {
             enabled = true,
             animate = {
