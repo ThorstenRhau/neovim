@@ -149,8 +149,6 @@ wk.add({
     --                                    │ Git │
     --                                    ╰─────╯
     { "<leader>g", group = "Git" },
-    { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Commits" },
-    { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Status" },
     --                                 ╭───────────╮
     --                                 │ Interface │
     --                                 ╰───────────╯

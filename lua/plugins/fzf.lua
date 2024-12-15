@@ -39,5 +39,11 @@ return {
                 ["--marker"] = "+", -- Change multi-select marker
             },
         })
+        require("which-key").add({
+            { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Commits Project" },
+            { "<leader>gC", "<cmd>FzfLua git_bcommits<cr>", desc = "Commits Buffer" },
+            { "<leader>gs", "<cmd>FzfLua git_status<cr>", desc = "Status" },
+            { "<leader>gB", "<cmd>FzfLua git_blame<cr>", desc = "Blame" },
+        })
     end,
 }
