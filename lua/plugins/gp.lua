@@ -1,5 +1,5 @@
-return -- lazy.nvim
-{
+local coder_system_prompt = "You are a precise and context-aware AI coding assistant."
+return {
     "robitx/gp.nvim",
     keys = { "<C-g>" },
 
@@ -24,12 +24,8 @@ return -- lazy.nvim
                     provider = "lmstudio",
                     chat = true,
                     command = true,
-                    model = { model = "qwen2.5-coder-7b-instruct-mlx" },
-                    system_prompt = [[
-                    You are a precise and context-aware AI coding assistant. 
-                    You help the use concise answers. If you are uncertain
-                    you ask for more information, you do not guess.
-                    ]],
+                    model = "qwen2.5-coder-7b-instruct-mlx",
+                    system_prompt = coder_system_prompt,
                 },
             },
         }
