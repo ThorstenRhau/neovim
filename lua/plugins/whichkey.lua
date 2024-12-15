@@ -19,5 +19,6 @@ return {
             desc = "Buffer Local Keymaps (which-key)",
         },
         "<leader>",
+        "<C-g>", -- gp.nvim menues
     },
 }
