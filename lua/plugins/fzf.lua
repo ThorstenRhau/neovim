@@ -8,6 +8,7 @@ return {
     cmd = { "FzfLua" },
     config = function()
         require("fzf-lua").setup({
+            "default", -- fzf profile
             async = true, -- Enable async for fzf
             defaults = {
                 file_icons = true,
