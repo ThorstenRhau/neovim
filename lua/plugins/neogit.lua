@@ -1,5 +1,6 @@
 return {
     "NeogitOrg/neogit",
+    enabled = false,
     dependencies = {
         "nvim-lua/plenary.nvim",
         "ibhagwan/fzf-lua",
