@@ -160,7 +160,6 @@ wk.add({
     { "<leader>uB", "<cmd>Barbecue<CR>", desc = "Barbecue winbar" },
     { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uH", "<cmd>set list!<CR>", desc = "Hidden Characters" },
-    { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Illuminate word highlighting" },
     { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown render" },
     { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
