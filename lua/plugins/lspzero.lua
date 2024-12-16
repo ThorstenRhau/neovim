@@ -12,7 +12,7 @@ return {
     {
         {
             "VonHeikemen/lsp-zero.nvim",
-            branch = "v3.x",
+            branch = "v4.x",
             config = false,
             init = function()
                 -- Disable automatic setup, we are doing it manually
@@ -62,14 +62,6 @@ return {
                     completion = {
                         keyword_length = 3, -- Minimum length of word to trigger completion
                     },
-                    -- performance = {
-                    --     debounce = 250, -- Delay for debouncing events
-                    --     throttle = 50, -- Throttle time for completion
-                    --     fetching_timeout = 350, -- Timeout for completion
-                    --     confirm_resolve_timeout = 350, -- Timeout for resolving completion item
-                    --     async_budget = 200, -- Budget for async operations (in ms)
-                    --     max_view_entries = 75, -- Maximum number of entries to show in the completion menu
-                    -- },
                     window = {
                         completion = cmp.config.window.bordered({
                             border = "rounded",
@@ -82,7 +74,6 @@ return {
                             side_padding = 0,
                         }),
                     },
-                    --formatting = lsp_zero.cmp_format(),
                     formatting = {
                         fields = { "kind", "abbr", "menu" },
                         format = function(entry, vim_item)
@@ -142,9 +133,19 @@ return {
                     --     delay = 250, -- Delay before showing float
                     -- },
                 })
+                -- Add borders to floating windows
+                vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+                vim.lsp.handlers["textDocument/signatureHelp"] =
+                    vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
-                -- Setting rounded border on LSP windows
-                require("lspconfig.ui.windows").default_options.border = "rounded"
+                -- Add cmp_nvim_lsp capabilities settings to lspconfig
+                -- This should be executed before you configure any language server
+                local lspconfig_defaults = require("lspconfig").util.default_config
+                lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+                    "force",
+                    lspconfig_defaults.capabilities,
+                    require("cmp_nvim_lsp").default_capabilities()
+                )
 
                 -- This is where all the LSP shenanigans will live
                 local lsp_zero = require("lsp-zero")
@@ -180,7 +181,7 @@ return {
                     ensure_installed = {}, -- This is done by lua/plugins/mason-tool-installer.lua
                     automatic_installation = true,
                     handlers = {
-                        lsp_zero.default_setup,
+                        -- lsp_zero.default_setup,
                         jsonls = function()
                             require("lspconfig").jsonls.setup({
                                 settings = {
@@ -223,6 +224,10 @@ return {
                                     },
                                 },
                             })
+                        end,
+
+                        function(server_name)
+                            require("lspconfig")[server_name].setup({})
                         end,
                     },
                 })
