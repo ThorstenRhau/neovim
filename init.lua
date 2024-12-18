@@ -66,26 +66,26 @@ require("config.autocmd")
 require("config.keymaps")
 
 -- Check macOS light / dark user interface state and return theme accordingly
-local function getPreferredTheme()
-    local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-    if not handle then
-        return "habamax"
-    end
-
-    local result = handle:read("*a")
-    handle:close()
-
-    if result and result:match("Dark") then
-        return "tokyonight-night" -- Dark theme
-    else
-        return "tokyonight-day" -- Light theme
-    end
-end
-
--- Apply the preferred theme
-local preferred_theme = getPreferredTheme()
-if preferred_theme then
-    vim.cmd.colorscheme(preferred_theme)
-else
-    vim.cmd.colorscheme("default")
-end
+-- local function getPreferredTheme()
+--     local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+--     if not handle then
+--         return "habamax"
+--     end
+--
+--     local result = handle:read("*a")
+--     handle:close()
+--
+--     if result and result:match("Dark") then
+--         return "tokyonight-night" -- Dark theme
+--     else
+--         return "tokyonight-day" -- Light theme
+--     end
+-- end
+--
+-- -- Apply the preferred theme
+-- local preferred_theme = getPreferredTheme()
+-- if preferred_theme then
+--     vim.cmd.colorscheme(preferred_theme)
+-- else
+--     vim.cmd.colorscheme("default")
+-- end
