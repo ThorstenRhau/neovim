@@ -1,5 +1,6 @@
 return {
     "echasnovski/mini.diff",
+    enabled = false,
     event = { "BufReadPre", "BufWritePre" },
     keys = {
         {
