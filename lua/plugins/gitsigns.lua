@@ -23,7 +23,7 @@ return {
             signs_staged_enable = true,
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
             numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
-            linehl = true, -- Toggle with `:Gitsigns toggle_linehl`
+            linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
             word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
             watch_gitdir = {
                 follow_files = true,
@@ -55,6 +55,7 @@ return {
         })
         require("which-key").add({
             { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
+            { "<leader>gh", "<cmd>Gitsigns toggle_linehl<cr>", desc = "Toggle line highline" },
         })
     end,
 }
