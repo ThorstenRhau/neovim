@@ -21,8 +21,8 @@ vim.g.loaded_netrwPlugin = 1
 
 require("lazy").setup({
     spec = {
-        { import = "plugins" },
         { import = "themes" },
+        { import = "plugins" },
     },
     defaults = {
         lazy = true,
