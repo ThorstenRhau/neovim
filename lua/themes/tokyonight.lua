@@ -1,7 +1,7 @@
 return {
     "folke/tokyonight.nvim",
     lazy = false, -- Load immediately (not lazily)
-    priority = 1000, -- Highest priority to load first
+    priority = 1100, -- Highest priority to load first
     config = function()
         -- Function to determine the preferred theme based on macOS light/dark mode
         local function getPreferredStyle()
