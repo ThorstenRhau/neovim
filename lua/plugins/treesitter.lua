@@ -1,10 +1,14 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = "nvim-treesitter/nvim-treesitter-context",
-
     version = false,
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    keys = {
+        { "<c-space>", desc = "Increment Selection" },
+        { "<bs>", desc = "Decrement Selection", mode = "x" },
+    },
     opts = function()
         require("nvim-treesitter.configs").setup({
             modules = {},
