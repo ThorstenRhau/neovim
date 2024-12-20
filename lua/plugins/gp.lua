@@ -12,7 +12,10 @@ return {
     config = function()
         local conf = {
             providers = {
-                openai = {},
+                openai = {
+                    endpoint = "https://api.openai.com/v1/chat/completions",
+                    secret = os.getenv("OPENAI_API_KEY"),
+                },
                 azure = {},
                 copilot = {},
                 ollama = {},
@@ -26,9 +29,13 @@ return {
             },
             agents = {
                 {
+                    name = "ExampleDisabledAgent",
+                    disable = true,
+                },
+                {
                     name = "qwen2.5-coder-7b-instruct-mlx",
                     provider = "lmstudio",
-                    chat = true,
+                    chat = false,
                     command = true,
                     model = "qwen2.5-coder-7b-instruct-mlx",
                     system_prompt = coder_system_prompt,
