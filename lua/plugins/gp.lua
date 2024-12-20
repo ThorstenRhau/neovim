@@ -1,8 +1,14 @@
 local coder_system_prompt = "You are a precise and context-aware AI coding assistant."
 return {
     "robitx/gp.nvim",
-    keys = { "<C-g>" },
-
+    keys = {
+        "<C-g>",
+        "<C-g><C-t>",
+        "<C-g><C-v>",
+        "<C-g>c",
+        "<C-g>r",
+    },
+    cmd = "GpChatNew",
     config = function()
         local conf = {
             providers = {
