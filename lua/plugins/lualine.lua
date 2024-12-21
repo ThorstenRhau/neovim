@@ -40,7 +40,7 @@ return {
                 },
             },
             sections = {
-                lualine_a = { "mode", show_macro_recording },
+                lualine_a = { "mode", show_macro_recording, "searchcount", "selectioncount" },
                 lualine_b = { "branch", "diff", "diagnostics" },
                 lualine_c = {
                     {
@@ -71,6 +71,7 @@ return {
             extensions = {
                 "fzf",
                 "lazy",
+                "man",
                 "mason",
                 "oil",
                 "trouble",
