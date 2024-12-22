@@ -82,6 +82,7 @@ return {
 
                 for _, map in ipairs(buf_keymaps) do
                     local modes = type(map[1]) == "table" and map[1] or { map[1] }
+                    ---@diagnostic disable-next-line: param-type-mismatch
                     for _, mode in ipairs(modes) do
                         vim.keymap.set(mode, map[2], map[3], vim.tbl_extend("force", opts, { desc = map[4] }))
                     end
