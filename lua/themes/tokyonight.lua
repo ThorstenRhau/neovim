@@ -5,15 +5,17 @@ return {
     config = function()
         -- Function to determine the preferred theme based on macOS light/dark mode
         local function getPreferredStyle()
-            local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-            if not handle then
+            -- Execute the command without redirecting stderr
+            local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
+            -- Check if the command was successful
+            if vim.v.shell_error ~= 0 then
                 return "day" -- Default to light style if detection fails
             end
 
-            local result = handle:read("*a")
-            handle:close()
+            -- Trim any trailing whitespace or newline characters
+            result = result:match("^%s*(.-)%s*$")
 
-            if result and result:match("Dark") then
+            if result == "Dark" then
                 return "night" -- Dark style
             else
                 return "day" -- Light style
@@ -43,7 +45,7 @@ return {
             lualine_bold = true, -- Bold section headers in lualine theme
             cache = true,
             plugins = {
-                all = package.loaded.lazy == nil, -- Enable all plugins if not using lazy.nvim
+                all = not package.loaded.lazy, -- Enable all plugins if not using lazy.nvim
                 auto = true, -- Automatically enable needed plugins for lazy.nvim
             },
         })
