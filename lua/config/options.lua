@@ -89,4 +89,4 @@ o.undofile = true
 o.undolevels = 10000
 
 -- Setting global variable for lspzero borders
-vim.g.lsp_zero_ui_float_border = "rounded"
+-- vim.g.lsp_zero_ui_float_border = "rounded"
