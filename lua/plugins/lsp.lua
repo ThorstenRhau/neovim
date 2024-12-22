@@ -12,7 +12,6 @@ return {
         "onsails/lspkind.nvim",
         "saadparwaiz1/cmp_luasnip",
         "williamboman/mason-lspconfig.nvim",
-        -- "sontungexpt/better-diagnostic-virtual-text",
     },
 
     -- Only loading LSP for certain file types
