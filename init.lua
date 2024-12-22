@@ -1,8 +1,15 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local out = vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--branch=stable",
+        lazyrepo,
+        lazypath,
+    })
     if vim.v.shell_error ~= 0 then
         vim.api.nvim_echo({
             { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -15,22 +22,27 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Basic Neovim Settings
 vim.g.mapleader = " "
-vim.g.maplocalleader = "''"
+vim.g.maplocalleader = "'"
 vim.opt.termguicolors = true
--- Disabling netrw so that 'oil' can take it's place
+
+-- Disable netrw for 'oil' plugin
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Setup lazy.nvim
 require("lazy").setup({
     spec = {
         { import = "themes" },
         { import = "plugins" },
     },
     defaults = {
-        lazy = true,
+        lazy = true, -- Set global lazy loading
     },
-    install = { colorscheme = { "tokyonight", "habamax" } },
+    install = {
+        colorscheme = { "tokyonight", "habamax" },
+    },
     checker = {
         enabled = true,
         notify = true,
@@ -50,8 +62,6 @@ require("lazy").setup({
             "gzip",
             "rplugin",
             "tarPlugin",
-            "tohtml",
-            "tutor",
             "zipPlugin",
         },
     },
@@ -61,32 +71,8 @@ require("lazy").setup({
     },
 })
 
+-- Load Configuration Modules After lazy.nvim
 require("config.options")
 require("config.whichkey")
 require("config.autocmd")
 require("config.keymaps")
-
--- Check macOS light / dark user interface state and return theme accordingly
--- local function getPreferredTheme()
---     local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
---     if not handle then
---         return "habamax"
---     end
---
---     local result = handle:read("*a")
---     handle:close()
---
---     if result and result:match("Dark") then
---         return "tokyonight-night" -- Dark theme
---     else
---         return "tokyonight-day" -- Light theme
---     end
--- end
---
--- -- Apply the preferred theme
--- local preferred_theme = getPreferredTheme()
--- if preferred_theme then
---     vim.cmd.colorscheme(preferred_theme)
--- else
---     vim.cmd.colorscheme("default")
--- end
