@@ -131,6 +131,18 @@ return {
             completion = {
                 keyword_length = 3,
             },
+            window = {
+                completion = cmp.config.window.bordered({
+                    border = "rounded",
+                    scrollbar = true,
+                    side_padding = 0,
+                }),
+                documentation = cmp.config.window.bordered({
+                    border = "rounded",
+                    scrollbar = true,
+                    side_padding = 0,
+                }),
+            },
             sources = {
                 { name = "nvim_lsp", priority = 100 },
                 { name = "luasnip", priority = 80 },
