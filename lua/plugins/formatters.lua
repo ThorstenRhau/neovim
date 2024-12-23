@@ -6,13 +6,16 @@ return {
         {
             "<leader>cf",
             function()
-                require("conform").format({ async = true, lsp_fallback = true })
+                require("conform").format({ async = true })
             end,
             mode = { "n", "v" },
             desc = "Format buffer",
         },
     },
     opts = {
+        default_format_opts = {
+            lsp_format = "fallback",
+        },
         -- Define formatters by filetype.
         formatters_by_ft = {
             css = { "prettier" },
@@ -28,14 +31,14 @@ return {
             yaml = { "prettier" },
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 5000, lsp_fallback = true },
+        format_on_save = { timeout_ms = 5000 },
         notify_on_error = true,
         -- Customize formatters
-        -- formatters = {
-        -- 	shfmt = {
-        -- 		prepend_args = { "-i", "2" },
-        -- 	},
-        -- },
+        formatters = {
+            shfmt = {
+                prepend_args = { "-i", "2" }, -- indent with two spaces
+            },
+        },
     },
     init = function()
         -- If you want the formatexpr, here is the place to set it
