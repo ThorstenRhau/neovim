@@ -22,6 +22,10 @@ _.git_ directory from the root folder.
 
 ![light](./.images/light-2024-12-23.jpg) ![dark](./.images/dark-2024-12-23.jpg)
 
+_The font used on the pictures is
+[Pragmata Pro](https://fsd.it/shop/fonts/pragmatapro/) with ligatures and the
+theme is [Tokyo Night](https://github.com/folke/tokyonight.nvim)_
+
 ## Installation
 
 ### Optional plugins
@@ -52,7 +56,7 @@ homebrew on a mac.
 
 ```
 brew install ripgrep fd cmake git node wget shellcheck python3 \
-selene hg nvim lazygit viu chafa
+selene hg nvim lazygit viu
 ```
 
 ```
