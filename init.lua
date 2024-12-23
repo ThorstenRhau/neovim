@@ -84,6 +84,8 @@ require("lazy").setup({
 
 -- Load Configuration Modules After lazy.nvim
 require("config.options")
-require("config.whichkey")
 require("config.autocmd")
 require("config.keymaps")
+if enable_optional_plugins then
+    require("config.whichkey")
+end
