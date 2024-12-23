@@ -6,7 +6,6 @@ o.autoread = true
 o.breakindent = true
 o.clipboard = ""
 o.cmdheight = 0
-o.cmdheight = 1
 o.cmdwinheight = 10
 o.completeopt = "menu,menuone,noselect"
 o.conceallevel = 2
@@ -20,7 +19,6 @@ o.grepformat = "%f:%l:%c:%m"
 o.grepprg = "rg --vimgrep"
 o.hlsearch = true
 o.ignorecase = true
-o.inccommand = "nosplit"
 o.inccommand = "split"
 o.incsearch = true
 o.jumpoptions = "view"
@@ -34,11 +32,10 @@ o.relativenumber = true
 o.scrolloff = 8
 o.shell = "/opt/homebrew/bin/fish"
 o.showcmd = true
-o.signcolumn = "yes"
+o.signcolumn = "yes:1"
 o.smartcase = true
 o.smartindent = true
 o.smarttab = true
-o.smoothscroll = true
 o.smoothscroll = true
 o.splitbelow = true
 o.synmaxcol = 200
@@ -57,7 +54,9 @@ opt.path:append({ "**" })
 opt.spelllang = { "en", "sv" }
 opt.wildignore:append({ "*/node_modules/*" })
 if vim.fn.executable("rg") == 1 then
-    o.grepprg = "rg --vimgrep --smart-case --follow"
+    opt.grepprg = "rg --vimgrep --smart-case --follow"
+else
+    opt.grepprg = "grep -n $* /dev/null"
 end
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
@@ -69,23 +68,21 @@ o.shiftround = true
 o.expandtab = true
 
 -- Disable yank/copy for 'x'
-vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true })
+vim.api.nvim_set_keymap("n", "x", '"_x', { noremap = true, silent = true })
 
 -- Language providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_python_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_node_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 -- Setting up undo
 opt.swapfile = false
 opt.backup = false
----@diagnostic disable-next-line: assign-type-mismatch
-o.undodir = os.getenv("HOME") .. "/.vim/undodir"
-o.undofile = true
-o.undolevels = 10000
 
--- Setting global variable for lspzero borders
--- vim.g.lsp_zero_ui_float_border = "rounded"
+local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
+opt.undodir = undodir
+opt.undofile = true
+opt.undolevels = 10000
