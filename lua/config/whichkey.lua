@@ -41,7 +41,6 @@ wk.add({
     --                                 │ Root menu │
     --                                 ╰───────────╯
     { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
-    { "<leader>-", "<C-W>s", desc = "Split window", icon = { icon = " ", color = "grey" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
