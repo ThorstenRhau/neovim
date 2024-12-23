@@ -19,31 +19,46 @@ return {
                 height = 0.8,
                 preview = {
                     layout = "vertical",
-                    vertical = "up:70%", -- Place preview above the window
+                    vertical = "up:70%",
                 },
-                border = "rounded", -- Rounded borders for aesthetics
-                fullscreen = false, -- Avoid fullscreen for flexibility
+                border = "rounded",
+                fullscreen = false,
             },
             keymap = {
                 builtin = {
-                    ["<C-u>"] = "preview-page-up", -- Page up in preview with Ctrl+b
-                    ["<C-d>"] = "preview-page-down", -- Page down in preview with Ctrl+f
-                    ["<C-p>"] = "toggle-preview", -- Toggle preview window with Ctrl+p
+                    ["<C-u>"] = "preview-page-up",
+                    ["<C-d>"] = "preview-page-down",
+                    ["<C-p>"] = "toggle-preview",
                 },
                 fzf = {
-                    ["ctrl-q"] = "select-all+accept", -- Select all items and accept with Ctrl+q
+                    ["ctrl-q"] = "select-all+accept",
                 },
             },
             fzf_opts = {
-                ["--layout"] = "reverse-list", -- Show results on top, input at the bottom
-                ["--marker"] = "+", -- Change multi-select marker
+                ["--layout"] = "reverse-list",
+                ["--marker"] = "+",
             },
             previewers = {
                 builtin = {
-                    ueberzugpp = false,
-                    chafa = false,
-                    viu = false,
+                    syntax = true, -- preview syntax highlight?
+                    syntax_limit_l = 1024, -- syntax limit (lines), 0=nolimit
+                    syntax_limit_b = 1024 * 500, -- syntax limit (bytes), 0=nolimit
+                    limit_b = 1024 * 1024 * 5, -- preview limit (bytes), 0=nolimit
+                    extensions = {
+                        ["jpg"] = { "viu", "-b" },
+                        ["jpeg"] = { "viu", "-b" },
+                        ["svg"] = { "viu", "-b" },
+                        ["png"] = { "viu", "-b" },
+                    },
                 },
+            },
+            oldfiles = {
+                include_current_session = true,
+            },
+            grep = {
+                rg_glob = true,
+                glob_flag = "--iglob",
+                glob_separator = "%s%-%-",
             },
         })
         require("which-key").add({
