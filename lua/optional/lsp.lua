@@ -12,7 +12,6 @@ return {
         "onsails/lspkind.nvim",
         "saadparwaiz1/cmp_luasnip",
         "williamboman/mason-lspconfig.nvim",
-        -- "williamboman/mason.nvim",
     },
     ft = {
         "html",
@@ -31,12 +30,8 @@ return {
         local lspconfig = require("lspconfig")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
-        -- local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
-
-        -- Initialize Mason
-        -- mason.setup()
 
         -- Initialize Mason-LSPConfig
         mason_lspconfig.setup({
