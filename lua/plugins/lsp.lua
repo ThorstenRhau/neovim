@@ -27,12 +27,12 @@ return {
     },
     config = function()
         -- Cache required modules
+        local cmp = require("cmp")
         local lspconfig = require("lspconfig")
+        local lspkind = require("lspkind")
+        local luasnip = require("luasnip")
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
-        local lspkind = require("lspkind")
         local schemastore = require("schemastore")
 
         -- Initialize Mason
@@ -40,7 +40,7 @@ return {
 
         -- Initialize Mason-LSPConfig
         mason_lspconfig.setup({
-            ensure_installed = {}, -- Add servers you want to ensure are installed
+            ensure_installed = {}, -- This is handled by mason-tool-installer
             automatic_installation = false,
         })
 
@@ -48,12 +48,14 @@ return {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         -- Global Keybindings for Diagnostics
+        -- stylua: ignore start
         local diagnostic_keymaps = {
-            { "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", "Open floating diagnostic message" },
-            { "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
-            { "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
             { "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", "Open diagnostics list" },
+            { "n", "[d",        "<cmd>lua vim.diagnostic.goto_prev()<CR>",  "Go to previous diagnostic" },
+            { "n", "]d",        "<cmd>lua vim.diagnostic.goto_next()<CR>",  "Go to next diagnostic" },
+            { "n", "gl",        "<cmd>lua vim.diagnostic.open_float()<CR>", "Open floating diagnostic message" },
         }
+        -- stylua: ignore end
 
         for _, map in ipairs(diagnostic_keymaps) do
             vim.keymap.set(map[1], map[2], map[3], { silent = true, desc = map[4] })
@@ -67,18 +69,23 @@ return {
                 local opts = { buffer = buffer, silent = true, noremap = true }
 
                 -- Buffer-local Keybindings
+                -- Formatting is done by conform, no need to define vim.lsp.buf.format() here
+                -- stylua: ignore start
                 local buf_keymaps = {
-                    { "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Documentation" },
-                    { "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
-                    { "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to Declaration" },
-                    { "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go to Implementation" },
-                    { "n", "go", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to Type Definition" },
-                    { "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "Go to References" },
-                    { "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-                    { "n", "cr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-                    { { "n", "x" }, "<leader>cf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", "Format" },
-                    { "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+                    {"n", "<leader>ca", "<cmd>luavim.lsp.buf.code_action()<CR>",     "CodeAction"},
+                    {"n", "<leader>cr", "<cmd>luavim.lsp.buf.rename()<CR>",          "Rename"},
+                    {"n", "K",          "<cmd>luavim.lsp.buf.hover()<CR>",           "HoverDocumentation"},
+                    {"n", "cr",         "<cmd>luavim.lsp.buf.rename()<CR>",          "Rename"},
+                    {"n", "gD",         "<cmd>luavim.lsp.buf.declaration()<CR>",     "GotoDeclaration"},
+                    {"n", "gI",         "<cmd>luavim.lsp.buf.incoming_calls()<CR>",  "GottoIncomingCalls"},
+                    {"n", "gO",         "<cmd>luavim.lsp.buf.outgoing_calls()<CR>",  "GottoOutgoingCalls"},
+                    {"n", "gd",         "<cmd>luavim.lsp.buf.definition()<CR>",      "GotoDefinition"},
+                    {"n", "gi",         "<cmd>luavim.lsp.buf.implementation()<CR>",  "GotoImplementation"},
+                    {"n", "go",         "<cmd>luavim.lsp.buf.type_definition()<CR>", "GotoTypeDefinition"},
+                    {"n", "gr",         "<cmd>luavim.lsp.buf.references()<CR>",      "GotoReferences"},
+                    {"n", "gs",         "<cmd>luavim.lsp.buf.signature_help()<CR>",  "SignatureHelp"},
                 }
+                -- stylua: ignore end
 
                 for _, map in ipairs(buf_keymaps) do
                     local modes = type(map[1]) == "table" and map[1] or { map[1] }
@@ -172,17 +179,15 @@ return {
                         Lua = {
                             runtime = {
                                 version = "LuaJIT",
-                                path = vim.split(package.path, ";"),
                             },
                             diagnostics = {
                                 globals = { "vim" },
                             },
                             workspace = {
-                                library = vim.api.nvim_get_runtime_file("", true),
                                 checkThirdParty = false,
-                            },
-                            telemetry = {
-                                enable = false,
+                                library = {
+                                    vim.env.VIMRUNTIME,
+                                },
                             },
                         },
                     },
@@ -220,12 +225,12 @@ return {
                 end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp", priority = 100 },
-                { name = "luasnip", priority = 80 },
+                { name = "nvim_lsp", keyword_length = 3, priority = 100 },
+                { name = "luasnip", keyword_length = 3, priority = 80 },
                 { name = "path", priority = 60 },
                 { name = "buffer", keyword_length = 4, priority = 40 },
-                { name = "nvim_lua", priority = 20 },
-                { name = "nvim_lsp_signature_help", priority = 10 }, -- Ensure this source is valid or remove
+                { name = "nvim_lua", keyword_length = 3, priority = 20 },
+                { name = "nvim_lsp_signature_help", priority = 10 },
             }),
             formatting = {
                 fields = { "kind", "abbr", "menu" }, -- Added required 'fields'
@@ -251,23 +256,15 @@ return {
                 completion = cmp.config.window.bordered({
                     border = "rounded",
                     scrollbar = false,
-                    winhighlight = "Normal:Pmenu,CursorLine:CursorLine,Search:None",
                 }),
                 documentation = cmp.config.window.bordered({
                     border = "rounded",
                     scrollbar = false,
-                    winhighlight = "Normal:Pmenu,CursorLine:CursorLine,Search:None",
                 }),
-            },
-            experimental = {
-                ghost_text = false,
-                native_menu = false,
             },
         })
 
         -- Setup LuaSnip
         require("luasnip.loaders.from_vscode").lazy_load()
-
-        -- Optional: Setup additional CMP sources or configurations here
     end,
 }
