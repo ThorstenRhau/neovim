@@ -1,6 +1,6 @@
 return {
     "stevearc/dressing.nvim",
-    event = "BufRead",
+    event = "VeryLazy",
     opts = {
         input = {
             enabled = true,
