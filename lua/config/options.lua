@@ -50,7 +50,6 @@ o.wildmenu = true
 o.wildmode = "longest:full,full"
 o.wildoptions = "pum"
 o.winbar = "%=%m\\ %f"
-o.winbar = nil
 o.winblend = 0
 o.wrap = false
 opt.backspace = { "start", "eol", "indent" }
