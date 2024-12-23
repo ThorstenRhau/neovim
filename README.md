@@ -9,14 +9,47 @@ Since 2023-12-24 I consider this repo as stable. It should be safe to clone it
 and stay on the main branch. There will be changes but all changes will be
 documented and I hope that no breaking changes slip through the cracks.
 
+2024 Christmas update: I have been using this configuration as my daily driver
+for a year now. It has evolved quite a bit since the start. Here is a small clip
+that shows a years worth of neovim tweaking:
+
 If you want to make this configuration your own, just clone it and remove the
 _.git_ directory from the root folder.
 
 ## Showcase
 
-![hoverdoc](./.images/neovim.png)
+### Light
+
+![light](./.images/light-2024-12-23.jpg)
+
+### Dark
+
+![dark](./.images/dark-2024-12-23.jpg)
 
 ## Installation
+
+### Optional plugins
+
+After maintaining a light and a fully fledged neovim configuration for about a
+year I decided that that was to much work. So this configuration can now be both
+a lightweight config, without LSP, Lingers, Formatters etc. Or it can contain
+all those things.
+
+The default is lightweight, to enable LSP, Lingers, and all the other plugins
+that are found in **lua/optional** you only need to set the environment variable
+**NVIM_OPTIONAL_PLUGINS**
+
+_Example for fish shell_
+
+```fish
+set -gx NVIM_OPTIONAL_PLUGINS 1
+```
+
+_Example for zsh and bash_
+
+```sh
+export NVIM_OPTIONAL_PLUGINS=1
+```
 
 ### Dependencies
 
