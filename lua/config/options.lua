@@ -1,6 +1,13 @@
 local opt = vim.opt
 local o = vim.o
 
+vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,"
+    .. "ve:ver35-Cursor,"
+    .. "o:hor50-Cursor,"
+    .. "i-ci:ver25-Cursor,"
+    .. "r-cr:hor20-Cursor,"
+    .. "sm:block-blinkwait175-blinkoff150-blinkon175"
+
 o.autoindent = true
 o.autoread = true
 o.breakindent = true
