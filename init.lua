@@ -1,5 +1,6 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     local out = vim.fn.system({
@@ -31,12 +32,22 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Define the plugin specifications
+local specs = {
+    { import = "themes" },
+    { import = "plugins" },
+}
+-- Check if optional plugins should be enabled
+local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
+
+-- Conditionally add optional plugins
+if enable_optional_plugins then
+    table.insert(specs, { import = "optional" })
+end
+
 -- Setup lazy.nvim
 require("lazy").setup({
-    spec = {
-        { import = "themes" },
-        { import = "plugins" },
-    },
+    spec = specs,
     defaults = {
         lazy = true, -- Set global lazy loading
     },
