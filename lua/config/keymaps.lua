@@ -38,4 +38,4 @@ map("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move Selection Down", noremap = 
 map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up", noremap = true, silent = true })
 
 -- Clear search highlights with a dedicated key
-map({ "n", "i" }, "<Leader>c", "<cmd>noh<CR>", { desc = "Clear Search Highlights", noremap = true, silent = true })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
