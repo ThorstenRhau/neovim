@@ -77,7 +77,7 @@ return {
         git = { enabled = true },
         gitbrowse = { enabled = true },
         indent = { enabled = true },
-        input = { enabled = true },
+        input = { enabled = false },
         notifier = {
             height = { min = 1, max = 0.5 },
             padding = true,
