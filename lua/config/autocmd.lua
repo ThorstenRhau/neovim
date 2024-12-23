@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Markdown
 vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("markdown_warp_spell"),
+    group = augroup("markdown_wrap_spell"),
     pattern = { "markdown" },
     callback = function()
         vim.opt_local.wrap = true
