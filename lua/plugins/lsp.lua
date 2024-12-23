@@ -12,7 +12,7 @@ return {
         "onsails/lspkind.nvim",
         "saadparwaiz1/cmp_luasnip",
         "williamboman/mason-lspconfig.nvim",
-        "williamboman/mason.nvim",
+        -- "williamboman/mason.nvim",
     },
     ft = {
         "html",
@@ -31,12 +31,12 @@ return {
         local lspconfig = require("lspconfig")
         local lspkind = require("lspkind")
         local luasnip = require("luasnip")
-        local mason = require("mason")
+        -- local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
 
         -- Initialize Mason
-        mason.setup()
+        -- mason.setup()
 
         -- Initialize Mason-LSPConfig
         mason_lspconfig.setup({
@@ -72,18 +72,18 @@ return {
                 -- Formatting is done by conform, no need to define vim.lsp.buf.format() here
                 -- stylua: ignore start
                 local buf_keymaps = {
-                    {"n", "<leader>ca", "<cmd>luavim.lsp.buf.code_action()<CR>",     "CodeAction"},
-                    {"n", "<leader>cr", "<cmd>luavim.lsp.buf.rename()<CR>",          "Rename"},
-                    {"n", "K",          "<cmd>luavim.lsp.buf.hover()<CR>",           "HoverDocumentation"},
-                    {"n", "cr",         "<cmd>luavim.lsp.buf.rename()<CR>",          "Rename"},
-                    {"n", "gD",         "<cmd>luavim.lsp.buf.declaration()<CR>",     "GotoDeclaration"},
-                    {"n", "gI",         "<cmd>luavim.lsp.buf.incoming_calls()<CR>",  "GottoIncomingCalls"},
-                    {"n", "gO",         "<cmd>luavim.lsp.buf.outgoing_calls()<CR>",  "GottoOutgoingCalls"},
-                    {"n", "gd",         "<cmd>luavim.lsp.buf.definition()<CR>",      "GotoDefinition"},
-                    {"n", "gi",         "<cmd>luavim.lsp.buf.implementation()<CR>",  "GotoImplementation"},
-                    {"n", "go",         "<cmd>luavim.lsp.buf.type_definition()<CR>", "GotoTypeDefinition"},
-                    {"n", "gr",         "<cmd>luavim.lsp.buf.references()<CR>",      "GotoReferences"},
-                    {"n", "gs",         "<cmd>luavim.lsp.buf.signature_help()<CR>",  "SignatureHelp"},
+                    {"n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",     "CodeAction"},
+                    {"n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
+                    {"n", "K",          "<cmd>lua vim.lsp.buf.hover()<CR>",           "HoverDocumentation"},
+                    {"n", "cr",         "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
+                    {"n", "gD",         "<cmd>lua vim.lsp.buf.declaration()<CR>",     "GotoDeclaration"},
+                    {"n", "gI",         "<cmd>lua vim.lsp.buf.incoming_calls()<CR>",  "GottoIncomingCalls"},
+                    {"n", "gO",         "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>",  "GottoOutgoingCalls"},
+                    {"n", "gd",         "<cmd>lua vim.lsp.buf.definition()<CR>",      "GotoDefinition"},
+                    {"n", "gi",         "<cmd>lua vim.lsp.buf.implementation()<CR>",  "GotoImplementation"},
+                    {"n", "go",         "<cmd>lua vim.lsp.buf.type_definition()<CR>", "GotoTypeDefinition"},
+                    {"n", "gr",         "<cmd>lua vim.lsp.buf.references()<CR>",      "GotoReferences"},
+                    {"n", "gs",         "<cmd>lua vim.lsp.buf.signature_help()<CR>",  "SignatureHelp"},
                 }
                 -- stylua: ignore end
 
