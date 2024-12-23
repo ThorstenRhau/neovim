@@ -38,6 +38,13 @@ return {
                 ["--layout"] = "reverse-list", -- Show results on top, input at the bottom
                 ["--marker"] = "+", -- Change multi-select marker
             },
+            previewers = {
+                builtin = {
+                    ueberzugpp = false,
+                    chafa = false,
+                    viu = false,
+                },
+            },
         })
         require("which-key").add({
             { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Commits Project" },
