@@ -145,6 +145,7 @@ return {
                     },
                 })
             end,
+
             -- Lua Language Server with custom settings
             ["lua_ls"] = function()
                 lspconfig.lua_ls.setup({
@@ -154,14 +155,37 @@ return {
                             runtime = {
                                 version = "LuaJIT",
                             },
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
                             workspace = {
                                 checkThirdParty = false,
                                 library = {
                                     vim.env.VIMRUNTIME,
+                                    "$HOME/.config/wezterm",
                                 },
+                            },
+                            telemetry = {
+                                enable = false,
+                            },
+                        },
+                    },
+                })
+            end,
+
+            -- Pyright Language Server with custom settings
+            ["pyright"] = function()
+                lspconfig.pyright.setup({
+                    capabilities = capabilities,
+                    on_attach = function(client)
+                        -- Using different formatter (ruff_format)
+                        client.server_capabilities.documentFormattingProvider = false
+                        client.server_capabilities.documentRangeFormattingProvider = false
+                    end,
+                    settings = {
+                        python = {
+                            analysis = {
+                                typeCheckingMode = "strict", -- Options: off, basic, strict
+                                autoSearchPaths = true,
+                                diagnosticMode = "workspace", -- Options: openFilesOnly, workspace
+                                useLibraryCodeForTypes = true,
                             },
                         },
                     },
