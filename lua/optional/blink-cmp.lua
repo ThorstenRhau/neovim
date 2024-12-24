@@ -102,7 +102,11 @@ return {
             ["<C-down>"] = { "scroll_documentation_down", "fallback" },
         },
 
-        signature = { enabled = true },
+        -- Experimental signature help support
+        signature = {
+            enabled = true,
+            window = { border = "rounded" },
+        },
 
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
@@ -110,6 +114,7 @@ return {
             providers = {
                 lsp = {
                     min_keyword_length = 2, -- Number of characters to trigger porvider
+                    score_offset = 0, -- Boost/penalize the score of the items
                 },
                 path = {
                     min_keyword_length = 0,
