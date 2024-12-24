@@ -39,7 +39,7 @@ return {
             padding = true,
             sort = { "added" }, -- sort only by time
             style = "compact",
-            timeout = 8000,
+            timeout = 6000,
             top_down = true,
             width = { min = 12, max = 0.3 },
         },
