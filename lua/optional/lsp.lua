@@ -31,20 +31,6 @@ return {
         -- Define LSP capabilities
         local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-        -- Global Keybindings for Diagnostics
-        -- stylua: ignore start
-        local diagnostic_keymaps = {
-            { "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", "Open diagnostics list" },
-            { "n", "[d",        "<cmd>lua vim.diagnostic.goto_prev()<CR>",  "Go to previous diagnostic" },
-            { "n", "]d",        "<cmd>lua vim.diagnostic.goto_next()<CR>",  "Go to next diagnostic" },
-            { "n", "gl",        "<cmd>lua vim.diagnostic.open_float()<CR>", "Open floating diagnostic message" },
-        }
-        -- stylua: ignore end
-
-        for _, map in ipairs(diagnostic_keymaps) do
-            vim.keymap.set(map[1], map[2], map[3], { silent = true, desc = map[4] })
-        end
-
         -- Autocommand for LSP Attach
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -58,13 +44,17 @@ return {
                 local buf_keymaps = {
                     {"n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",     "CodeAction"},
                     {"n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
+                    {"n", "<leader>q",  "<cmd>lua vim.diagnostic.setloclist()<CR>",   "Open diagnostics list" },
                     {"n", "K",          "<cmd>lua vim.lsp.buf.hover()<CR>",           "HoverDocumentation"},
+                    {"n", "[d",         "<cmd>lua vim.diagnostic.goto_prev()<CR>",    "Go to previous diagnostic" },
+                    {"n", "]d",         "<cmd>lua vim.diagnostic.goto_next()<CR>",    "Go to next diagnostic" },
                     {"n", "cr",         "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
                     {"n", "gD",         "<cmd>lua vim.lsp.buf.declaration()<CR>",     "GotoDeclaration"},
                     {"n", "gI",         "<cmd>lua vim.lsp.buf.incoming_calls()<CR>",  "GottoIncomingCalls"},
                     {"n", "gO",         "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>",  "GottoOutgoingCalls"},
                     {"n", "gd",         "<cmd>lua vim.lsp.buf.definition()<CR>",      "GotoDefinition"},
                     {"n", "gi",         "<cmd>lua vim.lsp.buf.implementation()<CR>",  "GotoImplementation"},
+                    {"n", "gl",         "<cmd>lua vim.diagnostic.open_float()<CR>",   "Open floating diagnostic message" },
                     {"n", "go",         "<cmd>lua vim.lsp.buf.type_definition()<CR>", "GotoTypeDefinition"},
                     {"n", "gr",         "<cmd>lua vim.lsp.buf.references()<CR>",      "GotoReferences"},
                     {"n", "gs",         "<cmd>lua vim.lsp.buf.signature_help()<CR>",  "SignatureHelp"},
