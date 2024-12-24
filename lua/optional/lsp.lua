@@ -1,16 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "L3MON4D3/LuaSnip",
         "b0o/schemastore.nvim",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-path",
-        "hrsh7th/nvim-cmp",
-        "onsails/lspkind.nvim",
-        "saadparwaiz1/cmp_luasnip",
+        "saghen/blink.cmp",
         "williamboman/mason-lspconfig.nvim",
     },
     ft = {
@@ -26,10 +18,7 @@ return {
     },
     config = function()
         -- Cache required modules
-        local cmp = require("cmp")
         local lspconfig = require("lspconfig")
-        local lspkind = require("lspkind")
-        local luasnip = require("luasnip")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
 
@@ -40,7 +29,7 @@ return {
         })
 
         -- Define LSP capabilities
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
 
         -- Global Keybindings for Diagnostics
         -- stylua: ignore start
@@ -189,77 +178,5 @@ return {
                 })
             end,
         })
-
-        -- Setup nvim-cmp
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end,
-            },
-            mapping = cmp.mapping.preset.insert({
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif luasnip.expand_or_jumpable() then
-                        luasnip.expand_or_jump()
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-            }),
-            sources = cmp.config.sources({
-                { name = "nvim_lsp", keyword_length = 3, priority = 100 },
-                { name = "luasnip", keyword_length = 3, priority = 80 },
-                { name = "path", priority = 60 },
-                { name = "buffer", keyword_length = 4, priority = 40 },
-                { name = "nvim_lua", keyword_length = 3, priority = 20 },
-                { name = "nvim_lsp_signature_help", priority = 10 },
-            }),
-            formatting = {
-                fields = { "kind", "abbr", "menu" }, -- Added required 'fields'
-                expandable_indicator = true,
-                format = lspkind.cmp_format({
-                    mode = "symbol_text",
-                    maxwidth = 50,
-                    ellipsis_char = "...",
-                    before = function(entry, vim_item)
-                        vim_item.menu = ({
-                            nvim_lsp = "[LSP]",
-                            luasnip = "[Snippet]",
-                            buffer = "[Buffer]",
-                            path = "[Path]",
-                            nvim_lua = "[Lua]",
-                            nvim_lsp_signature_help = "[Signature]",
-                        })[entry.source.name] or vim_item.menu
-                        return vim_item
-                    end,
-                }),
-            },
-            window = {
-                completion = cmp.config.window.bordered({
-                    border = "rounded",
-                    scrollbar = false,
-                }),
-                documentation = cmp.config.window.bordered({
-                    border = "rounded",
-                    scrollbar = false,
-                }),
-            },
-        })
-
-        -- Setup LuaSnip
-        require("luasnip.loaders.from_vscode").lazy_load()
     end,
 }
