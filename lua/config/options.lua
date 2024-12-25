@@ -46,7 +46,7 @@ o.wildmenu = true
 o.wildmode = "longest:full,full"
 o.wildoptions = "pum"
 o.winbar = "%=%m\\ %f"
-o.winblend = 0
+o.winblend = 25
 o.wrap = false
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" })
