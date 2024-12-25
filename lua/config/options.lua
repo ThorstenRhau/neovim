@@ -30,7 +30,6 @@ o.number = true
 o.pumblend = 0
 o.relativenumber = true
 o.scrolloff = 8
-o.shell = "/opt/homebrew/bin/fish"
 o.showcmd = true
 o.signcolumn = "yes:1"
 o.smartcase = true
