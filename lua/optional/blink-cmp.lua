@@ -9,15 +9,12 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-
         appearance = {
             use_nvim_cmp_as_default = false,
             nerd_font_variant = "mono",
         },
-
         completion = {
             accept = { auto_brackets = { enabled = true } },
-
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 250,
@@ -25,16 +22,13 @@ return {
                 treesitter_highlighting = true,
                 window = { border = "rounded" },
             },
-
             list = {
                 selection = function(ctx)
                     return ctx.mode == "cmdline" and "auto_insert" or "preselect"
                 end,
             },
-
             menu = {
                 border = "rounded",
-
                 cmdline_position = function()
                     if vim.g.ui_cmdline_pos ~= nil then
                         local pos = vim.g.ui_cmdline_pos -- (1, 0)-indexed
@@ -43,7 +37,6 @@ return {
                     local height = (vim.o.cmdheight == 0) and 1 or vim.o.cmdheight
                     return { vim.o.lines - height, 0 }
                 end,
-
                 draw = {
                     columns = {
                         { "kind_icon", "label", gap = 1 },
@@ -79,7 +72,6 @@ return {
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
             ["<C-e>"] = { "hide", "fallback" },
             ["<CR>"] = { "accept", "fallback" },
-
             ["<Tab>"] = {
                 function(cmp)
                     return cmp.select_next()
@@ -94,7 +86,6 @@ return {
                 "snippet_backward",
                 "fallback",
             },
-
             ["<Up>"] = { "select_prev", "fallback" },
             ["<Down>"] = { "select_next", "fallback" },
             ["<C-p>"] = { "select_prev", "fallback" },
@@ -111,7 +102,6 @@ return {
 
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
-            -- cmdline = {}, -- Disable sources for command-line mode
             cmdline = function()
                 local type = vim.fn.getcmdtype()
                 -- Search forward and backward
