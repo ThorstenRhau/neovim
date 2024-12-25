@@ -1,7 +1,0 @@
-{
-    "shebang": {
-        "prefix": "shebang",
-        "description": "Add shebang for python3",
-        "body": "#!/usr/bin/env python3"
-    }
-}
