@@ -6,8 +6,11 @@ return {
         "SmiteshP/nvim-navic",
         "echasnovski/mini.icons",
     },
+    event = { "LspAttach" },
     cmd = "Barbecue",
     opts = {
-        theme = "catppuccin",
+        exclude_filetypes = {
+            "snacks_dashboard",
+        },
     },
 }
