@@ -78,7 +78,6 @@ return {
             },
         },
         toggle = { enabled = true },
-        words = { modes = { "n", "c" } }, -- No word highlights in insert mode
     },
 
     keys = {
