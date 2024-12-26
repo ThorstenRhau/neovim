@@ -68,14 +68,7 @@ return {
             },
         },
         terminal = {
-            enabled = true,
-            win = {
-                style = "terminal",
-                border = vim.g.border_style,
-                position = "float",
-                height = 0.8,
-                width = 0.8,
-            },
+            enabled = false,
         },
         toggle = { enabled = true },
     },
@@ -93,7 +86,6 @@ return {
         { "<leader>gl", function() Snacks.lazygit() end,                 desc = "Lazygit" },
         { "<leader>gL", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
         { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-        { "<leader>t",  function() Snacks.terminal() end,                desc = "Toggle Terminal" },
         { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
         { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
         -- stylua: ignore end
