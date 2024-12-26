@@ -47,6 +47,7 @@ wk.add({
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
     { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>T", "<cmd>Trouble<cr>", desc = "Trouble", icon = { icon = " ", color = "red" } },
+    { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal", mode = "n" },
     --                                  ╭────────╮
     --                                  │ Buffer │
     --                                  ╰────────╯
