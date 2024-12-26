@@ -115,14 +115,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Open Oil file manager if Neovim is opened with a directory argument
 vim.api.nvim_create_autocmd("VimEnter", {
-    group = augroup("open_oil_on_dir"),
+    group = vim.api.nvim_create_augroup("open_oil_on_dir", { clear = true }),
     callback = function()
-        -- Iterate through all arguments to find a directory
-        for _, arg in ipairs(vim.v.argv) do
-            if vim.fn.isdirectory(arg) == 1 then
-                vim.cmd.Oil(arg)
-                break
-            end
+        -- Check if the last argument is a directory
+        local arg = vim.fn.argv(0)
+        if arg and vim.fn.isdirectory(arg) == 1 then
+            vim.cmd.Oil(arg)
         end
     end,
 })
