@@ -23,7 +23,7 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         enabled = true,
-        event = "VeryLazy",
+        event = { "BufRead", "BufNewFile" },
         dependencies = {
             { "echasnovski/mini.icons", lazy = true },
         },
