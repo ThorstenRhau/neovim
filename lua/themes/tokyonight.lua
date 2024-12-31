@@ -16,7 +16,7 @@ return {
             result = result:match("^%s*(.-)%s*$")
 
             if result == "Dark" then
-                return "night" -- Dark style
+                return "night" -- Dark style, alternatives are: storm, moon, and night
             else
                 return "day" -- Light style
             end
@@ -26,6 +26,7 @@ return {
         local preferred_style = getPreferredStyle()
 
         require("tokyonight").setup({
+            style = preferred_style,
             transparent = false,
             styles = {
                 comments = { italic = true },
@@ -48,10 +49,6 @@ return {
         })
 
         -- Apply the colorscheme
-        if preferred_style == "night" then
-            vim.cmd.colorscheme("tokyonight-night")
-        elseif preferred_style == "day" then
-            vim.cmd.colorscheme("tokyonight-day")
-        end
+        vim.cmd.colorscheme("tokyonight")
     end,
 }
