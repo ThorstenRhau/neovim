@@ -26,8 +26,6 @@ return {
         local preferred_style = getPreferredStyle()
 
         require("tokyonight").setup({
-            style = preferred_style,
-            light_style = "day",
             transparent = false,
             styles = {
                 comments = { italic = true },
@@ -50,6 +48,10 @@ return {
         })
 
         -- Apply the colorscheme
-        vim.cmd.colorscheme("tokyonight")
+        if preferred_style == "night" then
+            vim.cmd.colorscheme("tokyonight-night")
+        elseif preferred_style == "day" then
+            vim.cmd.colorscheme("tokyonight-day")
+        end
     end,
 }
