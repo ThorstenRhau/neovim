@@ -9,7 +9,7 @@ return {
             local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
             -- Check if the command was successful
             if vim.v.shell_error ~= 0 then
-                return "day" -- Default to light style if detection fails
+                return "night" -- Default to dark style if detection fails
             end
 
             -- Trim any trailing whitespace or newline characters
@@ -45,7 +45,6 @@ return {
             lualine_bold = true, -- Bold section headers in lualine theme
             cache = true,
             plugins = {
-                all = not package.loaded.lazy, -- Enable all plugins if not using lazy.nvim
                 auto = true, -- Automatically enable needed plugins for lazy.nvim
             },
         })
