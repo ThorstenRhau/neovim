@@ -1,6 +1,10 @@
 -- Function to determine the preferred theme based on macOS light/dark mode
 local function getPreferredStyle()
-    -- Execute the command without redirecting stderr
+    if vim.fn.executable("defaults") == 0 then
+        -- Fallback to "Dark" style if `defaults` is not available
+        return "night" -- Dark style
+    end
+
     local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
 
     -- Trim any trailing whitespace or newline characters
