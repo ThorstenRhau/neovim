@@ -34,9 +34,10 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Define the plugin specifications
 local specs = {
-    { import = "themes" },
+    { import = "themes.gruvbox" }, -- Only import the active theme
     { import = "plugins" },
 }
+local active_theme = "gruvbox"
 
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
@@ -65,9 +66,6 @@ require("lazy").setup({
         size = { width = 0.9, height = 0.9 },
         border = "rounded",
     },
-    diff = {
-        cmd = "diffview.nvim",
-    },
     rtp = {
         reset = true,
         paths = {},
@@ -89,7 +87,11 @@ require("lazy").setup({
 })
 
 -- Setting up colorscheme
-vim.cmd.colorscheme("tokyonight")
+-- Available options are: tokyonight, rose-pine, gruvbox
+--
+-- Dont forget to enable / disable the themes
+
+vim.cmd.colorscheme(active_theme)
 
 -- Load Configuration Modules After lazy.nvim
 if enable_optional_plugins then
