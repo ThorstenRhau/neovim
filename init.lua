@@ -33,10 +33,12 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Define the plugin specifications
+-- Available themes are: gruvbox, catppuccin, tokyonight, kanagawa
 local specs = {
     { import = "themes.gruvbox" }, -- Only import the active theme
     { import = "plugins" },
 }
+
 local active_theme = "gruvbox"
 
 -- Check if optional plugins should be enabled
@@ -85,11 +87,6 @@ require("lazy").setup({
         enabled = false,
     },
 })
-
--- Setting up colorscheme
--- Available options are: tokyonight, rose-pine, gruvbox
---
--- Dont forget to enable / disable the themes
 
 vim.cmd.colorscheme(active_theme)
 
