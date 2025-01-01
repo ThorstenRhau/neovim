@@ -2,10 +2,6 @@
 local function getPreferredStyle()
     -- Execute the command without redirecting stderr
     local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
-    -- Check if the command was successful
-    if vim.v.shell_error ~= 0 then
-        return "night" -- Default to dark style if detection fails
-    end
 
     -- Trim any trailing whitespace or newline characters
     result = result:match("^%s*(.-)%s*$")
@@ -16,7 +12,7 @@ local function getPreferredStyle()
         return "day" -- Light style
     end
 end
--- Set the preferred style
+
 local preferred_style = getPreferredStyle()
 
 return {
