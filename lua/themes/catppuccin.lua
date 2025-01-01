@@ -1,19 +1,35 @@
+-- Function to determine the preferred theme based on macOS light/dark mode
+local function getPreferredStyle()
+    if vim.fn.executable("defaults") == 0 then
+        -- Fallback to "Dark" style if `defaults` is not available
+        return "night" -- Dark style
+    end
+
+    local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
+
+    -- Trim any trailing whitespace or newline characters
+    result = result:match("^%s*(.-)%s*$")
+
+    if result == "Dark" then
+        return "mocha" -- Dark style, alternatives are: storm, moon, and night
+    else
+        return "latte" -- Light style
+    end
+end
+
+local preferred_style = getPreferredStyle()
+
 return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        enabled = false,
-        priority = 1000,
+        priority = 1100,
         lazy = false,
         opts = {
-            flavour = "mocha", -- latte, frappe, macchiato, mocha
-            background = {
-                light = "latte",
-                dark = "mocha",
-            },
+            flavour = preferred_style, -- latte, frappe, macchiato, mocha
             transparent_background = false,
             show_end_of_buffer = false,
-            term_colors = false,
+            term_colors = true,
             dim_inactive = {
                 enabled = true,
                 shade = "dark",
@@ -37,39 +53,7 @@ return {
                 types = { "bold" },
                 operators = {},
             },
-            color_overrides = {
-                all = {},
-                latte = {},
-                frappe = {},
-                macchiato = {},
-                mocha = {},
-            },
-            custom_highlights = {},
             integrations = {
-                aerial = true,
-                barbecue = {
-                    dim_dirname = true,
-                    bold_basename = true,
-                    dim_context = false,
-                    alt_background = false,
-                },
-                cmp = true,
-                diffview = true,
-                gitsigns = true,
-                illuminate = {
-                    enabled = true,
-                    lsp = true,
-                },
-                indent_blankline = {
-                    enabled = true,
-                    colored_indent_levels = false,
-                },
-                lsp_trouble = true,
-                markdown = true,
-                mason = true,
-                mini = {
-                    enabled = true,
-                },
                 native_lsp = {
                     enabled = true,
                     virtual_text = {
@@ -88,17 +72,21 @@ return {
                         background = true,
                     },
                 },
+                illuminate = {
+                    enabled = true,
+                    lsp = false,
+                },
+                blink_cmp = true,
+                diffview = true,
+                fzf = true,
+                lsp_trouble = true,
+                mason = true,
                 neogit = true,
-                neotree = true,
                 noice = true,
-                notify = true,
                 pounce = true,
                 render_markdown = true,
                 semantic_tokens = true,
-                symbols_outline = true,
-                telescope = {
-                    enabled = true,
-                },
+                snacks = true,
                 treesitter = true,
                 treesitter_context = true,
                 which_key = true,
