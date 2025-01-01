@@ -37,6 +37,7 @@ local specs = {
     { import = "themes" },
     { import = "plugins" },
 }
+
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
 
@@ -86,6 +87,9 @@ require("lazy").setup({
         enabled = false,
     },
 })
+
+-- Setting up colorscheme
+vim.cmd.colorscheme("tokyonight")
 
 -- Load Configuration Modules After lazy.nvim
 if enable_optional_plugins then
