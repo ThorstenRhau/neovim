@@ -52,7 +52,8 @@ require("lazy").setup({
         lazy = true, -- Set global lazy loading
     },
     install = {
-        colorscheme = { "tokyonight", "habamax" },
+        missing = true,
+        colorscheme = { "habamax" },
     },
     checker = {
         enabled = true,
@@ -63,16 +64,20 @@ require("lazy").setup({
         size = { width = 0.9, height = 0.9 },
         border = "rounded",
     },
+    diff = {
+        cmd = "diffview.nvim",
+    },
     rtp = {
         reset = true,
         paths = {},
         disabled_plugins = {
-            "netrwPlugin",
-            "tohtml",
-            "tutor",
             "gzip",
+            "matchit",
+            "netrwPlugin",
             "rplugin",
             "tarPlugin",
+            "tohtml",
+            "tutor",
             "zipPlugin",
         },
     },
@@ -83,9 +88,9 @@ require("lazy").setup({
 })
 
 -- Load Configuration Modules After lazy.nvim
-require("config.options")
-require("config.autocmd")
-require("config.keymaps")
 if enable_optional_plugins then
     require("config.whichkey")
 end
+require("config.options")
+require("config.autocmd")
+require("config.keymaps")
