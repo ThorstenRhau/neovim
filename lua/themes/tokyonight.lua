@@ -31,7 +31,7 @@ return {
             keywords = { bold = true },
             functions = {},
             variables = {},
-            types = {},
+            types = { bold = true },
             -- Background styles: "dark", "transparent", or "normal"
             sidebars = "dark",
             floats = "dark",
