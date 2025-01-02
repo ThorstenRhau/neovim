@@ -33,13 +33,14 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Define the plugin specifications
--- Available themes are: gruvbox, catppuccin, tokyonight, kanagawa, zenbones, melange
+-- Available themes are: gruvbox, catppuccin, tokyonight,
+--  kanagawa, zenbones, melange, rose-pine
 local specs = {
-    { import = "themes.gruvbox" }, -- Only import the active theme
+    { import = "themes.rose-pine" }, -- Only import the active theme
     { import = "plugins" },
 }
 
-local active_theme = "gruvbox"
+local active_theme = "rose-pine"
 
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
