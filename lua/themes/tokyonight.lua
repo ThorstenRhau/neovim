@@ -28,14 +28,13 @@ return {
         transparent = false,
         styles = {
             comments = { italic = true },
-            keywords = { italic = true },
-            functions = { italic = true, bold = true },
-            variables = { bold = true },
-            constants = { bold = true },
-            types = { bold = true },
+            keywords = { bold = true },
+            functions = {},
+            variables = {},
+            types = {},
             -- Background styles: "dark", "transparent", or "normal"
-            sidebars = "normal",
-            floats = "normal",
+            sidebars = "dark",
+            floats = "dark",
         },
         day_brightness = 0.3, -- Adjusts brightness for the day style (0 to 1)
         dim_inactive = true, -- Dims inactive windows
