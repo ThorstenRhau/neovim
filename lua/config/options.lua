@@ -48,6 +48,8 @@ o.wildoptions = "pum"
 o.winblend = 0
 o.wrap = false
 opt.backspace = { "start", "eol", "indent" }
+vim.opt.guicursor =
+    "n-v-c:block-Cursor/lCursor-blinkon1,i-ci-ve:ver25-Cursor/lCursor-blinkwait250-blinkon150-blinkoff150,r-cr-o:hor20-Cursor/lCursor-blinkon1"
 opt.path:append({ "**" })
 opt.spelllang = { "en", "sv" }
 opt.wildignore:append({ "*/node_modules/*" })
