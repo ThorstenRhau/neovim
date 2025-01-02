@@ -126,7 +126,7 @@ return {
                     min_keyword_length = 2,
                 },
                 buffer = {
-                    min_keyword_length = 5,
+                    min_keyword_length = 4,
                     max_items = 5,
                 },
             },
