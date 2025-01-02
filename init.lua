@@ -36,11 +36,11 @@ vim.g.loaded_netrwPlugin = 1
 -- Available themes are: gruvbox, catppuccin, tokyonight,
 --  kanagawa, zenbones, melange, rose-pine
 local specs = {
-    { import = "themes.rose-pine" }, -- Only import the active theme
+    { import = "themes.tokyonight" }, -- Only import the active theme
     { import = "plugins" },
 }
 
-local active_theme = "rose-pine"
+local active_theme = "tokyonight"
 
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
