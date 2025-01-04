@@ -1,9 +1,6 @@
 return {
     "saghen/blink.cmp",
-    dependencies = {
-        "rafamadriz/friendly-snippets",
-        "onsails/lspkind.nvim",
-    },
+    dependencies = "rafamadriz/friendly-snippets",
     version = "*",
 
     ---@module 'blink.cmp'
@@ -39,30 +36,10 @@ return {
                 end,
                 draw = {
                     columns = {
-                        { "kind_icon", "label", gap = 1 },
-                        { "kind" },
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind" },
                     },
-                    components = {
-                        kind_icon = {
-                            text = function(item)
-                                local kind = require("lspkind").symbol_map[item.kind] or ""
-                                return kind .. " "
-                            end,
-                            highlight = "CmpItemKind",
-                        },
-                        label = {
-                            text = function(item)
-                                return item.label
-                            end,
-                            highlight = "CmpItemAbbr",
-                        },
-                        kind = {
-                            text = function(item)
-                                return item.kind
-                            end,
-                            highlight = "CmpItemKind",
-                        },
-                    },
+                    treesitter = { "lsp" },
                 },
             },
         },
