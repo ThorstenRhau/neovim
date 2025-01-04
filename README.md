@@ -33,9 +33,9 @@ theme is [Tokyo Night](https://github.com/folke/tokyonight.nvim)_
 Before I maintained two configurations. One light weight and one fully featured.
 They have now been merged in to this configuration.
 
-The default is lightweight, to enable LSP, Lingers, and all the other plugins
-that are found in **lua/optional** you only need to set the environment variable
-**NVIM_OPTIONAL_PLUGINS** to **1**
+The default is lightweight, to enable LSP, linting, formatting, and all the
+other plugins that are found in **lua/optional** you only need to set the
+environment variable **NVIM_OPTIONAL_PLUGINS** to **1**
 
 Example for fish shell
 
