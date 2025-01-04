@@ -39,3 +39,7 @@ map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up", noremap = tr
 
 -- Clear search highlights with a dedicated key
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+
+-- Since ^ and $ are hard to type on a swedish keyboard gga and gge are used
+map("n", "gga", "^", { desc = "Go to Beginning of Line", noremap = true, silent = true })
+map("n", "gge", "$", { desc = "Go to End of Line", noremap = true, silent = true })
