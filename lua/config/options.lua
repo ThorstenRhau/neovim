@@ -85,3 +85,6 @@ vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
 opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
+
+-- Command-line abbreviation: Expand 'cc' into 'CodeCompanion'
+vim.cmd([[cabbrev ff FzfLua]])
