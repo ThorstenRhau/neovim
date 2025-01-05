@@ -7,6 +7,7 @@ return {
         auto_update = false,
         ensure_installed = {
             "bashls",
+            "harper_ls",
             "html",
             "jsonlint",
             "jsonls",
