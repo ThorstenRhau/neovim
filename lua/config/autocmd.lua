@@ -1,4 +1,4 @@
--- Utility function to create augroups
+-- Utility function to create auto groups
 local function augroup(name)
     return vim.api.nvim_create_augroup("my_" .. name, { clear = true })
 end
@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     end,
 })
 
--- Remove 'c', 'r', 'o' from formatoptions for all filetypes
+-- Remove 'c', 'r', 'o' from formatoptions for all file types
 -- No help with comments
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("remove_formatoptions_cro"),
@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Close specific filetypes with 'q' key
+-- Close specific file types with 'q' key
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("close_with_q"),
     pattern = {
