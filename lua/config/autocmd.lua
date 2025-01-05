@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Open Oil file manager if Neovim is opened with a directory argument
 vim.api.nvim_create_autocmd("VimEnter", {
-    group = vim.api.nvim_create_augroup("open_oil_on_dir", { clear = true }),
+    group = augroup("open_oil_on_dir"),
     callback = function()
         -- Check if the last argument is a directory
         local arg = vim.fn.argv(0)
@@ -125,5 +125,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
--- Command-line abbreviation: Expand 'cc' into 'CodeCompanion'
-vim.cmd([[cabbrev ff FzfLua]])
+-- Automatically jump to last position
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = augroup("auto-last-position"),
+    callback = function(args)
+        local position = vim.api.nvim_buf_get_mark(args.buf, [["]])
+        local winid = vim.fn.bufwinid(args.buf)
+        pcall(vim.api.nvim_win_set_cursor, winid, position)
+    end,
+    desc = "Auto jump to last position",
+})
