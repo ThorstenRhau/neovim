@@ -19,11 +19,6 @@ return {
                 treesitter_highlighting = true,
                 window = { border = "rounded" },
             },
-            list = {
-                selection = function(ctx)
-                    return ctx.mode == "cmdline" and "auto_insert" or "preselect"
-                end,
-            },
             menu = {
                 border = "rounded",
                 cmdline_position = function()
@@ -93,7 +88,7 @@ return {
             end,
             providers = {
                 lsp = {
-                    min_keyword_length = 2, -- Number of characters to trigger porvider
+                    min_keyword_length = 2, -- Number of characters to trigger provider
                     score_offset = 0, -- Boost/penalize the score of the items
                 },
                 path = {
