@@ -4,7 +4,7 @@ return {
         "MunifTanjim/nui.nvim",
         "rcarriga/nvim-notify",
     },
-    event = { "CmdlineEnter", "InsertEnter" },
+    event = "VeryLazy",
     opts = {
         presets = {
             bottom_search = true,
