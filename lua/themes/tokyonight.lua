@@ -21,8 +21,10 @@ local preferred_style = getPreferredStyle()
 
 return {
     "folke/tokyonight.nvim",
-    lazy = false, -- Load immediately (not lazily)
-    priority = 1100, -- Highest priority to load first
+    lazy = false,
+    priority = 1100,
+    ---@module 'tokyonight'
+    ---@type tokyonight.Config
     opts = {
         style = preferred_style,
         transparent = false,
@@ -32,16 +34,15 @@ return {
             functions = {},
             variables = {},
             types = { bold = true },
-            -- Background styles: "dark", "transparent", or "normal"
             sidebars = "dark",
             floats = "dark",
         },
-        day_brightness = 0.3, -- Adjusts brightness for the day style (0 to 1)
-        dim_inactive = true, -- Dims inactive windows
-        lualine_bold = true, -- Bold section headers in lualine theme
+        day_brightness = 0.3,
+        dim_inactive = true,
+        lualine_bold = true,
         cache = true,
         plugins = {
-            auto = true, -- Automatically enable needed plugins for lazy.nvim
+            auto = true,
         },
     },
 }
