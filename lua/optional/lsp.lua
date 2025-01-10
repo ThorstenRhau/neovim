@@ -68,34 +68,6 @@ return {
                         vim.keymap.set(mode, map[2], map[3], vim.tbl_extend("force", opts, { desc = map[4] }))
                     end
                 end
-
-                -- Diagnostic Virtual Text for Current Line
-                local ns = vim.api.nvim_create_namespace("CurlineDiag")
-                vim.opt.updatetime = 100
-
-                vim.api.nvim_create_autocmd("CursorHold", {
-                    buffer = buffer,
-                    callback = function()
-                        pcall(vim.api.nvim_buf_clear_namespace, buffer, ns, 0, -1)
-                        local cursor = vim.api.nvim_win_get_cursor(0)
-                        local current_line = cursor[1] - 1 -- Zero-based index
-                        local diagnostics = vim.diagnostic.get(buffer, { lnum = current_line })
-                        if not diagnostics or #diagnostics == 0 then
-                            return
-                        end
-
-                        local virt_texts = {}
-                        for _, diag in ipairs(diagnostics) do
-                            local severity = vim.diagnostic.severity[diag.severity] or "Error"
-                            table.insert(virt_texts, { diag.message, "Diagnostic" .. severity })
-                        end
-
-                        vim.api.nvim_buf_set_extmark(buffer, ns, current_line, 0, {
-                            virt_text = virt_texts,
-                            hl_mode = "combine",
-                        })
-                    end,
-                })
             end,
         })
 
