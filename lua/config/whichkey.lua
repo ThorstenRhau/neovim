@@ -53,7 +53,6 @@ wk.add({
     { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
     { "<leader>bb", "<cmd>b#<CR>", desc = "Switch to alternate" },
     { "<leader>bd", "<cmd>bd<CR>", desc = "Delete" },
-    { "<leader>be", "<cmd>Neotree buffers<CR>", desc = "Neotree" },
     { "<leader>bf", "<cmd>FzfLua buffers<cr>", desc = "Find" },
     { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
     { "<leader>bm", "<cmd>bm<CR>", desc = "Go to next modified" },
