@@ -74,7 +74,6 @@ return {
                 "man",
                 "mason",
                 "oil",
-                "toggleterm",
                 "trouble",
             },
         },
