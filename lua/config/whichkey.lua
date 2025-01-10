@@ -95,7 +95,6 @@ wk.add({
     --                                 │ Interface │
     --                                 ╰───────────╯
     { "<leader>u", group = "Interface", icon = { icon = " ", color = "azure" } },
-    { "<leader>uB", "<cmd>Barbecue<CR>", desc = "Barbecue winbar" },
     { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
     { "<leader>uH", "<cmd>set list!<CR>", desc = "Hidden Characters" },
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Toggle Word Illumination" },
