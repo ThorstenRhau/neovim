@@ -66,8 +66,6 @@ wk.add({
     { "<leader>cA", "<cmd>LspInfo<CR>", desc = "LSP list" },
     { "<leader>cF", "<cmd>ConformInfo<CR>", desc = "Formatters list" },
     { "<leader>cL", ListActiveLinters, desc = "Linters list" },
-    { "<leader>cT", "<Cmd>CBllline<CR>", desc = "Titled Line" },
-    { "<leader>cb", "<Cmd>CBcabox<CR>", desc = "Box Title" },
     --                                   ╭──────╮
     --                                   │ Find │
     --                                   ╰──────╯
