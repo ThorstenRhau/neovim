@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
         vim.bo.textwidth = 80
-        vim.wo.colorcolumn = "80"
+        -- vim.wo.colorcolumn = "80"
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
     end,
