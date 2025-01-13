@@ -72,7 +72,7 @@ return {
         },
 
         sources = {
-            default = { "lsp", "path", "snippets", "buffer" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
             cmdline = function()
                 local type = vim.fn.getcmdtype()
                 -- Search forward and backward
@@ -86,6 +86,12 @@ return {
                 return {}
             end,
             providers = {
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    -- Make lazydev completions top priority (see `:h blink.cmp`)
+                    score_offset = 100,
+                },
                 lsp = {
                     min_keyword_length = 2, -- Number of characters to trigger provider
                     score_offset = 0, -- Boost/penalize the score of the items
