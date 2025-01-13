@@ -3,6 +3,8 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@module 'snacks'
+    ---@type snacks.Config
     opts = {
         animate = {
             enabled = true,
@@ -59,12 +61,14 @@ return {
             notification = {
                 border = vim.g.borderStyle,
                 wo = { winblend = 0, wrap = true },
+                relative = nil,
             },
             blame_line = {
                 width = 0.6,
                 height = 0.6,
                 border = vim.g.borderStyle,
                 title = " 󰉚 Git blame ",
+                relative = nil,
             },
         },
         terminal = {
