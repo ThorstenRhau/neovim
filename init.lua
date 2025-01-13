@@ -46,7 +46,7 @@ local active_theme = "tokyonight"
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
 
 -- Conditionally add optional plugins
-if enable_optional_plugins then
+if enable_optional_plugins == "1" then
     table.insert(specs, { import = "optional" })
 end
 
@@ -92,7 +92,7 @@ require("lazy").setup({
 vim.cmd.colorscheme(active_theme)
 
 -- Load Configuration Modules After lazy.nvim
-if enable_optional_plugins then
+if enable_optional_plugins == "1" then
     require("config.whichkey")
 end
 require("config.options")
