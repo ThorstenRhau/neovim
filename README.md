@@ -2,8 +2,8 @@
 
 This setup is "by me for me", intended for my personal use.
 
-In case you want to use my setup for for learning or something else I have
-written some documentation that should help you to get started.
+In case you want to use my setup for learning or something else I have written
+some documentation that should help you to get started.
 
 Since 2023-12-24 I consider this repo as stable. It should be safe to clone it
 and stay on the main branch. There will be changes but all changes will be
@@ -56,7 +56,7 @@ homebrew on a mac.
 
 ```
 brew install ripgrep fd cmake git node wget shellcheck python3 \
-selene hg nvim lazygit viu
+selene hg nvim lazygit
 ```
 
 ```
@@ -90,5 +90,5 @@ configured and working properly before you start to use neovim for your editing.
 
 ## Thank you
 
-There are many individuals and projects that I have learnt and taken inspiration
-from. Thank you to all of the fantastic neovim community 🙏.
+There are many individuals and projects that I have learned and taken
+inspiration from. Thank you to all of you 🙏.
