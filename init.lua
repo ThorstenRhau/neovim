@@ -32,22 +32,21 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Define the plugin specifications
--- Available themes are: gruvbox, catppuccin, tokyonight,
---  kanagawa, zenbones, melange, rose-pine
 local specs = {
-    { import = "themes.tokyonight" }, -- Only import the active theme
     { import = "plugins" },
 }
-
-local active_theme = "tokyonight"
 
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv("NVIM_OPTIONAL_PLUGINS")
 
 -- Conditionally add optional plugins
+-- Define the plugin specifications
+-- Available themes are: gruvbox, catppuccin, tokyonight,
+--  kanagawa, zenbones, melange, rose-pine
+local active_theme = "tokyonight"
 if enable_optional_plugins == "1" then
-    table.insert(specs, { import = "optional" })
+    table.insert(specs, { import = "themes.tokyonight" })
+    table.insert(specs, { import = "optional" }) -- Load all optional plugins
 end
 
 -- Setup lazy.nvim
@@ -89,12 +88,13 @@ require("lazy").setup({
     },
 })
 
-vim.cmd.colorscheme(active_theme)
-
--- Load Configuration Modules After lazy.nvim
-if enable_optional_plugins == "1" then
-    require("config.whichkey")
-end
 require("config.options")
 require("config.autocmd")
 require("config.keymaps")
+
+if enable_optional_plugins == "1" then
+    vim.cmd.colorscheme(active_theme)
+    require("config.whichkey")
+else
+    vim.cmd("colorscheme default")
+end
