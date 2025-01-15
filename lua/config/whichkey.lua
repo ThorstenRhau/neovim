@@ -45,7 +45,7 @@ wk.add({
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
     { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
-    { "<leader>s", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
+    { "<leader>S", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>T", "<cmd>Trouble<cr>", desc = "Trouble", icon = { icon = " ", color = "red" } },
     --                                  ╭────────╮
     --                                  │ Buffer │
@@ -69,15 +69,15 @@ wk.add({
     --                                   │ Find │
     --                                   ╰──────╯
     { "<leader>f", group = "Find" },
-    { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
-    { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Grep" },
-    { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "File" },
-    { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help" },
-    { "<leader>fm", "<cmd>FzfLua manpages<cr>", desc = "man pages" },
-    { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
-    { "<leader>fr", "<cmd>FzfLua registers<cr>", desc = "Registers" },
-    { "<leader>fs", "<cmd>FzfLua grep<cr>", desc = "FZF in buffer" },
-    { "<leader>fz", "<cmd>FzfLua spell_suggest<cr>", desc = "Spelling suggestions" },
+    -- { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+    -- { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Grep" },
+    -- { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "File" },
+    -- { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help" },
+    -- { "<leader>fm", "<cmd>FzfLua manpages<cr>", desc = "man pages" },
+    -- { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
+    -- { "<leader>fr", "<cmd>FzfLua registers<cr>", desc = "Registers" },
+    -- { "<leader>fs", "<cmd>FzfLua grep<cr>", desc = "FZF in buffer" },
+    -- { "<leader>fz", "<cmd>FzfLua spell_suggest<cr>", desc = "Spelling suggestions" },
     --                                    ╭─────╮
     --                                    │ Git │
     --                                    ╰─────╯
@@ -100,6 +100,11 @@ wk.add({
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo location list" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
+    --
+    -- Search
+    --
+    { "<leader>s", group = "Search", icon = { icon = "󰍉 ", color = "azure" } },
+
     --                                  ╭─────────╮
     --                                  │ Window  │
     --                                  ╰─────────╯
