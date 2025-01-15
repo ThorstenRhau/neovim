@@ -1,4 +1,3 @@
----@diagnostic disable: undefined-global
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -37,7 +36,7 @@ return {
         git = { enabled = true },
         gitbrowse = { enabled = true },
         indent = { enabled = true },
-        input = { enabled = false },
+        input = { enabled = true },
         notifier = {
             height = { min = 1, max = 0.5 },
             padding = true,
@@ -47,6 +46,7 @@ return {
             top_down = true,
             width = { min = 12, max = 0.3 },
         },
+        picker = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scratch = { enabled = false },

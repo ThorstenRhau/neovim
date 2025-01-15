@@ -1,5 +1,6 @@
 return {
     "stevearc/dressing.nvim",
+    enabled = false,
     event = { "InsertEnter", "CmdlineEnter" },
     opts = {
         input = {
