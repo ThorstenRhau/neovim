@@ -9,17 +9,17 @@ return {
     opts = {
         animate = {
             enabled = true,
-            duration = 20, -- ms per step
+            duration = 20, -- Milliseconds per step
             easing = "linear",
-            fps = 60, -- frames per second. Global setting for all animations
+            fps = 60, -- Frames per second. Global setting for all animations
         },
         bigfile = {
             size = 1 * 1024 * 1024, -- 1 MB
             notify = true,
         },
         dashboard = {
-            row = nil, -- dashboard position. nil for center
-            col = nil, -- dashboard position. nil for center
+            row = nil, -- Dashboard position. 'nil' for center
+            col = nil, -- Dashboard position. 'nil' for center
             preset = {
                 header = [[neovim :: by Thorsten]],
             },
@@ -40,7 +40,7 @@ return {
         notifier = {
             height = { min = 1, max = 0.5 },
             padding = true,
-            sort = { "added" }, -- sort only by time
+            sort = { "added" }, -- Sort only by time
             style = "compact",
             timeout = 6000,
             top_down = true,
@@ -100,7 +100,7 @@ return {
         { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
         { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
         { "<leader><space>", function() Snacks.picker.files() end, desc = "Find Files" },
-        -- find
+        -- Find
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
         { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
@@ -114,7 +114,7 @@ return {
         { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
         { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
         { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
-        -- search
+        -- Search
         { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
         { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
         { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -144,7 +144,7 @@ return {
         vim.api.nvim_create_autocmd("User", {
             pattern = "VeryLazy",
             callback = function()
-                -- Create some toggle mappings
+                -- Create toggle mappings
                 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
                 Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
