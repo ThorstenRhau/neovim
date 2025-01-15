@@ -59,7 +59,7 @@ end
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
 
--- use spaces for tabs and whatnot
+-- Use spaces for tabs and whatnot
 o.tabstop = 4
 o.shiftwidth = 4
 o.shiftround = true
@@ -86,5 +86,5 @@ opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
 
--- Command-line abbreviation: Expand 'cc' into 'CodeCompanion'
+-- Command-line abbreviation: Expand 'ff' into 'FzfLua'
 vim.cmd([[cabbrev ff FzfLua]])
