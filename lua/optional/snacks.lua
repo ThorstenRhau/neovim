@@ -7,12 +7,7 @@ return {
     ---@module 'snacks'
     ---@type snacks.Config
     opts = {
-        animate = {
-            enabled = true,
-            duration = 20, -- Milliseconds per step
-            easing = "linear",
-            fps = 60, -- Frames per second. Global setting for all animations
-        },
+        animate = { enabled = true },
         bigfile = {
             size = 1 * 1024 * 1024, -- 1 MB
             notify = true,
