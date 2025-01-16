@@ -24,7 +24,7 @@ return {
             "ts_ls",
             "yamllint",
             "yamlls",
-            "yammlfmt",
+            "yamlfmt",
         },
     },
 }
