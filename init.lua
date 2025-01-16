@@ -96,5 +96,5 @@ if enable_optional_plugins == "1" then
     vim.cmd.colorscheme(active_theme)
     require("config.whichkey")
 else
-    vim.cmd("colorscheme default")
+    vim.cmd("colorscheme habamax")
 end
