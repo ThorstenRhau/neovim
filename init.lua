@@ -28,10 +28,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "'"
 vim.opt.termguicolors = true
 
--- Disable netrw for 'oil' plugin
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local specs = {
     { import = "plugins" },
 }
@@ -74,7 +70,6 @@ require("lazy").setup({
         disabled_plugins = {
             "gzip",
             "matchit",
-            "netrwPlugin",
             "rplugin",
             "tarPlugin",
             "tohtml",

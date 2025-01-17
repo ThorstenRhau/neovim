@@ -113,18 +113,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Open Oil file manager if Neovim is opened with a directory argument
-vim.api.nvim_create_autocmd("VimEnter", {
-    group = augroup("open_oil_on_dir"),
-    callback = function()
-        -- Check if the last argument is a directory
-        local arg = vim.fn.argv(0)
-        if arg and vim.fn.isdirectory(arg) == 1 then
-            vim.cmd.Oil(arg)
-        end
-    end,
-})
-
 -- Automatically jump to last position
 vim.api.nvim_create_autocmd("BufReadPost", {
     group = augroup("auto-last-position"),
