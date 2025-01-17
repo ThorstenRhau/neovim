@@ -3,7 +3,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
-        "ibhagwan/fzf-lua",
+        -- "ibhagwan/fzf-lua",
     },
     cmd = "Neogit",
     config = true,
