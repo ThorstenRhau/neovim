@@ -1,5 +1,7 @@
 {
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "Snacks",
+        "MiniJump2d"
     ]
 }
