@@ -54,6 +54,7 @@ return {
             },
         })
         require("which-key").add({
+            { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
             { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },
             { "<leader>gh", "<cmd>Gitsigns toggle_linehl<cr>", desc = "Toggle line highline" },
         })
