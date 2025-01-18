@@ -58,13 +58,28 @@ wk.add({
     --                                  │ Buffer │
     --                                  ╰────────╯
     { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
-    { "<leader>bb", "<cmd>b#<CR>", desc = "Switch to alternate" },
-    { "<leader>bd", "<cmd>bd<CR>", desc = "Delete" },
-    { "<leader>bf", "<cmd>FzfLua buffers<cr>", desc = "Find" },
-    { "<leader>bl", "<cmd>ls<CR>", desc = "List" },
-    { "<leader>bm", "<cmd>bm<CR>", desc = "Go to next modified" },
-    { "<leader>bn", "<cmd>bnext<CR>", desc = "Previous" },
-    { "<leader>bp", "<cmd>bprevious<CR>", desc = "Previous" },
+    { "<leader>bb", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
+    {
+        "<leader>bd",
+        function()
+            Snacks.bufdelete()
+        end,
+        desc = "Delete",
+    },
+    {
+        "<leader>bO",
+        function()
+            Snacks.bufdelete.other()
+        end,
+        desc = "Delete all other",
+    },
+    {
+        "<leader>bX",
+        function()
+            Snacks.bufdelete.all()
+        end,
+        desc = "Delete all",
+    },
     --                                   ╭──────╮
     --                                   │ Code │
     --                                   ╰──────╯
