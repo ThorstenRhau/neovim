@@ -13,6 +13,7 @@ return {
             notify = true,
         },
         dashboard = {
+            enabled = false,
             row = nil, -- Dashboard position. 'nil' for center
             col = nil, -- Dashboard position. 'nil' for center
             preset = {
@@ -72,6 +73,9 @@ return {
             enabled = false,
         },
         toggle = { enabled = true },
+        words = {
+            modes = { "n", "c" },
+        },
     },
 
     keys = {
