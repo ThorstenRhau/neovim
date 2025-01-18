@@ -94,7 +94,6 @@ wk.add({
     { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Toggle Word Illumination" },
     { "<leader>uk", "<cmd>set cursorline!<CR>", desc = "Toggle Cursor Line" },
     { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Markdown render" },
-    { "<leader>uo", "<cmd>AerialToggle!<CR>", desc = "Outline" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
     { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo location list" },
     { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
