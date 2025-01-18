@@ -20,7 +20,7 @@ return {
         -- stylua: ignore start
         { "ga", desc = "Align text", mode = { "v" } },
         { "gA", desc = "Align text interactive", mode = { "v" } },
-        {"<leader>cs", function() MiniSplitjoin.toggle() end, desc = "Split/Join text", mode = { "v" } },
+        {"<leader>cs", function() MiniSplitjoin.toggle() end, desc = "Split/Join text", mode = { "v", "n" } },
         -- stylua: ignore end
     },
 }
