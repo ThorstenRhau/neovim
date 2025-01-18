@@ -43,6 +43,7 @@ return {
                 disabled_filetypes = {
                     "checkhealth",
                     "snacks_dashboard",
+                    "NeogitStatus",
                     statusline = {},
                     winbar = {},
                 },
