@@ -2,10 +2,8 @@
 ---@type LazySpec
 return {
     "folke/noice.nvim",
-    enabled = false,
     dependencies = {
         "MunifTanjim/nui.nvim",
-        -- "rcarriga/nvim-notify",
     },
     event = "VeryLazy",
     opts = {
@@ -22,7 +20,7 @@ return {
         views = { -- Position of the command window
             cmdline_popup = {
                 position = {
-                    row = "55%",
+                    row = "80%",
                     col = "50%",
                 },
             },
