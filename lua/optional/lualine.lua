@@ -19,6 +19,14 @@ local function lsp_client_names()
     return table.concat(client_names, ", ")
 end
 
+local function location_with_total()
+    local line = vim.fn.line(".")
+    local col = vim.fn.col(".")
+    local total_lines = vim.fn.line("$")
+    local total_cols = #vim.fn.getline(line)
+    return string.format("%d:%d|%d:%d", line, total_lines, col, total_cols)
+end
+
 return {
     {
         "nvim-lualine/lualine.nvim",
@@ -31,7 +39,7 @@ return {
             options = {
                 icons_enabled = true,
                 component_separators = { left = "", right = "" },
-                -- section_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     "checkhealth",
                     "snacks_dashboard",
@@ -58,7 +66,7 @@ return {
                 },
                 lualine_x = { lsp_client_names, "encoding", "fileformat", "filetype", "filesize" },
                 lualine_y = { "progress" },
-                lualine_z = { "location" },
+                lualine_z = { location_with_total },
             },
             inactive_sections = {
                 lualine_a = {},
