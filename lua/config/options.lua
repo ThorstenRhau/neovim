@@ -1,6 +1,8 @@
 local opt = vim.opt
 local o = vim.o
+local g = vim.g
 
+g.borderStyle = "rounded"
 o.autoindent = true
 o.autoread = true
 o.breakindent = true
