@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     "ellisonleao/gruvbox.nvim",
     priority = 1100,

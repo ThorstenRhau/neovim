@@ -19,6 +19,8 @@ end
 
 local preferred_style = getPreferredStyle()
 
+---@module "lazy"
+---@type LazySpec
 return {
     "folke/tokyonight.nvim",
     lazy = false,

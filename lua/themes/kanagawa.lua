@@ -19,6 +19,8 @@ end
 
 local preferred_style = getPreferredStyle()
 
+---@module "lazy"
+---@type LazySpec
 return {
     "rebelot/kanagawa.nvim",
     priority = 1100,

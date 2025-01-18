@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     "NeogitOrg/neogit",
     dependencies = {
