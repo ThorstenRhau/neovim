@@ -78,7 +78,6 @@ return {
                 lualine_z = {},
             },
             extensions = {
-                "fzf",
                 "lazy",
                 "man",
                 "mason",
