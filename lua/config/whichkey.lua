@@ -44,7 +44,14 @@ wk.add({
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
     { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
-    { "<leader>p", "<cmd>Pounce<cr>", desc = "Pounce", icon = { icon = "󰿄 ", color = "purple" } },
+    {
+        "<leader>p",
+        function()
+            MiniJump2d.start()
+        end,
+        desc = "Pounce",
+        icon = { icon = "󰿄 ", color = "purple" },
+    },
     { "<leader>S", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
     { "<leader>T", "<cmd>Trouble<cr>", desc = "Trouble", icon = { icon = " ", color = "red" } },
     --                                  ╭────────╮
