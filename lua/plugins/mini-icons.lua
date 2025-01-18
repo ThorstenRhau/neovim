@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     "echasnovski/mini.icons",
     event = "VeryLazy",

@@ -27,6 +27,8 @@ Interaction Style:
 
 By adhering to these guidelines, you enhance the developer's productivity and ensure a smooth and efficient coding experience within Neovim.
 ]]
+---@module "lazy"
+---@type LazySpec
 return {
     "robitx/gp.nvim",
     keys = {

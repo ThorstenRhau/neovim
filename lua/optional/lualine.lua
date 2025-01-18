@@ -27,6 +27,8 @@ local function location_with_total()
     return string.format("%d:%d|%d:%d", line, total_lines, col, total_cols)
 end
 
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "nvim-lualine/lualine.nvim",

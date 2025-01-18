@@ -1,4 +1,6 @@
 local vim = vim
+---@module "lazy"
+---@type LazySpec
 return {
     "mfussenegger/nvim-lint",
     event = { "LspAttach" },
