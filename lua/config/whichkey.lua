@@ -68,16 +68,7 @@ wk.add({
     --                                   ╭──────╮
     --                                   │ Find │
     --                                   ╰──────╯
-    { "<leader>f", group = "Find" },
-    -- { "<leader>fb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
-    -- { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Grep" },
-    -- { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "File" },
-    -- { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help" },
-    -- { "<leader>fm", "<cmd>FzfLua manpages<cr>", desc = "man pages" },
-    -- { "<leader>fo", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
-    -- { "<leader>fr", "<cmd>FzfLua registers<cr>", desc = "Registers" },
-    -- { "<leader>fs", "<cmd>FzfLua grep<cr>", desc = "FZF in buffer" },
-    -- { "<leader>fz", "<cmd>FzfLua spell_suggest<cr>", desc = "Spelling suggestions" },
+    { "<leader>f", group = "Find", icon = { icon = "󰍉 ", color = "azure" } },
     --                                    ╭─────╮
     --                                    │ Git │
     --                                    ╰─────╯
