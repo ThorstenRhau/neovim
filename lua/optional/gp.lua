@@ -33,8 +33,13 @@ return {
         "<C-g>",
         "<C-g><C-t>",
         "<C-g><C-v>",
+        "<C-g>a",
+        "<C-g>b",
         "<C-g>c",
+        "<C-g>g",
+        "<C-g>n",
         "<C-g>r",
+        "<C-g>t",
     },
     cmd = "GpChatNew",
     config = function()
