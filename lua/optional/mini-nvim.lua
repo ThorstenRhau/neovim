@@ -10,11 +10,8 @@ return {
         require("mini.align").setup()
         require("mini.bracketed").setup()
         require("mini.comment").setup()
-        require("mini.diff").setup()
-        require("mini.git").setup()
         require("mini.operators").setup()
         require("mini.pairs").setup()
-        require("mini.statusline").setup()
         require("mini.surround").setup()
     end,
     keys = {
