@@ -4,7 +4,7 @@ return {
     "echasnovski/mini.nvim",
     dependencies = "echasnovski/mini.icons",
     version = false,
-    event = "BufReadPost",
+    event = "VeryLazy",
     config = function()
         require("mini.ai").setup()
         require("mini.align").setup()
