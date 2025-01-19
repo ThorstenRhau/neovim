@@ -90,6 +90,7 @@ return {
         { "<leader>sq",      function() Snacks.picker.qflist() end,          desc = "Quickfix List" },
         { "<leader>uX",      function() Snacks.picker.colorschemes() end,    desc = "Colorschemes" },
         { "<leader>qp",      function() Snacks.picker.projects() end,        desc = "Projects" },
+        { "<leader>fs",      function() Snacks.picker.spelling() end,        desc = "Spelling suggestions" },
         -- LSP
         { "gd",         function() Snacks.picker.lsp_definitions() end,      desc = "Goto Definition" },
         { "gr",         function() Snacks.picker.lsp_references() end,       nowait = true, desc = "References" },
