@@ -8,10 +8,12 @@ return {
         local lint = require("lint")
 
         lint.linters_by_ft = {
+            javascript = { "eslint_d" },
             json = { "jsonlint" },
             lua = { "selene" }, -- Install 'selene' via homebrew instead of Mason
             python = { "ruff" },
             sh = { "shellcheck" },
+            typescript = { "eslint_d" },
             yaml = { "yamllint" },
         }
 
