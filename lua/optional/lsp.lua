@@ -9,6 +9,7 @@ return {
     },
     ft = {
         "html",
+        "javascript",
         "json",
         "lua",
         "markdown",
@@ -16,6 +17,7 @@ return {
         "sh",
         "toml",
         "ts",
+        "typescript",
         "yaml",
     },
     config = function()
