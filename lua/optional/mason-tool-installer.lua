@@ -9,6 +9,7 @@ return {
         auto_update = false,
         ensure_installed = {
             "bashls",
+            "eslint_d",
             "harper_ls",
             "html",
             "jsonlint",
@@ -24,9 +25,9 @@ return {
             "stylua",
             "taplo",
             "ts_ls",
+            "yamlfmt",
             "yamllint",
             "yamlls",
-            "yamlfmt",
         },
     },
 }
