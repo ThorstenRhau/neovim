@@ -54,12 +54,12 @@ export NVIM_OPTIONAL_PLUGINS=1
 I use macOS so here are the instructions for how to install dependencies with
 homebrew on a mac.
 
-```
+```sh
 brew install ripgrep fd cmake git node wget shellcheck python3 \
 selene hg nvim lazygit
 ```
 
-```
+```sh
 npm install -g neovim
 ```
 
@@ -70,7 +70,7 @@ _~/.config/nvim/_
 
 Example:
 
-```
+```sh
 git clone https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 ```
 
