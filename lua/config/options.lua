@@ -33,6 +33,7 @@ o.pumblend = 0
 o.relativenumber = true
 o.scrolloff = 8
 o.showcmd = true
+o.sidescrolloff = 8
 o.signcolumn = "yes:1"
 o.smartcase = true
 o.smartindent = true
