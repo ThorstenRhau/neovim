@@ -43,7 +43,6 @@ return {
         -- stylua: ignore start
         { "<leader>z",  function() Snacks.zen() end,                     desc = "Toggle Zen Mode" },
         { "<leader>Z",  function() Snacks.zen.zoom() end,                desc = "Toggle Zoom" },
-        { "<leader>n",  function() Snacks.notifier.show_history() end,   desc = "Notification History" },
         { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
         { "<leader>cR", function() Snacks.rename.rename_file() end,      desc = "Rename File" },
         { "<leader>gw", function() Snacks.gitbrowse() end,               desc = "Git Browse Web" },
@@ -59,6 +58,7 @@ return {
         --
         { "<leader>/",       function() Snacks.picker.grep() end,            desc = "Grep" },
         { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
+        { "<leader>n",  function() Snacks.picker.notifications() end,        desc = "Notification History" },
         { "<leader><space>", function() Snacks.picker.files() end,           desc = "Find Files" },
         -- Find
         { "<leader>fb",      function() Snacks.picker.buffers() end,         desc = "Buffers" },
