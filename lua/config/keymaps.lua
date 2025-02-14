@@ -29,13 +29,5 @@ map("n", "<S-Down>", "<cmd>resize -2<CR>", { desc = "Decrease Window Height", no
 map("n", "<S-Left>", "<cmd>vertical resize -2<CR>", { desc = "Decrease Window Width", noremap = true, silent = true })
 map("n", "<S-Right>", "<cmd>vertical resize +2<CR>", { desc = "Increase Window Width", noremap = true, silent = true })
 
--- Move Lines with alternative keybindings to avoid conflicts
-map("n", "<C-j>", "<cmd>m .+1<CR>==", { desc = "Move Line Down", noremap = true, silent = true })
-map("n", "<C-k>", "<cmd>m .-2<CR>==", { desc = "Move Line Up", noremap = true, silent = true })
-map("i", "<C-j>", "<C-o>:m .+1<CR>==", { desc = "Move Line Down in Insert Mode", noremap = true, silent = true })
-map("i", "<C-k>", "<C-o>:m .-2<CR>==", { desc = "Move Line Up in Insert Mode", noremap = true, silent = true })
-map("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move Selection Down", noremap = true, silent = true })
-map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move Selection Up", noremap = true, silent = true })
-
 -- Clear search highlights with a dedicated key
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
