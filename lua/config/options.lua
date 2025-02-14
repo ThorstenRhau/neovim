@@ -53,7 +53,25 @@ o.wrap = false
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" })
 opt.spelllang = { "en", "sv" }
-opt.wildignore:append({ "*/node_modules/*" })
+opt.wildignore:append({
+    "*.o",
+    "*.obj",
+    "*.dll",
+    "*.exe",
+    "*.pyc",
+    "*.class",
+    "*.swp",
+    "*.swo",
+    "*.DS_Store",
+    "*/node_modules/*",
+    "*/target/*",
+    "*/build/*",
+    "*/dist/*",
+    "*/.git/*",
+    "*/.svn/*",
+    "*/.venv/*",
+    "*/venv/*",
+})
 if vim.fn.executable("rg") == 1 then
     opt.grepprg = "rg --vimgrep --smart-case --follow"
 else
