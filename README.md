@@ -56,7 +56,7 @@ homebrew on a mac.
 
 ```sh
 brew install ripgrep fd cmake git node wget shellcheck python3 \
-selene hg nvim lazygit
+selene hg nvim lazygit imagemagick
 ```
 
 ```sh
