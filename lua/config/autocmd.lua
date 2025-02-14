@@ -6,15 +6,14 @@ end
 -- Function to close or quit Neovim
 local function close_or_quit()
     local win_count = #vim.api.nvim_list_wins()
+    local buf_count = #vim.api.nvim_list_bufs()
 
-    if win_count == 1 then
-        if #vim.api.nvim_list_bufs() > 1 then
-            vim.notify("Cannot close the last window without quitting Neovim.", vim.log.levels.WARN)
-        else
-            vim.api.nvim_command("quit")
-        end
+    if win_count == 1 and buf_count == 1 then
+        vim.cmd("qall!") -- Quit Neovim
+    elseif win_count == 1 then
+        vim.notify("Cannot close the last window without quitting Neovim.", vim.log.levels.WARN)
     else
-        pcall(vim.api.nvim_command, "close")
+        pcall(vim.api.nvim_command, "close") -- Close the current window
     end
 end
 
