@@ -17,6 +17,7 @@ return {
         gitbrowse = { enabled = true },
         indent = { enabled = true },
         input = { enabled = true },
+        image = { enabled = true },
         notifier = {
             height = { min = 1, max = 0.5 },
             padding = true,
