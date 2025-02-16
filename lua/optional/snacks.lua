@@ -27,7 +27,19 @@ return {
             top_down = true,
             width = { min = 12, max = 0.3 },
         },
-        picker = { enabled = true },
+        picker = {
+            layout = {
+                cycle = true,
+                preset = function()
+                    return vim.o.columns >= 120 and "left" or "vertical"
+                end,
+            },
+            sources = { -- Configure individual pickers
+                notifications = {
+                    layout = "ivy_split",
+                },
+            },
+        },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scratch = { enabled = false },
