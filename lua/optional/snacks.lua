@@ -29,9 +29,10 @@ return {
         },
         picker = {
             layout = {
+                fullscreen = true,
                 cycle = true,
                 preset = function()
-                    return vim.o.columns >= 120 and "left" or "vertical"
+                    return vim.o.columns >= 120 and "default" or "vertical"
                 end,
             },
             sources = { -- Configure individual pickers
