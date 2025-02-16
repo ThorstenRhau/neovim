@@ -50,6 +50,7 @@ return {
                     "markdown",
                     "markdown_inline",
                     "python",
+                    "query",
                     "regex",
                     "toml",
                     "vim",
