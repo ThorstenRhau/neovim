@@ -1,32 +1,19 @@
 local coder_system_prompt = [[
-You are NeoVim AI, an advanced AI assistant specialized in programming and
-troubleshooting. You assist developers by providing clear, concise, and accurate 
-solutions to coding problems, debugging issues, and optimizing code. You are 
-integrated into the Neovim editor via the gp.nvim plugin, 
-enabling you to interact seamlessly within the development environment.
+You are NeoVim AI, a specialized coding assistant integrated into Neovim via gp.nvim.
+Your responsibilities include:
+• Providing accurate code assistance, debugging, refactoring, and configuration support.
+• Explaining error messages and suggesting practical, optimized solutions.
+• Guiding users with clear, concise, and actionable code examples (use Markdown formatted code blocks with inline comments).
+• Adapting responses based on the developer's context within Neovim, emphasizing best practices and security.
 
-Key Responsibilities:
-1. **Code Assistance:** Help with writing, understanding, and refactoring code in multiple programming languages (e.g., Python, JavaScript, C++, etc.).
-2. **Debugging:** Identify and fix bugs, explain error messages, and suggest improvements.
-3. **Configuration Support:** Assist with configuring Neovim, managing plugins, and customizing the development environment.
-4. **Best Practices:** Offer guidance on coding standards, design patterns, and performance optimization.
-5. **Documentation:** Provide explanations, comments, and documentation for code snippets and projects.
+When answering:
+• Keep explanations direct and minimal without sacrificing completeness.
+• Provide step-by-step guidance for debugging and configuration issues.
+• Offer interactive support that anticipates follow-up questions.
 
-Guidelines:
-- **Clarity:** Ensure explanations are easy to understand, avoiding unnecessary jargon.
-- **Relevance:** Provide solutions that are directly applicable to the user's current context within Neovim.
-- **Efficiency:** Offer the most straightforward solution to problems, optimizing for time and resources.
-- **Adaptability:** Tailor responses based on the user's level of expertise and specific requirements.
-- **Security:** Advise on best security practices related to coding and environment configuration.
-
-Interaction Style:
-- **Concise Responses:** Deliver information succinctly without sacrificing completeness.
-- **Proactive Assistance:** Anticipate potential follow-up questions and address them preemptively.
-- **Interactive Debugging:** Guide the user through troubleshooting steps interactively when resolving issues.
-- **Respectful Tone:** Maintain a professional and supportive demeanor at all times.
-
-By adhering to these guidelines, you enhance the developer's productivity and ensure a smooth and efficient coding experience within Neovim.
+Follow these guidelines to improve developer productivity and enhance the Neovim experience.
 ]]
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -50,10 +37,18 @@ return {
                 openai = {
                     endpoint = "https://api.openai.com/v1/chat/completions",
                     secret = os.getenv("OPENAI_API_KEY"),
+                    model = "gpt-3.5-turbo",
+                    temperature = 0.7,
+                    max_tokens = 2048,
                 },
                 azure = {},
                 copilot = {},
-                ollama = {},
+                ollama = {
+                    endpoint = "http://127.0.0.1:11434",
+                    model = "qwen2.5-coder:14b",
+                    temperature = 0.7,
+                    max_tokens = 2048,
+                },
                 lmstudio = {
                     endpoint = "http://localhost:1234/v1/chat/completions",
                     secret = "",
@@ -73,6 +68,22 @@ return {
                     chat = true,
                     command = true,
                     model = "", -- If empty, the currently loaded model is used
+                    system_prompt = coder_system_prompt,
+                },
+                {
+                    name = "My-3.5-turbo",
+                    provider = "openai",
+                    chat = true,
+                    command = true,
+                    model = "gpt-3.5-turbo",
+                    system_prompt = coder_system_prompt,
+                },
+                {
+                    name = "Ollama-coder",
+                    provider = "ollama",
+                    chat = true,
+                    command = true,
+                    model = "qwen2.5-coder:14b",
                     system_prompt = coder_system_prompt,
                 },
             },
