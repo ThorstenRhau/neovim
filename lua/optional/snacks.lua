@@ -9,7 +9,7 @@ return {
     opts = {
         animate = { enabled = true },
         bigfile = {
-            size = 1 * 1024 * 1024, -- 1 MB
+            size = 1 * 1024 * 1024, -- 1 megabyte
             notify = true,
         },
         dashboard = { enabled = false },
@@ -19,13 +19,11 @@ return {
         input = { enabled = true },
         image = { enabled = false },
         notifier = {
-            height = { min = 1, max = 0.5 },
             padding = true,
             sort = { "added" }, -- Sort only by time
             style = "compact",
             timeout = 6000,
             top_down = true,
-            width = { min = 12, max = 0.3 },
         },
         picker = {
             layout = {
