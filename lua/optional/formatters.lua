@@ -33,7 +33,7 @@ return {
             yaml = { "yamlfmt" },
         },
         -- Set up format-on-save
-        format_on_save = { timeout_ms = 5000 },
+        -- format_on_save = { timeout_ms = 5000 },
         notify_on_error = true,
         -- Customize formatters
         formatters = {
