@@ -2,8 +2,8 @@
 ---@type LazySpec
 return {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" },
     cmd = { "ConformInfo" },
+    event = "LspAttach",
     keys = {
         {
             "<leader>cf",
@@ -30,8 +30,8 @@ return {
             sh = { "shfmt" },
             toml = { "taplo" },
             typescript = { "prettier" },
-            yaml = { "yamlfmt" },
             xml = { "xmlformatter" },
+            yaml = { "yamlfmt" },
         },
         -- Set up format-on-save
         -- format_on_save = { timeout_ms = 5000 },
