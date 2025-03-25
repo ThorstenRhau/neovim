@@ -29,6 +29,7 @@ return {
             "yamlfmt",
             "yamllint",
             "yamlls",
+            "xmlformatter",
         },
     },
 }

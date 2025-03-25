@@ -31,6 +31,7 @@ return {
             toml = { "taplo" },
             typescript = { "prettier" },
             yaml = { "yamlfmt" },
+            xml = { "xmlformatter" },
         },
         -- Set up format-on-save
         -- format_on_save = { timeout_ms = 5000 },
