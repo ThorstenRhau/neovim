@@ -18,6 +18,7 @@ return {
         "toml",
         "ts",
         "typescript",
+        "xml",
         "yaml",
     },
     config = function()
