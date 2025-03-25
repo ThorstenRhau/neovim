@@ -21,7 +21,7 @@ return {
         -- Define formatters by filetype.
         formatters_by_ft = {
             css = { "prettier" },
-            html = { "prettier" },
+            html = { "djlint" },
             javascript = { "prettier" },
             json = { "prettier" },
             lua = { "stylua" },
@@ -37,6 +37,18 @@ return {
         notify_on_error = true,
         -- Customize formatters
         formatters = {
+            djlint = {
+                prepend_args = {
+                    "--quiet",
+                    "--reformat",
+                    "--preserve-leading-space",
+                    "--blank-line-after-tag",
+                    "--format-js",
+                    "--format-css",
+                    "--indent=2",
+                    "--max-line-length=100",
+                },
+            },
             shfmt = {
                 prepend_args = { "-i", "2" }, -- indent with two spaces
             },
