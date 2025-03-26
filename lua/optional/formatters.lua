@@ -21,7 +21,7 @@ return {
         -- Define formatters by filetype.
         formatters_by_ft = {
             css = { "prettier" },
-            html = { "djlint" },
+            html = { "prettier" },
             javascript = { "prettier" },
             json = { "prettier" },
             lua = { "stylua" },

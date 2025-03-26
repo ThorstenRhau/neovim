@@ -9,7 +9,6 @@ return {
         auto_update = false,
         ensure_installed = {
             "bashls",
-            "djlint",
             "eslint_d",
             "harper_ls",
             "html",
