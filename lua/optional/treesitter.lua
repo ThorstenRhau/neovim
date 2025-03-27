@@ -7,6 +7,7 @@ return {
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+        ft = { "checkhealth" },
         keys = {
             { "<c-space>", desc = "Increment Selection" },
             { "<bs>", desc = "Decrement Selection", mode = "x" },
@@ -23,6 +24,11 @@ return {
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
+                    disable = function(_, buf)
+                        local max = 256 * 1024
+                        local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                        return ok and stats and stats.size > max
+                    end,
                 },
                 indent = {
                     enable = true,
@@ -39,12 +45,16 @@ return {
                 ensure_installed = {
                     "bash",
                     "comment",
+                    "css",
                     "diff",
                     "fish",
                     "git_config",
                     "git_rebase",
                     "gitcommit",
                     "gitignore",
+                    "html",
+                    "javascript",
+                    "json",
                     "lua",
                     "luadoc",
                     "markdown",
@@ -53,18 +63,19 @@ return {
                     "query",
                     "regex",
                     "toml",
+                    "tsx",
+                    "typescript",
                     "vim",
                     "vimdoc",
+                    "xml",
                     "yaml",
                 },
             })
         end,
     },
 
-    -- Lazy load nvim-treesitter-context for specific file types
     {
         "nvim-treesitter/nvim-treesitter-context",
-        lazy = true,
-        ft = { "lua", "bash", "python" },
+        event = "VeryLazy",
     },
 }
