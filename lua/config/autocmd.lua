@@ -17,14 +17,14 @@ local function close_or_quit()
     end
 end
 
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-    group = augroup("insert_mode"),
-    pattern = "*",
-    callback = function()
-        vim.o.paste = false
-    end,
-})
+-- -- Turn off paste mode when leaving insert
+-- vim.api.nvim_create_autocmd("InsertLeave", {
+--     group = augroup("insert_mode"),
+--     pattern = "*",
+--     callback = function()
+--         vim.o.paste = false
+--     end,
+-- })
 
 -- Remove 'c', 'r', 'o' from formatoptions for all file types
 -- No help with comments
