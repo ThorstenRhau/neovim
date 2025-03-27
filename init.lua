@@ -23,6 +23,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Lua module load (experimental)
 if vim.loader then vim.loader.enable() end
 
 -- Basic Neovim Settings
