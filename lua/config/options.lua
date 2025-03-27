@@ -10,7 +10,6 @@ o.clipboard = ""
 o.cmdheight = 0
 o.cmdwinheight = 10
 o.completeopt = "menu,menuone,noselect"
-o.conceallevel = 2
 o.cursorline = true
 o.foldenable = false
 o.foldexpr = "nvim_treesitter#foldexpr()"
@@ -18,7 +17,6 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldmethod = "expr"
 o.grepformat = "%f:%l:%c:%m"
-o.grepprg = "rg --vimgrep"
 o.hlsearch = true
 o.ignorecase = true
 o.inccommand = "split"
@@ -28,6 +26,7 @@ o.laststatus = 0
 o.linebreak = true
 o.maxmempattern = 5000
 o.mouse = "nv"
+o.mousemodel = "extend"
 o.number = true
 o.pumblend = 0
 o.relativenumber = true
@@ -42,15 +41,13 @@ o.smoothscroll = true
 o.splitbelow = true
 o.synmaxcol = 200
 o.tabline = nil
-o.title = true
-o.ttyfast = true
 o.updatetime = 250
 o.wildmenu = true
 o.wildmode = "longest:full,full"
 o.wildoptions = "pum"
 o.winblend = 0
 o.wrap = false
-opt.backspace = { "start", "eol", "indent" }
+opt.backspace = { "start", "eol", "indent", "nostop" }
 opt.path:append({ "**" })
 opt.spelllang = { "en", "sv" }
 opt.wildignore:append({
@@ -100,12 +97,19 @@ vim.g.loaded_ruby_provider = 0
 -- Setting up undo
 opt.swapfile = false
 opt.backup = false
-
-local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+local home = vim.env.HOME or vim.fn.expand("~")
+local undodir = home .. "/.local/share/nvim/undo"
 vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
 opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
 
--- Command-line abbreviation: Expand 'ff' into 'FzfLua'
-vim.cmd([[cabbrev ff FzfLua]])
+-- Session management
+opt.sessionoptions:remove("blank") -- Not saving empty buffers
+opt.sessionoptions:append("globals") -- Saving variables
+
+opt.grepprg = vim.fn.executable("rg") == 1 and "rg --vimgrep --smart-case --follow" or "grep -n $* /dev/null"
+
+-- Partial title rewriting
+opt.titlestring = "%<%F - nvim"
+opt.title = true
