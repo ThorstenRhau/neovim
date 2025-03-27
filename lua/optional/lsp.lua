@@ -22,61 +22,45 @@ return {
         "yaml",
     },
     config = function()
-        -- Cache required modules
         local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
+        local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-        -- Initialize Mason-LSPConfig
         mason_lspconfig.setup({
-            ensure_installed = {}, -- This is handled by mason-tool-installer
+            ensure_installed = {},
             automatic_installation = false,
         })
 
-        -- Define LSP capabilities
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-        -- Autocommand for LSP Attach
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(event)
-                local buffer = event.buf
-                local opts = { buffer = buffer, silent = true, noremap = true }
+                local opts = { buffer = event.buf, silent = true, noremap = true }
 
-                -- Buffer-local Keybindings
-                -- Formatting is done by conform, no need to define vim.lsp.buf.format() here
-                -- stylua: ignore start
-                local buf_keymaps = {
-                    {"n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>",     "CodeAction"},
-                    {"n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
-                    {"n", "<leader>q",  "<cmd>lua vim.diagnostic.setloclist()<CR>",   "Open diagnostics list" },
-                    {"n", "K",          "<cmd>lua vim.lsp.buf.hover()<CR>",           "HoverDocumentation"},
-                    {"n", "[d",         "<cmd>lua vim.diagnostic.goto_prev()<CR>",    "Go to previous diagnostic" },
-                    {"n", "]d",         "<cmd>lua vim.diagnostic.goto_next()<CR>",    "Go to next diagnostic" },
-                    {"n", "cr",         "<cmd>lua vim.lsp.buf.rename()<CR>",          "Rename"},
-                    {"n", "gD",         "<cmd>lua vim.lsp.buf.declaration()<CR>",     "GotoDeclaration"},
-                    {"n", "gI",         "<cmd>lua vim.lsp.buf.incoming_calls()<CR>",  "GottoIncomingCalls"},
-                    {"n", "gO",         "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>",  "GottoOutgoingCalls"},
-                    {"n", "gd",         "<cmd>lua vim.lsp.buf.definition()<CR>",      "GotoDefinition"},
-                    {"n", "gi",         "<cmd>lua vim.lsp.buf.implementation()<CR>",  "GotoImplementation"},
-                    {"n", "gl",         "<cmd>lua vim.diagnostic.open_float()<CR>",   "Open floating diagnostic message" },
-                    {"n", "go",         "<cmd>lua vim.lsp.buf.type_definition()<CR>", "GotoTypeDefinition"},
-                    {"n", "gr",         "<cmd>lua vim.lsp.buf.references()<CR>",      "GotoReferences"},
-                    {"n", "gs",         "<cmd>lua vim.lsp.buf.signature_help()<CR>",  "SignatureHelp"},
-                }
+-- stylua: ignore start
+ local keymaps = {
+     { "n", "gC",         vim.lsp.buf.outgoing_calls,                                 "Outgoing Calls" },
+     { "n", "gD",         vim.lsp.buf.declaration,                                    "Goto Declaration" },
+     { "n", "gI",         vim.lsp.buf.incoming_calls,                                 "Incoming Calls" },
+     { "n", "gd",         vim.lsp.buf.definition,                                     "Goto Definition" },
+     { "n", "gl",         vim.diagnostic.open_float,                                  "Floating Diagnostic" },
+     { "n", "go",         vim.lsp.buf.type_definition,                                "Goto Type Definition" },
+     { "n", "[d",         function() vim.diagnostic.jump({ direction = "prev" }) end, "Prev Diagnostic" },
+     { "n", "]d",         function() vim.diagnostic.jump({ direction = "next" }) end, "Next Diagnostic" },
+
+     -- Explicit <leader> mappings (overriding built-ins for consistency)
+     { "n", "<leader>ca", vim.lsp.buf.code_action,                                    "Code Action" },
+     { "n", "<leader>cr", vim.lsp.buf.rename,                                         "Rename Symbol" },
+     { "n", "<leader>q",  vim.diagnostic.setloclist,                                  "Diagnostics List" },
+ }
                 -- stylua: ignore end
 
-                for _, map in ipairs(buf_keymaps) do
-                    local modes = type(map[1]) == "table" and map[1] or { map[1] }
-                    ---@diagnostic disable-next-line: param-type-mismatch
-                    for _, mode in ipairs(modes) do
-                        vim.keymap.set(mode, map[2], map[3], vim.tbl_extend("force", opts, { desc = map[4] }))
-                    end
+                for _, map in ipairs(keymaps) do
+                    vim.keymap.set(map[1], map[2], map[3], vim.tbl_extend("force", opts, { desc = map[4] }))
                 end
             end,
         })
 
-        -- Global Diagnostic Configuration
         vim.diagnostic.config({
             virtual_text = false,
             signs = true,
@@ -85,17 +69,13 @@ return {
             severity_sort = true,
         })
 
-        -- Setup LSP Servers
         mason_lspconfig.setup_handlers({
             function(server)
                 lspconfig[server].setup({
                     capabilities = capabilities,
-                    on_attach = function()
-                        -- Additional on_attach logic can go here if needed
-                    end,
                 })
             end,
-            -- JSON Language Server with SchemaStore
+
             ["jsonls"] = function()
                 lspconfig.jsonls.setup({
                     capabilities = capabilities,
@@ -107,16 +87,13 @@ return {
                     },
                 })
             end,
-            -- YAML Language Server with SchemaStore
+
             ["yamlls"] = function()
                 lspconfig.yamlls.setup({
                     capabilities = capabilities,
                     settings = {
                         yaml = {
-                            schemaStore = {
-                                enable = false,
-                                url = "",
-                            },
+                            schemaStore = { enable = false, url = "" },
                             schemas = schemastore.yaml.schemas(),
                             validate = true,
                             completion = true,
@@ -126,45 +103,35 @@ return {
                 })
             end,
 
-            -- Lua Language Server with custom settings
             ["lua_ls"] = function()
                 lspconfig.lua_ls.setup({
                     capabilities = capabilities,
                     settings = {
                         Lua = {
-                            runtime = {
-                                version = "LuaJIT",
-                            },
+                            runtime = { version = "LuaJIT" },
                             workspace = {
                                 checkThirdParty = false,
-                                library = {
-                                    vim.env.VIMRUNTIME,
-                                    "$HOME/.config/wezterm",
-                                },
+                                library = { vim.env.VIMRUNTIME },
                             },
-                            telemetry = {
-                                enable = false,
-                            },
+                            telemetry = { enable = false },
                         },
                     },
                 })
             end,
 
-            -- Pyright Language Server with custom settings
             ["pyright"] = function()
                 lspconfig.pyright.setup({
                     capabilities = capabilities,
                     on_attach = function(client)
-                        -- Using different formatter (ruff_format)
                         client.server_capabilities.documentFormattingProvider = false
                         client.server_capabilities.documentRangeFormattingProvider = false
                     end,
                     settings = {
                         python = {
                             analysis = {
-                                typeCheckingMode = "basic", -- Options: off, basic, strict
+                                typeCheckingMode = "basic",
                                 autoSearchPaths = true,
-                                diagnosticMode = "openFilesOnly", -- Options: openFilesOnly, workspace
+                                diagnosticMode = "openFilesOnly",
                                 useLibraryCodeForTypes = true,
                             },
                         },
