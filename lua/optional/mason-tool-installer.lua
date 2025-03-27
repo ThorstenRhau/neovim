@@ -2,11 +2,17 @@
 ---@type LazySpec
 return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" },
-    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+    dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+    },
+    cmd = {
+        "MasonToolsInstall",
+        "MasonToolsUpdate",
+        "MasonToolsClean",
+    },
     opts = {
-        run_on_start = false,
-        auto_update = false,
+        auto_update = true,
         ensure_installed = {
             "bashls",
             "eslint_d",
