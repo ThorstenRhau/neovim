@@ -26,7 +26,6 @@ o.laststatus = 0
 o.linebreak = true
 o.maxmempattern = 5000
 o.mouse = "nv"
-o.mousemodel = "extend"
 o.number = true
 o.pumblend = 0
 o.relativenumber = true
