@@ -2,31 +2,41 @@
 ---@type LazySpec
 return {
     "mfussenegger/nvim-lint",
-    event = "LspAttach",
+    ft = {
+        "javascript",
+        "json",
+        "lua",
+        "python",
+        "sh",
+        "typescript",
+        "yaml",
+    },
     config = function()
         local lint = require("lint")
 
         lint.linters_by_ft = {
             javascript = { "eslint_d" },
             json = { "jsonlint" },
-            lua = { "selene" }, -- Installed via Homebrew
+            lua = { "selene" },
             python = { "ruff" },
             sh = { "shellcheck" },
             typescript = { "eslint_d" },
             yaml = { "yamllint" },
         }
 
-        local config = vim.fn.getcwd() .. "/.nvim-lint.lua"
-        if vim.fn.filereadable(config) == 1 then
-            dofile(config)
+        local custom_config = vim.fn.getcwd() .. "/.nvim-lint.lua"
+        if vim.fn.filereadable(custom_config) == 1 then
+            dofile(custom_config)
         end
 
-        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+        local lint_augroup = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
 
-        vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+        vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
             group = lint_augroup,
             callback = function()
-                lint.try_lint()
+                if vim.bo.modified then
+                    lint.try_lint()
+                end
             end,
         })
 
