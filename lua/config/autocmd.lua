@@ -17,7 +17,7 @@ local function close_or_quit()
     end
 end
 
--- Remove 'c', 'r', 'o' from formatoptions for all file types
+-- Remove 'c', 'r', 'o' from format options for all filetypes
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("formatoptions"),
     pattern = "*",
