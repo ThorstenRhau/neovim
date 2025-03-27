@@ -4,6 +4,7 @@ return {
     "folke/noice.nvim",
     dependencies = {
         "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
     },
     event = "VeryLazy",
     opts = {
@@ -15,9 +16,9 @@ return {
             lsp_doc_border = true,
         },
         cmdline = {
-            view = "cmdline_popup", -- cmdline_popup or cmdline
+            view = "cmdline_popup",
         },
-        views = { -- Position of the command window
+        views = {
             cmdline_popup = {
                 position = {
                     row = "20%",
@@ -37,10 +38,10 @@ return {
             signature = {
                 enabled = true,
             },
-            notify = {
-                enabled = true,
-                view = "notify",
-            },
+        },
+        notify = {
+            enabled = true,
+            view = "notify",
         },
     },
 }
