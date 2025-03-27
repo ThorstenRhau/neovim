@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
     "saghen/blink.cmp",
-    dependencies = "rafamadriz/friendly-snippets",
+    dependencies = { "rafamadriz/friendly-snippets" },
     version = "*",
     event = { "InsertEnter", "CmdlineEnter" },
 
@@ -11,7 +11,7 @@ return {
     opts = {
         appearance = {
             use_nvim_cmp_as_default = false,
-            nerd_font_variant = "mono",
+            nerd_font_variant = "normal",
         },
         completion = {
             accept = { auto_brackets = { enabled = true } },
@@ -75,18 +75,6 @@ return {
 
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-            -- cmdline = function()
-            --     local type = vim.fn.getcmdtype()
-            --     -- Search forward and backward
-            --     if type == "/" or type == "?" then
-            --         return { "buffer" }
-            --     end
-            --     -- Commands
-            --     if type == ":" then
-            --         return { "cmdline" }
-            --     end
-            --     return {}
-            -- end,
             providers = {
                 lazydev = {
                     name = "LazyDev",
