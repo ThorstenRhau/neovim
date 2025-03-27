@@ -1,26 +1,19 @@
---                            ╭─────────────────────╮
---                            │ Toggle virtual text │
---                            ╰─────────────────────╯
-
+-- Toggle virtual text for diagnostics
 local function toggle_virtual_text()
-    ---@diagnostic disable-next-line: undefined-field
     local current_value = vim.diagnostic.config().virtual_text
-    vim.diagnostic.config({
-        virtual_text = not current_value,
-    })
-    if current_value then
-        print("Virtual text disabled")
-    else
-        print("Virtual text enabled")
-    end
+    vim.diagnostic.config({ virtual_text = not current_value })
+    print("Virtual text " .. (current_value and "disabled" or "enabled"))
 end
 
---                            ╭─────────────────────╮
---                            │ List active linters │
---                            ╰─────────────────────╯
-
+-- List active linters for the current filetype
 local function ListActiveLinters()
-    local linters = require("lint").linters_by_ft[vim.bo.filetype]
+    local ok, lint = pcall(require, "lint")
+    if not ok then
+        print("nvim-lint is not available.")
+        return
+    end
+
+    local linters = lint.linters_by_ft[vim.bo.filetype]
     if linters then
         print("Active linters for filetype '" .. vim.bo.filetype .. "':")
         for _, linter in ipairs(linters) do
@@ -31,15 +24,11 @@ local function ListActiveLinters()
     end
 end
 
---           ╭──────────────────────────────────────────────────────╮
---           │ Setting up register for 'which key' with keymappings │
---           ╰──────────────────────────────────────────────────────╯
-
+-- Register mappings with which-key
 local wk = require("which-key")
+
 wk.add({
-    --                                 ╭───────────╮
-    --                                 │ Root menu │
-    --                                 ╰───────────╯
+    -- Root menu
     { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
@@ -47,87 +36,85 @@ wk.add({
     {
         "<leader>p",
         function()
-            MiniJump2d.start()
+            local ok, mini = pcall(require, "mini.jump2d")
+            if ok then mini.start() end
         end,
         desc = "Pounce",
         icon = { icon = "󰿄 ", color = "purple" },
     },
-    { "<leader>S", '<cmd>lua require("persistence").load()<cr>', desc = "Restore last session" },
+    {
+        "<leader>S",
+        function()
+            local ok, persistence = pcall(require, "persistence")
+            if ok then persistence.load() end
+        end,
+        desc = "Restore last session",
+    },
     { "<leader>T", "<cmd>Trouble<cr>", desc = "Trouble", icon = { icon = " ", color = "red" } },
-    --                                  ╭────────╮
-    --                                  │ Buffer │
-    --                                  ╰────────╯
+
+    -- Buffer management
     { "<leader>b", group = "Buffer", icon = { icon = " ", color = "blue" } },
     { "<leader>bb", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
     {
         "<leader>bd",
         function()
-            Snacks.bufdelete()
+            local ok, snacks = pcall(require, "snacks")
+            if ok then snacks.bufdelete() end
         end,
-        desc = "Delete",
+        desc = "Delete buffer",
     },
     {
         "<leader>bO",
         function()
-            Snacks.bufdelete.other()
+            local ok, snacks = pcall(require, "snacks")
+            if ok then snacks.bufdelete.other() end
         end,
-        desc = "Delete all other",
+        desc = "Delete all other buffers",
     },
     {
         "<leader>bX",
         function()
-            Snacks.bufdelete.all()
+            local ok, snacks = pcall(require, "snacks")
+            if ok then snacks.bufdelete.all() end
         end,
-        desc = "Delete all",
+        desc = "Delete all buffers",
     },
-    --                                   ╭──────╮
-    --                                   │ Code │
-    --                                   ╰──────╯
+
+    -- Code tools
     { "<leader>c", group = "Code" },
-    { "<leader>cA", "<cmd>LspInfo<CR>", desc = "LSP list" },
-    { "<leader>cF", "<cmd>ConformInfo<CR>", desc = "Formatters list" },
-    { "<leader>cL", ListActiveLinters, desc = "Linters list" },
-    --                                   ╭──────╮
-    --                                   │ Find │
-    --                                   ╰──────╯
+    { "<leader>cA", "<cmd>LspInfo<CR>", desc = "LSP Info" },
+    { "<leader>cF", "<cmd>ConformInfo<CR>", desc = "Formatters" },
+    { "<leader>cL", ListActiveLinters, desc = "Linters" },
+
+    -- Fuzzy finding / search
     { "<leader>f", group = "Find", icon = { icon = "󰍉 ", color = "azure" } },
-    --                                    ╭─────╮
-    --                                    │ Git │
-    --                                    ╰─────╯
-    { "<leader>g", group = "Git" },
-    { "<leader>gg", "<cmd>Neogit<cr>", desc = "NeoGit" },
-    --                                    ╭─────╮
-    --                                    │ gpt │
-    --                                    ╰─────╯
-    { "<C-g>", group = "GPT" },
-    --                                 ╭───────────╮
-    --                                 │ Interface │
-    --                                 ╰───────────╯
-    { "<leader>u", group = "Interface", icon = { icon = " ", color = "azure" } },
-    { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Colorize color codes" },
-    { "<leader>uH", "<cmd>set list!<CR>", desc = "Hidden Characters" },
-    { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Toggle Word Illumination" },
-    { "<leader>uk", "<cmd>set cursorline!<CR>", desc = "Toggle Cursor Line" },
-    { "<leader>um", "<cmd>Markview toggle<cr>", desc = "Markdown render" },
-    { "<leader>up", "<cmd>PickColor<CR>", desc = "Pick Color" },
-    { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo location list" },
-    { "<leader>uv", toggle_virtual_text, desc = "Virtual Text" },
-    --
-    -- Search
-    --
     { "<leader>s", group = "Search", icon = { icon = "󰍉 ", color = "azure" } },
 
-    --                                  ╭─────────╮
-    --                                  │ Window  │
-    --                                  ╰─────────╯
+    -- Git tools
+    { "<leader>g", group = "Git" },
+    { "<leader>gg", "<cmd>Neogit<cr>", desc = "NeoGit" },
+
+    -- GPT or AI tools
+    { "<C-g>", group = "GPT", desc = "GPT tools" },
+
+    -- UI toggles and enhancements
+    { "<leader>u", group = "Interface", icon = { icon = " ", color = "azure" } },
+    { "<leader>uC", "<cmd>ColorizerToggle<CR>", desc = "Toggle colorizer" },
+    { "<leader>uH", "<cmd>set list!<CR>", desc = "Toggle hidden characters" },
+    { "<leader>ui", "<cmd>IlluminateToggle<cr>", desc = "Toggle illumination" },
+    { "<leader>uk", "<cmd>set cursorline!<CR>", desc = "Toggle cursor line" },
+    { "<leader>um", "<cmd>Markview toggle<cr>", desc = "Toggle markdown preview" },
+    { "<leader>up", "<cmd>PickColor<CR>", desc = "Color picker" },
+    { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo list" },
+    { "<leader>uv", toggle_virtual_text, desc = "Toggle virtual text" },
+
+    -- Window management
     { "<leader>w", group = "Window" },
-    { "<leader>wc", "<cmd>close<cr>", desc = "Close" },
-    { "<leader>wh", "<cmd>split<cr>", desc = "Split horizontal" },
-    { "<leader>wo", "<cmd>only<cr>", desc = "Close all but not current" },
-    { "<leader>wv", "<cmd>vsplit<cr>", desc = "Split vertical" },
-    --                                  ╭─────────╮
-    --                                  │ Trouble │
-    --                                  ╰─────────╯
-    -- The mappings are done in the Trouble plugin configuration
+    { "<leader>wc", "<cmd>close<cr>", desc = "Close window" },
+    { "<leader>wh", "<cmd>split<cr>", desc = "Split horizontally" },
+    { "<leader>wo", "<cmd>only<cr>", desc = "Keep only current window" },
+    { "<leader>wv", "<cmd>vsplit<cr>", desc = "Split vertically" },
+
+    -- Trouble group (placeholder if used elsewhere)
     { "<leader>x", group = "Trouble", icon = { icon = "󰨰 ", color = "orange" } },
 })
