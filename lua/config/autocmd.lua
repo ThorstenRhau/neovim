@@ -6,63 +6,62 @@ end
 -- Function to close or quit Neovim
 local function close_or_quit()
     local win_count = #vim.api.nvim_list_wins()
-    local buf_count = #vim.api.nvim_list_bufs()
+    local listed_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 
-    if win_count == 1 and buf_count == 1 then
-        vim.cmd("qall!") -- Quit Neovim
+    if win_count == 1 and #listed_bufs <= 1 then
+        vim.cmd("qall!")
     elseif win_count == 1 then
         vim.notify("Cannot close the last window without quitting Neovim.", vim.log.levels.WARN)
     else
-        pcall(vim.api.nvim_command, "close") -- Close the current window
+        pcall(vim.api.nvim_command, "close")
     end
 end
 
--- -- Turn off paste mode when leaving insert
--- vim.api.nvim_create_autocmd("InsertLeave", {
---     group = augroup("insert_mode"),
---     pattern = "*",
---     callback = function()
---         vim.o.paste = false
---     end,
--- })
-
 -- Remove 'c', 'r', 'o' from formatoptions for all file types
--- No help with comments
 vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("remove_formatoptions_cro"),
+    group = augroup("formatoptions"),
     pattern = "*",
+    desc = "Remove auto-comment formatoptions",
     callback = function()
         vim.opt_local.formatoptions:remove({ "c", "r", "o" })
     end,
 })
 
--- Markdown settings: textwidth, colorcolumn, wrap, spell
+-- Markdown-specific settings
 vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("markdown_settings"),
+    group = augroup("markdown"),
     pattern = "markdown",
+    desc = "Set markdown textwidth/wrap/spell",
     callback = function()
         vim.bo.textwidth = 80
-        -- vim.wo.colorcolumn = "80"
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
     end,
 })
 
--- Close specific file types with 'q' key
+-- Git commit message settings
 vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("close_with_q"),
+    group = augroup("gitcommit"),
+    pattern = "gitcommit",
+    desc = "Set gitcommit formatting",
+    callback = function()
+        vim.bo.textwidth = 72
+        vim.wo.colorcolumn = "50,73"
+        vim.schedule(function()
+            vim.wo.spell = true
+            vim.wo.wrap = true
+        end)
+    end,
+})
+
+-- Close with 'q' in special buffers
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("q_close"),
     pattern = {
-        "checkhealth",
-        "git",
-        "help",
-        "lspinfo",
-        "man",
-        "notify",
-        "qf",
-        "snacks_dashboard",
-        "spectre_panel",
-        "startuptime",
+        "checkhealth", "git", "help", "lspinfo", "man",
+        "notify", "qf", "snacks_dashboard", "spectre_panel", "startuptime",
     },
+    desc = "Map 'q' to close for helper filetypes",
     callback = function(event)
         vim.bo[event.buf].buflisted = false
         vim.keymap.set("n", "q", close_or_quit, {
@@ -74,51 +73,43 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Resize splits when the window is resized
+-- Resize splits on window resize
 vim.api.nvim_create_autocmd("VimResized", {
-    group = augroup("resize_splits"),
+    group = augroup("resize"),
+    desc = "Auto resize splits",
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
 })
 
--- Check if we need to reload the file when it changes
+-- Reload file if changed externally
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     group = augroup("checktime"),
+    desc = "Check for file changes",
     callback = function()
-        vim.cmd.checktime()
+        vim.defer_fn(function()
+            vim.cmd.checktime()
+        end, 50)
     end,
 })
 
--- Highlight text on yank
+-- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
+    desc = "Highlight yanked text",
     callback = function()
         vim.highlight.on_yank()
     end,
 })
 
--- Git commit message settings
-vim.api.nvim_create_autocmd("FileType", {
-    group = augroup("commit_message_settings"),
-    pattern = "gitcommit",
-    callback = function()
-        vim.bo.textwidth = 72
-        vim.wo.colorcolumn = "50,73"
-        vim.schedule(function()
-            vim.wo.spell = true
-            vim.wo.wrap = true
-        end)
-    end,
-})
-
--- Automatically jump to last position
+-- Restore last cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {
-    group = augroup("auto-last-position"),
+    group = augroup("restore_cursor"),
+    desc = "Jump to last known position",
     callback = function(args)
-        local position = vim.api.nvim_buf_get_mark(args.buf, [["]])
+        local pos = vim.api.nvim_buf_get_mark(args.buf, [["]])
         local winid = vim.fn.bufwinid(args.buf)
-        pcall(vim.api.nvim_win_set_cursor, winid, position)
+        local line = math.min(pos[1], vim.api.nvim_buf_line_count(args.buf))
+        pcall(vim.api.nvim_win_set_cursor, winid, { line, pos[2] })
     end,
-    desc = "Auto jump to last position",
 })
