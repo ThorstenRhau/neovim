@@ -2,7 +2,6 @@
 ---@type LazySpec
 return {
     "stevearc/conform.nvim",
-    cmd = { "ConformInfo" },
     event = "LspAttach",
     keys = {
         {
@@ -14,11 +13,13 @@ return {
             desc = "Format buffer",
         },
     },
+    init = function()
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
     opts = {
         default_format_opts = {
-            lsp_format = "fallback",
+            lsp_fallback = true,
         },
-        -- Define formatters by filetype.
         formatters_by_ft = {
             css = { "prettier" },
             html = { "prettier" },
@@ -33,30 +34,62 @@ return {
             xml = { "xmlformatter" },
             yaml = { "yamlfmt" },
         },
-        -- Set up format-on-save
-        -- format_on_save = { timeout_ms = 5000 },
+        format_on_save = {
+            lsp_fallback = true,
+            timeout_ms = 5000,
+        },
         notify_on_error = true,
-        -- Customize formatters
         formatters = {
-            djlint = {
+            prettier = {
                 prepend_args = {
-                    "--quiet",
-                    "--reformat",
-                    "--preserve-leading-space",
-                    "--blank-line-after-tag",
-                    "--format-js",
-                    "--format-css",
-                    "--indent=2",
-                    "--max-line-length=100",
+                    "--print-width",
+                    "100",
+                    "--tab-width",
+                    "2",
+                    "--use-tabs",
+                    "false",
+                    "--single-quote",
+                    "true",
+                    "--trailing-comma",
+                    "es5",
+                    "--bracket-spacing",
+                    "true",
                 },
             },
+            stylua = {
+                prepend_args = {
+                    "--indent-type",
+                    "Spaces",
+                    "--indent-width",
+                    "4",
+                    "--quote-style",
+                    "AutoPreferDouble",
+                },
+            },
+            ruff_format = {
+                -- ruff format is mostly not configurable yet, but still explicit
+                prepend_args = {},
+            },
             shfmt = {
-                prepend_args = { "-i", "2" }, -- indent with two spaces
+                -- indent 2, switch case indent, simplify
+                prepend_args = { "-i", "2", "-ci", "-sr" },
+            },
+            taplo = {
+                -- taplo is opinionated; no args usually needed
+                prepend_args = {},
+            },
+            xmlformatter = {
+                prepend_args = {
+                    "--indent",
+                    "2",
+                    "--selfclose",
+                    "yes",
+                },
+            },
+            yamlfmt = {
+                -- yamlfmt is also mostly non-configurable
+                prepend_args = {},
             },
         },
     },
-    init = function()
-        -- If you want the formatexpr, here is the place to set it
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
 }
