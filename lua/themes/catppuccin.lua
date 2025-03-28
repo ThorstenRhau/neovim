@@ -1,32 +1,22 @@
--- Function to determine the preferred theme based on macOS light/dark mode
-local function getPreferredStyle()
+-- Determine preferred theme style from macOS appearance
+local function get_preferred_style()
     if vim.fn.executable("defaults") == 0 then
-        -- Fallback to "Dark" style if `defaults` is not available
-        return "night" -- Dark style
+        return "mocha" -- Default to dark
     end
 
-    local result = vim.fn.system("defaults read -g AppleInterfaceStyle")
-
-    -- Trim any trailing whitespace or newline characters
-    result = result:match("^%s*(.-)%s*$")
-
-    if result == "Dark" then
-        return "mocha" -- Dark style, alternatives are: storm, moon, and night
-    else
-        return "latte" -- Light style
-    end
+    local result = vim.fn.system("defaults read -g AppleInterfaceStyle"):match("^%s*(.-)%s*$")
+    return result == "Dark" and "mocha" or "latte"
 end
 
-local preferred_style = getPreferredStyle()
+local preferred_style = get_preferred_style()
 
----@module "lazy"
 ---@type LazySpec
 return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1100,
         lazy = false,
+        priority = 1100,
         opts = {
             flavour = preferred_style, -- latte, frappe, macchiato, mocha
             transparent_background = false,
@@ -45,7 +35,7 @@ return {
                 conditionals = {},
                 loops = {},
                 constants = { "bold" },
-                functions = { "bold, italic" },
+                functions = { "bold", "italic" },
                 keywords = { "italic" },
                 strings = {},
                 variables = { "bold" },
@@ -78,21 +68,22 @@ return {
                     enabled = true,
                     lsp = false,
                 },
-                blink_cmp = true,
+                cmp = true,
                 diffview = true,
                 fzf = true,
+                gitsigns = true,
                 lsp_trouble = true,
                 mason = true,
                 neogit = true,
                 noice = true,
+                notify = true,
                 pounce = true,
-                render_markdown = true,
                 semantic_tokens = true,
                 snacks = true,
+                telescope = true,
                 treesitter = true,
                 treesitter_context = true,
                 which_key = true,
-                -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
         },
     },
