@@ -3,10 +3,10 @@
 return {
     {
         "folke/trouble.nvim",
+        cmd = "Trouble",
         opts = {
-            mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-            auto_close = true, -- Close when last error is fixed
-            focus = true, -- Focus the window when opened
+            auto_close = true, -- Close Trouble when no items remain
+            focus = true, -- Focus the Trouble window on open
             preview = {
                 type = "float",
                 relative = "editor",
@@ -18,38 +18,36 @@ return {
                 zindex = 200,
             },
         },
-
-        cmd = "Trouble",
         keys = {
             {
                 "<leader>xX",
                 "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
+                desc = "Trouble: Diagnostics (Workspace)",
             },
             {
                 "<leader>xx",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
+                desc = "Trouble: Diagnostics (Buffer)",
             },
             {
                 "<leader>cs",
                 "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
+                desc = "Trouble: Symbols",
             },
             {
                 "<leader>co",
                 "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
+                desc = "Trouble: LSP References / Definitions",
             },
             {
                 "<leader>xl",
                 "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
+                desc = "Trouble: Location List",
             },
             {
                 "<leader>xq",
                 "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
+                desc = "Trouble: Quickfix List",
             },
         },
     },
