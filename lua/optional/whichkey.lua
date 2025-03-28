@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
     "folke/which-key.nvim",
-    dependencies = "echasnovski/mini.icons",
+    dependencies = { "echasnovski/mini.icons" },
     opts = {
         preset = "modern",
         delay = 300,
