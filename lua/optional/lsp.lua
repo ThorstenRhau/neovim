@@ -25,7 +25,11 @@ return {
         local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
-        local capabilities = require("blink.cmp").get_lsp_capabilities()
+        -- Base capabilities - let Neovim/blink handle defaults mostly
+        -- We still merge blink.cmp's capabilities and can set offsetEncoding if needed globally
+        local capabilities = vim.tbl_deep_extend("force", require("blink.cmp").get_lsp_capabilities(), {
+            offsetEncoding = { "utf-16" }, -- Keep if other things rely on it
+        })
 
         mason_lspconfig.setup({
             ensure_installed = {},
@@ -36,25 +40,21 @@ return {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(event)
                 local opts = { buffer = event.buf, silent = true, noremap = true }
-
--- stylua: ignore start
- local keymaps = {
-     { "n", "gC",         vim.lsp.buf.outgoing_calls,                                 "Outgoing Calls" },
-     { "n", "gD",         vim.lsp.buf.declaration,                                    "Goto Declaration" },
-     { "n", "gI",         vim.lsp.buf.incoming_calls,                                 "Incoming Calls" },
-     { "n", "gd",         vim.lsp.buf.definition,                                     "Goto Definition" },
-     { "n", "gl",         vim.diagnostic.open_float,                                  "Floating Diagnostic" },
-     { "n", "go",         vim.lsp.buf.type_definition,                                "Goto Type Definition" },
-     { "n", "[d",         function() vim.diagnostic.jump({ direction = "prev" }) end, "Prev Diagnostic" },
-     { "n", "]d",         function() vim.diagnostic.jump({ direction = "next" }) end, "Next Diagnostic" },
-
-     -- Explicit <leader> mappings (overriding built-ins for consistency)
-     { "n", "<leader>ca", vim.lsp.buf.code_action,                                    "Code Action" },
-     { "n", "<leader>cr", vim.lsp.buf.rename,                                         "Rename Symbol" },
-     { "n", "<leader>q",  vim.diagnostic.setloclist,                                  "Diagnostics List" },
- }
+                -- stylua: ignore start
+                local keymaps = {
+                    { "n", "gC",         vim.lsp.buf.outgoing_calls,                                 "Outgoing Calls" },
+                    { "n", "gD",         vim.lsp.buf.declaration,                                    "Goto Declaration" },
+                    { "n", "gI",         vim.lsp.buf.incoming_calls,                                 "Incoming Calls" },
+                    { "n", "gd",         vim.lsp.buf.definition,                                     "Goto Definition" },
+                    { "n", "gl",         vim.diagnostic.open_float,                                  "Floating Diagnostic" },
+                    { "n", "go",         vim.lsp.buf.type_definition,                                "Goto Type Definition" },
+                    { "n", "[d",         function() vim.diagnostic.jump({ direction = "prev" }) end, "Prev Diagnostic" },
+                    { "n", "]d",         function() vim.diagnostic.jump({ direction = "next" }) end, "Next Diagnostic" },
+                    { "n", "<leader>ca", vim.lsp.buf.code_action,                                    "Code Action" },
+                    { "n", "<leader>cr", vim.lsp.buf.rename,                                         "Rename Symbol" },
+                    { "n", "<leader>q",  vim.diagnostic.setloclist,                                  "Diagnostics List" },
+                }
                 -- stylua: ignore end
-
                 for _, map in ipairs(keymaps) do
                     vim.keymap.set(map[1], map[2], map[3], vim.tbl_extend("force", opts, { desc = map[4] }))
                 end
@@ -70,6 +70,7 @@ return {
         })
 
         mason_lspconfig.setup_handlers({
+            -- Default handler: pass the base capabilities
             function(server)
                 lspconfig[server].setup({
                     capabilities = capabilities,
@@ -79,12 +80,7 @@ return {
             ["jsonls"] = function()
                 lspconfig.jsonls.setup({
                     capabilities = capabilities,
-                    settings = {
-                        json = {
-                            schemas = schemastore.json.schemas(),
-                            validate = { enable = true },
-                        },
-                    },
+                    settings = { json = { schemas = schemastore.json.schemas(), validate = { enable = true } } },
                 })
             end,
 
@@ -109,10 +105,7 @@ return {
                     settings = {
                         Lua = {
                             runtime = { version = "LuaJIT" },
-                            workspace = {
-                                checkThirdParty = false,
-                                library = { vim.env.VIMRUNTIME },
-                            },
+                            workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME } },
                             telemetry = { enable = false },
                         },
                     },
@@ -136,6 +129,23 @@ return {
                             },
                         },
                     },
+                })
+            end,
+
+            ["ruff"] = function()
+                local ruff_capabilities = vim.deepcopy(capabilities)
+                ruff_capabilities.general = vim.tbl_deep_extend("force", ruff_capabilities.general or {}, {
+                    positionEncodings = { "utf-16" },
+                })
+
+                lspconfig.ruff.setup({
+                    capabilities = ruff_capabilities,
+                })
+            end,
+
+            ["harper_ls"] = function()
+                lspconfig.harper_ls.setup({
+                    capabilities = capabilities,
                 })
             end,
         })
