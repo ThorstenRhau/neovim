@@ -5,11 +5,8 @@ return {
     event = "VeryLazy",
     version = false,
     opts = {},
-    --              ╭─────────────────────────────────────────────────╮
-    --              │ Handling dependencies towards nvim-web-devicons │
-    --              ╰─────────────────────────────────────────────────╯
-    specs = {
-        { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+    dependencies = {
+        { "nvim-tree/nvim-web-devicons", optional = true, enabled = false },
     },
     init = function()
         package.preload["nvim-web-devicons"] = function()
