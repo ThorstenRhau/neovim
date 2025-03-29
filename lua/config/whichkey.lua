@@ -32,12 +32,14 @@ wk.add({
     { "<leader>,", "<cmd>b#<CR>", desc = "Switch buffer", icon = { icon = "󰯍 ", color = "yellow" } },
     { "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
     { "<leader>m", "<cmd>Mason<cr>", desc = "Mason - package manager", icon = "󰏖 " },
-    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file manager", icon = { icon = "󰏇 ", color = "grey" } },
+    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Oil - file explorer", icon = { icon = "󰏇 ", color = "grey" } },
     {
         "<leader>p",
         function()
             local ok, mini = pcall(require, "mini.jump2d")
-            if ok then mini.start() end
+            if ok then
+                mini.start()
+            end
         end,
         desc = "Pounce",
         icon = { icon = "󰿄 ", color = "purple" },
@@ -46,7 +48,9 @@ wk.add({
         "<leader>S",
         function()
             local ok, persistence = pcall(require, "persistence")
-            if ok then persistence.load() end
+            if ok then
+                persistence.load()
+            end
         end,
         desc = "Restore last session",
     },
@@ -59,7 +63,9 @@ wk.add({
         "<leader>bd",
         function()
             local ok, snacks = pcall(require, "snacks")
-            if ok then snacks.bufdelete() end
+            if ok then
+                snacks.bufdelete()
+            end
         end,
         desc = "Delete buffer",
     },
@@ -67,7 +73,9 @@ wk.add({
         "<leader>bO",
         function()
             local ok, snacks = pcall(require, "snacks")
-            if ok then snacks.bufdelete.other() end
+            if ok then
+                snacks.bufdelete.other()
+            end
         end,
         desc = "Delete all other buffers",
     },
@@ -75,7 +83,9 @@ wk.add({
         "<leader>bX",
         function()
             local ok, snacks = pcall(require, "snacks")
-            if ok then snacks.bufdelete.all() end
+            if ok then
+                snacks.bufdelete.all()
+            end
         end,
         desc = "Delete all buffers",
     },

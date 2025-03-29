@@ -14,12 +14,7 @@ return {
             notify = true,
         },
         dashboard = { enabled = false },
-        explorer = {
-            enabled = true,
-            git_status = { enabled = true },
-            live_search = { enabled = true },
-            file_watch = { enabled = true },
-        },
+        explorer = { enabled = false },
         git = { enabled = true },
         gitbrowse = { enabled = true },
         indent = { enabled = true },
@@ -83,7 +78,6 @@ return {
     -- Snacks.picker
     { "<leader>/",       function() Snacks.picker.grep() end,                 desc = "Grep" },
     { "<leader>:",       function() Snacks.picker.command_history() end,      desc = "Command History" },
-    { "<leader>e",       function() Snacks.picker.explorer() end,             desc = "File explorer" },
     { "<leader>n",       function() Snacks.picker.notifications() end,        desc = "Notification History" },
     { "<leader>U",       function() Snacks.picker.undo() end,                 desc = "Undo" },
     { "<leader><space>", function() Snacks.picker.files() end,                desc = "Find Files" },
