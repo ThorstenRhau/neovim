@@ -61,13 +61,24 @@ return {
             end,
         })
 
-        vim.diagnostic.config({
-            virtual_text = false,
+        local diagnostic_opts = {
             signs = true,
             underline = true,
+            virtual_text = false,
+            virtual_lines = false,
+            float = {
+                source = "always",
+                border = "rounded",
+                max_width = 100,
+                prefix = function(diagnostic)
+                    return string.format("[%s] ", diagnostic.source)
+                end,
+            },
             update_in_insert = false,
             severity_sort = true,
-        })
+        }
+
+        vim.diagnostic.config(diagnostic_opts)
 
         mason_lspconfig.setup_handlers({
             -- Default handler: pass the base capabilities

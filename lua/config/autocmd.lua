@@ -58,8 +58,16 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("q_close"),
     pattern = {
-        "checkhealth", "git", "help", "lspinfo", "man",
-        "notify", "qf", "snacks_dashboard", "spectre_panel", "startuptime",
+        "checkhealth",
+        "git",
+        "help",
+        "lspinfo",
+        "man",
+        "notify",
+        "qf",
+        "snacks_dashboard",
+        "spectre_panel",
+        "startuptime",
     },
     desc = "Map 'q' to close for helper filetypes",
     callback = function(event)
@@ -111,5 +119,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         local winid = vim.fn.bufwinid(args.buf)
         local line = math.min(pos[1], vim.api.nvim_buf_line_count(args.buf))
         pcall(vim.api.nvim_win_set_cursor, winid, { line, pos[2] })
+    end,
+})
+
+-- Show diagnostic float on cursor hover
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = augroup("diag_hover"),
+    pattern = "*",
+    desc = "Show diagnostic float on cursor hover",
+    callback = function()
+        if vim.fn.mode() ~= "n" then
+            return
+        end
+        vim.diagnostic.open_float(nil, {
+            scope = "cursor", -- [line|cursor]
+        })
     end,
 })
