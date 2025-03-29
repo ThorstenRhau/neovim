@@ -23,13 +23,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Lua module load (experimental)
-if vim.loader then vim.loader.enable() end
-
 -- Basic Neovim Settings
 vim.g.mapleader = " "
 vim.g.maplocalleader = "'"
 vim.opt.termguicolors = true
+
+-- Lua module load (experimental)
+if vim.loader then
+    vim.loader.enable()
+end
 
 local specs = {
     { import = "plugins" },
