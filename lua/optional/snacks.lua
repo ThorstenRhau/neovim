@@ -24,7 +24,7 @@ return {
         gitbrowse = { enabled = true },
         indent = { enabled = true },
         input = { enabled = true },
-        image = { enabled = false },
+        image = { enabled = true },
         notifier = {
             padding = true,
             sort = { "added" },
