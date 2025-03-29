@@ -48,8 +48,6 @@ return {
                     { "n", "gd",         vim.lsp.buf.definition,                                     "Goto Definition" },
                     { "n", "gl",         vim.diagnostic.open_float,                                  "Floating Diagnostic" },
                     { "n", "go",         vim.lsp.buf.type_definition,                                "Goto Type Definition" },
-                    { "n", "[d",         function() vim.diagnostic.jump({ direction = "prev" }) end, "Prev Diagnostic" },
-                    { "n", "]d",         function() vim.diagnostic.jump({ direction = "next" }) end, "Next Diagnostic" },
                     { "n", "<leader>ca", vim.lsp.buf.code_action,                                    "Code Action" },
                     { "n", "<leader>cr", vim.lsp.buf.rename,                                         "Rename Symbol" },
                     { "n", "<leader>q",  vim.diagnostic.setloclist,                                  "Diagnostics List" },
