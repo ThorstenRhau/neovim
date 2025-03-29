@@ -59,6 +59,7 @@ selene hg nvim lazygit imagemagick
 
 ```sh
 npm install -g neovim
+npm install -g @mermaid-js/mermaid-cli
 ```
 
 ### Cloning the repository
