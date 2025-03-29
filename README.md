@@ -62,7 +62,7 @@ npm install -g neovim
 npm install -g @mermaid-js/mermaid-cli
 ```
 
-> [!TIP] Run `npm update -g` periodically to keep your global Node.js packages up to date.
+> **Tip:** Run `npm update -g` periodically to keep your global Node.js packages up to date.
 
 ### Cloning the repository
 
