@@ -30,7 +30,7 @@ ligatures and the theme is [Tokyo Night](https://github.com/folke/tokyonight.nvi
 ### Optional plugins
 
 Before I maintained two configurations. One light weight and one fully featured. They have now been
-merged in to this configuration.
+merged into this configuration.
 
 The default is lightweight, to enable LSP, linting, formatting, and all the other plugins that are
 found in **lua/optional** you only need to set the environment variable **NVIM_OPTIONAL_PLUGINS** to
@@ -62,9 +62,11 @@ npm install -g neovim
 npm install -g @mermaid-js/mermaid-cli
 ```
 
+> **Tip:** Run `npm update -g` periodically to keep your global Node.js packages up to date.
+
 ### Cloning the repository
 
-When you have all the dependencies installed, clone the repo in to _~/.config/nvim/_
+When you have all the dependencies installed, clone the repo into _~/.config/nvim/_
 
 Example:
 
