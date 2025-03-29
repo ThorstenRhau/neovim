@@ -6,10 +6,10 @@ return {
     version = false,
     event = "VeryLazy",
     config = function()
-        local function safe_setup(mod)
+        local function safe_setup(mod, opts)
             local ok, plugin = pcall(require, "mini." .. mod)
             if ok and type(plugin.setup) == "function" then
-                plugin.setup()
+                plugin.setup(opts or {})
             end
         end
 
@@ -18,7 +18,6 @@ return {
             "align",
             "bracketed",
             "comment",
-            "jump2d",
             "operators",
             "pairs",
             "splitjoin",
@@ -26,6 +25,16 @@ return {
         }) do
             safe_setup(mod)
         end
+
+        -- Override jump2d setup to disable default mapping
+        safe_setup("jump2d", {
+            mappings = { start_jumping = "" }, -- disable default <CR>
+        })
+
+        -- Map <C-CR> instead of <CR> to start jump2d
+        vim.keymap.set("n", "<C-CR>", function()
+            require("mini.jump2d").start()
+        end, { desc = "MiniJump2d: start jumping" })
     end,
     keys = {
         -- stylua: ignore start
