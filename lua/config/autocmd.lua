@@ -121,18 +121,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         pcall(vim.api.nvim_win_set_cursor, winid, { line, pos[2] })
     end,
 })
-
--- Show diagnostic float on cursor hover
-vim.api.nvim_create_autocmd("CursorHold", {
-    group = augroup("diag_hover"),
-    pattern = "*",
-    desc = "Show diagnostic float on cursor hover",
-    callback = function()
-        if vim.fn.mode() ~= "n" then
-            return
-        end
-        vim.diagnostic.open_float(nil, {
-            scope = "cursor", -- [line|cursor]
-        })
-    end,
-})
