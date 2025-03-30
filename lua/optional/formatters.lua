@@ -95,8 +95,6 @@ return {
                 prepend_args = {
                     "--indent",
                     "2",
-                    "--selfclose",
-                    "yes",
                 },
             },
             yamlfmt = {
