@@ -2,7 +2,20 @@
 ---@type LazySpec
 return {
     "stevearc/conform.nvim",
-    event = "LspAttach",
+    ft = {
+        "css",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "python",
+        "sh",
+        "toml",
+        "typescript",
+        "xml",
+        "yaml",
+    },
     keys = {
         {
             "<leader>cf",
