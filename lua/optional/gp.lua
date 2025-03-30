@@ -2,7 +2,23 @@
 ---@type LazySpec
 return {
     "robitx/gp.nvim",
-    cmd = { "GpChatNew" },
+    cmd = {
+        "GpChatNew",
+        "GpAppend",
+        "GpPrepend",
+        "GpChatFinder",
+        "GpNextAgent",
+        "GpRewrite",
+        "GpStop",
+        "GpChatToggle",
+        "GpEnew",
+        "GpNew",
+        "GpPopup",
+        "GpTabnew",
+        "GpVnew",
+        "GpImplement",
+        "GpChatPaste",
+    },
     keys = {
         -- NORMAL mode
         { "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "New Chat tabnew", mode = "n" },
