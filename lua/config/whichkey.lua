@@ -5,6 +5,12 @@ local function toggle_virtual_text()
     print("Virtual text " .. (current_value and "disabled" or "enabled"))
 end
 
+-- Toggle virtual lines for diagnostics
+local function toggle_virtual_lines()
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
+end
+
 -- List active linters for the current filetype
 local function ListActiveLinters()
     local ok, lint = pcall(require, "lint")
@@ -116,7 +122,8 @@ wk.add({
     { "<leader>um", "<cmd>Markview toggle<cr>", desc = "Toggle markdown preview" },
     { "<leader>up", "<cmd>PickColor<CR>", desc = "Color picker" },
     { "<leader>ut", "<cmd>TodoLocList<cr>", desc = "Todo list" },
-    { "<leader>uv", toggle_virtual_text, desc = "Toggle virtual text" },
+    { "<leader>uV", toggle_virtual_text, desc = "Toggle virtual text" },
+    { "<leader>uv", toggle_virtual_lines, desc = "Toggle virtual lines" },
 
     -- Window management
     { "<leader>w", group = "Window" },
