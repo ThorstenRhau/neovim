@@ -113,7 +113,7 @@ Your goal is to boost developer productivity, confidence, and enjoyment within t
                     provider = "googleai",
                     name = "Gemini 2.0 Flash",
                     chat = true,
-                    command = false,
+                    command = true,
                     model = { model = "gemini-2.0-flash", temperature = 1.0, top_p = 1 },
                     system_prompt = prompt,
                 },
