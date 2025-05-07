@@ -34,6 +34,7 @@ return {
         mason_lspconfig.setup({
             ensure_installed = {},
             automatic_installation = false,
+            automatic_enable = true,
         })
 
         vim.api.nvim_create_autocmd("LspAttach", {
