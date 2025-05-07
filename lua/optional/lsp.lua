@@ -78,5 +78,80 @@ return {
         }
 
         vim.diagnostic.config(diagnostic_opts) -- Ensure this line applies the config
+
+        -- JSONLS
+        lspconfig.jsonls.setup({
+            capabilities = capabilities,
+            settings = {
+                json = {
+                    schemas = {},
+                    validate = { enable = true },
+                },
+            },
+        })
+
+        -- YAMLLS
+        lspconfig.yamlls.setup({
+            capabilities = capabilities,
+            settings = {
+                yaml = {
+                    schemaStore = { enable = false, url = "" },
+                    schemas = {},
+                    validate = true,
+                    completion = true,
+                    hover = true,
+                },
+            },
+        })
+
+        -- LUA_LS
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    runtime = { version = "LuaJIT" },
+                    workspace = {
+                        checkThirdParty = false,
+                        library = vim.api.nvim_get_runtime_file("", true),
+                    },
+                    telemetry = { enable = false },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                },
+            },
+        })
+
+        -- PYRIGHT
+        lspconfig.pyright.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+            end,
+            settings = {
+                python = {
+                    analysis = {
+                        typeCheckingMode = "basic", -- or "strict"
+                        autoSearchPaths = true,
+                        diagnosticMode = "openFilesOnly", -- or "workspace"
+                        useLibraryCodeForTypes = true,
+                    },
+                },
+            },
+        })
+
+        -- RUFF
+        do -- Use a do block to keep ruff_capabilities local
+            local ruff_capabilities = vim.deepcopy(capabilities)
+            ruff_capabilities.general = vim.tbl_deep_extend("force", ruff_capabilities.general or {}, {
+                positionEncodings = { "utf-16" }, -- Important for ruff-lsp
+            })
+
+            lspconfig.ruff.setup({
+                capabilities = ruff_capabilities,
+                on_attach = function(client, bufnr) end,
+            })
+        end
     end,
 }
