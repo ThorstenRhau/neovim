@@ -1,3 +1,4 @@
+-- lua/optional/lsp.lua
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -22,19 +23,59 @@ return {
         "yaml",
     },
     config = function()
-        local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local schemastore = require("schemastore")
-        -- Base capabilities - let Neovim/blink handle defaults mostly
-        -- We still merge blink.cmp's capabilities and can set offsetEncoding if needed globally
+
+        -- Base capabilities, extended with your offsetEncoding preference
         local capabilities = vim.tbl_deep_extend("force", require("blink.cmp").get_lsp_capabilities(), {
-            offsetEncoding = { "utf-16" }, -- Keep if other things rely on it
+            offsetEncoding = { "utf-16" },
         })
 
         mason_lspconfig.setup({
             ensure_installed = {},
             automatic_installation = false,
             automatic_enable = true,
+
+            handlers = {
+                -- Default handler: applies to all servers unless a specific handler is defined below.
+                function(server_name)
+                    require("lspconfig")[server_name].setup({
+                        capabilities = capabilities,
+                    })
+                end,
+
+                -- Specific handler for jsonls to include schemastore
+                jsonls = function()
+                    require("lspconfig").jsonls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            json = {
+                                schemas = schemastore.json.schemas(),
+                                validate = { enable = true },
+                            },
+                        },
+                    })
+                end,
+
+                -- Specific handler for yamlls to include schemastore
+                yamlls = function()
+                    require("lspconfig").yamlls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            yaml = {
+                                -- Disable yamlls' built-in schemaStore to use schemastore.nvim
+                                schemaStore = {
+                                    enable = false,
+                                    url = "",
+                                },
+                                schemas = schemastore.yaml.schemas(),
+                                validate = true,
+                                format = { enable = true },
+                            },
+                        },
+                    })
+                end,
+            },
         })
 
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -43,15 +84,15 @@ return {
                 local opts = { buffer = event.buf, silent = true, noremap = true }
                 -- stylua: ignore start
                 local keymaps = {
-                    { "n", "gC",         vim.lsp.buf.outgoing_calls,                                 "Outgoing Calls" },
-                    { "n", "gD",         vim.lsp.buf.declaration,                                    "Goto Declaration" },
-                    { "n", "gI",         vim.lsp.buf.incoming_calls,                                 "Incoming Calls" },
-                    { "n", "gd",         vim.lsp.buf.definition,                                     "Goto Definition" },
-                    { "n", "gl",         vim.diagnostic.open_float,                                  "Floating Diagnostic" },
-                    { "n", "go",         vim.lsp.buf.type_definition,                                "Goto Type Definition" },
-                    { "n", "<leader>ca", vim.lsp.buf.code_action,                                    "Code Action" },
-                    { "n", "<leader>cr", vim.lsp.buf.rename,                                         "Rename Symbol" },
-                    { "n", "<leader>q",  vim.diagnostic.setloclist,                                  "Diagnostics List" },
+                    { "n", "gC",         vim.lsp.buf.outgoing_calls,  "Outgoing Calls" },
+                    { "n", "gD",         vim.lsp.buf.declaration,     "Goto Declaration" },
+                    { "n", "gI",         vim.lsp.buf.incoming_calls,  "Incoming Calls" },
+                    { "n", "gd",         vim.lsp.buf.definition,      "Goto Definition" },
+                    { "n", "gl",         vim.diagnostic.open_float,   "Floating Diagnostic" },
+                    { "n", "go",         vim.lsp.buf.type_definition, "Goto Type Definition" },
+                    { "n", "<leader>ca", vim.lsp.buf.code_action,     "Code Action" },
+                    { "n", "<leader>cr", vim.lsp.buf.rename,          "Rename Symbol" },
+                    { "n", "<leader>q",  vim.diagnostic.setloclist,   "Diagnostics List" },
                 }
                 -- stylua: ignore end
                 for _, map in ipairs(keymaps) do
@@ -77,6 +118,6 @@ return {
             severity_sort = true,
         }
 
-        vim.diagnostic.config(diagnostic_opts) -- Ensure this line applies the config
+        vim.diagnostic.config(diagnostic_opts)
     end,
 }
