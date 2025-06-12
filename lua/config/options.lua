@@ -68,11 +68,6 @@ opt.wildignore:append({
     "*/.venv/*",
     "*/venv/*",
 })
-if vim.fn.executable("rg") == 1 then
-    opt.grepprg = "rg --vimgrep --smart-case --follow"
-else
-    opt.grepprg = "grep -n $* /dev/null"
-end
 -- Add asterisks in block comments
 opt.formatoptions:append({ "r" })
 
