@@ -88,60 +88,30 @@ Your goal is to boost developer productivity, confidence, and enjoyment within t
         return {
             providers = {
                 openai = {
-                    disable = true,
+                    disable = false,
                     endpoint = "https://api.openai.com/v1/chat/completions",
                     secret = os.getenv("OPENAI_API_KEY"),
                     model = "gpt-4o-mini",
                     temperature = 0.2,
                     max_tokens = 32768,
                 },
-                ollama = {
-                    disable = true,
-                    endpoint = "http://127.0.0.1:11434",
-                    model = "qwen2.5-coder:14b",
-                    temperature = 0.2,
-                    max_tokens = 4096,
-                },
-                googleai = {
-                    disable = false,
-                    endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
-                    secret = os.getenv("GOOGLEAI_API_KEY"),
-                },
             },
             agents = {
                 {
-                    provider = "googleai",
-                    name = "Gemini 2.0 Flash",
+                    provider = "openai",
+                    disable = false,
+                    name = "GPT 4.1 Nano",
                     chat = true,
                     command = true,
-                    model = { model = "gemini-2.0-flash", temperature = 1.0, top_p = 1 },
+                    model = { model = "gpt-4.1-nano", temperature = 1.0, top_p = 1 },
                     system_prompt = prompt,
                 },
-                {
-                    name = "CodeGemini",
-                    disable = true,
-                },
-                {
-                    name = "ChatGemini",
-                    disable = true,
-                },
-                -- {
-                --     name = "GPT-4o Mini",
-                --     provider = "openai",
-                --     chat = true,
-                --     command = true,
-                --     model = "gpt-4o-mini",
-                --     system_prompt = prompt,
-                --     default = true,
-                -- },
-                -- {
-                --     name = "Ollama Coder",
-                --     provider = "ollama",
-                --     chat = true,
-                --     command = true,
-                --     model = "qwen2.5-coder:14b",
-                --     system_prompt = prompt,
-                -- },
+            },
+            chat = {
+                enabled = false,
+            },
+            command = {
+                enabled = false,
             },
         }
     end,
