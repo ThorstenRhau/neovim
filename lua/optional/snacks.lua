@@ -3,7 +3,8 @@
 return {
     "folke/snacks.nvim",
     priority = 1000,
-    lazy = false,
+    -- Defer loading of Snacks until after startup
+    event = "VeryLazy",
 
     ---@module 'snacks'
     ---@type snacks.Config

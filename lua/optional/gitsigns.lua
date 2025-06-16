@@ -2,7 +2,8 @@
 ---@type LazySpec
 return {
     "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufWritePre" },
+    -- Delay git integration until files are opened
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "Gitsigns" },
     keys = {
         { "<leader>gB", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
