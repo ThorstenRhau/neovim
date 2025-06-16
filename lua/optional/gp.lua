@@ -92,7 +92,7 @@ Your goal is to boost developer productivity, confidence, and enjoyment within t
                     endpoint = "https://api.openai.com/v1/chat/completions",
                     secret = os.getenv("OPENAI_API_KEY"),
                     model = "gpt-4o-mini",
-                    temperature = 0.2,
+                    temperature = 1.0,
                     max_tokens = 32768,
                 },
             },
