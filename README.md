@@ -54,7 +54,7 @@ I use macOS so here are the instructions for how to install dependencies with ho
 
 ```sh
 brew install ripgrep fd cmake git node wget shellcheck python3 \
-selene hg nvim lazygit imagemagick
+selene hg nvim lazygit imagemagick gs
 ```
 
 ```sh
