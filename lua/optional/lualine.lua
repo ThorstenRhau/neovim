@@ -4,8 +4,7 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         enabled = true,
-        -- Load statusline late to improve startup time
-        event = "VeryLazy",
+        event = { "BufRead", "BufNewFile" },
         dependencies = {
             { "echasnovski/mini.icons", lazy = true },
         },
