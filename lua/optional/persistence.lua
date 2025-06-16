@@ -1,7 +1,7 @@
 return {
     "folke/persistence.nvim",
     -- Only load session management when first needed
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
         dir = vim.fn.stdpath("state") .. "/sessions/",
         options = { "buffers", "curdir", "tabpages", "winsize" },
