@@ -16,6 +16,7 @@ return {
         ensure_installed = {
             "bashls",
             "eslint_d",
+            "fish-lsp",
             "harper_ls",
             "html",
             "jsonlint",
