@@ -9,6 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
     },
     ft = {
+        "fish",
         "html",
         "javascript",
         "json",
