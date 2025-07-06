@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
     "robitx/gp.nvim",
+    enabled = false,
     cmd = {
         "GpChatNew",
         "GpAppend",
