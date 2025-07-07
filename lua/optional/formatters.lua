@@ -47,10 +47,11 @@ return {
             xml = { "xmlformatter" },
             yaml = { "yamlfmt" },
         },
-        format_on_save = {
-            lsp_fallback = true,
-            timeout_ms = 5000,
-        },
+        -- format_on_save = {
+        --     lsp_fallback = true,
+        --     timeout_ms = 5000,
+        -- },
+        format_on_save = false,
         notify_on_error = true,
         formatters = {
             prettier = {
