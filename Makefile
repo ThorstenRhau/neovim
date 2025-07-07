@@ -1,17 +1,18 @@
-SHELL := /usr/bin/env bash
-ROOT   := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+SHELL   := /usr/bin/env bash
+ROOT    := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC := $(ROOT)/.stylua.toml
+NVIM    := nvim --headless -Es -u $(ROOT)/init.lua
 
 .PHONY: all format check
 
 all: format check
 
+# Format all Lua files according to .stylua.toml
 format:
-	stylua init.lua lua/ --color auto --config-path $(STYLUAC)
+	@stylua --config-path "$(STYLUAC)" "$(ROOT)"
 
+# Start Neovim headless, load Lazy and all plugins, then quit
 check:
-	nvim --headless -u $(ROOT)/init.lua \
-	  "+Lazy! sync" \
-	  '+lua print(vim.inspect(require("lazy").stats()))' \
-	  +qa
-
+	$(NVIM) \
+	  -c 'silent! Lazy! check' \
+	  -c 'qall!'
