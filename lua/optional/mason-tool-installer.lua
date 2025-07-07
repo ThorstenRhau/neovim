@@ -15,6 +15,7 @@ return {
         auto_update = true,
         ensure_installed = {
             "bashls",
+            "checkmake",
             "eslint_d",
             "fish-lsp",
             "harper_ls",
