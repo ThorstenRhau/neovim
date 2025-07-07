@@ -3,7 +3,7 @@ ROOT    := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC := $(ROOT)/.stylua.toml
 NVIM    := nvim --headless -Es -u $(ROOT)/init.lua
 
-.PHONY: all format check
+.PHONY: all check clean format test
 
 all: format check
 
