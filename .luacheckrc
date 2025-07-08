@@ -13,14 +13,4 @@ new_globals = {
 }
 
 include_files = { "lua/**/*.lua", "init.lua" }
-exclude_files = { "README.md", "docs/*.md", "tests/data/*.lua" }
-
-files["tests/*.lua"] = {
-    std = "luajit+busted",
-    max_line_length = false,
-}
-
-files["vendor/**"] = {
-    std = "none",
-    globals = {},
-}
+exclude_files = { "README.md" }
