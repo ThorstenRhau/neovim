@@ -1,7 +1,8 @@
-SHELL   := /usr/bin/env bash
-ROOT    := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-STYLUAC := $(ROOT)/.stylua.toml
-NVIM    := nvim --headless -Es -u $(ROOT)/init.lua
+SHELL     := /usr/bin/env bash
+ROOT      := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+STYLUAC   := $(ROOT)/.stylua.toml
+CHECKLUAC := $(ROOT)/.luacheckrc
+NVIM      := nvim --headless -Es -u $(ROOT)/init.lua
 
 .PHONY: all check clean format test
 
@@ -20,5 +21,5 @@ check:
 
 # Lint all Lua files
 lint:
-	@luacheck --config .luacheckrc "$(ROOT)"
+	@luacheck --config "$(CHECKLUAC)" "$(ROOT)"
 
