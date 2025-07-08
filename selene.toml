@@ -4,7 +4,3 @@ std = "neovim"
 lowercase_global = "allow"
 mixed_table      = "allow"
 unused_variable  = "allow"
-
-[globals]
-MiniSplitjoin = true
-Snacks        = true
