@@ -37,10 +37,15 @@ return {
         end, { desc = "MiniJump2d: start jumping" })
     end,
     keys = {
-        -- stylua: ignore start
-        { "ga",         desc = "Align text",                   mode = { "v" } },
-        { "gA",         desc = "Align text interactive",       mode = { "v" } },
-        { "<leader>cj", function() MiniSplitjoin.toggle() end, desc = "Split/Join text", mode = { "v", "n" } },
-        -- stylua: ignore end
+        { "ga", desc = "Align text", mode = { "v" } },
+        { "gA", desc = "Align text interactive", mode = { "v" } },
+        {
+            "<leader>cj",
+            function()
+                require("mini").MiniSplitjoin.toggle()
+            end,
+            desc = "Split/Join text",
+            mode = { "v", "n" },
+        },
     },
 }
