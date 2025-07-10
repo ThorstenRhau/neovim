@@ -75,9 +75,9 @@ return {
           '--indent-type',
           'Spaces',
           '--indent-width',
-          '4',
+          '2',
           '--quote-style',
-          'AutoPreferDouble',
+          'AutoPreferSingle',
         },
       },
       ruff_format = {
