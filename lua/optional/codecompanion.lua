@@ -41,25 +41,4 @@ return {
       cmd = { adapter = 'openai' },
     },
   },
-  config = function(_, opts)
-    require('codecompanion').setup(opts)
-    local tools = require('codecompanion.strategies.chat.ui.tools')
-    local original = tools.create_fold
-
-    tools.create_fold = function(bufnr, start_line)
-      local win = vim.api.nvim_get_current_win()
-      vim.api.nvim_win_call(win, function()
-        local old = vim.wo[win].foldmethod
-        vim.wo[win].foldmethod = 'manual'
-
-        pcall(original, bufnr, start_line)
-
-        vim.defer_fn(function()
-          if vim.api.nvim_win_is_valid(win) then
-            vim.wo[win].foldmethod = old
-          end
-        end, 50)
-      end)
-    end
-  end,
 }
