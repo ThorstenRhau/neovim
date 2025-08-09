@@ -23,14 +23,15 @@ return {
       openai = function()
         return require('codecompanion.adapters').extend('openai', {
           env = { api_key = vim.env.OPENAI_API_KEY },
-          parameters = {
-            model = 'gpt-4.1-mini',
-            temperature = 0.1,
+          opts = {
             stream = true,
-            max_tokens = 8192,
-            top_p = 1,
-            presence_penalty = 0,
-            frequency_penalty = 0,
+            verbosity = 'low',
+            reasoning_effort = 'medium',
+          },
+          schema = {
+            model = {
+              default = 'gpt-5-nano',
+            },
           },
         })
       end,
