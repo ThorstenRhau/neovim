@@ -19,23 +19,31 @@ return {
     { '<leader>cX', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Actions Palette' },
   },
   opts = {
+
     adapters = {
-      openai = function()
-        return require('codecompanion.adapters').extend('openai', {
-          env = { api_key = vim.env.OPENAI_API_KEY },
-          opts = {
-            stream = true,
-            verbosity = 'low',
-            reasoning_effort = 'medium',
-          },
-          schema = {
-            model = {
-              default = 'gpt-5-nano',
+      http = {
+        openai = function()
+          return require('codecompanion.adapters').extend('openai', {
+            env = { api_key = vim.env.OPENAI_API_KEY },
+            opts = {
+              stream = true,
+              -- verbosity = 'low',
+              -- reasoning_effort = 'low', -- Allowed options are: high, medium, low, none
             },
-          },
-        })
-      end,
+            schema = {
+              model = {
+                default = 'gpt-5-nano',
+              },
+              params = {
+                temperature = 0.2,
+                max_output_tokens = 8192,
+              },
+            },
+          })
+        end,
+      },
     },
+
     strategies = {
       chat = { adapter = 'openai' },
       inline = { adapter = 'openai' },
