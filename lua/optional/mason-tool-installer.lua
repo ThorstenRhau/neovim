@@ -18,7 +18,6 @@ return {
       'checkmake',
       'eslint_d',
       'fish-lsp',
-      'harper_ls',
       'html',
       'jsonlint',
       'jsonls',
