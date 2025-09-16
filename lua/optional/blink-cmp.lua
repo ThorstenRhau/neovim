@@ -3,7 +3,7 @@
 return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets' },
-  version = '*',
+  version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
 
   ---@module 'blink.cmp'
@@ -18,13 +18,13 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 250,
-        update_delay_ms = 50,
         treesitter_highlighting = true,
+        update_delay_ms = 50,
         window = { border = 'rounded' },
       },
       list = {
         selection = {
-          preselect = false,
+          preselect = true,
           auto_insert = false,
         },
       },
@@ -38,39 +38,16 @@ return {
           treesitter = { 'lsp' },
         },
       },
+      trigger = { show_in_snippet = false },
     },
 
-    -- My super-TAB configuration
     keymap = {
-      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ['<C-e>'] = { 'hide', 'fallback' },
-      ['<CR>'] = { 'accept', 'fallback' },
-      ['<Tab>'] = {
-        function(cmp)
-          return cmp.select_next()
-        end,
-        'snippet_forward',
-        'fallback',
-      },
-      ['<S-Tab>'] = {
-        function(cmp)
-          return cmp.select_prev()
-        end,
-        'snippet_backward',
-        'fallback',
-      },
-      ['<Up>'] = { 'select_prev', 'fallback' },
-      ['<Down>'] = { 'select_next', 'fallback' },
-      ['<C-p>'] = { 'select_prev', 'fallback' },
-      ['<C-n>'] = { 'select_next', 'fallback' },
-      ['<C-up>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-down>'] = { 'scroll_documentation_down', 'fallback' },
+      preset = 'super-tab',
     },
 
-    -- Experimental signature help support
     signature = {
       enabled = true,
-      window = { border = 'rounded' },
+      window = { border = 'rounded', show_documentation = false },
     },
 
     sources = {
@@ -80,11 +57,11 @@ return {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
           -- Make lazydev completions top priority (see `:h blink.cmp`)
-          score_offset = 100,
+          score_offset = 1000,
         },
         lsp = {
-          min_keyword_length = 2, -- Number of characters to trigger provider
-          score_offset = 0, -- Boost/penalize the score of the items
+          min_keyword_length = 2,
+          score_offset = 0,
         },
         path = {
           min_keyword_length = 0,
