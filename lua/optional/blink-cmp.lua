@@ -13,6 +13,10 @@ return {
       use_nvim_cmp_as_default = false,
       nerd_font_variant = 'normal',
     },
+    cmdline = {
+      keymap = { preset = 'inherit' },
+      completion = { menu = { auto_show = true } },
+    },
     completion = {
       accept = { auto_brackets = { enabled = true } },
       documentation = {
