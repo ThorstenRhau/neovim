@@ -29,15 +29,15 @@ return {
   ---@type tokyonight.Config
   opts = {
     style = preferred_style,
-    transparent = false,
+    transparent = true,
     styles = {
       comments = { italic = true },
       keywords = { bold = true },
       functions = {},
       variables = {},
       types = { bold = true },
-      sidebars = 'dark',
-      floats = 'dark',
+      sidebars = 'transparent',
+      floats = 'transparent',
     },
     day_brightness = 0.3,
     dim_inactive = true,
