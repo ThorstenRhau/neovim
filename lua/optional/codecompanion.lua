@@ -19,7 +19,6 @@ return {
     { '<leader>cX', '<cmd>CodeCompanionActions<cr>', desc = 'CodeCompanion Actions Palette' },
   },
   opts = {
-
     adapters = {
       http = {
         openai = function()
