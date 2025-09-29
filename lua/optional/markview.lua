@@ -9,6 +9,8 @@ return {
   },
   opts = {
     preview = {
+      filetypes = { 'markdown', 'codecompanion' },
+      ignore_buftypes = {},
       icon_provider = nil, -- use global mini.icons setting
     },
   },
