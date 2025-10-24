@@ -42,7 +42,7 @@ return {
     {
       '<leader>cj',
       function()
-        require('mini').MiniSplitjoin.toggle()
+        require('mini.splitjoin').toggle()
       end,
       desc = 'Split/Join text',
       mode = { 'v', 'n' },

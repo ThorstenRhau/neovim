@@ -115,9 +115,36 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup('restore_cursor'),
   desc = 'Jump to last known position',
   callback = function(args)
-    local pos = vim.api.nvim_buf_get_mark(args.buf, [["]])
-    local winid = vim.fn.bufwinid(args.buf)
-    local line = math.min(pos[1], vim.api.nvim_buf_line_count(args.buf))
-    pcall(vim.api.nvim_win_set_cursor, winid, { line, pos[2] })
+    if vim.bo[args.buf].buftype ~= '' then
+      return
+    end
+    if vim.tbl_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
+      return
+    end
+
+    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    local line = mark[1]
+    local col = mark[2]
+
+    if line <= 0 then
+      return
+    end
+
+    local line_count = vim.api.nvim_buf_line_count(args.buf)
+    if line > line_count then
+      line = line_count
+    end
+    if line == 0 then
+      return
+    end
+
+    local line_text = vim.api.nvim_buf_get_lines(args.buf, line - 1, line, true)[1] or ''
+    local target_col = math.max(math.min(col, #line_text), 0)
+
+    if vim.api.nvim_get_current_buf() ~= args.buf then
+      return
+    end
+
+    pcall(vim.api.nvim_win_set_cursor, 0, { line, target_col })
   end,
 })

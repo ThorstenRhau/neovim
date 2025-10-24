@@ -35,15 +35,22 @@ return {
 
     vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {
       group = lint_augroup,
-      callback = function()
-        if vim.bo.modified then
-          lint.try_lint()
+      callback = function(event)
+        local bufnr = event.buf
+        if vim.bo[bufnr].buftype ~= '' then
+          return
         end
+        local filetype = vim.bo[bufnr].filetype
+        local ft_linters = lint.linters_by_ft[filetype]
+        if not ft_linters or vim.tbl_isempty(ft_linters) then
+          return
+        end
+        lint.try_lint(nil, { bufnr = bufnr })
       end,
     })
 
     vim.keymap.set('n', '<leader>cl', function()
-      lint.try_lint()
+      lint.try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
     end, { desc = 'Trigger linting for current file' })
   end,
 }
