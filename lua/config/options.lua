@@ -12,7 +12,7 @@ o.cmdwinheight = 10
 o.completeopt = 'menu,menuone,noselect'
 o.cursorline = true
 o.foldenable = false
-o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldmethod = 'expr'
@@ -38,14 +38,14 @@ o.smarttab = true
 o.smoothscroll = true
 o.splitbelow = true
 o.synmaxcol = 200
-o.tabline = nil
+o.tabline = ''
 o.updatetime = 250
 o.wildmenu = true
 o.wildmode = 'longest:full,full'
 o.wildoptions = 'pum'
 o.winblend = 0
 o.wrap = false
-opt.backspace = { 'start', 'eol', 'indent', 'nostop' }
+opt.backspace = { 'indent', 'eol', 'start' }
 opt.path:append({ '**' })
 opt.spelllang = { 'en', 'sv' }
 opt.wildignore:append({
