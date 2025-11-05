@@ -43,9 +43,13 @@ return {
       },
       undo = {
         enabled = true,
-        mappings = {
-          ['<C-y>'] = 'yank_added',
-          ['<C-S-y>'] = 'yank_deleted',
+        win = {
+          input = {
+            keys = {
+              ['<C-y>'] = { 'yank_add', mode = { 'n', 'i' } },
+              ['<C-S-y>'] = { 'yank_del', mode = { 'n', 'i' } },
+            },
+          },
         },
       },
     },
@@ -87,7 +91,7 @@ return {
     { "<leader>fg", function() require("snacks").picker.git_files() end, desc = "Find Git Files" },
     { "<leader>fr", function() require("snacks").picker.recent() end, desc = "Recent" },
     -- Git
-    { "<leader>gL", function() require("snacks").picker.git_log() end, desc = "Git Log" },
+    { "<leader>gP", function() require("snacks").picker.git_log() end, desc = "Git Log Picker" },
     { "<leader>gs", function() require("snacks").picker.git_status() end, desc = "Git Status" },
     -- Grep
     { "<leader>sb", function() require("snacks").picker.lines() end, desc = "Buffer Lines" },
