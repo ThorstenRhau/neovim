@@ -30,3 +30,7 @@ map('n', '<esc>', '<cmd>noh<cr><esc>', { desc = 'Clear hlsearch', silent = true 
 -- Optional: Buffer navigation
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer', silent = true })
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev buffer', silent = true })
+
+-- Disable yank/copy for 'x' and 'X' (backward yank)
+map('n', 'x', '"_x', { noremap = true, silent = true })
+map('n', 'X', '"_X', { noremap = true, silent = true })
