@@ -42,7 +42,7 @@ return {
         end
         local filetype = vim.bo[bufnr].filetype
         local ft_linters = lint.linters_by_ft[filetype]
-        if not ft_linters or vim.tbl_isempty(ft_linters) then
+        if not ft_linters or next(ft_linters) == nil then
           return
         end
         lint.try_lint(nil, { bufnr = bufnr })
