@@ -53,55 +53,6 @@ return {
     -- },
     format_on_save = false,
     notify_on_error = true,
-    formatters = {
-      prettier = {
-        prepend_args = {
-          '--print-width',
-          '100',
-          '--tab-width',
-          '2',
-          '--use-tabs',
-          'false',
-          '--single-quote',
-          'true',
-          '--trailing-comma',
-          'es5',
-          '--bracket-spacing',
-          'true',
-        },
-      },
-      stylua = {
-        prepend_args = {
-          '--indent-type',
-          'Spaces',
-          '--indent-width',
-          '2',
-          '--quote-style',
-          'AutoPreferSingle',
-        },
-      },
-      ruff_format = {
-        -- ruff format is mostly not configurable yet, but still explicit
-        prepend_args = {},
-      },
-      shfmt = {
-        -- indent 2, switch case indent, simplify
-        prepend_args = { '-i', '2', '-ci', '-sr' },
-      },
-      taplo = {
-        -- taplo is opinionated; no args usually needed
-        prepend_args = {},
-      },
-      xmlformatter = {
-        prepend_args = {
-          '--indent',
-          '2',
-        },
-      },
-      yamlfmt = {
-        -- yamlfmt is also mostly non-configurable
-        prepend_args = {},
-      },
-    },
+
   },
 }
