@@ -1,11 +1,6 @@
--- Determine preferred theme style from macOS appearance
+-- Determine preferred theme style from vim.o.background
 local function get_preferred_style()
-  if vim.fn.executable('defaults') == 0 then
-    return 'mocha' -- Default to dark
-  end
-
-  local result = vim.fn.system('defaults read -g AppleInterfaceStyle'):match('^%s*(.-)%s*$')
-  return result == 'Dark' and 'mocha' or 'latte'
+  return vim.o.background == 'light' and 'latte' or 'mocha'
 end
 
 local preferred_style = get_preferred_style()

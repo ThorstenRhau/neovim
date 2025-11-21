@@ -1,20 +1,6 @@
--- Function to determine the preferred theme based on macOS light/dark mode
+-- Function to determine the preferred theme based on vim.o.background
 local function getPreferredStyle()
-  if vim.fn.executable('defaults') == 0 then
-    -- Fallback to "Dark" style if `defaults` is not available
-    return 'night' -- Dark style
-  end
-
-  local result = vim.fn.system('defaults read -g AppleInterfaceStyle')
-
-  -- Trim any trailing whitespace or newline characters
-  result = result:match('^%s*(.-)%s*$')
-
-  if result == 'Dark' then
-    return 'wave' -- Dark style, alternatives are: storm, moon, and night
-  else
-    return 'lotus' -- Light style
-  end
+  return vim.o.background == 'light' and 'lotus' or 'wave'
 end
 
 local preferred_style = getPreferredStyle()
