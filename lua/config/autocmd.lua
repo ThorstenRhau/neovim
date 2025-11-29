@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     if vim.bo[args.buf].buftype ~= '' then
       return
     end
-    if vim.tbl_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
+    if vim.list_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
       return
     end
 
