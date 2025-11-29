@@ -4,7 +4,7 @@ return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets' },
   version = '1.*',
-  event = { 'InsertEnter', 'CmdlineEnter' },
+  lazy = false,
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -16,9 +16,22 @@ return {
     cmdline = {
       keymap = { preset = 'inherit' },
       completion = { menu = { auto_show = true } },
+      sources = function()
+        local type = vim.fn.getcmdtype()
+        -- Search
+        if type == '/' or type == '?' then
+          return { 'buffer' }
+        end
+        -- Commands
+        if type == ':' then
+          return { 'cmdline', 'path' }
+        end
+        return {}
+      end,
     },
     completion = {
       accept = { auto_brackets = { enabled = true } },
+      ghost_text = { enabled = true },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 250,
