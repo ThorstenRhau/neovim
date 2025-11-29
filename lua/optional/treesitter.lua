@@ -3,9 +3,6 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'windwp/nvim-ts-autotag',
-    },
     version = false,
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -20,9 +17,6 @@ return {
       sync_install = false,
       ignore_install = {},
       auto_install = true,
-      autotag = {
-        enable = true,
-      },
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
