@@ -85,15 +85,9 @@ return {
         local opts = { buffer = event.buf, silent = true, noremap = true }
                 -- stylua: ignore start
                 local keymaps = {
-                    { "n", "gC",         vim.lsp.buf.outgoing_calls,  "Outgoing Calls" },
-                    { "n", "gD",         vim.lsp.buf.declaration,     "Goto Declaration" },
-                    { "n", "gI",         vim.lsp.buf.incoming_calls,  "Incoming Calls" },
-                    { "n", "gd",         vim.lsp.buf.definition,      "Goto Definition" },
-                    { "n", "gl",         vim.diagnostic.open_float,   "Floating Diagnostic" },
-                    { "n", "go",         vim.lsp.buf.type_definition, "Goto Type Definition" },
-                    { "n", "<leader>ca", vim.lsp.buf.code_action,     "Code Action" },
-                    { "n", "<leader>cr", vim.lsp.buf.rename,          "Rename Symbol" },
-                    { "n", "<leader>q",  vim.diagnostic.setloclist,   "Diagnostics List" },
+                    { "n", "<leader>ca", vim.lsp.buf.code_action,   "Code Action" },
+                    { "n", "<leader>cr", vim.lsp.buf.rename,        "Rename Symbol" },
+                    { "n", "<leader>q",  vim.diagnostic.setloclist, "Diagnostics List" },
                 }
         -- stylua: ignore end
         for _, map in ipairs(keymaps) do
