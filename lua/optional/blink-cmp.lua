@@ -68,7 +68,7 @@ return {
     },
 
     sources = {
-      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'omni' },
       providers = {
         lazydev = {
           name = 'LazyDev',
@@ -89,6 +89,10 @@ return {
         buffer = {
           min_keyword_length = 4,
           max_items = 5,
+        },
+        omni = {
+          name = 'Omni',
+          min_keyword_length = 2,
         },
       },
     },
