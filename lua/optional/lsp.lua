@@ -87,7 +87,6 @@ return {
                 local keymaps = {
                     { "n", "<leader>ca", vim.lsp.buf.code_action,   "Code Action" },
                     { "n", "<leader>cr", vim.lsp.buf.rename,        "Rename Symbol" },
-                    { "n", "<leader>q",  vim.diagnostic.setloclist, "Diagnostics List" },
                 }
         -- stylua: ignore end
         for _, map in ipairs(keymaps) do
