@@ -14,8 +14,10 @@ return {
   opts = {
     auto_update = true,
     ensure_installed = {
+      'bash-debug-adapter',
       'bashls',
       'checkmake',
+      'debugpy',
       'eslint_d',
       'fish-lsp',
       'html',
