@@ -4,7 +4,7 @@ return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets' },
   version = '1.*',
-  lazy = false,
+  event = { 'InsertEnter', 'CmdlineEnter' },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -16,18 +16,6 @@ return {
     cmdline = {
       keymap = { preset = 'inherit' },
       completion = { menu = { auto_show = true } },
-      sources = function()
-        local type = vim.fn.getcmdtype()
-        -- Search
-        if type == '/' or type == '?' then
-          return { 'buffer' }
-        end
-        -- Commands
-        if type == ':' then
-          return { 'cmdline', 'path' }
-        end
-        return {}
-      end,
     },
     completion = {
       accept = { auto_brackets = { enabled = true } },
@@ -35,8 +23,6 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 250,
-        treesitter_highlighting = true,
-        update_delay_ms = 50,
         window = { border = 'rounded' },
       },
       list = {
@@ -55,7 +41,6 @@ return {
           treesitter = { 'lsp' },
         },
       },
-      trigger = { show_in_snippet = false },
     },
 
     keymap = {
@@ -68,7 +53,7 @@ return {
     },
 
     sources = {
-      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'omni' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
         lazydev = {
           name = 'LazyDev',
@@ -89,10 +74,6 @@ return {
         buffer = {
           min_keyword_length = 4,
           max_items = 5,
-        },
-        omni = {
-          name = 'Omni',
-          min_keyword_length = 2,
         },
       },
     },
