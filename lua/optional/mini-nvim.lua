@@ -1,51 +1,92 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  'echasnovski/mini.nvim',
-  dependencies = { 'echasnovski/mini.icons' },
-  version = false,
-  event = 'VeryLazy',
-  config = function()
-    local function safe_setup(mod, opts)
-      local ok, plugin = pcall(require, 'mini.' .. mod)
-      if ok and type(plugin.setup) == 'function' then
-        plugin.setup(opts or {})
-      end
-    end
-
-    for _, mod in ipairs({
-      'ai',
-      'align',
-      'bracketed',
-      'comment',
-      'operators',
-      'pairs',
-      'splitjoin',
-      'surround',
-    }) do
-      safe_setup(mod)
-    end
-
-    -- Override jump2d setup to disable default mapping
-    safe_setup('jump2d', {
+  {
+    'echasnovski/mini.ai',
+    version = false,
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'echasnovski/mini.align',
+    version = false,
+    keys = {
+      { 'ga', mode = { 'n', 'v' }, desc = 'Align text' },
+      { 'gA', mode = { 'n', 'v' }, desc = 'Align text interactive' },
+    },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.bracketed',
+    version = false,
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'echasnovski/mini.comment',
+    version = false,
+    keys = {
+      { 'gc', mode = { 'n', 'v' }, desc = 'Comment' },
+      { 'gcc', mode = { 'n' }, desc = 'Comment line' },
+    },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.operators',
+    version = false,
+    keys = {
+      { 'g=', mode = { 'n', 'v' }, desc = 'Evaluate' },
+      { 'gx', mode = { 'n', 'v' }, desc = 'Exchange' },
+      { 'gm', mode = { 'n', 'v' }, desc = 'Multiply' },
+      { 'gr', mode = { 'n', 'v' }, desc = 'Replace' },
+    },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.pairs',
+    version = false,
+    event = 'InsertEnter',
+    opts = {},
+  },
+  {
+    'echasnovski/mini.splitjoin',
+    version = false,
+    keys = {
+      {
+        '<leader>cj',
+        function()
+          require('mini.splitjoin').toggle()
+        end,
+        desc = 'Split/Join text',
+        mode = { 'n', 'v' },
+      },
+    },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.surround',
+    version = false,
+    keys = {
+      { 's', mode = { 'n', 'v' }, desc = 'Surround' },
+    },
+    opts = {},
+  },
+  {
+    'echasnovski/mini.jump2d',
+    version = false,
+    keys = {
+      {
+        '<C-CR>',
+        function()
+          require('mini.jump2d').start()
+        end,
+        desc = 'MiniJump2d: start jumping',
+        mode = { 'n' },
+      },
+    },
+    opts = {
       mappings = { start_jumping = '' }, -- disable default <CR>
-    })
-
-    -- Map <C-CR> instead of <CR> to start jump2d
-    vim.keymap.set('n', '<C-CR>', function()
-      require('mini.jump2d').start()
-    end, { desc = 'MiniJump2d: start jumping' })
-  end,
-  keys = {
-    { 'ga', desc = 'Align text', mode = { 'v' } },
-    { 'gA', desc = 'Align text interactive', mode = { 'v' } },
-    {
-      '<leader>cj',
-      function()
-        require('mini.splitjoin').toggle()
-      end,
-      desc = 'Split/Join text',
-      mode = { 'v', 'n' },
     },
   },
 }
+
