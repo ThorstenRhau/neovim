@@ -42,9 +42,9 @@ local enable_optional_plugins = os.getenv('NVIM_OPTIONAL_PLUGINS')
 -- Define the plugin specifications
 -- Available themes are: gruvbox, catppuccin, tokyonight,
 --  kanagawa, zenbones, melange, rose-pine
-local active_theme = 'tokyonight'
+local active_theme = 'catppuccin'
 if enable_optional_plugins == '1' then
-  table.insert(specs, { import = 'themes.tokyonight' })
+  table.insert(specs, { import = 'themes.catppuccin' })
   table.insert(specs, { import = 'optional' }) -- Load all optional plugins
 end
 
