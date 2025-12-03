@@ -1,10 +1,3 @@
--- Determine preferred theme style from vim.o.background
-local function get_preferred_style()
-  return vim.o.background == 'light' and 'latte' or 'mocha'
-end
-
-local preferred_style = get_preferred_style()
-
 ---@type LazySpec
 return {
   {
@@ -13,7 +6,10 @@ return {
     lazy = false,
     priority = 1100,
     opts = {
-      flavour = preferred_style, -- latte, frappe, macchiato, mocha
+      background = {
+        light = 'latte',
+        dark = 'mocha',
+      },
       transparent_background = false,
       show_end_of_buffer = false,
       term_colors = true,
