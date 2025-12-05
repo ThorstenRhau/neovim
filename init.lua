@@ -50,7 +50,7 @@ local enable_optional_plugins = os.getenv('NVIM_OPTIONAL_PLUGINS')
 --  kanagawa, zenbones, melange, rose-pine
 local active_theme = 'catppuccin'
 if enable_optional_plugins == '1' then
-  table.insert(specs, { import = 'themes.catppuccin' })
+  table.insert(specs, { import = 'themes.' .. active_theme })
   table.insert(specs, { import = 'optional' }) -- Load all optional plugins
 end
 
@@ -98,7 +98,6 @@ require('config.autocmd')
 require('config.keymaps')
 
 if enable_optional_plugins == '1' then
-  vim.cmd.colorscheme(active_theme)
   require('config.whichkey')
 else
   vim.cmd('colorscheme habamax')
