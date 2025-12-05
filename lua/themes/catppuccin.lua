@@ -6,6 +6,10 @@ return {
     lazy = false,
     priority = 1100,
     opts = {
+      compile = {
+        enabled = true,
+        path = vim.fn.stdpath('cache') .. '/catppuccin',
+      },
       background = {
         light = 'latte',
         dark = 'mocha',
@@ -56,6 +60,7 @@ return {
           },
         },
         blink_cmp = true,
+        cmp = false,
         dap = true,
         dap_ui = true,
         diffview = true,
@@ -67,9 +72,11 @@ return {
         neogit = true,
         noice = true,
         notify = true,
+        nvimtree = false,
         oil = true,
         semantic_tokens = true,
         snacks = true,
+        telescope = false,
         treesitter = true,
         treesitter_context = true,
         which_key = true,
