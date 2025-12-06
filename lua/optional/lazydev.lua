@@ -11,7 +11,6 @@ return {
       library = {
         vim.fn.expand('~/.config/nvim'),
         { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-        { path = 'LazyVim', words = { 'LazyVim' } },
       },
     },
   },
