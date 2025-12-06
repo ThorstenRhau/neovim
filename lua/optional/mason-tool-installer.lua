@@ -12,7 +12,10 @@ return {
     'MasonToolsClean',
   },
   opts = {
-    auto_update = true,
+    auto_update = false,
+    run_on_start = true,
+    start_delay = 3000,
+    debounce_hours = 12,
     ensure_installed = {
       'bash-debug-adapter',
       'bashls',
