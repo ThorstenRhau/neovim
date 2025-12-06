@@ -54,6 +54,5 @@ return {
     -- },
     format_on_save = false,
     notify_on_error = true,
-
   },
 }
