@@ -1,7 +1,6 @@
 local opt = vim.opt
 local g = vim.g
 
-g.borderStyle = 'rounded'
 opt.autoindent = true
 opt.autoread = true
 opt.breakindent = true
@@ -21,7 +20,7 @@ opt.ignorecase = true
 opt.inccommand = 'split'
 opt.incsearch = true
 opt.jumpoptions = 'view'
-opt.laststatus = 0
+opt.laststatus = 3
 opt.linebreak = true
 opt.maxmempattern = 5000
 opt.mouse = 'nv'
@@ -94,7 +93,6 @@ opt.undolevels = 10000
 
 -- Session management
 opt.sessionoptions:remove('blank') -- Not saving empty buffers
-opt.sessionoptions:append('globals') -- Saving variables
 
 opt.grepprg = vim.fn.executable('rg') == 1 and 'rg --vimgrep --smart-case --follow' or 'grep -n $* /dev/null'
 
