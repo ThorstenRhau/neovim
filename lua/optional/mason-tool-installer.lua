@@ -12,7 +12,7 @@ return {
     'MasonToolsClean',
   },
   opts = {
-    auto_update = false,
+    auto_update = true,
     run_on_start = true,
     start_delay = 3000,
     debounce_hours = 12,
