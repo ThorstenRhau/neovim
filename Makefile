@@ -18,10 +18,27 @@ format:
 
 # Start Neovim headless, check Lazy and plugins, then run :checkhealth
 check:
-	$(NVIM) \
+	@echo "Running Neovim health checks..."
+	@temp_file=$$(mktemp) ;\
+	nvim --headless -u $(ROOT)/init.lua \
 	  -c 'silent! Lazy! load all' \
-	  -c 'silent! checkhealth' \
-	  -c 'qall!'
+	  -c 'checkhealth' \
+	  -c 'lua vim.wait(1000)' \
+	  -c 'lua print(table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n"))' \
+	  -c 'qall!' > "$$temp_file" 2>&1 ;\
+	if grep "❌ ERROR" "$$temp_file" | \
+		grep -v "kitty graphics protocol" | \
+		grep -v "vim.ui.input.*Snacks.input" | \
+		grep -v "vim.ui.select.*Snacks.picker.select" | \
+		grep -q "❌ ERROR"; then \
+	  echo "Neovim health check failed! Errors found:"; \
+	  cat "$$temp_file"; \
+	  rm "$$temp_file"; \
+	  exit 1; \
+	else \
+	  echo "Neovim health check passed."; \
+	  rm "$$temp_file"; \
+	fi
 
 # Lint all Lua files
 lint:
