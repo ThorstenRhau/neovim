@@ -62,7 +62,7 @@ return {
     dim = { enabled = true },
     toggle = { enabled = true },
     words = {
-      modes = { 'n', 'c' },
+      modes = { 'n' },
     },
   },
 
