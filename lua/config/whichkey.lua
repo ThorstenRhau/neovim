@@ -40,17 +40,6 @@ wk.add({
   { '<leader>m', '<cmd>Mason<cr>', desc = 'Mason - package manager', icon = '󰏖 ' },
   { '<leader>o', '<cmd>Oil --float<cr>', desc = 'Oil - file explorer', icon = { icon = '󰏇 ', color = 'grey' } },
   {
-    '<leader>p',
-    function()
-      local ok, mini = pcall(require, 'mini.jump2d')
-      if ok then
-        mini.start()
-      end
-    end,
-    desc = 'Pounce',
-    icon = { icon = '󰿄 ', color = 'purple' },
-  },
-  {
     '<leader>S',
     function()
       require('persistence').load({ last = true })
