@@ -5,6 +5,8 @@ return {
   opts = {
     dir = vim.fn.stdpath('state') .. '/sessions/',
     options = { 'buffers', 'curdir', 'tabpages', 'winsize' },
+    autosave = true,
+    autosave_events = { 'BufWritePost', 'VimLeavePre' },
   },
   keys = {
     {
