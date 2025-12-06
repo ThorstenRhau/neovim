@@ -91,13 +91,17 @@ vim.api.nvim_create_autocmd('VimResized', {
 })
 
 -- Reload file if changed externally
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter', 'CursorHold' }, {
   group = augroup('checktime'),
   desc = 'Check for file changes',
-  callback = function()
-    vim.defer_fn(function()
+  callback = function(args)
+    if vim.list_contains({ 'FocusGained', 'TermClose', 'TermLeave' }, args.event) then
       vim.cmd.checktime()
-    end, 50)
+    else
+      if vim.bo[args.buf].buftype == '' then
+        vim.cmd('checktime %')
+      end
+    end
   end,
 })
 
