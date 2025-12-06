@@ -1,3 +1,8 @@
+-- Lua module load (experimental)
+if vim.loader then
+  vim.loader.enable()
+end
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -30,11 +35,6 @@ vim.opt.termguicolors = true
 -- This should be set in your shell configuration (e.g., config.fish) based on system appearance.
 if os.getenv('SYSTEM_APPEARANCE') == 'light' then
   vim.opt.background = 'light'
-end
-
--- Lua module load (experimental)
-if vim.loader then
-  vim.loader.enable()
 end
 
 require('config.options')
@@ -98,8 +98,6 @@ require('lazy').setup({
 require('config.autocmd')
 require('config.keymaps')
 
-if enable_optional_plugins == '1' then
-  require('config.whichkey')
-else
+if enable_optional_plugins ~= '1' then
   vim.cmd('colorscheme habamax')
 end

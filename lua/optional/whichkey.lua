@@ -17,4 +17,8 @@ return {
     },
     '<leader>',
   },
+  config = function(_, opts)
+    require('which-key').setup(opts)
+    require('config.whichkey')
+  end,
 }

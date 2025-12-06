@@ -6,15 +6,11 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
   },
-  cmd = {
-    'MasonToolsInstall',
-    'MasonToolsUpdate',
-    'MasonToolsClean',
-  },
+  event = 'VeryLazy',
   opts = {
     auto_update = true,
     run_on_start = true,
-    start_delay = 3000,
+    start_delay = 3000, -- 3 second delay
     debounce_hours = 12,
     ensure_installed = {
       'bash-debug-adapter',
