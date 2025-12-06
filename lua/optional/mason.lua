@@ -2,7 +2,7 @@ return {
   'williamboman/mason.nvim',
   cmd = 'Mason',
   opts = {
-    cmd = 'Mason',
+    max_concurrent_installers = 10,
     ui = {
       icons = {
         package_installed = '✓',
