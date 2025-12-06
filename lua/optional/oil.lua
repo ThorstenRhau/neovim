@@ -4,10 +4,20 @@ return {
   'stevearc/oil.nvim',
   dependencies = { 'echasnovski/mini.icons' },
   cmd = 'Oil',
+  init = function()
+    if vim.fn.argc() == 1 then
+      local argv = vim.fn.argv(0)
+      local stat = vim.loop.fs_stat(argv)
+      if stat and stat.type == 'directory' then
+        require('lazy').load({ plugins = { 'oil.nvim' } })
+      end
+    end
+  end,
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
     skip_confirm_for_simple_edits = false,
+    constrain_cursor = 'editable',
     columns = { 'icon' },
     view_options = {
       show_hidden = true,
@@ -17,6 +27,7 @@ return {
     },
     win_options = {
       wrap = true,
+      signcolumn = 'no',
       cursorcolumn = false,
     },
     watch_for_changes = true,
