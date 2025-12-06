@@ -109,6 +109,7 @@ wk.add({
   -- Git tools
   { '<leader>g', group = 'Git' },
   { '<leader>gg', '<cmd>Neogit<cr>', desc = 'NeoGit' },
+  { '<leader>gh', group = 'Git Hunk (Gitsigns)' },
 
   -- GPT or AI tools
   { '<C-g>', group = 'GPT', desc = 'GPT tools' },
