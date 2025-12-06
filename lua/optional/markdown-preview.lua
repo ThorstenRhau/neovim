@@ -11,6 +11,10 @@ return {
       desc = 'Markdown preview',
     },
   },
+  init = function()
+    vim.g.mkdp_filetypes = { 'markdown' }
+    vim.g.mkdp_auto_close = 0
+  end,
   build = function(plugin)
     -- Define commands
     local install_cmd = { 'npx', '--yes', 'yarn', 'install' }
