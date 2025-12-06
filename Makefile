@@ -4,9 +4,13 @@ STYLUAC   := $(ROOT)/.stylua.toml
 CHECKLUAC := $(ROOT)/.luacheckrc
 NVIM      := nvim --headless -Es -u $(ROOT)/init.lua
 
-.PHONY: all check clean format test
+.PHONY: all check clean format test install-hooks
 
 all: format check lint
+
+# Install git hooks
+install-hooks:
+	@git config core.hooksPath .githooks
 
 # Format all Lua files according to .stylua.toml
 format:
