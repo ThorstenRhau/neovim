@@ -23,15 +23,6 @@ return {
     opts = {},
   },
   {
-    'echasnovski/mini.comment',
-    version = false,
-    keys = {
-      { 'gc', mode = { 'n', 'v' }, desc = 'Comment' },
-      { 'gcc', mode = { 'n' }, desc = 'Comment line' },
-    },
-    opts = {},
-  },
-  {
     'echasnovski/mini.operators',
     version = false,
     keys = {
