@@ -4,6 +4,7 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
+    'williamboman/mason.nvim',
     'b0o/schemastore.nvim',
     'saghen/blink.cmp',
     'williamboman/mason-lspconfig.nvim',
@@ -35,7 +36,6 @@ return {
     mason_lspconfig.setup({
       ensure_installed = {},
       automatic_installation = false,
-      automatic_enable = true,
 
       handlers = {
         -- Default handler: applies to all servers unless a specific handler is defined below.
@@ -91,6 +91,12 @@ return {
         -- stylua: ignore end
         for _, map in ipairs(keymaps) do
           vim.keymap.set(map[1], map[2], map[3], vim.tbl_extend('force', opts, { desc = map[4] }))
+        end
+
+        -- Enable inlay hints if the client supports them
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.supports_method('textDocument/inlayHint') then
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
         end
       end,
     })
