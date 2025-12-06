@@ -13,7 +13,7 @@ local function close_or_quit()
   elseif win_count == 1 then
     vim.notify('Cannot close the last window without quitting Neovim.', vim.log.levels.WARN)
   else
-    pcall(vim.api.nvim_command, 'close')
+    pcall(vim.cmd.close)
   end
 end
 
