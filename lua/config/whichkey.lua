@@ -53,12 +53,9 @@ wk.add({
   {
     '<leader>S',
     function()
-      local ok, persistence = pcall(require, 'persistence')
-      if ok then
-        persistence.load()
-      end
+      require('persistence').load({ last = true })
     end,
-    desc = 'Restore last session',
+    desc = 'Restore Last Session',
   },
   { '<leader>T', '<cmd>Trouble<cr>', desc = 'Trouble', icon = { icon = ' ', color = 'red' } },
 
