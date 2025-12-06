@@ -9,25 +9,21 @@ return {
       { 'echasnovski/mini.icons', lazy = true },
     },
     opts = function()
-      local function show_macro_recording()
-        local mode = vim.api.nvim_get_mode().mode
-        local reg = vim.fn.reg_recording()
-        if mode:find('^r') or reg ~= '' then
-          return 'Recording @' .. reg
-        end
-        return ''
-      end
-
       local function lsp_client_names()
-        local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
         if #clients == 0 then
           return ''
         end
+
         local names = {}
-        for _, c in ipairs(clients) do
-          table.insert(names, c.name)
+        local seen = {}
+        for _, client in ipairs(clients) do
+          if not seen[client.name] then
+            table.insert(names, client.name)
+            seen[client.name] = true
+          end
         end
-        return table.concat(names, ', ')
+        return ' ' .. table.concat(names, ', ')
       end
 
       local function location_with_total()
@@ -41,6 +37,7 @@ return {
       return {
         options = {
           icons_enabled = true,
+          globalstatus = true,
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
           disabled_filetypes = {
@@ -53,7 +50,7 @@ return {
           },
         },
         sections = {
-          lualine_a = { 'mode', show_macro_recording, 'searchcount', 'selectioncount' },
+          lualine_a = { 'mode', 'searchcount', 'selectioncount' },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = {
             {
@@ -69,7 +66,17 @@ return {
               },
             },
           },
-          lualine_x = { lsp_client_names, 'encoding', 'fileformat', 'filetype', 'filesize' },
+          lualine_x = {
+            {
+              require('noice').api.status.mode.get,
+              cond = require('noice').api.status.mode.has,
+            },
+            lsp_client_names,
+            'encoding',
+            'fileformat',
+            'filetype',
+            'filesize',
+          },
           lualine_y = { 'progress' },
           lualine_z = { location_with_total },
         },
