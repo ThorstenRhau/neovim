@@ -5,6 +5,9 @@ return {
       'PickColor',
       'PickColorInsert',
     },
+    keys = {
+      { '<leader>uP', '<cmd>PickColorInsert<cr>', desc = 'Pick Color (Insert)' },
+    },
     opts = {},
   },
 }
