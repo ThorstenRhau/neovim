@@ -7,10 +7,20 @@ return {
     'json',
     'lua',
     'make',
+    'markdown',
     'python',
     'sh',
     'typescript',
     'yaml',
+  },
+  keys = {
+    {
+      '<leader>cl',
+      function()
+        require('lint').try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
+      end,
+      desc = 'Trigger linting for current file',
+    },
   },
   config = function()
     local lint = require('lint')
@@ -20,6 +30,7 @@ return {
       json = { 'jsonlint' },
       lua = { 'selene' },
       make = { 'checkmake' },
+      markdown = { 'markdownlint' },
       python = { 'ruff' },
       sh = { 'shellcheck' },
       typescript = { 'eslint_d' },
@@ -48,9 +59,5 @@ return {
         lint.try_lint(nil, { bufnr = bufnr })
       end,
     })
-
-    vim.keymap.set('n', '<leader>cl', function()
-      lint.try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
-    end, { desc = 'Trigger linting for current file' })
   end,
 }
