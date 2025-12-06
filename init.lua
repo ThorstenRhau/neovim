@@ -37,6 +37,8 @@ if vim.loader then
   vim.loader.enable()
 end
 
+require('config.options')
+
 local specs = {
   { import = 'plugins' },
 }
@@ -93,7 +95,6 @@ require('lazy').setup({
   },
 })
 
-require('config.options')
 require('config.autocmd')
 require('config.keymaps')
 
