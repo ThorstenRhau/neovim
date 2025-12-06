@@ -87,6 +87,15 @@ Launch neovim and run _:Lazy load all_ to load all the plugins. After you have l
 plugins you can run _:checkhealth_ to see that everything is configured and working properly before
 you start to use neovim for your editing.
 
+### Git Hooks
+
+If you intend to make changes to this configuration and commit them to git, please enable the git
+hooks. This ensures that `make all` (formatting, linting, tests) runs before every commit.
+
+```sh
+make install-hooks
+```
+
 ## Thank you
 
 There are many individuals and projects that I have learned and taken inspiration from. Thank you to

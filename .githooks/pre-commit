@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pre-commit hook to run make all
+
+echo "Running 'make all'..."
+make all
+
+if [ $? -ne 0 ]; then
+    echo "'make all' failed. Commit aborted."
+    exit 1
+fi
