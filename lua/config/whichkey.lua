@@ -88,6 +88,9 @@ wk.add({
   { '<leader>cF', '<cmd>ConformInfo<CR>', desc = 'Formatters' },
   { '<leader>cL', ListActiveLinters, desc = 'Linters' },
 
+  -- Gemini CLI
+  { '<leader>a', group = 'Gemini CLI' },
+
   -- Fuzzy finding / search
   { '<leader>f', group = 'Find', icon = { icon = '󰍉 ', color = 'azure' } },
   { '<leader>s', group = 'Search', icon = { icon = '󰍉 ', color = 'azure' } },
