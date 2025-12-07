@@ -67,10 +67,6 @@ return {
             },
           },
           lualine_x = {
-            {
-              require('noice').api.status.mode.get,
-              cond = require('noice').api.status.mode.has,
-            },
             lsp_client_names,
             'encoding',
             'fileformat',
