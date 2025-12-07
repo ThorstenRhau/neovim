@@ -9,21 +9,75 @@ return {
       { 'echasnovski/mini.icons', lazy = true },
     },
     opts = function()
-      local function lsp_client_names()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
+      local function dap_status()
+        local status, dap = pcall(require, 'dap')
+        if not status then
+          return ''
+        end
+        local session = dap.session()
+        if session then
+          return ' ' .. (session.config.type or 'dap')
+        end
+        return ''
+      end
+
+      local function tooling_info()
+        local clients = {}
+        local client_index = {}
+
+        local function add_client(name, icon)
+          if not client_index[name] then
+            table.insert(clients, { name = name, icons = { icon } })
+            client_index[name] = #clients
+          else
+            local idx = client_index[name]
+            local has_icon = false
+            for _, existing_icon in ipairs(clients[idx].icons) do
+              if existing_icon == icon then
+                has_icon = true
+                break
+              end
+            end
+            if not has_icon then
+              table.insert(clients[idx].icons, icon)
+            end
+          end
+        end
+
+        -- LSP Clients
+        local lsp_clients = vim.lsp.get_clients({ bufnr = 0 })
+        for _, client in ipairs(lsp_clients) do
+          add_client(client.name, ' ')
+        end
+
+        -- Formatters
+        local status_conform, conform = pcall(require, 'conform')
+        if status_conform then
+          local formatters = conform.list_formatters_to_run(0)
+          for _, f in ipairs(formatters) do
+            add_client(f.name, '󰉼 ')
+          end
+        end
+
+        -- Linters
+        local status_lint, lint = pcall(require, 'lint')
+        if status_lint then
+          local ft = vim.bo.filetype
+          local linters = lint.linters_by_ft[ft] or {}
+          for _, name in ipairs(linters) do
+            add_client(name, ' ')
+          end
+        end
+
         if #clients == 0 then
           return ''
         end
 
-        local names = {}
-        local seen = {}
-        for _, client in ipairs(clients) do
-          if not seen[client.name] then
-            table.insert(names, client.name)
-            seen[client.name] = true
-          end
+        local items = {}
+        for _, c in ipairs(clients) do
+          table.insert(items, table.concat(c.icons, '') .. c.name)
         end
-        return ' ' .. table.concat(names, ', ')
+        return table.concat(items, ', ')
       end
 
       local function location_with_total()
@@ -71,13 +125,24 @@ return {
             },
           },
           lualine_x = {
-            lsp_client_names,
-            'encoding',
+            {
+              function()
+                ---@diagnostic disable-next-line: undefined-field
+                return require('noice').api.status.mode.get()
+              end,
+              cond = function()
+                ---@diagnostic disable-next-line: undefined-field
+                return package.loaded['noice'] and require('noice').api.status.mode.has()
+              end,
+            },
+            dap_status,
+            tooling_info,
+          },
+          lualine_y = {
             'fileformat',
             'filetype',
-            'filesize',
+            'progress',
           },
-          lualine_y = { 'progress' },
           lualine_z = {
             { location_with_total, separator = { left = '', right = '' }, left_padding = 2 },
           },
