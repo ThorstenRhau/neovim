@@ -38,8 +38,8 @@ return {
         options = {
           icons_enabled = true,
           globalstatus = true,
+          section_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },
-          section_separators = { left = '', right = '' },
           disabled_filetypes = {
             'checkhealth',
             'snacks_dashboard',
@@ -50,7 +50,11 @@ return {
           },
         },
         sections = {
-          lualine_a = { 'mode', 'searchcount', 'selectioncount' },
+          lualine_a = {
+            { 'mode', separator = { left = '', right = '' }, right_padding = 2 },
+            'searchcount',
+            'selectioncount',
+          },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = {
             {
@@ -74,7 +78,9 @@ return {
             'filesize',
           },
           lualine_y = { 'progress' },
-          lualine_z = { location_with_total },
+          lualine_z = {
+            { location_with_total, separator = { left = '', right = '' }, left_padding = 2 },
+          },
         },
         inactive_sections = {
           lualine_a = {},
