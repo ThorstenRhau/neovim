@@ -3,7 +3,7 @@
 return {
   'folke/which-key.nvim',
   dependencies = { 'echasnovski/mini.icons' },
-  event = 'VeryLazy',
+  event = 'UIEnter',
   opts = {
     preset = 'modern',
     delay = 300,
