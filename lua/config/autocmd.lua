@@ -91,15 +91,23 @@ vim.api.nvim_create_autocmd('VimResized', {
 })
 
 -- Reload file if changed externally
+-- Debounce checktime on BufEnter to avoid excessive filesystem checks
+local last_checktime = 0
+local checktime_cooldown = 1000 -- milliseconds
+
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter' }, {
   group = augroup('checktime'),
   desc = 'Check for file changes',
   callback = function(args)
     if vim.list_contains({ 'FocusGained', 'TermClose', 'TermLeave' }, args.event) then
       vim.cmd.checktime()
+      last_checktime = vim.uv.now()
     else
-      if vim.bo[args.buf].buftype == '' then
+      -- Debounce BufEnter checktime to avoid excessive calls
+      local now = vim.uv.now()
+      if vim.bo[args.buf].buftype == '' and (now - last_checktime) > checktime_cooldown then
         vim.cmd('checktime %')
+        last_checktime = now
       end
     end
   end,
