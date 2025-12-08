@@ -86,7 +86,9 @@ opt.swapfile = false
 opt.backup = false
 local home = vim.env.HOME or vim.fn.expand('~')
 local undodir = home .. '/.local/share/nvim/undo'
-vim.fn.mkdir(undodir, 'p') -- Create the directory if it doesn't exist
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, 'p')
+end
 opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
