@@ -7,7 +7,7 @@ return {
   init = function()
     if vim.fn.argc() == 1 then
       local argv = vim.fn.argv(0)
-      local stat = vim.loop.fs_stat(argv)
+      local stat = vim.uv.fs_stat(argv)
       if stat and stat.type == 'directory' then
         require('lazy').load({ plugins = { 'oil.nvim' } })
       end
