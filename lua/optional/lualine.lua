@@ -3,10 +3,9 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
-    enabled = true,
-    event = { 'BufRead', 'BufNewFile' },
+    event = { 'VeryLazy' },
     dependencies = {
-      { 'echasnovski/mini.icons', lazy = true },
+      { 'echasnovski/mini.icons' },
     },
     opts = function()
       local function dap_status()
