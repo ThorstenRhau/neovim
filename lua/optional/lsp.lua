@@ -19,7 +19,6 @@ return {
     'python',
     'sh',
     'toml',
-    'ts',
     'typescript',
     'xml',
     'yaml',
