@@ -109,8 +109,8 @@ return {
       { '<leader>cF', '<cmd>ConformInfo<CR>', desc = 'Formatters' },
       { '<leader>cL', ListActiveLinters, desc = 'Linters' },
 
-      -- Gemini CLI
-      { '<leader>a', group = 'Gemini CLI' },
+      -- Claude Code
+      { '<leader>a', group = 'Claude', icon = { icon = ' ', color = 'purple' } },
 
       -- Fuzzy finding / search
       { '<leader>f', group = 'Find', icon = { icon = '󰍉 ', color = 'azure' } },
