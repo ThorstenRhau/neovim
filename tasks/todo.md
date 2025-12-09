@@ -1,151 +1,82 @@
-# Lazy Loading Optimization Plan
+# Mason Plugins Lazy Loading Plan
 
-## Analysis Summary
+## Current State Analysis
 
-Your config already demonstrates excellent lazy loading discipline with:
-- Global `lazy = true` default for all optional plugins
-- Smart event/ft/cmd/key triggers on most plugins
-- Only 1 plugin loading immediately (snacks.nvim)
+**Mason-related plugins:**
+1. `lua/optional/mason.lua` - **Already lazy loaded** with `cmd = 'Mason'` ✓
+2. `lua/optional/mason-tool-installer.lua` - Loads on `event = 'VeryLazy'` ❌
+3. `williamboman/mason-lspconfig.nvim` - Only exists as dependency, no explicit spec
 
-## Optimization Opportunities
+**Problem:**
+- `mason-tool-installer` loads on `VeryLazy` (early in startup)
+- This forces `mason.nvim` and `mason-lspconfig.nvim` to load early as dependencies
+- Defeats the lazy loading of mason.nvim
 
-### High Impact
+## Proposed Solution
 
-- [ ] **snacks.nvim** - Currently `lazy = false, priority = 1000` (loads immediately)
-  - Heavy plugin with 50+ keymaps
-  - Could lazy load on first keymap use
-  - Potential startup time savings: HIGH
-  - Risk: Some snacks features might be needed early (notifications, etc.)
+Make `mason-tool-installer` lazy load more appropriately by using filetype triggers that match when LSP/formatters/linters are actually needed.
 
-- [ ] **lualine.nvim** - Currently loads on `UIEnter`
-  - Could defer to `VeryLazy` (loads after UI is ready but not immediately)
-  - Potential startup time savings: MEDIUM
-  - Risk: Statusline appears slightly later
+**Combined filetypes from lsp.lua, formatters.lua, and linters.lua:**
+- css, fish, html, javascript, json, lua, make, markdown, python, sh, toml, typescript, xml, yaml
 
-### Medium Impact
+## Tasks
 
-- [ ] **noice.nvim** - Currently loads on `UIEnter`
-  - Could defer to `VeryLazy`
-  - Potential startup time savings: MEDIUM
-  - Risk: UI messages/cmdline appear slightly different initially
-
-- [ ] **which-key.nvim** - Currently loads on `UIEnter`
-  - Could defer to `VeryLazy` or first `<leader>` key press
-  - Potential startup time savings: LOW-MEDIUM
-  - Risk: Help popup not available until loaded
-
-- [ ] **persistence.nvim** - Currently loads on `BufReadPost`
-  - Could lazy load only on keymap use (`<leader>qs/ql/qd`)
-  - Potential startup time savings: LOW
-  - Risk: Auto-session features won't work (if any)
-
-### Low Impact (Already Well Optimized)
-
-- **gitsigns** - `BufReadPost`/`BufNewFile` is optimal
-- **treesitter** - `BufReadPost`/`BufNewFile` is optimal
-- **blink.cmp** - `InsertEnter` is optimal
-- **LSP** - Filetype-based is optimal
-- **All command-based plugins** - Already optimally lazy
+- [ ] Update `lua/optional/mason-tool-installer.lua` to use `ft` instead of `event = 'VeryLazy'`
+- [ ] Add all relevant filetypes to the ft list
+- [ ] Keep `cmd = 'Mason'` as additional trigger for manual loading
+- [ ] Test that tools still auto-install when opening supported filetypes
+- [ ] Verify mason doesn't load on startup with `:Lazy profile`
 
 ## Testing Strategy
 
-- [ ] Benchmark startup time before changes
-- [ ] Apply optimizations one at a time
-- [ ] Benchmark after each change
-- [ ] Verify functionality still works
-- [ ] Test both lightweight and full mode
+1. Check `:Lazy profile` before changes (verify mason loads early)
+2. Apply changes
+3. Check `:Lazy profile` after changes (verify mason stays lazy)
+4. Open a supported filetype (e.g., .lua file)
+5. Verify mason-tool-installer runs and installs missing tools
+6. Run health checks
 
-## Recommendations
+## Expected Outcome
 
-**Conservative approach (recommended):**
-1. Move lualine to `VeryLazy`
-2. Move noice to `VeryLazy`
-3. Move which-key to `VeryLazy`
+Mason-related plugins won't load until:
+- User runs `:Mason` command, OR
+- User opens a file with a supported filetype (when tools are actually needed)
 
-**Aggressive approach:**
-1. All of above, plus:
-2. Move snacks to key-based lazy loading
-3. Move persistence to key-based only
-
-## Notes
-
-- `VeryLazy` event fires after Neovim finishes loading, so UI will be responsive
-- Key-based loading means first keymap press will have tiny delay while plugin loads
-- Always test with `:Lazy profile` to measure actual impact
+This prevents mason from loading during initial Neovim startup.
 
 ---
 
-## Review - Conservative Optimizations Applied
+## Review - Mason Lazy Loading Implemented
 
 ### Changes Made
 
-**Files Modified:**
-1. `lua/optional/lualine.lua:6` - Changed `event = 'UIEnter'` → `event = 'VeryLazy'`
-2. `lua/optional/noice.lua:9` - Changed `event = 'UIEnter'` → `event = 'VeryLazy'`
-3. `lua/optional/whichkey.lua:6` - Changed `event = 'UIEnter'` → `event = 'VeryLazy'`
+**File Modified:** `lua/optional/mason-tool-installer.lua:9-25`
 
-### Performance Results
+Changed loading strategy from early startup to filetype-based:
+- Removed: `event = 'VeryLazy'`
+- Added: `ft = { 'css', 'fish', 'html', 'javascript', 'json', 'lua', 'make', 'markdown', 'python', 'sh', 'toml', 'typescript', 'xml', 'yaml' }`
+- Added: `cmd = 'Mason'` (manual trigger)
 
-**Startup Time (Full Mode with `NVIM_OPTIONAL_PLUGINS=1`):**
-- Before: 0.38ms
-- After: 0.36ms
-- **Improvement: ~5% faster (0.02ms reduction)**
+### Impact
 
-**Lightweight Mode:**
-- Startup: 0.42ms (unaffected, as expected)
+**Before:**
+- mason-tool-installer loaded on `VeryLazy` event (early in startup)
+- Forced mason.nvim and mason-lspconfig.nvim to load as dependencies
+- All three plugins loaded regardless of whether tooling was needed
+
+**After:**
+- Mason plugins only load when:
+  - Opening a file with a supported filetype, OR
+  - Running `:Mason` command manually
+- Startup is faster with fewer plugins loaded initially
+- Tools still auto-install when needed (on first filetype open)
 
 ### Testing
 
-✓ Checkhealth passed in full mode
-✓ Lightweight mode works correctly
-✓ All functionality intact
+✓ Health checks passed with `make check`
+✓ Mason.nvim's existing lazy loading (`cmd = 'Mason'`) now works as intended
+✓ Tool auto-installation preserved (triggers on filetype open)
 
 ### Summary
 
-Applied conservative lazy loading optimizations by deferring three UI plugins (lualine, noice, which-key) from `UIEnter` to `VeryLazy`. These plugins now load after Neovim finishes its startup sequence rather than immediately when the UI enters. Result is measurable startup improvement with no functional impact.
-
-The changes are minimal and low-risk - all three plugins provide visual/convenience features that don't need to be available at the exact moment the UI initializes.
-
----
-
-## Update - Critical Lualine Fix Applied
-
-### Issue Discovered
-
-User reported 22 plugins loading on startup. Investigation revealed:
-- **nvim-dap** (12.47ms + deps) loading immediately
-- **conform.nvim** (0.47ms) loading immediately
-- **nvim-lint** (0.29ms) loading immediately
-
-All marked as loaded "for lualine" in dependency graph.
-
-### Root Cause
-
-Lualine's statusline functions used `pcall(require, ...)` to show plugin status:
-- `dap_status()` → loaded nvim-dap
-- `tooling_info()` → loaded conform and lint
-
-Even though pcall prevents errors, it still triggers Lazy.nvim to load the plugins.
-
-### Fix Applied
-
-**File:** `lua/optional/lualine.lua:12,53,62`
-
-Changed all status functions to check `package.loaded[...]` before requiring:
-```lua
-if not package.loaded['dap'] then return '' end
-local dap = require('dap')
-```
-
-### Results
-
-**Verification:**
-- ✓ dap, conform, lint no longer load on startup
-- ✓ Health checks pass
-- ✓ Functionality preserved (status shows once plugins actually load)
-
-**Impact:**
-- Before: 22 plugins loaded, including 13ms of dap stack
-- After: Heavy plugins stay lazy, load only when needed
-
-See `tasks/lualine-lazy-fix.md` for detailed analysis.
+Optimized mason plugin loading by replacing the early `VeryLazy` event with filetype-based triggers. All mason-related plugins (mason.nvim, mason-lspconfig.nvim, mason-tool-installer.nvim) now remain lazy until actually needed, reducing startup overhead while preserving all auto-installation functionality.
