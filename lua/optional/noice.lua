@@ -6,7 +6,7 @@ return {
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
   },
-  event = 'UIEnter',
+  event = 'VeryLazy',
   opts = {
     presets = {
       bottom_search = true,

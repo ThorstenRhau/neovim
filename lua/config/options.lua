@@ -65,8 +65,6 @@ opt.wildignore:append({
   '*/.venv/*',
   '*/venv/*',
 })
--- Add asterisks in block comments
-opt.formatoptions:append({ 'r' })
 
 -- Use spaces for tabs and whatnot
 opt.tabstop = 4
