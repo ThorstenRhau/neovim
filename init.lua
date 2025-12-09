@@ -62,7 +62,7 @@ require('lazy').setup({
   },
   install = {
     missing = true,
-    colorscheme = { 'habamax' },
+    colorscheme = { 'default' },
   },
   checker = {
     enabled = true,
@@ -97,5 +97,5 @@ require('config.autocmd')
 require('config.keymaps')
 
 if enable_optional_plugins ~= '1' then
-  vim.cmd('colorscheme habamax')
+  vim.cmd('colorscheme default')
 end
