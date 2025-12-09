@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { 'rafamadriz/friendly-snippets', 'abecodes/tabout.nvim' },
   version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
   opts_extend = { 'sources.default' },
