@@ -1,8 +1,13 @@
 # Lazy specific files
 lazy-lock.json
 lazyvim.json
+
+# Tasks directory
+tasks/
+
 # Compiled Lua sources
 luac.out
+
 # macOS files created by Finder.app
 **/.DS_Store
 
