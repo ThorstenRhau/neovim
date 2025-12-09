@@ -31,12 +31,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = "'"
 vim.opt.termguicolors = true
 
--- Check for 'SYSTEM_APPEARANCE' environment variable to prevent startup flash.
--- This should be set in your shell configuration (e.g., config.fish) based on system appearance.
-if os.getenv('SYSTEM_APPEARANCE') == 'light' then
-  vim.opt.background = 'light'
-end
-
 require('config.options')
 
 local specs = {
