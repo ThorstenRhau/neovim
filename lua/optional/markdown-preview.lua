@@ -8,7 +8,7 @@ return {
     {
       '<leader>uM',
       '<cmd>MarkdownPreviewToggle<cr>',
-      desc = 'Markdown preview',
+      desc = 'Markdown preview (browser)',
     },
   },
   init = function()

@@ -82,11 +82,19 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Resize splits on window resize
+-- Debounce to prevent lag during rapid resizing
+local resize_timer = nil
 vim.api.nvim_create_autocmd('VimResized', {
   group = augroup('resize'),
   desc = 'Auto resize splits',
   callback = function()
-    vim.cmd('tabdo wincmd =')
+    if resize_timer then
+      resize_timer:stop()
+    end
+    resize_timer = vim.defer_fn(function()
+      vim.cmd('tabdo wincmd =')
+      resize_timer = nil
+    end, 100)
   end,
 })
 
@@ -99,7 +107,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
   group = augroup('checktime'),
   desc = 'Check for file changes',
   callback = function(args)
-    if vim.list_contains({ 'FocusGained', 'TermClose', 'TermLeave' }, args.event) then
+    if vim.tbl_contains({ 'FocusGained', 'TermClose', 'TermLeave' }, args.event) then
       vim.cmd.checktime()
       last_checktime = vim.uv.now()
     else
@@ -130,7 +138,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     if vim.bo[args.buf].buftype ~= '' then
       return
     end
-    if vim.list_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
+    if vim.tbl_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
       return
     end
 

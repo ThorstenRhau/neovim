@@ -3,7 +3,7 @@
 return {
   'folke/which-key.nvim',
   dependencies = { 'echasnovski/mini.icons' },
-  event = 'UIEnter',
+  event = 'VeryLazy',
   opts = {
     preset = 'modern',
     delay = 300,
@@ -130,7 +130,7 @@ return {
       { '<leader>uH', '<cmd>set list!<CR>', desc = 'Toggle hidden characters' },
       { '<leader>ui', '<cmd>IlluminateToggle<cr>', desc = 'Toggle illumination' },
       { '<leader>uk', '<cmd>set cursorline!<CR>', desc = 'Toggle cursor line' },
-      { '<leader>um', '<cmd>Markview toggle<cr>', desc = 'Toggle markdown preview' },
+      { '<leader>um', '<cmd>Markview toggle<cr>', desc = 'Markdown preview (in-editor)' },
       { '<leader>up', '<cmd>PickColor<CR>', desc = 'Color picker' },
       { '<leader>ut', '<cmd>TodoLocList<cr>', desc = 'Todo list' },
       { '<leader>uV', toggle_virtual_text, desc = 'Toggle virtual text' },

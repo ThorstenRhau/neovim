@@ -29,9 +29,13 @@ return {
       { 'g=', mode = { 'n', 'v' }, desc = 'Evaluate' },
       { 'gx', mode = { 'n', 'v' }, desc = 'Exchange' },
       { 'gm', mode = { 'n', 'v' }, desc = 'Multiply' },
-      { 'gr', mode = { 'n', 'v' }, desc = 'Replace' },
+      { 'gR', mode = { 'n', 'v' }, desc = 'Replace' },
     },
-    opts = {},
+    opts = {
+      replace = {
+        prefix = 'gR',
+      },
+    },
   },
   {
     'echasnovski/mini.pairs',

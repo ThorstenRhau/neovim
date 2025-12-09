@@ -3,16 +3,16 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
-    event = 'UIEnter',
+    event = 'VeryLazy',
     dependencies = {
       { 'echasnovski/mini.icons' },
     },
     opts = function()
       local function dap_status()
-        local status, dap = pcall(require, 'dap')
-        if not status then
+        if not package.loaded['dap'] then
           return ''
         end
+        local dap = require('dap')
         local session = dap.session()
         if session then
           return ' ' .. (session.config.type or 'dap')
@@ -50,8 +50,8 @@ return {
         end
 
         -- Formatters
-        local status_conform, conform = pcall(require, 'conform')
-        if status_conform then
+        if package.loaded['conform'] then
+          local conform = require('conform')
           local formatters = conform.list_formatters_to_run(0)
           for _, f in ipairs(formatters) do
             add_client(f.name, '󰉼 ')
@@ -59,8 +59,8 @@ return {
         end
 
         -- Linters
-        local status_lint, lint = pcall(require, 'lint')
-        if status_lint then
+        if package.loaded['lint'] then
+          local lint = require('lint')
           local ft = vim.bo.filetype
           local linters = lint.linters_by_ft[ft] or {}
           for _, name in ipairs(linters) do
