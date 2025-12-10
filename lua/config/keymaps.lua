@@ -1,6 +1,8 @@
 local map = vim.keymap.set
 
--- Smarter vertical navigation for wrapped lines
+---Create smart motion mapping for wrapped lines
+---@param key string
+---@param direction string
 local function smart_motion(key, direction)
   map({ 'n', 'x' }, key, function()
     return vim.v.count == 0 and direction or key

@@ -4,6 +4,10 @@ return {
   'lewis6991/gitsigns.nvim',
   event = { 'BufReadPost', 'BufNewFile' },
   cmd = { 'Gitsigns' },
+
+  ---@module 'gitsigns'
+  ---@type Gitsigns.Config
+  ---@diagnostic disable: missing-fields
   opts = {
     signs = {
       add = { text = '┃' },

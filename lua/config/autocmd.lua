@@ -1,9 +1,12 @@
--- Utility function to create auto groups
+--Create an autocommand group with automatic clearing
+---@param name string
+---@return integer
 local function augroup(name)
   return vim.api.nvim_create_augroup('my_' .. name, { clear = true })
 end
 
--- Function to close or quit Neovim
+---Close the current window or quit Neovim if it's the last window
+---@return nil
 local function close_or_quit()
   local win_count = #vim.api.nvim_list_wins()
   local listed_bufs = vim.fn.getbufinfo({ buflisted = 1 })
@@ -100,7 +103,9 @@ vim.api.nvim_create_autocmd('VimResized', {
 
 -- Reload file if changed externally
 -- Debounce checktime on BufEnter to avoid excessive filesystem checks
+---@type integer
 local last_checktime = 0
+---@type integer
 local checktime_cooldown = 1000 -- milliseconds
 
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter' }, {

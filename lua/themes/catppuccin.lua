@@ -1,3 +1,4 @@
+---@module "lazy"
 ---@type LazySpec
 return {
   {
@@ -5,6 +6,9 @@ return {
     name = 'catppuccin',
     lazy = false,
     priority = 1100,
+
+    ---@module 'catppuccin'
+    ---@type CatppuccinOptions
     opts = {
       compile = {
         enabled = true,

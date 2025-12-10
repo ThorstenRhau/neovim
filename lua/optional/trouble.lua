@@ -4,6 +4,9 @@ return {
   {
     'folke/trouble.nvim',
     cmd = 'Trouble',
+
+    ---@module 'trouble'
+    ---@type trouble.Config
     opts = {
       auto_close = true, -- Close Trouble when no items remain
       focus = true, -- Focus the Trouble window on open

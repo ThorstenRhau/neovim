@@ -6,13 +6,17 @@ return {
   cmd = 'Oil',
   init = function()
     if vim.fn.argc() == 1 then
-      local argv = vim.fn.argv(0)
+      local argv = vim.fn.argv(0) --[[@as string]]
       local stat = vim.uv.fs_stat(argv)
       if stat and stat.type == 'directory' then
         require('lazy').load({ plugins = { 'oil.nvim' } })
       end
     end
   end,
+
+  ---@module 'oil'
+  ---@type oil.Config
+  ---@diagnostic disable: missing-fields
   opts = {
     default_file_explorer = true,
     delete_to_trash = true,
