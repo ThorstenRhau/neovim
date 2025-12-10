@@ -19,7 +19,7 @@ return {
       function()
         require('lint').try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
       end,
-      desc = 'Trigger linting for current file',
+      desc = 'Lint current file',
     },
   },
   config = function()
