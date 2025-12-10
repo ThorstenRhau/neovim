@@ -1,4 +1,3 @@
--- lua/optional/lsp.lua
 ---@module "lazy"
 ---@type LazySpec
 return {
