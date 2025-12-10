@@ -114,7 +114,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
       -- Debounce BufEnter checktime to avoid excessive calls
       local now = vim.uv.now()
       if vim.bo[args.buf].buftype == '' and (now - last_checktime) > checktime_cooldown then
-        vim.cmd('checktime %')
+        vim.cmd.checktime('%')
         last_checktime = now
       end
     end
