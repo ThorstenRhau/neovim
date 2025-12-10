@@ -4,7 +4,10 @@ return {
   {
     'echasnovski/mini.ai',
     version = false,
-    event = 'VeryLazy',
+    keys = {
+      { 'a', mode = { 'x', 'o' }, desc = 'Around textobject' },
+      { 'i', mode = { 'x', 'o' }, desc = 'Inside textobject' },
+    },
     opts = {},
   },
   {
@@ -19,7 +22,10 @@ return {
   {
     'echasnovski/mini.bracketed',
     version = false,
-    event = 'VeryLazy',
+    keys = {
+      { '[', mode = { 'n', 'x', 'o' }, desc = 'Bracketed backward' },
+      { ']', mode = { 'n', 'x', 'o' }, desc = 'Bracketed forward' },
+    },
     opts = {},
   },
   {
