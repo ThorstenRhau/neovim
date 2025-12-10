@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   'folke/persistence.nvim',
   -- Only load session management when first needed
