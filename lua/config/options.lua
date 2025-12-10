@@ -1,4 +1,5 @@
 local opt = vim.opt
+---@type table
 local g = vim.g
 
 opt.autoindent = true

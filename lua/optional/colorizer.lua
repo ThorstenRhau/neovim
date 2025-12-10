@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   'NvChad/nvim-colorizer.lua',
   cmd = { 'ColorizerToggle' },

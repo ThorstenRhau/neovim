@@ -7,6 +7,9 @@ return {
     'rcarriga/nvim-notify',
   },
   event = 'VeryLazy',
+
+  ---@module 'noice'
+  ---@type NoiceConfig
   opts = {
     presets = {
       bottom_search = true,
