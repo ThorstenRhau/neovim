@@ -78,7 +78,7 @@ return {
     })
 
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
       callback = function(event)
         local opts = { buffer = event.buf, silent = true, noremap = true }
                 -- stylua: ignore start
@@ -91,10 +91,10 @@ return {
           vim.keymap.set(map[1], map[2], map[3], vim.tbl_extend('force', opts, { desc = map[4] }))
         end
 
-        -- Enable inlay hints if the client supports them
+        -- Disable inlay hints by default (toggle with <leader>uh via snacks)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method('textDocument/inlayHint') then
-          vim.lsp.inlay_hint.enable(false, { bufnr = event.buf })
+          vim.lsp.inlay_hint.enable(false)
         end
       end,
     })
