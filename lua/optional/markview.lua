@@ -5,7 +5,7 @@ return {
   ft = 'markdown',
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter' },
-    { 'echasnovski/mini.icons', lazy = true },
+    { 'echasnovski/mini.icons' },
   },
   opts = {
     preview = {
