@@ -39,7 +39,10 @@ return {
 
     local custom_config = vim.fn.getcwd() .. '/.nvim-lint.lua'
     if vim.fn.filereadable(custom_config) == 1 then
-      dofile(custom_config)
+      local ok, err = pcall(dofile, custom_config)
+      if not ok then
+        vim.notify('Failed to load .nvim-lint.lua: ' .. tostring(err), vim.log.levels.WARN)
+      end
     end
 
     local lint_augroup = vim.api.nvim_create_augroup('nvim-lint', { clear = true })
