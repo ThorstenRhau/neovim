@@ -48,10 +48,6 @@ return {
       xml = { 'xmlformatter' },
       yaml = { 'yamlfmt' },
     },
-    -- format_on_save = {
-    --     timeout_ms = 5000,
-    --     lsp_format = "fallback",
-    -- },
     format_on_save = false,
     notify_on_error = true,
   },
