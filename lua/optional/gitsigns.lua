@@ -49,22 +49,18 @@ return {
       -- Navigation
       map('n', ']h', function()
         if vim.wo.diff then
-          return ']c'
-        end
-        vim.schedule(function()
+          vim.cmd.normal({ ']c', bang = true })
+        else
           gs.next_hunk()
-        end)
-        return '<Ignore>'
+        end
       end, 'Next Hunk')
 
       map('n', '[h', function()
         if vim.wo.diff then
-          return '[c'
-        end
-        vim.schedule(function()
+          vim.cmd.normal({ '[c', bang = true })
+        else
           gs.prev_hunk()
-        end)
-        return '<Ignore>'
+        end
       end, 'Prev Hunk')
 
       -- Actions
