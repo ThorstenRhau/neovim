@@ -25,7 +25,7 @@ return {
     local function toggle_virtual_text()
       local current_value = vim.diagnostic.config().virtual_text
       vim.diagnostic.config({ virtual_text = not current_value })
-      print('Virtual text ' .. (current_value and 'disabled' or 'enabled'))
+      vim.notify('Virtual text ' .. (current_value and 'disabled' or 'enabled'))
     end
 
     -- Toggle virtual lines for diagnostics
@@ -38,18 +38,15 @@ return {
     local function ListActiveLinters()
       local ok, lint = pcall(require, 'lint')
       if not ok then
-        print('nvim-lint is not available.')
+        vim.notify('nvim-lint is not available.', vim.log.levels.WARN)
         return
       end
 
       local linters = lint.linters_by_ft[vim.bo.filetype]
       if linters then
-        print("Active linters for filetype '" .. vim.bo.filetype .. "':")
-        for _, linter in ipairs(linters) do
-          print(linter)
-        end
+        vim.notify("Active linters for '" .. vim.bo.filetype .. "': " .. table.concat(linters, ', '))
       else
-        print("No active linters for filetype '" .. vim.bo.filetype .. "'.")
+        vim.notify("No active linters for filetype '" .. vim.bo.filetype .. "'.", vim.log.levels.INFO)
       end
     end
 
