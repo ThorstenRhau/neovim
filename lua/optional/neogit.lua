@@ -12,7 +12,7 @@ return {
   ---@type NeogitConfig
   opts = {
     disable_insert_on_commit = true,
-    graph_style = 'unicode',
+    graph_style = 'kitty',
     process_spinner = false,
   },
 }
