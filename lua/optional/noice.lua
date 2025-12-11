@@ -6,7 +6,7 @@ return {
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
   },
-  event = 'CmdlineEnter',
+  event = 'VeryLazy',
 
   ---@module 'noice'
   ---@type NoiceConfig
