@@ -7,7 +7,6 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    version = false,
     build = ':TSUpdate',
     keys = {
       { '<c-space>', desc = 'Increment Selection' },
