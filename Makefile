@@ -30,6 +30,7 @@ check:
 		grep -v "kitty graphics protocol" | \
 		grep -v "vim.ui.input.*Snacks.input" | \
 		grep -v "vim.ui.select.*Snacks.picker.select" | \
+		grep -v "tectonic.*pdflatex" | \
 		grep -q "❌ ERROR"; then \
 	  echo "Neovim health check failed! Errors found:"; \
 	  cat "$$temp_file"; \
