@@ -90,7 +90,7 @@ if vim.fn.isdirectory(undodir) == 0 then
 end
 o.undodir = undodir
 o.undofile = true
-o.undolevels = 10000
+o.undolevels = 1000
 
 -- Session management
 opt.sessionoptions:remove('blank') -- Not saving empty buffers
