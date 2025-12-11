@@ -3,14 +3,12 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    lazy = false,
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     version = false,
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-    ft = { 'checkhealth' },
     keys = {
       { '<c-space>', desc = 'Increment Selection' },
       { '<bs>', desc = 'Decrement Selection', mode = 'x' },
