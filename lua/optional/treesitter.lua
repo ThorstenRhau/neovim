@@ -93,6 +93,7 @@ return {
         'query',
         'regex',
         'toml',
+        'typst',
         'typescript',
         'vim',
         'vimdoc',

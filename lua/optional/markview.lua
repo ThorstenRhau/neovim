@@ -2,16 +2,16 @@
 ---@type LazySpec
 return {
   'OXY2DEV/markview.nvim',
-  ft = 'markdown',
+  ft = { 'markdown', 'html', 'yaml', 'typst' },
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter' },
     { 'echasnovski/mini.icons' },
   },
   opts = {
     preview = {
-      filetypes = { 'markdown', 'codecompanion' },
+      filetypes = { 'markdown', 'html', 'yaml', 'typst' },
       ignore_buftypes = {},
-      icon_provider = nil,
+      icon_provider = 'mini',
     },
   },
 }
