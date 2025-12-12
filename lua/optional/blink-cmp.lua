@@ -4,7 +4,7 @@ return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets', 'abecodes/tabout.nvim' },
   version = '1.*',
-  event = { 'InsertEnter', 'CmdlineEnter' },
+  lazy = false,
   opts_extend = { 'sources.default' },
 
   ---@module 'blink.cmp'
