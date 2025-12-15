@@ -13,7 +13,6 @@ return {
 
     -- Install core parsers at startup
     ts.install({
-      'norg',
       'bash',
       'comment',
       'css',
@@ -26,11 +25,13 @@ return {
       'html',
       'javascript',
       'json',
+      'latex',
       'lua',
       'luadoc',
       'make',
       'markdown',
       'markdown_inline',
+      'norg',
       'python',
       'query',
       'regex',
