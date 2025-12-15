@@ -2,6 +2,10 @@
 ---@type LazySpec
 return {
   'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'nvim-treesitter/nvim-treesitter-context',
+  },
   lazy = false,
   branch = 'main',
   build = ':TSUpdate',
@@ -10,6 +14,7 @@ return {
 
     -- Install core parsers at startup
     ts.install({
+      'norg',
       'bash',
       'comment',
       'css',
@@ -30,22 +35,33 @@ return {
       'python',
       'query',
       'regex',
+      'scss',
+      'svelte',
       'toml',
-      'typst',
+      'tsx',
       'typescript',
+      'typst',
       'vim',
       'vimdoc',
+      'vue',
       'xml',
-      'yaml',
     })
 
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
-    local ignore_filetypes = { 'checkhealth' }
+    local ignore_filetypes = {
+      'checkhealth',
+      'lazy',
+      'mason',
+      'snacks_dashboard',
+      'snacks_notif',
+      'snacks_win',
+    }
 
     -- Auto-install parsers and enable highlighting on FileType
     vim.api.nvim_create_autocmd('FileType', {
       group = group,
+      desc = 'Enable treesitter highlighting and indentation',
       callback = function(event)
         if vim.tbl_contains(ignore_filetypes, event.match) then
           return
