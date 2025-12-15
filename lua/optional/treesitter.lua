@@ -39,20 +39,29 @@ return {
       'yaml',
     })
 
-    -- Auto-install parsers on FileType
+    local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+
+    local ignore_filetypes = { 'checkhealth' }
+
+    -- Auto-install parsers and enable highlighting on FileType
     vim.api.nvim_create_autocmd('FileType', {
+      group = group,
       callback = function(event)
+        if vim.tbl_contains(ignore_filetypes, event.match) then
+          return
+        end
+
         local lang = vim.treesitter.language.get_lang(event.match) or event.match
         local buf = event.buf
 
-        require('nvim-treesitter').install({ lang }, {
-          callback = function()
-            -- Enable highlighting after install completes
-            if vim.api.nvim_buf_is_valid(buf) then
-              vim.treesitter.start(buf, lang)
-            end
-          end,
-        })
+        -- Start highlighting immediately (works if parser exists)
+        pcall(vim.treesitter.start, buf, lang)
+
+        -- Enable treesitter indentation
+        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+        -- Install missing parsers (async, no-op if already installed)
+        ts.install({ lang })
       end,
     })
   end,
