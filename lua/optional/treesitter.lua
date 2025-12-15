@@ -45,7 +45,9 @@ return {
       'vimdoc',
       'vue',
       'xml',
-    })
+    }, {
+      max_jobs = 8,
+    }):wait(300000) -- max. 5 minutes
 
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
