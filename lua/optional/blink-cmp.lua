@@ -21,11 +21,6 @@ return {
         auto_show_delay_ms = 250,
         window = { border = 'rounded' },
       },
-      list = {
-        selection = {
-          auto_insert = false,
-        },
-      },
       menu = {
         border = 'rounded',
         draw = {

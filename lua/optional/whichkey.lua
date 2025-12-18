@@ -70,16 +70,6 @@ return {
       { '<leader>b', group = 'Buffer', icon = { icon = ' ', color = 'blue' } },
       { '<leader>bb', '<cmd>b#<CR>', desc = 'Switch buffer', icon = { icon = '󰯍 ', color = 'yellow' } },
       {
-        '<leader>bd',
-        function()
-          local ok, snacks = pcall(require, 'snacks')
-          if ok then
-            snacks.bufdelete()
-          end
-        end,
-        desc = 'Delete buffer',
-      },
-      {
         '<leader>bO',
         function()
           local ok, snacks = pcall(require, 'snacks')
@@ -125,11 +115,9 @@ return {
       { '<leader>u', group = 'Interface', icon = { icon = ' ', color = 'azure' } },
       { '<leader>uC', '<cmd>ColorizerToggle<CR>', desc = 'Toggle colorizer' },
       { '<leader>uH', '<cmd>set list!<CR>', desc = 'Toggle hidden characters' },
-      { '<leader>ui', '<cmd>IlluminateToggle<cr>', desc = 'Toggle illumination' },
       { '<leader>uk', '<cmd>set cursorline!<CR>', desc = 'Toggle cursor line' },
       { '<leader>um', '<cmd>Markview toggle<cr>', desc = 'Markdown preview (in-editor)' },
       { '<leader>up', '<cmd>PickColor<CR>', desc = 'Color picker' },
-      { '<leader>ut', '<cmd>TodoLocList<cr>', desc = 'Todo list' },
       { '<leader>uV', toggle_virtual_text, desc = 'Toggle virtual text' },
       { '<leader>uv', toggle_virtual_lines, desc = 'Toggle virtual lines' },
 

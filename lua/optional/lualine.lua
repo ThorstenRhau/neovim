@@ -94,11 +94,7 @@ return {
           section_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },
           disabled_filetypes = {
-            'checkhealth',
-            'snacks_dashboard',
-            'NeogitConsole',
-            'NeogitStatus',
-            statusline = {},
+            statusline = { 'checkhealth', 'snacks_dashboard', 'NeogitConsole', 'NeogitStatus' },
             winbar = {},
           },
         },
