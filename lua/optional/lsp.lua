@@ -81,12 +81,10 @@ return {
       group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
       callback = function(event)
         local opts = { buffer = event.buf, silent = true, noremap = true }
-                -- stylua: ignore start
-                local keymaps = {
-                    { "n", "<leader>ca", vim.lsp.buf.code_action,   "Code Action" },
-                    { "n", "<leader>cr", vim.lsp.buf.rename,        "Rename Symbol" },
-                }
-        -- stylua: ignore end
+        local keymaps = {
+          { 'n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action' },
+          { 'n', '<leader>cr', vim.lsp.buf.rename, 'Rename Symbol' },
+        }
         for _, map in ipairs(keymaps) do
           vim.keymap.set(map[1], map[2], map[3], vim.tbl_extend('force', opts, { desc = map[4] }))
         end
