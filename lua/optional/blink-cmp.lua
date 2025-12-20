@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets', 'abecodes/tabout.nvim' },
+  dependencies = { 'rafamadriz/friendly-snippets' },
   version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
   opts_extend = { 'sources.default' },
@@ -18,7 +18,7 @@ return {
       ghost_text = { enabled = true },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 250,
+        auto_show_delay_ms = 500,
         window = { border = 'rounded' },
       },
       menu = {
@@ -37,7 +37,12 @@ return {
       preset = 'super-tab',
     },
 
-    fuzzy = { implementation = 'prefer_rust' },
+    fuzzy = {
+      implementation = 'prefer_rust',
+      prebuilt_binaries = {
+        download = true,
+      },
+    },
 
     signature = {
       enabled = true,
@@ -54,7 +59,7 @@ return {
           score_offset = 1000,
         },
         lsp = {
-          min_keyword_length = 2,
+          min_keyword_length = 1,
           score_offset = 0,
         },
         path = {
