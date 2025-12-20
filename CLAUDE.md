@@ -8,7 +8,6 @@ Personal Neovim config using lazy.nvim. No Claude attribution in commits.
 make all      # Format, check, and lint (runs via pre-commit hook)
 make format   # Format with stylua
 make lint     # Lint with selene
-make check    # Run :checkhealth headless
 ```
 
 ## Two-Mode System
