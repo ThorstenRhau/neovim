@@ -17,7 +17,15 @@ return {
     {
       '<leader>cl',
       function()
-        require('lint').try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
+        local fidget = require('fidget')
+        local lint = require('lint')
+        local ft = vim.bo.filetype
+        local linters = lint.linters_by_ft[ft]
+
+        if linters and #linters > 0 then
+          fidget.notify('Linting with: ' .. table.concat(linters, ', '), vim.log.levels.INFO, { group = 'lint' })
+        end
+        lint.try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
       end,
       desc = 'Lint current file',
     },

@@ -20,11 +20,7 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     image = { enabled = true },
-    notifier = {
-      enabled = true,
-      timeout = 3000,
-      style = 'compact',
-    },
+    notifier = { enabled = false },
     picker = {
       layout = {
         fullscreen = true,
@@ -33,11 +29,6 @@ return {
           local columns = vim.api.nvim_get_option_value('columns', {})
           return columns >= 120 and 'default' or 'vertical'
         end,
-      },
-      sources = {
-        notifications = {
-          layout = 'ivy_split',
-        },
       },
       undo = {
         enabled = true,
@@ -66,7 +57,6 @@ return {
 
   keys = {
     -- stylua: ignore start
-    { '<leader>un', function() require('snacks').notifier.hide() end, desc = 'Dismiss All Notifications' },
     { "<leader>z", function() require("snacks").zen() end, desc = "Toggle Zen Mode" },
     { "<leader>Z", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
     { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
@@ -82,7 +72,6 @@ return {
     -- Snacks.picker
     { "<leader>/", function() require("snacks").picker.grep() end, desc = "Grep" },
     { "<leader>:", function() require("snacks").picker.command_history() end, desc = "Command History" },
-    { "<leader>n", function() require("snacks").picker.notifications() end, desc = "Notification History" },
     { "<leader>U", function() require("snacks").picker.undo() end, desc = "Undo" },
     { "<leader><space>", function() require("snacks").picker.files() end, desc = "Find Files" },
     -- Find

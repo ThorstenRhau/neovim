@@ -20,7 +20,15 @@ return {
     {
       '<leader>cf',
       function()
-        require('conform').format({ async = true })
+        local fidget = require('fidget')
+        fidget.notify('Formatting...', vim.log.levels.INFO, { group = 'format' })
+        require('conform').format({ async = true }, function(err)
+          if err then
+            fidget.notify('Format failed: ' .. err, vim.log.levels.ERROR, { group = 'format' })
+          else
+            fidget.notify('Formatted', vim.log.levels.INFO, { group = 'format', ttl = 2 })
+          end
+        end)
       end,
       mode = { 'n', 'v' },
       desc = 'Format buffer',
