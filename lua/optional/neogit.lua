@@ -7,6 +7,9 @@ return {
     'sindrets/diffview.nvim',
   },
   cmd = 'Neogit',
+  keys = {
+    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'NeoGit' },
+  },
 
   ---@module 'neogit'
   ---@type NeogitConfig

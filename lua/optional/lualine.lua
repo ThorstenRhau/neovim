@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach', 'BufEnter', 'FileType' }
 return {
   {
     'nvim-lualine/lualine.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = 'VeryLazy',
     dependencies = {
       { 'echasnovski/mini.icons' },
     },
