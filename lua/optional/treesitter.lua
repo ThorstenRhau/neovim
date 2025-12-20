@@ -17,20 +17,39 @@ return {
   config = function()
     local ts = require('nvim-treesitter')
 
-    -- State tracking for async parser loading
-    local parsers_loaded = {}
-    local parsers_pending = {}
-    local parsers_failed = {}
+    -- Track buffers currently waiting for parser installation
+    local pending_buffers = {}
 
-    local ns = vim.api.nvim_create_namespace('treesitter.async')
+    -- Helper to start treesitter with retry for async parser installation
+    local function start_with_retry(buf, lang, attempts)
+      attempts = attempts or 10
 
-    -- Helper to start highlighting and indentation
-    local function start(buf, lang)
+      -- Use "buffer:language" as key to handle buffer number reuse
+      local pending_key = buf .. ':' .. lang
+
+      if not vim.api.nvim_buf_is_valid(buf) then
+        pending_buffers[pending_key] = nil -- Cleanup
+        return
+      end
+
+      -- Prevent duplicate retry loops for the same buffer+language
+      if pending_buffers[pending_key] then
+        return
+      end
+
       local ok = pcall(vim.treesitter.start, buf, lang)
       if ok then
         vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        pending_buffers[pending_key] = nil -- Success - clear tracking
+      elseif attempts > 0 then
+        pending_buffers[pending_key] = true -- Mark as pending
+        vim.defer_fn(function()
+          pending_buffers[pending_key] = nil -- Clear before retry (allows new attempt)
+          start_with_retry(buf, lang, attempts - 1)
+        end, 500)
+      else
+        pending_buffers[pending_key] = nil -- Max retries reached - clear tracking
       end
-      return ok
     end
 
     -- Install core parsers after lazy.nvim finishes loading all plugins
@@ -77,25 +96,6 @@ return {
       end,
     })
 
-    -- Decoration provider for async parser loading
-    vim.api.nvim_set_decoration_provider(ns, {
-      on_start = vim.schedule_wrap(function()
-        if #parsers_pending == 0 then
-          return false
-        end
-        for _, data in ipairs(parsers_pending) do
-          if vim.api.nvim_buf_is_valid(data.buf) then
-            if start(data.buf, data.lang) then
-              parsers_loaded[data.lang] = true
-            else
-              parsers_failed[data.lang] = true
-            end
-          end
-        end
-        parsers_pending = {}
-      end),
-    })
-
     local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
 
     local ignore_filetypes = {
@@ -110,7 +110,7 @@ return {
     -- Auto-install parsers and enable highlighting on FileType
     vim.api.nvim_create_autocmd('FileType', {
       group = group,
-      desc = 'Enable treesitter highlighting and indentation (non-blocking)',
+      desc = 'Enable treesitter highlighting and indentation',
       callback = function(event)
         if vim.tbl_contains(ignore_filetypes, event.match) then
           return
@@ -119,19 +119,10 @@ return {
         local lang = vim.treesitter.language.get_lang(event.match) or event.match
         local buf = event.buf
 
-        if parsers_failed[lang] then
-          return
-        end
+        -- Try to start treesitter, with retry if parser is being installed
+        start_with_retry(buf, lang)
 
-        if parsers_loaded[lang] then
-          -- Parser already loaded, start immediately (fast path)
-          start(buf, lang)
-        else
-          -- Queue for async loading
-          table.insert(parsers_pending, { buf = buf, lang = lang })
-        end
-
-        -- Auto-install missing parsers (async, no-op if already installed)
+        -- Auto-install missing parsers (nvim-treesitter handles async internally)
         ts.install({ lang })
       end,
     })
