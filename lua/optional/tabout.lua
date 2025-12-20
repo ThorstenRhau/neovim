@@ -26,7 +26,4 @@ return {
     ignore_beginning = true,
     exclude = {},
   },
-  config = function(_, opts)
-    require('tabout').setup(opts)
-  end,
 }

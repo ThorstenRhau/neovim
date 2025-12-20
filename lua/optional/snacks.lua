@@ -20,13 +20,7 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     image = { enabled = true },
-    notifier = {
-      padding = true,
-      sort = { 'added' },
-      style = 'compact',
-      timeout = 4000,
-      top_down = true,
-    },
+    notifier = { enabled = false },
     picker = {
       layout = {
         fullscreen = true,
@@ -77,7 +71,6 @@ return {
     { "<leader>gf", function() require("snacks").lazygit.log_file() end, desc = "Lazygit Current File History" },
     { "<leader>gl", function() require("snacks").lazygit() end, desc = "Lazygit" },
     { "<leader>gL", function() require("snacks").lazygit.log() end, desc = "Lazygit Log (cwd)" },
-    { "<leader>un", function() require("snacks").notifier.hide() end, desc = "Dismiss All Notifications" },
     { "]]", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n" } },
     { "[[", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n" } },
     { "<leader>t",      function() require("snacks").terminal() end, desc = "Toggle Terminal" },
