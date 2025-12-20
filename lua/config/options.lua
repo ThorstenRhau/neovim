@@ -86,7 +86,9 @@ o.backup = false
 local home = vim.env.HOME or vim.fn.expand('~')
 local undodir = home .. '/.local/share/nvim/undo'
 if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, 'p')
+  if vim.fn.mkdir(undodir, 'p') == 0 then
+    vim.notify('Failed to create undo directory: ' .. undodir, vim.log.levels.WARN)
+  end
 end
 o.undodir = undodir
 o.undofile = true

@@ -8,7 +8,11 @@ end
 ---Close the current window or quit Neovim if it's the last window
 ---@return nil
 local function close_or_quit()
-  local win_count = #vim.api.nvim_list_wins()
+  -- Filter out floating windows from window count
+  local wins = vim.tbl_filter(function(win)
+    return vim.api.nvim_win_get_config(win).relative == ''
+  end, vim.api.nvim_list_wins())
+  local win_count = #wins
   local listed_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 
   if win_count == 1 and #listed_bufs <= 1 then
