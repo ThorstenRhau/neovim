@@ -1,7 +1,7 @@
 SHELL     := /usr/bin/env bash
 ROOT      := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC   := $(ROOT)/.stylua.toml
-CHECKLUAC := $(ROOT)/.luacheckrc
+SELENEC   := $(ROOT)/selene.toml
 NVIM      := nvim --headless -Es -u $(ROOT)/init.lua
 
 .PHONY: all check clean format test install-hooks
@@ -43,5 +43,5 @@ check:
 
 # Lint all Lua files
 lint:
-	@luacheck --config "$(CHECKLUAC)" "$(ROOT)"
+	@selene "$(ROOT)"
 

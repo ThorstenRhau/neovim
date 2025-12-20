@@ -9,6 +9,16 @@ return {
   lazy = false,
   priority = 1000,
 
+  keys = {
+    {
+      '<leader>un',
+      function()
+        require('noice').cmd('dismiss')
+      end,
+      desc = 'Dismiss All Notifications',
+    },
+  },
+
   ---@module 'noice'
   ---@type NoiceConfig
   opts = {
