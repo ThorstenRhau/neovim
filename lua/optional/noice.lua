@@ -6,7 +6,8 @@ return {
     'MunifTanjim/nui.nvim',
     'rcarriga/nvim-notify',
   },
-  event = 'VeryLazy',
+  lazy = false,
+  priority = 1000,
 
   ---@module 'noice'
   ---@type NoiceConfig
@@ -58,6 +59,13 @@ return {
           event = 'msg_show',
           kind = '',
           find = 'written',
+        },
+        opts = { skip = true },
+      },
+      {
+        filter = {
+          event = 'msg_show',
+          find = 'blink.cmp',
         },
         opts = { skip = true },
       },
