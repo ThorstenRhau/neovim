@@ -60,7 +60,10 @@ return {
       {
         '<leader>S',
         function()
-          require('persistence').load({ last = true })
+          local ok, persistence = pcall(require, 'persistence')
+          if ok then
+            persistence.load({ last = true })
+          end
         end,
         desc = 'Restore Last Session',
       },
