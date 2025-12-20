@@ -111,15 +111,13 @@ return {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'NeoGit' },
       { '<leader>gh', group = 'Git Hunk (Gitsigns)' },
 
-      -- GPT or AI tools
-      { '<C-g>', group = 'GPT', desc = 'GPT tools' },
-
       -- UI toggles and enhancements
       { '<leader>u', group = 'Interface', icon = { icon = ' ', color = 'azure' } },
       { '<leader>uC', '<cmd>ColorizerToggle<CR>', desc = 'Toggle colorizer' },
       { '<leader>uH', '<cmd>set list!<CR>', desc = 'Toggle hidden characters' },
       { '<leader>uk', '<cmd>set cursorline!<CR>', desc = 'Toggle cursor line' },
       { '<leader>um', '<cmd>Markview toggle<cr>', desc = 'Markdown preview (in-editor)' },
+      { '<leader>uM', group = 'Live Preview (browser)' },
       { '<leader>up', '<cmd>PickColor<CR>', desc = 'Color picker' },
       { '<leader>uV', toggle_virtual_text, desc = 'Toggle virtual text' },
       { '<leader>uv', toggle_virtual_lines, desc = 'Toggle virtual lines' },
