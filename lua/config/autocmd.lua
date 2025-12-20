@@ -246,3 +246,28 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end, 5000) -- 5 second delay after startup
   end,
 })
+
+-- Persistent folds
+local persistent_folds_group = augroup('persistent_folds')
+
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  group = persistent_folds_group,
+  pattern = '*',
+  desc = 'Save view on leave',
+  callback = function()
+    if vim.bo.buftype == '' and vim.fn.expand('%') ~= '' then
+      vim.cmd('silent! mkview')
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = persistent_folds_group,
+  pattern = '*',
+  desc = 'Load view on enter',
+  callback = function()
+    if vim.bo.buftype == '' and vim.fn.expand('%') ~= '' then
+      vim.cmd('silent! loadview')
+    end
+  end,
+})
