@@ -50,10 +50,8 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.bo.textwidth = 72
     vim.wo.colorcolumn = '50,73'
-    vim.schedule(function()
-      vim.wo.spell = true
-      vim.wo.wrap = true
-    end)
+    vim.wo.spell = true
+    vim.wo.wrap = true
   end,
 })
 
