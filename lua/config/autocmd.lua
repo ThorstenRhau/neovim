@@ -98,6 +98,7 @@ vim.api.nvim_create_autocmd('VimResized', {
   callback = function()
     if resize_timer then
       resize_timer:stop()
+      resize_timer:close()
     end
     resize_timer = vim.defer_fn(function()
       vim.cmd('tabdo wincmd =')
