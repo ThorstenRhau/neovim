@@ -31,7 +31,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = "'"
 vim.opt.termguicolors = true
 
-require('config.options')
+local ok, err = pcall(require, 'config.options')
+if not ok then
+  vim.notify('Failed to load config.options: ' .. tostring(err), vim.log.levels.ERROR)
+end
 
 local specs = {
   { import = 'plugins' },
@@ -87,8 +90,15 @@ require('lazy').setup({
   },
 })
 
-require('config.autocmd')
-require('config.keymaps')
+ok, err = pcall(require, 'config.autocmd')
+if not ok then
+  vim.notify('Failed to load config.autocmd: ' .. tostring(err), vim.log.levels.ERROR)
+end
+
+ok, err = pcall(require, 'config.keymaps')
+if not ok then
+  vim.notify('Failed to load config.keymaps: ' .. tostring(err), vim.log.levels.ERROR)
+end
 
 if enable_optional_plugins ~= '1' then
   vim.cmd('colorscheme default')

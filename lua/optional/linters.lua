@@ -17,7 +17,10 @@ return {
     {
       '<leader>cl',
       function()
-        local fidget = require('fidget')
+        local ok, fidget = pcall(require, 'fidget')
+        if not ok then
+          return
+        end
         local lint = require('lint')
         local ft = vim.bo.filetype
         local linters = lint.linters_by_ft[ft]

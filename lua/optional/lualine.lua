@@ -8,7 +8,9 @@ local function invalidate_tooling_cache()
   tooling_cache = {}
 end
 
+local cache_group = vim.api.nvim_create_augroup('LualineToolingCache', { clear = true })
 vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach', 'BufEnter', 'FileType' }, {
+  group = cache_group,
   callback = invalidate_tooling_cache,
 })
 

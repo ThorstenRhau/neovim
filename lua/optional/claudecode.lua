@@ -35,6 +35,10 @@ return {
     { '<leader>as', '<cmd>ClaudeCodeSend<cr>', mode = { 'n', 'v' }, desc = 'Send to Claude' },
     { '<leader>aA', function()
       local file = vim.fn.expand('%:p')
+      if file == '' then
+        vim.notify('No file to add', vim.log.levels.WARN)
+        return
+      end
       vim.cmd('ClaudeCodeAdd ' .. file)
     end, desc = 'Add Current File to Context' },
     { '<leader>ad', '<cmd>ClaudeCodeDiffAccept<cr>', desc = 'Accept Diff' },

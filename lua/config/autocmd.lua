@@ -72,6 +72,9 @@ vim.api.nvim_create_autocmd('FileType', {
   },
   desc = "Map 'q' to close for helper filetypes",
   callback = function(event)
+    if not vim.api.nvim_buf_is_valid(event.buf) then
+      return
+    end
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', close_or_quit, {
       buffer = event.buf,
@@ -115,6 +118,9 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
       last_checktime = vim.uv.now()
     else
       -- Debounce BufEnter checktime to avoid excessive calls
+      if not vim.api.nvim_buf_is_valid(args.buf) then
+        return
+      end
       local now = vim.uv.now()
       if vim.bo[args.buf].buftype == '' and (now - last_checktime) > checktime_cooldown then
         vim.cmd.checktime('%')
@@ -138,6 +144,9 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup('restore_cursor'),
   desc = 'Jump to last known position',
   callback = function(args)
+    if not vim.api.nvim_buf_is_valid(args.buf) then
+      return
+    end
     if vim.bo[args.buf].buftype ~= '' then
       return
     end
