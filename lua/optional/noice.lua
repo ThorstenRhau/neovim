@@ -20,7 +20,7 @@ return {
   },
 
   ---@module 'noice'
-  ---@type NoiceConfig
+  ---@type NoiceConfigViews
   opts = {
     presets = {
       bottom_search = false,
