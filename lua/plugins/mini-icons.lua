@@ -10,7 +10,10 @@ return {
   },
   init = function()
     package.preload['nvim-web-devicons'] = function()
-      require('mini.icons').mock_nvim_web_devicons()
+      local ok, icons = pcall(require, 'mini.icons')
+      if ok then
+        icons.mock_nvim_web_devicons()
+      end
       return package.loaded['nvim-web-devicons']
     end
   end,

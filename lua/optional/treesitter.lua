@@ -38,13 +38,13 @@ return {
       end
 
       local ok = pcall(vim.treesitter.start, buf, lang)
-      if ok then
+      if ok and vim.api.nvim_buf_is_valid(buf) then
         vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         pending_buffers[pending_key] = nil -- Success - clear tracking
       elseif attempts > 0 then
         pending_buffers[pending_key] = true -- Mark as pending
         vim.defer_fn(function()
-          pending_buffers[pending_key] = nil -- Clear before retry (allows new attempt)
+          -- Don't clear pending_key here - let recursive call handle it
           start_with_retry(buf, lang, attempts - 1)
         end, 500)
       else
