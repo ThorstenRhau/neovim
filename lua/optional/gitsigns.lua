@@ -32,6 +32,7 @@ return {
       delay = 1500,
     },
     current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+    update_debounce = 250,
     preview_config = {
       border = 'single',
       style = 'minimal',
