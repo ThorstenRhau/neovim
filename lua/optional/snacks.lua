@@ -20,7 +20,11 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     image = { enabled = true },
-    notifier = { enabled = false },
+    notifier = {
+      enabled = true,
+      timeout = 3000,
+      style = 'compact',
+    },
     picker = {
       layout = {
         fullscreen = true,
@@ -62,6 +66,7 @@ return {
 
   keys = {
     -- stylua: ignore start
+    { '<leader>un', function() require('snacks').notifier.hide() end, desc = 'Dismiss All Notifications' },
     { "<leader>z", function() require("snacks").zen() end, desc = "Toggle Zen Mode" },
     { "<leader>Z", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
     { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
