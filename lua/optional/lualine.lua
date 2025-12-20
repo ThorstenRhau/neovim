@@ -110,6 +110,11 @@ return {
             statusline = { 'checkhealth', 'snacks_dashboard', 'NeogitConsole', 'NeogitStatus' },
             winbar = {},
           },
+          refresh = {
+            statusline = 500,
+            tabline = 1000,
+            winbar = 500,
+          },
         },
         sections = {
           lualine_a = {
