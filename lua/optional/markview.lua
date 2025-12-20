@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
   'OXY2DEV/markview.nvim',
+  event = 'VeryLazy',
   ft = { 'markdown', 'html', 'yaml', 'typst' },
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter' },
