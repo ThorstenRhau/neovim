@@ -1,5 +1,17 @@
 ---@module "lazy"
 ---@type LazySpec
+
+-- Cache for tooling info to avoid repeated queries
+local tooling_cache = {}
+
+local function invalidate_tooling_cache()
+  tooling_cache = {}
+end
+
+vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach', 'BufEnter', 'FileType' }, {
+  callback = invalidate_tooling_cache,
+})
+
 return {
   {
     'nvim-lualine/lualine.nvim',
@@ -21,25 +33,23 @@ return {
       end
 
       local function tooling_info()
+        local bufnr = vim.api.nvim_get_current_buf()
+        if tooling_cache[bufnr] then
+          return tooling_cache[bufnr]
+        end
+
         local clients = {}
-        local client_index = {}
 
         local function add_client(name, icon)
-          if not client_index[name] then
-            table.insert(clients, { name = name, icons = { icon } })
-            client_index[name] = #clients
+          local existing = vim.iter(clients):find(function(c)
+            return c.name == name
+          end)
+          if existing then
+            if not vim.tbl_contains(existing.icons, icon) then
+              table.insert(existing.icons, icon)
+            end
           else
-            local idx = client_index[name]
-            local has_icon = false
-            for _, existing_icon in ipairs(clients[idx].icons) do
-              if existing_icon == icon then
-                has_icon = true
-                break
-              end
-            end
-            if not has_icon then
-              table.insert(clients[idx].icons, icon)
-            end
+            table.insert(clients, { name = name, icons = { icon } })
           end
         end
 
@@ -68,23 +78,26 @@ return {
           end
         end
 
+        local result
         if #clients == 0 then
-          return ''
+          result = ''
+        else
+          local items = {}
+          for _, c in ipairs(clients) do
+            table.insert(items, table.concat(c.icons, '') .. c.name)
+          end
+          result = table.concat(items, ', ')
         end
 
-        local items = {}
-        for _, c in ipairs(clients) do
-          table.insert(items, table.concat(c.icons, '') .. c.name)
-        end
-        return table.concat(items, ', ')
+        tooling_cache[bufnr] = result
+        return result
       end
 
       local function location_with_total()
-        local line = vim.fn.line('.')
-        local col = vim.fn.col('.')
-        local total_lines = vim.fn.line('$')
-        local total_cols = #vim.fn.getline(line)
-        return string.format('%d:%d|%d:%d', line, total_lines, col, total_cols)
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        local total_lines = vim.api.nvim_buf_line_count(0)
+        local line_text = vim.api.nvim_get_current_line()
+        return string.format('%d:%d|%d:%d', cursor[1], total_lines, cursor[2] + 1, #line_text)
       end
 
       return {
@@ -103,6 +116,12 @@ return {
             { 'mode', separator = { left = '', right = '' }, right_padding = 2 },
             'searchcount',
             'selectioncount',
+            {
+              function()
+                local reg = vim.fn.reg_recording()
+                return reg ~= '' and '󰑋 @' .. reg or ''
+              end,
+            },
           },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = {
@@ -122,6 +141,10 @@ return {
           lualine_x = {
             dap_status,
             tooling_info,
+            {
+              require('lazy.status').updates,
+              cond = require('lazy.status').has_updates,
+            },
           },
           lualine_y = {
             'fileformat',
