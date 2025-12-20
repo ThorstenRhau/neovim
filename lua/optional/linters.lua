@@ -62,6 +62,9 @@ return {
       group = lint_augroup,
       callback = function(event)
         local bufnr = event.buf
+        if not vim.api.nvim_buf_is_valid(bufnr) then
+          return
+        end
         if vim.bo[bufnr].buftype ~= '' then
           return
         end

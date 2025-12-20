@@ -119,6 +119,7 @@ return {
   init = function()
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
+      once = true,
       callback = function()
         local Snacks = require('snacks')
         Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
