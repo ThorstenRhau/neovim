@@ -96,7 +96,7 @@ configured and working properly before you start to use neovim for your editing.
 
 If you intend to make changes to this configuration and commit them to git,
 please enable the git hooks. This ensures that `make all` (formatting, linting,
-tests) runs before every commit.
+checks) runs before every commit.
 
 ```sh
 make install-hooks
