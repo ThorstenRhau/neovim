@@ -126,5 +126,17 @@ return {
         ts.install({ lang })
       end,
     })
+
+    -- Clean up pending retries when buffer is deleted
+    vim.api.nvim_create_autocmd('BufDelete', {
+      group = group,
+      callback = function(event)
+        for key in pairs(pending_buffers) do
+          if key:match('^' .. event.buf .. ':') then
+            pending_buffers[key] = nil
+          end
+        end
+      end,
+    })
   end,
 }
