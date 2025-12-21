@@ -22,9 +22,9 @@ return {
     image = { enabled = true },
     notifier = {
       enabled = true,
-      timeout = 4500,
+      timeout = 5000,
       style = 'minimal',
-      top_down = true,
+      top_down = false,
     },
     picker = {
       layout = {
@@ -35,13 +35,14 @@ return {
           return columns >= 120 and 'default' or 'vertical'
         end,
       },
-      undo = {
-        enabled = true,
-        win = {
-          input = {
-            keys = {
-              ['<C-y>'] = { 'yank_add', mode = { 'n', 'i' } },
-              ['<C-S-y>'] = { 'yank_del', mode = { 'n', 'i' } },
+      sources = {
+        undo = {
+          win = {
+            input = {
+              keys = {
+                ['<C-y>'] = { 'yank_add', mode = { 'n', 'i' } },
+                ['<C-S-y>'] = { 'yank_del', mode = { 'n', 'i' } },
+              },
             },
           },
         },
