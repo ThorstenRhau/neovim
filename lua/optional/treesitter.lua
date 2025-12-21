@@ -58,6 +58,7 @@ return {
       once = true,
       callback = function()
         ts.install({
+          'asciidoc',
           'bash',
           'comment',
           'css',
@@ -90,6 +91,7 @@ return {
           'vimdoc',
           'vue',
           'xml',
+          'yaml',
         }, {
           max_jobs = 8,
         })
