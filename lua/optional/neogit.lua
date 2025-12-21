@@ -6,9 +6,10 @@ return {
     'nvim-lua/plenary.nvim',
     'sindrets/diffview.nvim',
   },
-  cmd = 'Neogit',
+  cmd = { 'Neogit', 'NeogitResetState' },
   keys = {
-    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'NeoGit' },
+    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Neogit' },
+    { '<leader>gc', '<cmd>Neogit commit<cr>', desc = 'Neogit Commit' },
   },
 
   ---@module 'neogit'
@@ -17,5 +18,8 @@ return {
     disable_insert_on_commit = true,
     graph_style = 'kitty',
     process_spinner = false,
+    integrations = {
+      diffview = true,
+    },
   },
 }
