@@ -75,7 +75,6 @@ return {
         mini = true,
         neogit = true,
         oil = true,
-        fidget = true,
         semantic_tokens = true,
         snacks = true,
         treesitter = true,

@@ -20,16 +20,12 @@ return {
     {
       '<leader>cf',
       function()
-        local ok, fidget = pcall(require, 'fidget')
-        if not ok then
-          return
-        end
-        fidget.notify('Formatting...', vim.log.levels.INFO, { group = 'format' })
+        vim.notify('Formatting...', vim.log.levels.INFO)
         require('conform').format({ async = true }, function(err)
           if err then
-            fidget.notify('Format failed: ' .. err, vim.log.levels.ERROR, { group = 'format' })
+            vim.notify('Format failed: ' .. err, vim.log.levels.ERROR)
           else
-            fidget.notify('Formatted', vim.log.levels.INFO, { group = 'format', ttl = 2 })
+            vim.notify('Formatted', vim.log.levels.INFO)
           end
         end)
       end,
