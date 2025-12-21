@@ -3,14 +3,14 @@
 return {
   'OXY2DEV/markview.nvim',
   event = 'VeryLazy',
-  ft = { 'markdown', 'html', 'yaml', 'typst' },
+  ft = { 'markdown', 'typst' },
   dependencies = {
     { 'nvim-treesitter/nvim-treesitter' },
     { 'echasnovski/mini.icons' },
   },
   opts = {
     preview = {
-      filetypes = { 'markdown', 'html', 'yaml', 'typst' },
+      filetypes = { 'markdown', 'typst' },
       ignore_buftypes = {},
       icon_provider = 'mini',
     },
