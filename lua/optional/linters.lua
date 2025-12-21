@@ -17,16 +17,12 @@ return {
     {
       '<leader>cl',
       function()
-        local ok, fidget = pcall(require, 'fidget')
-        if not ok then
-          return
-        end
         local lint = require('lint')
         local ft = vim.bo.filetype
         local linters = lint.linters_by_ft[ft]
 
         if linters and #linters > 0 then
-          fidget.notify('Linting with: ' .. table.concat(linters, ', '), vim.log.levels.INFO, { group = 'lint' })
+          vim.notify('Linting with: ' .. table.concat(linters, ', '), vim.log.levels.INFO)
         end
         lint.try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
       end,
