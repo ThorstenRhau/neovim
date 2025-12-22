@@ -4,8 +4,6 @@ return {
   'saghen/blink.cmp',
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'disrupted/blink-cmp-conventional-commits',
-    'Kaiser-Yang/blink-cmp-git',
   },
   version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
@@ -54,28 +52,13 @@ return {
     },
 
     sources = {
-      default = { 'lazydev', 'conventional_commits', 'git', 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
           -- Make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 1000,
-        },
-        conventional_commits = {
-          name = 'Conventional Commits',
-          module = 'blink-cmp-conventional-commits',
-          enabled = function()
-            return vim.bo.filetype == 'gitcommit'
-          end,
-        },
-        git = {
-          name = 'Git',
-          module = 'blink-cmp-git',
-          enabled = function()
-            return vim.tbl_contains({ 'gitcommit', 'markdown' }, vim.bo.filetype)
-          end,
-          opts = {},
         },
         lsp = {
           min_keyword_length = 1,
