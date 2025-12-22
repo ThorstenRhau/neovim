@@ -3,7 +3,6 @@ ROOT             := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC          := $(ROOT)/.stylua.toml
 SELENEC          := $(ROOT)/selene.toml
 NVIM             := nvim --headless -Es -u $(ROOT)/init.lua
-EXCLUDED_ERRORS  := kitty graphics protocol|vim%.ui%.input.*Snacks%.input|vim%.ui%.select.*Snacks%.picker%.select|tectonic.*pdflatex
 
 .PHONY: all clean format lint install-hooks help
 
