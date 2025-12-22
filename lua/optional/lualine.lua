@@ -95,13 +95,6 @@ return {
         return result
       end
 
-      local function location_with_total()
-        local cursor = vim.api.nvim_win_get_cursor(0)
-        local total_lines = vim.api.nvim_buf_line_count(0)
-        local line_text = vim.api.nvim_get_current_line()
-        return string.format('%d:%d|%d:%d', cursor[1], total_lines, cursor[2] + 1, #line_text)
-      end
-
       return {
         options = {
           icons_enabled = true,
@@ -126,7 +119,7 @@ return {
             {
               function()
                 local reg = vim.fn.reg_recording()
-                return reg ~= '' and '󰑋 @' .. reg or ''
+                return reg ~= '' and '@' .. reg or ''
               end,
             },
           },
@@ -154,12 +147,10 @@ return {
             },
           },
           lualine_y = {
-            'fileformat',
             'filetype',
-            'progress',
           },
           lualine_z = {
-            { location_with_total, separator = { left = '', right = '' }, left_padding = 2 },
+            { 'location', separator = { left = '', right = '' }, left_padding = 2 },
           },
         },
         inactive_sections = {
