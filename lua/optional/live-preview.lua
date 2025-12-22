@@ -4,12 +4,12 @@ return {
   'brianhuster/live-preview.nvim',
   ft = { 'markdown', 'html', 'asciidoc', 'svg' },
   dependencies = {
-    'folke/snacks.nvim',
+    'ibhagwan/fzf-lua',
   },
   ---@module 'live-preview'
   ---@type LivePreviewConfig
   opts = {
-    picker = 'snacks.picker',
+    picker = 'fzf_lua',
   },
   keys = {
     { '<leader>uMs', '<cmd>LivePreview start<cr>', desc = 'Start Live Preview' },
