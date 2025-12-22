@@ -19,7 +19,7 @@ return {
     gitbrowse = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    image = { enabled = true },
+    image = { enabled = false },
     notifier = {
       enabled = false, -- Disabled: using noice.nvim instead
     },
