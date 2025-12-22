@@ -14,5 +14,10 @@ return {
       ignore_buftypes = {},
       icon_provider = 'mini',
     },
+    yaml = {
+      properties = {
+        enable = false,
+      },
+    },
   },
 }
