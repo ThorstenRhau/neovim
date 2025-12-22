@@ -77,6 +77,7 @@ return {
         oil = true,
         semantic_tokens = true,
         snacks = true,
+        noice = true,
         treesitter = true,
         treesitter_context = true,
         which_key = true,
