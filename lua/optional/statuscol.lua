@@ -10,11 +10,11 @@ return {
       segments = {
         { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
         {
-          sign = { namespace = { 'gitsigns' }, maxwidth = 1, colwidth = 1, auto = true },
+          sign = { namespace = { 'gitsigns' }, maxwidth = 1, colwidth = 1, auto = false },
           click = 'v:lua.ScSa',
         },
         {
-          sign = { namespace = { '.*' }, name = { '.*' }, maxwidth = 1, colwidth = 2, auto = true },
+          sign = { namespace = { '.*' }, name = { '.*' }, maxwidth = 1, colwidth = 2, auto = false },
           click = 'v:lua.ScSa',
         },
         { text = { builtin.lnumfunc, ' ' }, click = 'v:lua.ScLa' },
