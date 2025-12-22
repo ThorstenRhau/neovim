@@ -98,7 +98,14 @@ return {
     })
 
     local diagnostic_opts = {
-      signs = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '󰅚',
+          [vim.diagnostic.severity.WARN] = '󰀪',
+          [vim.diagnostic.severity.INFO] = '󰋽',
+          [vim.diagnostic.severity.HINT] = '󰌵',
+        },
+      },
       underline = {
         severity = vim.diagnostic.severity.WARN,
       },
