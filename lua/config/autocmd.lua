@@ -83,7 +83,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', 'q', close_or_quit, {
       buffer = event.buf,
       silent = true,
-      noremap = true,
       desc = 'Close window',
     })
   end,
