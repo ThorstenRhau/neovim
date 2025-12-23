@@ -20,12 +20,12 @@ return {
     {
       '<leader>cf',
       function()
-        vim.notify('Formatting...', vim.log.levels.INFO)
+        vim.notify('Formatting ... ', vim.log.levels.INFO, { id = 'conform_format', timeout = false })
         require('conform').format({ async = true }, function(err)
           if err then
-            vim.notify('Format failed: ' .. err, vim.log.levels.ERROR)
+            vim.notify('Format failed: ' .. err, vim.log.levels.ERROR, { id = 'conform_format' })
           else
-            vim.notify('Formatted', vim.log.levels.INFO)
+            vim.notify('Formatting done', vim.log.levels.INFO, { id = 'conform_format', timeout = 1500 })
           end
         end)
       end,
@@ -56,6 +56,6 @@ return {
       yaml = { 'yamlfmt' },
     },
     format_on_save = false,
-    notify_on_error = true,
+    notify_on_error = false,
   },
 }
