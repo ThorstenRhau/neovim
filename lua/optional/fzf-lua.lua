@@ -3,7 +3,18 @@
 return {
   'ibhagwan/fzf-lua',
   dependencies = { 'echasnovski/mini.icons' },
+  event = 'VeryLazy',
   cmd = 'FzfLua',
+  opts = {
+    winopts = {
+      border = 'rounded',
+      fullscreen = true,
+    },
+    file_icons = 'mini',
+    undotree = {
+      previewer = 'undotree_native',
+    },
+  },
   keys = {
     -- General
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
@@ -47,15 +58,5 @@ return {
     { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'Goto Implementation' },
     { 'gy', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'Goto T[y]pe Definition' },
     { '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'LSP Symbols' },
-  },
-  opts = {
-    winopts = {
-      fullscreen = true,
-      preview = { layout = 'vertical' },
-    },
-    file_icons = 'mini',
-    undotree = {
-      previewer = 'undotree_native',
-    },
   },
 }
