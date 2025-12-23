@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'brianhuster/live-preview.nvim',
-  ft = { 'markdown', 'html', 'asciidoc', 'svg' },
+  ft = { 'markdown', 'html' },
   dependencies = {
     'ibhagwan/fzf-lua',
   },
