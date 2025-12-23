@@ -20,12 +20,11 @@ return {
     {
       '<leader>cf',
       function()
-        vim.notify('Formatting ... ', vim.log.levels.INFO, { id = 'conform_format', timeout = false })
         require('conform').format({ async = true }, function(err)
           if err then
-            vim.notify('Format failed: ' .. err, vim.log.levels.ERROR, { id = 'conform_format' })
+            vim.notify('Format failed: ' .. err, vim.log.levels.ERROR)
           else
-            vim.notify('Formatting done', vim.log.levels.INFO, { id = 'conform_format', timeout = 1500 })
+            vim.notify('Buffer has been formatted', vim.log.levels.INFO)
           end
         end)
       end,
