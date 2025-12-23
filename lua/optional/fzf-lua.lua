@@ -4,13 +4,36 @@ return {
   'ibhagwan/fzf-lua',
   dependencies = { 'echasnovski/mini.icons' },
   event = 'VeryLazy',
-  cmd = 'FzfLua',
+  ---@module "fzf-lua"
   opts = {
-    winopts = {
-      border = 'rounded',
-      fullscreen = true,
-    },
+    'default-title',
     file_icons = 'mini',
+    -- Dynamic sizing based on terminal dimensions
+    winopts = function()
+      local cols = vim.o.columns
+      local lines = vim.o.lines
+      local is_small = cols < 100 or lines < 30
+      return {
+        border = 'rounded',
+        backdrop = 60,
+        fullscreen = is_small,
+        width = not is_small and (cols > 180 and 0.90 or 0.95) or nil,
+        height = not is_small and (lines > 50 and 0.90 or 0.95) or nil,
+        preview = {
+          border = 'rounded',
+          layout = 'flex',
+          flip_columns = 110,
+          horizontal = 'right:60%',
+          vertical = 'down:40%',
+        },
+        treesitter = { enabled = true },
+      }
+    end,
+    keymap = {
+      fzf = {
+        ['ctrl-q'] = 'select-all+accept',
+      },
+    },
     undotree = {
       previewer = 'undotree_native',
     },
@@ -28,14 +51,18 @@ return {
     { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
     -- Git
+    { '<leader>gB', '<cmd>FzfLua git_branches<cr>', desc = 'Git Branches' },
     { '<leader>gP', '<cmd>FzfLua git_commits<cr>', desc = 'Git Log Picker' },
+    { '<leader>gc', '<cmd>FzfLua git_bcommits<cr>', desc = 'Git Buffer Commits' },
     { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
+    { '<leader>gS', '<cmd>FzfLua git_stash<cr>', desc = 'Git Stash' },
     -- Grep
     { '<leader>sb', '<cmd>FzfLua blines<cr>', desc = 'Buffer Lines' },
-    { '<leader>sB', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Grep Open Buffers' },
+    { '<leader>sB', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Grep Current Buffer' },
     { '<leader>sg', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>sw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word under cursor', mode = 'n' },
     { '<leader>sw', '<cmd>FzfLua grep_visual<cr>', desc = 'Grep visual selection', mode = 'x' },
+    { '<leader>sW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD under cursor' },
     -- Search
     { '<leader>s"', '<cmd>FzfLua registers<cr>', desc = 'Registers' },
     { '<leader>sa', '<cmd>FzfLua autocmds<cr>', desc = 'Autocmds' },
@@ -57,6 +84,7 @@ return {
     { 'gr', '<cmd>FzfLua lsp_references<cr>', nowait = true, desc = 'References' },
     { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'Goto Implementation' },
     { 'gy', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'Goto T[y]pe Definition' },
-    { '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'LSP Symbols' },
+    { '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'Document Symbols' },
+    { '<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', desc = 'Workspace Symbols' },
   },
 }
