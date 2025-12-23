@@ -16,7 +16,15 @@ return {
     },
     messages = {
       enabled = true,
-      view = 'mini', -- Compact notifications
+      view = 'mini',
+      view_error = 'mini',
+      view_warn = 'mini',
+      view_history = 'messages',
+      view_search = 'virtualtext',
+    },
+    notify = {
+      enabled = true,
+      view = 'mini',
     },
     popupmenu = {
       enabled = true,
@@ -36,8 +44,7 @@ return {
       },
     },
     presets = {
-      bottom_search = true, -- Classic bottom search
-      long_message_to_split = true, -- Long messages go to split
+      long_message_to_split = true,
     },
     views = {
       mini = {
