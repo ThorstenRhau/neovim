@@ -29,7 +29,7 @@ return {
     scratch = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
-    terminal = { enabled = true },
+    terminal = { enabled = false },
     dim = { enabled = true },
     toggle = { enabled = true },
     words = {
@@ -43,7 +43,6 @@ return {
     { "<leader>Z", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
     { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
     { "<leader>cR", function() require("snacks").rename.rename_file() end, desc = "Rename File" },
-    { "<leader>t",      function() require("snacks").terminal() end, desc = "Toggle Terminal" },
     -- stylua: ignore end
   },
 
