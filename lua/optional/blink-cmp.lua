@@ -15,9 +15,12 @@ return {
     appearance = {
       nerd_font_variant = 'normal',
     },
+
     completion = {
       accept = { auto_brackets = { enabled = true } },
       ghost_text = { enabled = true },
+      keyword = { range = 'full' },
+      list = { selection = { preselect = true, auto_insert = false } },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
@@ -40,10 +43,11 @@ return {
     },
 
     fuzzy = {
-      implementation = 'prefer_rust',
-      prebuilt_binaries = {
-        download = true,
-      },
+      implementation = 'rust',
+      prebuilt_binaries = { download = true },
+      frecency = { enabled = true },
+      use_proximity = true,
+      sorts = { 'exact', 'score', 'sort_text' },
     },
 
     signature = {
@@ -57,7 +61,6 @@ return {
         lazydev = {
           name = 'LazyDev',
           module = 'lazydev.integrations.blink',
-          -- Make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 1000,
         },
         lsp = {
