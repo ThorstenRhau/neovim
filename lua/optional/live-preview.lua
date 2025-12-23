@@ -9,7 +9,7 @@ return {
   ---@module 'live-preview'
   ---@type LivePreviewConfig
   opts = {
-    picker = 'fzf_lua',
+    picker = 'fzf-lua',
   },
   keys = {
     { '<leader>uMs', '<cmd>LivePreview start<cr>', desc = 'Start Live Preview' },
