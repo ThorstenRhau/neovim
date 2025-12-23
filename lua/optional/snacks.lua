@@ -33,6 +33,7 @@ return {
     dim = { enabled = true },
     toggle = { enabled = true },
     words = {
+      enabled = false,
       modes = { 'n' },
     },
   },
