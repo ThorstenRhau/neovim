@@ -10,27 +10,33 @@ return {
   opts = {
     animate = { enabled = false },
     bigfile = {
+      enabled = true,
       size = 1 * 1024 * 1024,
       notify = true,
     },
     dashboard = { enabled = false },
+    dim = { enabled = false },
     explorer = { enabled = false },
-    git = { enabled = false },
+    gh = { enabled = false },
     gitbrowse = { enabled = false },
+    image = { enabled = false },
     indent = { enabled = false },
     input = { enabled = true },
-    image = { enabled = false },
+    layout = { enabled = false },
+    lazygit = { enabled = false },
     notifier = { enabled = false },
     picker = { enabled = false },
+    profiler = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
     scratch = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
     terminal = { enabled = false },
-    dim = { enabled = false },
     toggle = { enabled = true },
+    win = { enabled = false },
     words = { enabled = false },
+    zen = { enabled = false },
   },
 
   keys = {},
@@ -53,7 +59,6 @@ return {
         Snacks.toggle.treesitter():map('<leader>uT')
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map('<leader>ub')
         Snacks.toggle.inlay_hints():map('<leader>uh')
-        Snacks.toggle.dim():map('<leader>uD')
       end,
     })
   end,
