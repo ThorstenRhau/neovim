@@ -5,6 +5,14 @@ return {
   event = 'VeryLazy',
   dependencies = {
     'MunifTanjim/nui.nvim',
+    {
+      'rcarriga/nvim-notify',
+      opts = {
+        stages = 'fade',
+        timeout = 5000,
+        render = 'wrapped-compact',
+      },
+    },
   },
 
   ---@module "noice"
@@ -13,23 +21,6 @@ return {
     cmdline = {
       enabled = true,
       view = 'cmdline_popup',
-    },
-    messages = {
-      enabled = true,
-      view = 'mini',
-      view_error = 'mini',
-      view_warn = 'mini',
-      view_history = 'messages',
-      view_search = 'virtualtext',
-      opts = {},
-    },
-    notify = {
-      enabled = true,
-      view = 'mini',
-    },
-    popupmenu = {
-      enabled = true,
-      backend = 'nui',
     },
     lsp = {
       hover = { enabled = false },
@@ -45,25 +36,10 @@ return {
         ['vim.lsp.util.stylize_markdown'] = true,
       },
     },
-    presets = {
-      long_message_to_split = true,
-    },
-    views = {
-      mini = {
-        timeout = 5000,
-        position = {
-          row = 0,
-          col = '100%',
-        },
-        win_options = {
-          wrap = true,
-        },
-      },
-    },
   },
 
   keys = {
-    { '<leader>n', '<cmd>Noice fzf<cr>', desc = 'Notification History' },
-    { '<leader>un', '<cmd>Noice dismiss<cr>', desc = 'Dismiss All Notifications' },
+    { '<leader>n', '<cmd>Noice all<cr>', desc = 'Notification History' },
+    { '<leader>un', '<cmd>NotificationsClear<cr>', desc = 'Dismiss All Notifications' },
   },
 }
