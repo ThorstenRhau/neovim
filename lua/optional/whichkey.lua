@@ -72,26 +72,6 @@ return {
       -- Buffer management
       { '<leader>b', group = 'Buffer', icon = { icon = ' ', color = 'blue' } },
       { '<leader>bb', '<cmd>b#<CR>', desc = 'Switch buffer', icon = { icon = '󰯍 ', color = 'yellow' } },
-      {
-        '<leader>bO',
-        function()
-          local ok, snacks = pcall(require, 'snacks')
-          if ok then
-            snacks.bufdelete.other()
-          end
-        end,
-        desc = 'Delete all other buffers',
-      },
-      {
-        '<leader>bX',
-        function()
-          local ok, snacks = pcall(require, 'snacks')
-          if ok then
-            snacks.bufdelete.all()
-          end
-        end,
-        desc = 'Delete all buffers',
-      },
 
       -- Code tools
       { '<leader>c', group = 'Code' },

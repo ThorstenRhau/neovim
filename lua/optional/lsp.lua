@@ -4,9 +4,9 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
     'saghen/blink.cmp',
-    'williamboman/mason-lspconfig.nvim',
   },
   ft = {
     'fish',
@@ -23,64 +23,45 @@ return {
     'yaml',
   },
   config = function()
-    local mason_lspconfig = require('mason-lspconfig')
     local schemastore = require('schemastore')
 
-    -- Base capabilities, extended with your offsetEncoding preference
-    local capabilities = vim.tbl_deep_extend('force', require('blink.cmp').get_lsp_capabilities(), {
-      offsetEncoding = { 'utf-16' },
+    -- Base capabilities from blink.cmp
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+    -- Global defaults for all LSP servers (Neovim 0.11+ API)
+    vim.lsp.config('*', {
+      capabilities = capabilities,
     })
 
-    mason_lspconfig.setup({
-      ensure_installed = {},
-      automatic_installation = false,
-
-      handlers = {
-        -- Default handler: applies to all servers unless a specific handler is defined below.
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-
-        -- Specific handler for jsonls to include schemastore
-        jsonls = function()
-          require('lspconfig').jsonls.setup({
-            capabilities = capabilities,
-            settings = {
-              json = {
-                schemas = schemastore.json.schemas(),
-                validate = { enable = true },
-              },
-            },
-          })
-        end,
-
-        -- Specific handler for yamlls to include schemastore
-        yamlls = function()
-          require('lspconfig').yamlls.setup({
-            capabilities = capabilities,
-            settings = {
-              yaml = {
-                -- Disable yamlls' built-in schemaStore to use schemastore.nvim
-                schemaStore = {
-                  enable = false,
-                  url = '',
-                },
-                schemas = schemastore.yaml.schemas(),
-                validate = true,
-                format = { enable = true },
-              },
-            },
-          })
-        end,
+    -- Server-specific configs using vim.lsp.config() (replaces handlers)
+    vim.lsp.config('jsonls', {
+      settings = {
+        json = {
+          schemas = schemastore.json.schemas(),
+          validate = { enable = true },
+        },
       },
     })
 
+    vim.lsp.config('yamlls', {
+      settings = {
+        yaml = {
+          schemaStore = {
+            enable = false,
+            url = '',
+          },
+          schemas = schemastore.yaml.schemas(),
+          validate = true,
+          format = { enable = true },
+        },
+      },
+    })
+
+    -- LspAttach autocmd for buffer-local keymaps
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
       callback = function(event)
-        local opts = { buffer = event.buf, silent = true, noremap = true }
+        local opts = { buffer = event.buf, silent = true }
         local keymaps = {
           { 'n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action' },
           { 'n', '<leader>cr', vim.lsp.buf.rename, 'Rename Symbol' },
@@ -92,12 +73,13 @@ return {
         -- Disable inlay hints by default (toggle with <leader>uh via snacks)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method('textDocument/inlayHint') then
-          vim.lsp.inlay_hint.enable(false)
+          vim.lsp.inlay_hint.enable(false, { bufnr = event.buf })
         end
       end,
     })
 
-    local diagnostic_opts = {
+    -- Diagnostic configuration
+    vim.diagnostic.config({
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '󰅚',
@@ -119,8 +101,6 @@ return {
       float = false,
       update_in_insert = false,
       severity_sort = true,
-    }
-
-    vim.diagnostic.config(diagnostic_opts)
+    })
   end,
 }
