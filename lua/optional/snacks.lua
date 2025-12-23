@@ -8,15 +8,15 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
-    animate = { enabled = true },
+    animate = { enabled = false },
     bigfile = {
       size = 1 * 1024 * 1024,
       notify = true,
     },
     dashboard = { enabled = false },
     explorer = { enabled = false },
-    git = { enabled = true },
-    gitbrowse = { enabled = true },
+    git = { enabled = false },
+    gitbrowse = { enabled = false },
     indent = { enabled = false },
     input = { enabled = true },
     image = { enabled = false },
@@ -24,9 +24,9 @@ return {
       enabled = false, -- Disabled: using noice.nvim instead
     },
     picker = { enabled = false },
-    quickfile = { enabled = true },
-    scope = { enabled = true },
-    scratch = { enabled = true },
+    quickfile = { enabled = false },
+    scope = { enabled = false },
+    scratch = { enabled = false },
     scroll = { enabled = true },
     statuscolumn = { enabled = false },
     terminal = { enabled = true },
@@ -43,13 +43,6 @@ return {
     { "<leader>Z", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
     { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
     { "<leader>cR", function() require("snacks").rename.rename_file() end, desc = "Rename File" },
-    { "<leader>gw", function() require("snacks").gitbrowse() end, desc = "Git Browse Web" },
-    { "<leader>gb", function() require("snacks").git.blame_line() end, desc = "Git Blame Line" },
-    { "<leader>gf", function() require("snacks").lazygit.log_file() end, desc = "Lazygit Current File History" },
-    { "<leader>gl", function() require("snacks").lazygit() end, desc = "Lazygit" },
-    { "<leader>gL", function() require("snacks").lazygit.log() end, desc = "Lazygit Log (cwd)" },
-    { "]]", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n" } },
-    { "[[", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n" } },
     { "<leader>t",      function() require("snacks").terminal() end, desc = "Toggle Terminal" },
     -- stylua: ignore end
   },
