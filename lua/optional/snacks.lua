@@ -20,9 +20,7 @@ return {
     indent = { enabled = false },
     input = { enabled = true },
     image = { enabled = false },
-    notifier = {
-      enabled = false, -- Disabled: using noice.nvim instead
-    },
+    notifier = { enabled = false },
     picker = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
@@ -30,22 +28,12 @@ return {
     scroll = { enabled = false },
     statuscolumn = { enabled = false },
     terminal = { enabled = false },
-    dim = { enabled = true },
+    dim = { enabled = false },
     toggle = { enabled = true },
-    words = {
-      enabled = false,
-      modes = { 'n' },
-    },
+    words = { enabled = false },
   },
 
-  keys = {
-    -- stylua: ignore start
-    { "<leader>z", function() require("snacks").zen() end, desc = "Toggle Zen Mode" },
-    { "<leader>Z", function() require("snacks").zen.zoom() end, desc = "Toggle Zoom" },
-    { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete Buffer" },
-    { "<leader>cR", function() require("snacks").rename.rename_file() end, desc = "Rename File" },
-    -- stylua: ignore end
-  },
+  keys = {},
 
   init = function()
     vim.api.nvim_create_autocmd('User', {
