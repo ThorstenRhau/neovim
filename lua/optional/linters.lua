@@ -39,7 +39,6 @@ return {
       make = { 'checkmake' },
       markdown = { 'markdownlint' },
       python = { 'ruff' },
-      -- sh = { 'shellcheck' }, -- Duplicate: bashls (LSP) already runs shellcheck
       typescript = { 'eslint_d' },
       yaml = { 'yamllint' },
     }
