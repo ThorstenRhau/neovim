@@ -12,7 +12,7 @@ return {
   opts = {
     cmdline = {
       enabled = true,
-      view = 'cmdline', -- Classic bottom cmdline
+      view = 'cmdline_popup',
     },
     messages = {
       enabled = true,
@@ -21,6 +21,7 @@ return {
       view_warn = 'mini',
       view_history = 'messages',
       view_search = 'virtualtext',
+      opts = {},
     },
     notify = {
       enabled = true,
@@ -31,11 +32,12 @@ return {
       backend = 'nui',
     },
     lsp = {
-      -- Disable hover/signature to avoid overlap with native K
       hover = { enabled = false },
       signature = { enabled = false },
       progress = {
         enabled = true,
+        format = 'lsp_progress',
+        format_done = 'lsp_progress_done',
         view = 'mini',
       },
       override = {
@@ -50,7 +52,7 @@ return {
       mini = {
         timeout = 5000,
         position = {
-          row = -2,
+          row = 0,
           col = '100%',
         },
         win_options = {
