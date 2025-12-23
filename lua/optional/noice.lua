@@ -54,7 +54,7 @@ return {
   },
 
   keys = {
-    { '<leader>n', '<cmd>Noice all<cr>', desc = 'Notification History' },
+    { '<leader>n', '<cmd>Noice fzf<cr>', desc = 'Notification History' },
     { '<leader>un', '<cmd>Noice dismiss<cr>', desc = 'Dismiss All Notifications' },
   },
 }
