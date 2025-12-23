@@ -24,7 +24,7 @@ return {
         if linters and #linters > 0 then
           vim.notify('Linting with: ' .. table.concat(linters, ', '), vim.log.levels.INFO)
         end
-        lint.try_lint(nil, { bufnr = vim.api.nvim_get_current_buf() })
+        lint.try_lint()
       end,
       desc = 'Lint current file',
     },
@@ -69,7 +69,7 @@ return {
         if not ft_linters or next(ft_linters) == nil then
           return
         end
-        lint.try_lint(nil, { bufnr = bufnr })
+        lint.try_lint()
       end,
     })
   end,
