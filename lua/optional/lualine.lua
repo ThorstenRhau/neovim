@@ -22,6 +22,7 @@ return {
         'filename',
       },
       lualine_x = {
+        'lsp_status',
         'filetype',
       },
       lualine_y = { 'progress' },
