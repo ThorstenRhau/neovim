@@ -55,7 +55,7 @@ return {
       },
       cmdline_popup = {
         position = {
-          row = '80%',
+          row = '75%',
           col = '50%',
         },
       },
