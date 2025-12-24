@@ -19,17 +19,17 @@ is [Catppuccin](https://github.com/catppuccin/nvim), terminal is
 
 The default loads just the core config - fast startup for quick edits.
 
-Set `NVIM_OPTIONAL_PLUGINS=1` to enable the full plugin suite (~30 plugins: LSP,
-completion, git integration, fuzzy finder, debugger, and more).
+Set `NVIM_OPTIONAL_PLUGINS` to `1` to enable the full plugin suite (~30 plugins:
+LSP, completion, git integration, fuzzy finder, debugger, and more).
 
-```fish
-# fish
-set -gx NVIM_OPTIONAL_PLUGINS 1
-```
+The configuration is stability and performance oriented so despite enabling all
+plugins is still loads quite quick.
 
 ```sh
-# bash/zsh
-export NVIM_OPTIONAL_PLUGINS=1
+~ % hyperfine "nvim +qa"
+Benchmark 1: nvim +qa
+  Time (mean ± σ):      28.8 ms ±   0.7 ms    [User: 15.8 ms, System: 7.2 ms]
+  Range (min … max):    27.3 ms …  30.7 ms    93 runs
 ```
 
 ## Installation
