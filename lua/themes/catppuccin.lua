@@ -75,7 +75,6 @@ return {
         },
         lsp_trouble = true,
         markdown = true,
-        markview = true,
         mason = true,
         mini = true,
         neogit = true,
