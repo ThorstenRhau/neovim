@@ -12,6 +12,7 @@ return {
         timeout = 3000,
         render = 'compact',
         fps = 60,
+        top_down = false,
       },
     },
   },
@@ -51,6 +52,12 @@ return {
       notify = {
         replace = true,
         merge = true,
+      },
+      cmdline_popup = {
+        position = {
+          row = '80%',
+          col = '50%',
+        },
       },
     },
   },
