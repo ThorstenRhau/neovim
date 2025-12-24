@@ -1,4 +1,4 @@
---Create an autocommand group with automatic clearing
+-- Create an autocommand group with automatic clearing
 ---@param name string
 ---@return integer
 local function augroup(name)
