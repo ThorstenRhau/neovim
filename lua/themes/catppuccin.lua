@@ -79,6 +79,7 @@ return {
         mason = true,
         mini = true,
         neogit = true,
+        notify = true,
         oil = true,
         semantic_tokens = true,
         snacks = true,
