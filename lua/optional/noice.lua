@@ -8,9 +8,10 @@ return {
     {
       'rcarriga/nvim-notify',
       opts = {
-        stages = 'fade',
+        stages = 'static',
         timeout = 3000,
-        render = 'wrapped-compact',
+        render = 'compact',
+        fps = 60,
       },
     },
   },
@@ -27,19 +28,36 @@ return {
       signature = { enabled = false },
       progress = {
         enabled = true,
-        format = 'lsp_progress',
-        format_done = 'lsp_progress_done',
-        view = 'mini',
+        view = 'notify',
       },
-      override = {
-        ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-        ['vim.lsp.util.stylize_markdown'] = true,
+    },
+    messages = {
+      enabled = true,
+      view = 'notify',
+      view_error = 'notify',
+      view_warn = 'notify',
+      view_history = 'messages',
+      view_search = 'virtualtext',
+    },
+    notify = {
+      enabled = true,
+      view = 'notify',
+    },
+    popupmenu = { enabled = true, kind_icons = {} },
+    presets = {
+      long_message_to_split = true,
+    },
+    views = {
+      notify = {
+        replace = true,
+        merge = true,
       },
     },
   },
 
   keys = {
     { '<leader>n', '<cmd>Noice all<cr>', desc = 'Notification History' },
-    { '<leader>un', '<cmd>NotificationsClear<cr>', desc = 'Dismiss All Notifications' },
+    { '<leader>E', '<cmd>Noice errors<cr>', desc = 'Errors' },
+    { '<leader>un', '<cmd>Noce dismiss<cr>', desc = 'Dismiss All Notifications' },
   },
 }
