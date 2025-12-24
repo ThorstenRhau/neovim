@@ -9,6 +9,17 @@ return {
   event = { 'InsertEnter', 'CmdlineEnter' },
   opts_extend = { 'sources.default' },
 
+  keys = {
+    {
+      '<leader>ua',
+      function()
+        vim.b.completion = vim.b.completion == false
+        vim.notify('Autocompletion ' .. (vim.b.completion and 'enabled' or 'disabled'))
+      end,
+      desc = 'Toggle autocompletion',
+    },
+  },
+
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
