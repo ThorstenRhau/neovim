@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'echasnovski/mini.icons',
-  event = 'VeryLazy',
+  lazy = false,
   version = false,
   opts = {},
   dependencies = {
