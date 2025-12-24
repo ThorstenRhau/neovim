@@ -27,7 +27,6 @@ o.linebreak = true
 o.maxmempattern = 5000
 o.mouse = 'nv'
 o.number = false
-o.pumblend = 0
 o.scrolloff = 8
 o.showcmd = false
 o.sidescrolloff = 8
@@ -37,16 +36,18 @@ o.smartindent = true
 o.smarttab = true
 o.smoothscroll = true
 o.splitbelow = true
+o.splitkeep = 'screen'
+o.splitright = true
 o.synmaxcol = 200
 o.tabline = ''
 o.updatetime = 250
 o.wildmenu = true
 o.wildmode = 'longest:full,full'
 o.wildoptions = 'pum'
-o.winblend = 0
 o.wrap = false
 opt.backspace = { 'indent', 'eol', 'start' }
 opt.path:append({ '**' })
+opt.shortmess:append('IcCFWs')
 opt.spelllang = { 'en', 'sv' }
 opt.wildignore:append({
   '*.o',
