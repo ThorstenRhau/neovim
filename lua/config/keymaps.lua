@@ -5,7 +5,7 @@ local map = vim.keymap.set
 ---@param direction string
 local function smart_motion(key, direction)
   map({ 'n', 'x' }, key, function()
-    return vim.v.count == 0 and direction or key
+    return vim.v.count == 0 and direction or (vim.v.count .. key)
   end, { desc = direction == 'gj' and 'Down' or 'Up', expr = true, silent = true })
 end
 
