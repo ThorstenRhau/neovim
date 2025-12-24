@@ -1,5 +1,36 @@
 ---@module "lazy"
 ---@type LazySpec
+
+-- Toggle virtual text for diagnostics
+local function toggle_virtual_text()
+  local current_value = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not current_value })
+  vim.notify('Virtual text ' .. (current_value and 'disabled' or 'enabled'))
+end
+
+-- Toggle virtual lines for diagnostics
+local function toggle_virtual_lines()
+  local current_value = vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = not current_value })
+  vim.notify('Virtual lines ' .. (current_value and 'disabled' or 'enabled'))
+end
+
+-- List active linters for the current filetype
+local function ListActiveLinters()
+  local ok, lint = pcall(require, 'lint')
+  if not ok then
+    vim.notify('nvim-lint is not available.', vim.log.levels.WARN)
+    return
+  end
+
+  local linters = lint.linters_by_ft[vim.bo.filetype]
+  if linters then
+    vim.notify("Active linters for '" .. vim.bo.filetype .. "': " .. table.concat(linters, ', '))
+  else
+    vim.notify("No active linters for filetype '" .. vim.bo.filetype .. "'.", vim.log.levels.INFO)
+  end
+end
+
 return {
   'folke/which-key.nvim',
   dependencies = { 'echasnovski/mini.icons' },
@@ -7,51 +38,7 @@ return {
   opts = {
     preset = 'modern',
     delay = 300,
-  },
-  keys = {
-    {
-      '<leader>?',
-      function()
-        require('which-key').show({ global = false })
-      end,
-      desc = 'Buffer Local Keymaps (which-key)',
-    },
-  },
-  config = function(_, opts)
-    local wk = require('which-key')
-    wk.setup(opts)
-
-    -- Toggle virtual text for diagnostics
-    local function toggle_virtual_text()
-      local current_value = vim.diagnostic.config().virtual_text
-      vim.diagnostic.config({ virtual_text = not current_value })
-      vim.notify('Virtual text ' .. (current_value and 'disabled' or 'enabled'))
-    end
-
-    -- Toggle virtual lines for diagnostics
-    local function toggle_virtual_lines()
-      local new_config = not vim.diagnostic.config().virtual_lines
-      vim.diagnostic.config({ virtual_lines = new_config })
-    end
-
-    -- List active linters for the current filetype
-    local function ListActiveLinters()
-      local ok, lint = pcall(require, 'lint')
-      if not ok then
-        vim.notify('nvim-lint is not available.', vim.log.levels.WARN)
-        return
-      end
-
-      local linters = lint.linters_by_ft[vim.bo.filetype]
-      if linters then
-        vim.notify("Active linters for '" .. vim.bo.filetype .. "': " .. table.concat(linters, ', '))
-      else
-        vim.notify("No active linters for filetype '" .. vim.bo.filetype .. "'.", vim.log.levels.INFO)
-      end
-    end
-
-    -- Register mappings with which-key
-    wk.add({
+    spec = {
       -- Root menu
       { '<leader>,', '<cmd>b#<CR>', desc = 'Switch buffer', icon = { icon = '󰯍 ', color = 'yellow' } },
       { '<leader>l', '<cmd>Lazy<cr>', desc = 'Lazy - plugin manager' },
@@ -110,6 +97,15 @@ return {
 
       -- Trouble group (placeholder if used elsewhere)
       { '<leader>x', group = 'Trouble', icon = { icon = '󰨰 ', color = 'orange' } },
-    })
-  end,
+    },
+  },
+  keys = {
+    {
+      '<leader>?',
+      function()
+        require('which-key').show({ global = false })
+      end,
+      desc = 'Buffer Local Keymaps (which-key)',
+    },
+  },
 }
