@@ -232,48 +232,50 @@ vim.api.nvim_create_autocmd('VimEnter', {
   desc = 'Clean old undo files after delay',
   callback = function()
     vim.defer_fn(function()
-      local undodir = vim.fn.expand(vim.o.undodir)
-
-      -- Safety: only proceed if undodir looks like a valid undo directory
-      if not undodir:match('undo') then
-        return
-      end
-      if vim.fn.isdirectory(undodir) == 0 then
+      if vim.o.undodir == '' then
         return
       end
 
       local max_age_days = 14
       local max_age_seconds = max_age_days * 24 * 60 * 60
       local now = os.time()
-      local deleted = 0
+      local total_deleted = 0
 
-      local handle = vim.uv.fs_scandir(undodir)
-      if not handle then
-        return
-      end
+      for _, dir in ipairs(vim.split(vim.o.undodir, ',', { trimempty = true })) do
+        local undodir = vim.fn.expand(dir)
 
-      while true do
-        local name, type = vim.uv.fs_scandir_next(handle)
-        if not name then
-          break
-        end
+        -- Safety: only proceed if path contains 'undo' and exists
+        if undodir:match('undo') and vim.fn.isdirectory(undodir) == 1 then
+          local handle = vim.uv.fs_scandir(undodir)
+          if handle then
+            while true do
+              local name, type = vim.uv.fs_scandir_next(handle)
+              if not name then
+                break
+              end
 
-        -- Safety: only delete files that look like undo files (path-encoded with %)
-        if type == 'file' and name:match('%%') then
-          local filepath = vim.fs.joinpath(undodir, name)
-          local stat = vim.uv.fs_stat(filepath)
-          if stat and (now - stat.mtime.sec) > max_age_seconds then
-            if vim.uv.fs_unlink(filepath) then
-              deleted = deleted + 1
+              -- Safety: only delete files that look like undo files (path-encoded with %)
+              if type == 'file' and name:match('%%') then
+                local filepath = vim.fs.joinpath(undodir, name)
+                local stat = vim.uv.fs_stat(filepath)
+                if stat and (now - stat.mtime.sec) > max_age_seconds then
+                  local ok, err = vim.uv.fs_unlink(filepath)
+                  if not ok then
+                    vim.notify('Failed to delete ' .. name .. ': ' .. err, vim.log.levels.WARN)
+                  else
+                    total_deleted = total_deleted + 1
+                  end
+                end
+              end
             end
           end
         end
       end
 
-      if deleted > 0 then
-        vim.notify(string.format('Cleaned %d old undo file(s)', deleted), vim.log.levels.INFO)
+      if total_deleted > 0 then
+        vim.notify(string.format('Cleaned %d old undo file(s)', total_deleted), vim.log.levels.DEBUG)
       end
-    end, 5000) -- 5 second delay after startup
+    end, 5000)
   end,
 })
 
