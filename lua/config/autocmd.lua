@@ -69,8 +69,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'man',
     'notify',
     'qf',
-    'snacks_dashboard',
-    'spectre_panel',
     'startuptime',
   },
   desc = "Map 'q' to close for helper filetypes",
