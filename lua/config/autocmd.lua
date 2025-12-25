@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('markdown'),
   pattern = 'markdown',
-  desc = 'Set markdown textwidth/wrap/spell',
+  desc = 'Set markdown wrap/spell',
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
