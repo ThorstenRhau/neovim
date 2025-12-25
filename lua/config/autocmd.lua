@@ -40,7 +40,6 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   desc = 'Set markdown textwidth/wrap/spell',
   callback = function()
-    vim.bo.textwidth = 80
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
