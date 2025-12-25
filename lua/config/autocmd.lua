@@ -104,33 +104,34 @@ vim.api.nvim_create_autocmd('VimResized', {
 })
 
 -- Reload file if changed externally
--- Debounce checktime on BufEnter to avoid excessive filesystem checks
----@type integer
+-- Debounce checktime on BufEnter/CursorHold to avoid excessive filesystem checks
 local last_checktime = 0
----@type integer
-local checktime_cooldown = 1000 -- milliseconds
+local checktime_cooldown = 500 -- milliseconds
+local immediate_events = { FocusGained = true, TermClose = true, TermLeave = true }
 
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter' }, {
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter', 'CursorHold' }, {
   group = augroup('checktime'),
   desc = 'Check for file changes',
   callback = function(args)
-    -- Skip in command-line window (E11 error)
     if vim.fn.getcmdwintype() ~= '' then
       return
     end
-    if vim.tbl_contains({ 'FocusGained', 'TermClose', 'TermLeave' }, args.event) then
+
+    if immediate_events[args.event] then
       vim.cmd.checktime()
       last_checktime = vim.uv.now()
-    else
-      -- Debounce BufEnter checktime to avoid excessive calls
-      if not vim.api.nvim_buf_is_valid(args.buf) then
-        return
-      end
-      local now = vim.uv.now()
-      if vim.bo[args.buf].buftype == '' and (now - last_checktime) > checktime_cooldown then
-        vim.cmd.checktime('%')
-        last_checktime = now
-      end
+      return
+    end
+
+    -- Debounced events: BufEnter, CursorHold
+    if not vim.api.nvim_buf_is_valid(args.buf) or vim.bo[args.buf].buftype ~= '' then
+      return
+    end
+
+    local now = vim.uv.now()
+    if (now - last_checktime) > checktime_cooldown then
+      vim.cmd.checktime('%')
+      last_checktime = now
     end
   end,
 })
