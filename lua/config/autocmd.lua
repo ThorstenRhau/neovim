@@ -145,45 +145,40 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Restore last cursor position
+-- Restore last known cursor position
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = augroup('restore_cursor'),
   desc = 'Jump to last known position',
   callback = function(args)
-    if not vim.api.nvim_buf_is_valid(args.buf) then
-      return
-    end
-    if vim.bo[args.buf].buftype ~= '' then
-      return
-    end
-    if vim.tbl_contains({ 'gitcommit', 'gitrebase' }, vim.bo[args.buf].filetype) then
+    local buf = args.buf
+    local bt = vim.bo[buf].buftype
+    local ft = vim.bo[buf].filetype
+
+    -- Skip special buffers and git commit/rebase messages
+    if bt ~= '' or ft == 'gitcommit' or ft == 'gitrebase' then
       return
     end
 
-    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
     local line = mark[1]
-    local col = mark[2]
 
+    -- Mark not set or invalid
     if line <= 0 then
       return
     end
 
-    local line_count = vim.api.nvim_buf_line_count(args.buf)
-    if line > line_count then
-      line = line_count
-    end
-    if line == 0 then
-      return
-    end
+    -- Clamp line to buffer bounds
+    local line_count = vim.api.nvim_buf_line_count(buf)
+    line = math.min(line, line_count)
 
-    local line_text = vim.api.nvim_buf_get_lines(args.buf, line - 1, line, true)[1] or ''
-    local target_col = math.max(math.min(col, #line_text), 0)
+    -- Clamp column to line length
+    local line_text = vim.api.nvim_buf_get_lines(buf, line - 1, line, true)[1] or ''
+    local col = math.min(mark[2], #line_text)
 
-    if vim.api.nvim_get_current_buf() ~= args.buf then
-      return
+    -- Only restore if this buffer is current (might not be with splits/tabs)
+    if vim.api.nvim_get_current_buf() == buf then
+      pcall(vim.api.nvim_win_set_cursor, 0, { line, col })
     end
-
-    pcall(vim.api.nvim_win_set_cursor, 0, { line, target_col })
   end,
 })
 
