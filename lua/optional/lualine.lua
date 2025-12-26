@@ -6,7 +6,7 @@ return {
   dependencies = { 'echasnovski/mini.icons' },
   opts = {
     sections = {
-      lualine_a = { { 'mode', icon = ' ' } },
+      lualine_a = { { 'mode', icon = ' ' }, { 'searchcount', icon = ' ' } },
       lualine_b = {
         'branch',
         {
