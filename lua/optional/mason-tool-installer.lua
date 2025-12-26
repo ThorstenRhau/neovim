@@ -30,7 +30,7 @@ return {
       'markdownlint',
       'marksman',
       'prettier',
-      'pyright',
+      'basedpyright',
       'ruff',
       'shellcheck',
       'shfmt',
