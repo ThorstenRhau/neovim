@@ -67,7 +67,12 @@ return {
         dap = true,
         dap_ui = true,
         diffview = true,
+        fzf = true,
         gitsigns = true,
+        illuminate = {
+          enabled = true,
+          lsp = true,
+        },
         indent_blankline = {
           enabled = true,
           scope_color = 'lavender',
