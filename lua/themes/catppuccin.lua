@@ -75,7 +75,7 @@ return {
         },
         indent_blankline = {
           enabled = true,
-          scope_color = 'lavender',
+          scope_color = 'text',
           colored_indent_levels = false,
         },
         lsp_trouble = true,
