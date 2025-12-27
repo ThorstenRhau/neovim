@@ -46,25 +46,13 @@ return {
       callback = function()
         ts.install({
           'bash',
-          'comment',
-          'diff',
-          'fish',
-          'git_config',
-          'git_rebase',
-          'gitcommit',
-          'gitignore',
-          'json',
           'lua',
           'luadoc',
           'markdown',
           'markdown_inline',
-          'python',
           'regex',
-          'toml',
           'vim',
           'vimdoc',
-          'xml',
-          'yaml',
         }, {
           max_jobs = 8,
         })
