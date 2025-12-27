@@ -32,8 +32,9 @@ return {
 
       local ok = pcall(vim.treesitter.start, buf, lang)
       if ok then
-        vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        -- Add treesitter folding for all windows displaying this buffer
+        -- Set treesitter indentation (buffer-local)
+        vim.api.nvim_set_option_value('indentexpr', "v:lua.require'nvim-treesitter'.indentexpr()", { buf = buf })
+        -- Set treesitter folding for all windows displaying this buffer (window-local)
         for _, win in ipairs(vim.api.nvim_list_wins()) do
           if vim.api.nvim_win_get_buf(win) == buf and vim.api.nvim_win_is_valid(win) then
             vim.api.nvim_set_option_value('foldmethod', 'expr', { win = win })
