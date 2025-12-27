@@ -112,6 +112,10 @@ do
   function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = opts.border or 'rounded'
-    return orig_open_floating_preview(contents, syntax, opts, ...)
+    local buf, win = orig_open_floating_preview(contents, syntax, opts, ...)
+    if win and vim.api.nvim_win_is_valid(win) then
+      vim.wo[win].spell = false
+    end
+    return buf, win
   end
 end
