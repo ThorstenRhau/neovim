@@ -53,8 +53,6 @@ return {
           'regex',
           'vim',
           'vimdoc',
-        }, {
-          max_jobs = 8,
         })
       end,
     })
