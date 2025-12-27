@@ -69,10 +69,9 @@ return {
       checkhealth = true,
       lazy = true,
       mason = true,
+      notify = true,
+      noice = true,
       qf = true,
-      snacks_dashboard = true,
-      snacks_notif = true,
-      snacks_win = true,
       toggleterm = true,
     }
 
@@ -96,29 +95,34 @@ return {
           -- Only start install if not already in progress
           if not installing_langs[lang] then
             installing_langs[lang] = true
-            local task = ts.install({ lang })
+            ts.install({ lang })
 
-            -- Register callback for when installation completes
-            if task and task.await then
-              task:await(function()
-                vim.schedule(function()
-                  installing_langs[lang] = nil
+            -- Poll for parser availability
+            local attempts = 0
+            local max_attempts = 60 -- 30 seconds max (60 * 500ms)
+            local function poll_parser()
+              attempts = attempts + 1
+              local ok, result = pcall(vim.treesitter.language.add, lang)
 
-                  -- Enable treesitter on all waiting buffers for this language
-                  local buffers = waiting_buffers[lang]
-                  if buffers then
-                    for b in pairs(buffers) do
-                      enable_treesitter(b, lang)
-                    end
-                    waiting_buffers[lang] = nil
+              if ok and result then
+                installing_langs[lang] = nil
+                local buffers = waiting_buffers[lang]
+                if buffers then
+                  for b in pairs(buffers) do
+                    enable_treesitter(b, lang)
                   end
-                end)
-              end)
-            else
-              -- Fallback: clear state if task doesn't support await
-              installing_langs[lang] = nil
-              waiting_buffers[lang] = nil
+                  waiting_buffers[lang] = nil
+                end
+              elseif attempts < max_attempts then
+                vim.defer_fn(poll_parser, 500)
+              else
+                -- Timeout, clean up
+                installing_langs[lang] = nil
+                waiting_buffers[lang] = nil
+              end
             end
+
+            vim.defer_fn(poll_parser, 1000)
           end
         end
       end,
