@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Pre-commit hook to run make all
 
 echo "Running 'make all'..."
