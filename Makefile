@@ -18,7 +18,7 @@ format:
 
 # Lint all Lua files
 lint:
-	@selene "$(ROOT)"
+	@selene --config "$(SELENEC)" "$(ROOT)"
 
 # Clean Neovim cache, state, and data directories
 clean:
