@@ -103,6 +103,11 @@ if not ok then
   vim.notify('Failed to load config.keymaps: ' .. tostring(err), vim.log.levels.ERROR)
 end
 
-if enable_optional_plugins ~= '1' then
+if enable_optional_plugins == '1' then
+  ok, err = pcall(require, 'config.toggles')
+  if not ok then
+    vim.notify('Failed to load config.toggles: ' .. tostring(err), vim.log.levels.ERROR)
+  end
+else
   vim.cmd('colorscheme default')
 end
