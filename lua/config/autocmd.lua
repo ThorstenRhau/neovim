@@ -130,7 +130,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
 
     local now = vim.uv.now()
     if (now - last_checktime) > checktime_cooldown then
-      vim.cmd.checktime('%')
+      vim.cmd.checktime()
       last_checktime = now
     end
   end,
@@ -183,11 +183,12 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Disable persistent undo for sensitive files
+local tmpdir = vim.env.TMPDIR or '/tmp'
 local sensitive_patterns = {
   -- Temp directories
   '/tmp/*',
   '/private/tmp/*', -- macOS
-  '$TMPDIR/*',
+  tmpdir .. '/*',
   '/var/tmp/*',
 
   -- Environment files
