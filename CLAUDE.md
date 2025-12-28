@@ -106,7 +106,8 @@ lua/themes/           # Theme configs (catppuccin)
 - **claudecode** (`coder/claudecode.nvim`) - Claude integration (`<leader>a*`)
 
 ### Theme
-- **catppuccin** - Default theme (latte/mocha variants)
+- **catppuccin** - Default theme (latte/mocha variants that change based on
+macOS appearance)
 
 ## Key Mapping Groups
 
