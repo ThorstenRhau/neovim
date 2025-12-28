@@ -9,7 +9,7 @@ return {
   cmd = { 'Neogit', 'NeogitResetState' },
   keys = {
     { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Neogit' },
-    { '<leader>gc', '<cmd>Neogit commit<cr>', desc = 'Neogit Commit' },
+    { '<leader>gC', '<cmd>Neogit commit<cr>', desc = 'Neogit Commit' },
   },
 
   ---@module 'neogit'
