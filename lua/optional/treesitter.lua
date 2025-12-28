@@ -77,7 +77,7 @@ return {
           'vimdoc',
           'xml',
           'yaml',
-        }, { max_jobs = 12 })
+        })
       end,
     })
 
