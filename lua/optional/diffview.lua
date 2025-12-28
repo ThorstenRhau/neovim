@@ -11,6 +11,9 @@ return {
   },
   opts = {
     enhanced_diff_hl = true,
+    default_args = {
+      DiffviewOpen = { '--imply-local' },
+    },
     view = {
       default = {
         winbar_info = true,
@@ -23,7 +26,7 @@ return {
       },
     },
     hooks = {
-      diff_buf_read = function(bufnr)
+      diff_buf_read = function(_)
         vim.opt_local.wrap = false
         vim.opt_local.list = false
       end,
