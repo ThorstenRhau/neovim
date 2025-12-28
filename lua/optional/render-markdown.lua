@@ -17,5 +17,6 @@ return {
   },
   opts = {
     enabled = false,
+    latex = { enabled = false },
   },
 }
