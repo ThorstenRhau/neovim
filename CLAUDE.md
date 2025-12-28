@@ -38,7 +38,7 @@ lua/themes/           # Theme configs (catppuccin)
 
 ### options.lua
 - 4-space indent with expandtab, smart case search
-- Treesitter folding, persistent undo (~/.local/share/nvim/undo)
+- Indent-based folding, persistent undo (~/.local/share/nvim/undo)
 - Ripgrep for grep, rounded LSP borders, mouse in normal/visual
 
 ### keymaps.lua
@@ -70,7 +70,7 @@ lua/themes/           # Theme configs (catppuccin)
 
 ### Git
 - **gitsigns** (`lewis6991/gitsigns.nvim`) - Signs, blame, hunk navigation (`]h`/`[h`)
-- **neogit** (`NeogitOrg/neogit`) - Magit-like interface (`<leader>gg`, `<leader>gc`)
+- **neogit** (`NeogitOrg/neogit`) - Magit-like interface (`<leader>gg`, `<leader>gC`)
 - **diffview** (`sindrets/diffview.nvim`) - Diff viewer (`<leader>gd`, `<leader>gH`)
 
 ### Search & Navigation
