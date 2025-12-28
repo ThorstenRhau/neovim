@@ -2,9 +2,8 @@
 ---@type LazySpec
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'echasnovski/mini.icons' },
+  dependencies = { 'echasnovski/mini.icons', 'elanmed/fzf-lua-frecency.nvim' },
   event = 'VeryLazy',
-  ---@module "fzf-lua"
   opts = {
     'default-title',
     file_icons = 'mini',
@@ -43,10 +42,10 @@ return {
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },
     { '<leader>U', '<cmd>FzfLua undotree<cr>', desc = 'Undo Tree' },
-    { '<leader><space>', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
     -- Find
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
+    { '<leader><leader>', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Find Git Files' },
     { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
