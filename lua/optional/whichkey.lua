@@ -75,7 +75,6 @@ return {
 
       -- Git tools
       { '<leader>g', group = 'Git' },
-      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'NeoGit' },
       { '<leader>gh', group = 'Git Hunk (Gitsigns)' },
 
       -- UI toggles and enhancements
