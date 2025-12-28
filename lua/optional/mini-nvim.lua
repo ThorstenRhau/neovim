@@ -2,15 +2,6 @@
 ---@type LazySpec
 return {
   {
-    'echasnovski/mini.ai',
-    version = false,
-    keys = {
-      { 'a', mode = { 'x', 'o' }, desc = 'Around textobject' },
-      { 'i', mode = { 'x', 'o' }, desc = 'Inside textobject' },
-    },
-    opts = {},
-  },
-  {
     'echasnovski/mini.align',
     version = false,
     keys = {
