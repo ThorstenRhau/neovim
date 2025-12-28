@@ -32,7 +32,7 @@ return {
       desc = 'Trouble: Diagnostics (Buffer)',
     },
     {
-      '<leader>cs',
+      '<leader>cS',
       '<cmd>Trouble symbols toggle focus=false<cr>',
       desc = 'Trouble: Symbols',
     },
