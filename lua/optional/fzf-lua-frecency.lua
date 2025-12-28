@@ -5,16 +5,19 @@ return {
   opts = {
     cwd_only = false,
     db_dir = vim.fn.stdpath('data') .. '/fzf-lua-frecency',
-    display_score = false,
+    display_score = true,
     stat_file = true,
   },
   keys = {
     {
+      '<leader><leader>',
+      '<cmd>FzfLua combine pickers=buffers;files<cr>',
+      desc = 'Buffers & Files',
+    },
+    {
       '<leader>fe',
-      function()
-        require('fzf-lua-frecency').frecency({ all_files = true })
-      end,
-      desc = 'Frecent Files',
+      '<cmd>FzfLua global<cr>',
+      desc = 'FzfLua Global',
     },
     {
       '<leader>fX',
