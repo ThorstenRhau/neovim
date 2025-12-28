@@ -45,7 +45,6 @@ return {
     -- Find
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
-    { '<leader><leader>', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Find Git Files' },
     { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
