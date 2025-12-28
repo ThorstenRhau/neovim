@@ -70,18 +70,20 @@ require('lazy').setup({
     size = { width = 0.9, height = 0.9 },
     border = 'rounded',
   },
-  rtp = {
-    reset = true,
-    paths = {},
-    disabled_plugins = {
-      'gzip',
-      'matchit',
-      'rplugin',
-      'tarPlugin',
-      'tohtml',
-      'tutor',
-      'zipPlugin',
-      'netrwPlugin',
+  performance = {
+    rtp = {
+      reset = true,
+      paths = {},
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        'rplugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+        'netrwPlugin',
+      },
     },
   },
   rocks = {
