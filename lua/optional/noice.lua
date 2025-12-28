@@ -60,10 +60,26 @@ return {
         },
       },
     },
+    commands = {
+      history = {
+        view = 'popup',
+        opts = { enter = true, format = 'details' },
+        filter = {
+          any = {
+            { event = 'notify' },
+            { error = true },
+            { warning = true },
+            { event = 'msg_show', kind = { '' } },
+            { event = 'lsp', kind = 'message' },
+          },
+        },
+        filter_opts = { reverse = true },
+      },
+    },
   },
 
   keys = {
-    { '<leader>n', '<cmd>Noice all<cr>', desc = 'Notification History' },
+    { '<leader>n', '<cmd>Noice history<cr>', desc = 'Notification History' },
     { '<leader>E', '<cmd>Noice errors<cr>', desc = 'Errors' },
     { '<leader>un', '<cmd>Noice dismiss<cr>', desc = 'Dismiss All Notifications' },
   },
