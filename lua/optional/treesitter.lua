@@ -100,6 +100,12 @@ return {
           return
         end
 
+        -- Skip treesitter on large files
+        local stats = vim.uv.fs_stat(vim.api.nvim_buf_get_name(event.buf))
+        if vim.api.nvim_buf_line_count(event.buf) > 5000 or (stats and stats.size > 100 * 1024) then
+          return
+        end
+
         local lang = vim.treesitter.language.get_lang(event.match) or event.match
         enable_treesitter(event.buf, lang)
       end,
