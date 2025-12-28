@@ -8,6 +8,16 @@ local function map(key, fn, desc)
   vim.keymap.set('n', '<leader>' .. key, fn, { desc = desc })
 end
 
+-- Fold column
+map('uf', function()
+  if vim.o.foldcolumn == '0' then
+    vim.o.foldcolumn = 'auto'
+  else
+    vim.o.foldcolumn = '0'
+  end
+  notify('Fold column: ' .. (vim.o.foldcolumn == '0' and 'off' or 'on'))
+end, 'Toggle Fold Column')
+
 -- Spell
 map('uz', function()
   vim.o.spell = not vim.o.spell
