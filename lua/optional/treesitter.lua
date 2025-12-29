@@ -40,7 +40,7 @@ return {
     -- Install core parsers after lazy.nvim finishes loading all plugins
     vim.api.nvim_create_autocmd('User', {
       group = group,
-      pattern = 'LazySync',
+      pattern = 'LazyDone',
       once = true,
       desc = 'Install core treesitter parsers',
       callback = function()
@@ -77,7 +77,7 @@ return {
           'vimdoc',
           'xml',
           'yaml',
-        })
+        }, { max_jobs = 8 })
       end,
     })
 
