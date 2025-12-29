@@ -7,9 +7,8 @@ return {
   opts = {
     'fzf-native', -- https://github.com/ibhagwan/fzf-lua/tree/main/lua/fzf-lua/profiles
     file_icons = 'mini',
-    undotree = {
-      previewer = 'undotree_native',
-    },
+    oldfiles = { cwd_only = true },
+    undotree = { previewer = 'undotree_native' },
   },
   keys = {
     -- General
@@ -21,7 +20,7 @@ return {
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Find Git Files' },
-    { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
+    { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Old files' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
     -- Grep
     { '<leader>sb', '<cmd>FzfLua blines<cr>', desc = 'Buffer Lines' },
