@@ -7,13 +7,17 @@ return {
   opts = {
     'fzf-native', -- https://github.com/ibhagwan/fzf-lua/tree/main/lua/fzf-lua/profiles
     file_icons = 'mini',
+    defaults = { git_icons = false },
     oldfiles = { cwd_only = true },
     undotree = { previewer = 'undotree_native' },
     ui_select = {},
+    files = { hidden = true },
+    grep = { hidden = true, rg_glob = true },
     keymap = {
       fzf = {
         ['ctrl-d'] = 'preview-page-down',
         ['ctrl-u'] = 'preview-page-up',
+        ['ctrl-p'] = 'toggle-preview',
       },
     },
     winopts = {
