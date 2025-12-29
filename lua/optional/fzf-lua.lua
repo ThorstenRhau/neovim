@@ -23,12 +23,6 @@ return {
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Find Git Files' },
     { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
-    -- Git
-    { '<leader>gB', '<cmd>FzfLua git_branches<cr>', desc = 'Git Branches' },
-    { '<leader>gP', '<cmd>FzfLua git_commits<cr>', desc = 'Git Log Picker' },
-    { '<leader>gc', '<cmd>FzfLua git_bcommits<cr>', desc = 'Git Buffer Commits' },
-    { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
-    { '<leader>gS', '<cmd>FzfLua git_stash<cr>', desc = 'Git Stash' },
     -- Grep
     { '<leader>sb', '<cmd>FzfLua blines<cr>', desc = 'Buffer Lines' },
     { '<leader>sB', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Grep Current Buffer' },
