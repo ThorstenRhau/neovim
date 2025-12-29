@@ -9,7 +9,23 @@ return {
     file_icons = 'mini',
     oldfiles = { cwd_only = true },
     undotree = { previewer = 'undotree_native' },
+    ui_select = {},
+    keymap = {
+      fzf = {
+        ['ctrl-d'] = 'preview-page-down',
+        ['ctrl-u'] = 'preview-page-up',
+      },
+    },
+    winopts = {
+      preview = {
+        hidden = 'hidden', -- or 'nohidden' to show by default
+      },
+    },
   },
+  config = function(_, opts)
+    require('fzf-lua').setup(opts)
+    require('fzf-lua').register_ui_select()
+  end,
   keys = {
     -- General
     { '<leader><leader>', '<cmd>FzfLua combine pickers=buffers,oldfiles,files<cr>', desc = 'Super Find!' },
@@ -22,6 +38,14 @@ return {
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Find Git Files' },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Old files' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
+    -- Git
+    { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
+    { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git Commits' },
+    { '<leader>gf', '<cmd>FzfLua git_bcommits<cr>', desc = 'File Commits' },
+    { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git Branches' },
+    { '<leader>gB', '<cmd>FzfLua git_blame<cr>', desc = 'Git Blame' },
+    { '<leader>gt', '<cmd>FzfLua git_tags<cr>', desc = 'Git Tags' },
+    { '<leader>gS', '<cmd>FzfLua git_stash<cr>', desc = 'Git Stash' },
     -- Grep
     { '<leader>sb', '<cmd>FzfLua blines<cr>', desc = 'Buffer Lines' },
     { '<leader>sB', '<cmd>FzfLua grep_curbuf<cr>', desc = 'Grep Current Buffer' },

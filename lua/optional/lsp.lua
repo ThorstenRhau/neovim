@@ -7,6 +7,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
     'saghen/blink.cmp',
+    'ibhagwan/fzf-lua',
   },
   ft = {
     'fish',
@@ -63,7 +64,17 @@ return {
       callback = function(event)
         local opts = { buffer = event.buf, silent = true }
         local keymaps = {
-          { 'n', '<leader>ca', vim.lsp.buf.code_action, 'Code Action' },
+          -- Navigation (fzf-lua provides preview + multi-result filtering)
+          { 'n', 'gd', '<cmd>FzfLua lsp_definitions<cr>', 'Go to Definition' },
+          { 'n', 'gD', '<cmd>FzfLua lsp_declarations<cr>', 'Go to Declaration' },
+          { 'n', 'gr', '<cmd>FzfLua lsp_references<cr>', 'Go to References' },
+          { 'n', 'gI', '<cmd>FzfLua lsp_implementations<cr>', 'Go to Implementation' },
+          { 'n', 'gy', '<cmd>FzfLua lsp_typedefs<cr>', 'Go to Type Definition' },
+          -- Symbols
+          { 'n', '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document Symbols' },
+          { 'n', '<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', 'Workspace Symbols' },
+          -- Actions
+          { 'n', '<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', 'Code Action' },
           { 'n', '<leader>cr', vim.lsp.buf.rename, 'Rename Symbol' },
         }
         for _, map in ipairs(keymaps) do
