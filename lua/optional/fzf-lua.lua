@@ -2,37 +2,11 @@
 ---@type LazySpec
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'echasnovski/mini.icons', 'elanmed/fzf-lua-frecency.nvim' },
+  dependencies = { 'echasnovski/mini.icons' },
   event = 'VeryLazy',
   opts = {
     'default-title',
     file_icons = 'mini',
-    -- Dynamic sizing based on terminal dimensions
-    winopts = function()
-      local cols = vim.o.columns
-      local lines = vim.o.lines
-      local is_small = cols < 100 or lines < 30
-      return {
-        border = 'rounded',
-        backdrop = 60,
-        fullscreen = is_small,
-        width = not is_small and (cols > 180 and 0.90 or 0.95) or nil,
-        height = not is_small and (lines > 50 and 0.90 or 0.95) or nil,
-        preview = {
-          border = 'rounded',
-          layout = 'flex',
-          flip_columns = 110,
-          horizontal = 'right:60%',
-          vertical = 'down:40%',
-        },
-        treesitter = { enabled = true },
-      }
-    end,
-    keymap = {
-      fzf = {
-        ['ctrl-q'] = 'select-all+accept',
-      },
-    },
     undotree = {
       previewer = 'undotree_native',
     },
@@ -76,13 +50,5 @@ return {
     { '<leader>sm', '<cmd>FzfLua marks<cr>', desc = 'Marks' },
     { '<leader>sR', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
     { '<leader>sq', '<cmd>FzfLua quickfix<cr>', desc = 'Quickfix List' },
-    { '<leader>uX', '<cmd>FzfLua colorschemes<cr>', desc = 'Colorschemes' },
-    -- LSP
-    { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'Goto Definition' },
-    { 'gr', '<cmd>FzfLua lsp_references<cr>', nowait = true, desc = 'References' },
-    { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'Goto Implementation' },
-    { 'gy', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'Goto T[y]pe Definition' },
-    { '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'Document Symbols' },
-    { '<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', desc = 'Workspace Symbols' },
   },
 }
