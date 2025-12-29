@@ -54,11 +54,6 @@ return {
         end,
         desc = 'Restore Last Session',
       },
-      { '<leader>T', '<cmd>Trouble<cr>', desc = 'Trouble', icon = { icon = ' ', color = 'red' } },
-
-      -- Buffer management
-      { '<leader>b', group = 'Buffer', icon = { icon = ' ', color = 'blue' } },
-      { '<leader>bb', '<cmd>b#<CR>', desc = 'Switch buffer', icon = { icon = '󰯍 ', color = 'yellow' } },
 
       -- Code tools
       { '<leader>c', group = 'Code' },
@@ -67,7 +62,7 @@ return {
       { '<leader>cL', ListActiveLinters, desc = 'Linters' },
 
       -- Claude Code
-      { '<leader>a', group = 'Claude', icon = { icon = ' ', color = 'purple' } },
+      { '<leader>a', group = 'Claude', icon = { icon = '󱙺 ', color = 'purple' } },
 
       -- Fuzzy finding / search
       { '<leader>f', group = 'Find', icon = { icon = '󰍉 ', color = 'azure' } },
@@ -78,7 +73,7 @@ return {
       { '<leader>gh', group = 'Git Hunk (Gitsigns)' },
 
       -- UI toggles and enhancements
-      { '<leader>u', group = 'Interface', icon = { icon = ' ', color = 'azure' } },
+      { '<leader>u', group = 'Interface', icon = { icon = '󰕮 ', color = 'azure' } },
       { '<leader>uC', '<cmd>ColorizerToggle<CR>', desc = 'Toggle colorizer' },
       { '<leader>uH', '<cmd>set list!<CR>', desc = 'Toggle hidden characters' },
       { '<leader>uk', '<cmd>set cursorline!<CR>', desc = 'Toggle cursor line' },
@@ -88,11 +83,15 @@ return {
       { '<leader>uv', toggle_virtual_lines, desc = 'Toggle virtual lines' },
 
       -- Window management
-      { '<leader>w', group = 'Window' },
-      { '<leader>wc', '<cmd>close<cr>', desc = 'Close window' },
-      { '<leader>wh', '<cmd>split<cr>', desc = 'Split horizontally' },
-      { '<leader>wo', '<cmd>only<cr>', desc = 'Keep only current window' },
-      { '<leader>wv', '<cmd>vsplit<cr>', desc = 'Split vertically' },
+      { '<leader>b', group = 'Buffer', icon = { icon = ' ', color = 'blue' } },
+      { '<leader>bc', '<cmd>close<cr>', desc = 'Close window' },
+      { '<leader>bh', '<cmd>split<cr>', desc = 'Split horizontally' },
+      { '<leader>bo', '<cmd>only<cr>', desc = 'Keep only current window' },
+      { '<leader>bv', '<cmd>vsplit<cr>', desc = 'Split vertically' },
+      { '<leader>bX', '<cmd>bufdo bd<cr>', desc = 'Close all buffers' },
+
+      -- Trouble group (placeholder if used elsewhere)
+      { '<leader>q', group = 'Session', icon = { icon = ' ', color = 'blue' } },
 
       -- Trouble group (placeholder if used elsewhere)
       { '<leader>x', group = 'Trouble', icon = { icon = '󰨰 ', color = 'orange' } },
