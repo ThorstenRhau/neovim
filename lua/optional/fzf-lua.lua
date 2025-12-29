@@ -5,7 +5,7 @@ return {
   dependencies = { 'echasnovski/mini.icons' },
   event = 'VeryLazy',
   opts = {
-    'default-title',
+    'fzf-native', -- https://github.com/ibhagwan/fzf-lua/tree/main/lua/fzf-lua/profiles
     file_icons = 'mini',
     undotree = {
       previewer = 'undotree_native',
@@ -13,6 +13,7 @@ return {
   },
   keys = {
     -- General
+    { '<leader><leader>', '<cmd>FzfLua combine pickers=buffers,oldfiles,files<cr>', desc = 'Super Find!' },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },
     { '<leader>U', '<cmd>FzfLua undotree<cr>', desc = 'Undo Tree' },
