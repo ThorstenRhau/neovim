@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-Personal Neovim config using lazy.nvim with ~30 optional plugins. No Claude attribution in commits.
+Personal Neovim config using lazy.nvim with ~35 optional plugins. No Claude attribution in commits.
 
 ## Commands
 
@@ -17,7 +17,7 @@ make install-hooks # Enable git pre-commit hook
 Controlled by `NVIM_OPTIONAL_PLUGINS` environment variable:
 
 - **Default**: Only loads `lua/plugins/` (mini-icons only)
-- **Full** (`=1`): Also loads `lua/optional/` and `lua/themes/`
+- **Full** (`=1`): Also loads `lua/optional/` (~35 plugins) and `lua/themes/`
 
 Assume Full mode unless otherwise specified.
 
@@ -30,7 +30,7 @@ lua/config/
   keymaps.lua         # Core keymaps (window nav, buffer nav, smart j/k)
   autocmd.lua         # Format opts, filetype settings, yank highlight, cursor restore
 lua/plugins/          # Always-loaded (mini-icons only)
-lua/optional/         # Full mode plugins (~30 files)
+lua/optional/         # Full mode plugins (~35 files)
 lua/themes/           # Theme configs (catppuccin)
 ```
 
@@ -84,6 +84,9 @@ lua/themes/           # Theme configs (catppuccin)
 - **snacks** (`folke/snacks.nvim`) - Toggles (`<leader>u*` for spell, wrap, diagnostics, etc.)
 - **indent-blankline** (`lukas-reineke/indent-blankline.nvim`) - Indent guides
 - **statuscol** (`luukvbaal/statuscol.nvim`) - Custom status column
+- **neoscroll** (`karb94/neoscroll.nvim`) - Smooth scrolling
+- **ui-input** (`MunifTanjim/nui.nvim`) - Enhanced vim.ui.input
+- **render-markdown** (`MeanderingProgrammer/render-markdown.nvim`) - Markdown rendering (`<leader>um`)
 
 ### Text Editing
 - **mini.nvim** - ai, align, bracketed, operators, pairs, splitjoin, surround, jump2d
@@ -91,7 +94,9 @@ lua/themes/           # Theme configs (catppuccin)
 
 ### Code
 - **treesitter** (`nvim-treesitter/nvim-treesitter`) - Syntax, context, folding
+- **treesitter-textobjects** (`nvim-treesitter/nvim-treesitter-textobjects`) - Text objects (`af/if`, `ac/ic`), navigation (`]]`/`[[`), swap (`<leader>cs*`)
 - **vim-illuminate** (`RRethy/vim-illuminate`) - Highlight word under cursor
+- **vim-matchup** (`andymass/vim-matchup`) - Enhanced matching for brackets/tags (`<C-k>` for context)
 
 ### Tools
 - **oil** (`stevearc/oil.nvim`) - File browser in buffer (`<leader>o`)
@@ -115,6 +120,7 @@ macOS appearance)
 |--------|---------|
 | `<leader>a` | Claude AI |
 | `<leader>c` | Code (LSP, format, split/join) |
+| `<leader>cs` | Code swap (params, functions) |
 | `<leader>d` | Debug |
 | `<leader>f` | Find files |
 | `<leader>g` | Git |
@@ -122,10 +128,15 @@ macOS appearance)
 | `<leader>q` | Session |
 | `<leader>s` | Search/grep |
 | `<leader>t` | Terminal |
-| `<leader>u` | UI toggles |
+| `<leader>u` | UI toggles (spell, wrap, diagnostics, markdown) |
 | `<leader>x` | Trouble diagnostics |
 | `gd/gr/gI` | LSP go-to |
 | `]h/[h` | Git hunk nav |
+| `]]/[[` | Function navigation |
+| `]C/[C` | Class navigation |
+| `af/if/ac/ic/aa/ia/ai/ii/al/il` | Treesitter text objects |
+| `;/,` | Repeat last move |
+| `<C-k>` | Show match context |
 
 ## Config Files
 
