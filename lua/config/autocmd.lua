@@ -38,10 +38,12 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('markdown'),
   pattern = 'markdown',
-  desc = 'Set markdown wrap/spell',
+  desc = 'Set markdown wrap/spell/folding',
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldlevel = 99
   end,
 })
 
