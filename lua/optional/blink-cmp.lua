@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { 'rafamadriz/friendly-snippets', 'onsails/lspkind.nvim' },
   version = '1.*',
   event = { 'InsertEnter', 'CmdlineEnter' },
 
@@ -10,6 +10,7 @@ return {
     {
       '<leader>ua',
       function()
+        -- Toggle: enabled (nil/true) -> disabled (false), disabled (false) -> enabled (true)
         vim.b.completion = vim.b.completion == false
         vim.notify('Autocompletion ' .. (vim.b.completion and 'enabled' or 'disabled'))
       end,
@@ -40,29 +41,13 @@ return {
       keyword = { range = 'full' },
       list = { selection = { preselect = true, auto_insert = false } },
       documentation = {
-        auto_show = true,
+        auto_show = false,
         auto_show_delay_ms = 500,
         treesitter_highlighting = true,
         window = { border = 'rounded' },
       },
       menu = {
         border = 'rounded',
-        -- Determining if the completion menu expands upwards or downwards
-        ---@diagnostic disable-next-line: assign-type-mismatch
-        direction_priority = function()
-          local ctx = require('blink.cmp').get_context()
-          local item = require('blink.cmp').get_selected_item()
-          if ctx == nil or item == nil then
-            return { 's', 'n' }
-          end
-          local item_text = (item.textEdit and item.textEdit.newText) or item.insertText or item.label or ''
-          local is_multi_line = item_text:find('\n') ~= nil
-          if is_multi_line or vim.g.blink_cmp_upwards_ctx_id == ctx.id then
-            vim.g.blink_cmp_upwards_ctx_id = ctx.id
-            return { 'n', 's' }
-          end
-          return { 's', 'n' }
-        end,
         draw = {
           columns = {
             { 'label', 'label_description', gap = 1 },
@@ -70,6 +55,43 @@ return {
             { 'source_name' },
           },
           treesitter = { 'lsp' },
+          components = {
+            kind_icon = {
+              text = function(ctx)
+                local icon = ctx.kind_icon
+                if ctx.source_name == 'Path' then
+                  local ok, devicons = pcall(require, 'nvim-web-devicons')
+                  if ok then
+                    local ext = vim.fn.fnamemodify(ctx.label, ':e')
+                    local dev_icon = devicons.get_icon(ctx.label, ext)
+                    if dev_icon then
+                      icon = dev_icon
+                    end
+                  end
+                else
+                  local ok, lspkind = pcall(require, 'lspkind')
+                  if ok then
+                    icon = lspkind.symbolic(ctx.kind, { mode = 'symbol' }) or icon
+                  end
+                end
+                return icon .. ctx.icon_gap
+              end,
+              highlight = function(ctx)
+                local hl = ctx.kind_hl
+                if ctx.source_name == 'Path' then
+                  local ok, devicons = pcall(require, 'nvim-web-devicons')
+                  if ok then
+                    local ext = vim.fn.fnamemodify(ctx.label, ':e')
+                    local _, dev_hl = devicons.get_icon(ctx.label, ext)
+                    if dev_hl then
+                      hl = dev_hl
+                    end
+                  end
+                end
+                return hl
+              end,
+            },
+          },
         },
       },
     },
