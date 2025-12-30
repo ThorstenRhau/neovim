@@ -16,7 +16,7 @@ return {
       fzf = {
         ['ctrl-d'] = 'preview-page-down',
         ['ctrl-u'] = 'preview-page-up',
-        ['ctrl-p'] = 'toggle-preview',
+        ['ctrl-space'] = 'toggle-preview',
       },
     },
     winopts = {
