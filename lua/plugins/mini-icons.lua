@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
   'echasnovski/mini.icons',
+  enabled = false,
   lazy = false,
   version = false,
   opts = {},
