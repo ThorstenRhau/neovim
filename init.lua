@@ -36,9 +36,7 @@ if not ok then
   vim.notify('Failed to load config.options: ' .. tostring(err), vim.log.levels.ERROR)
 end
 
-local specs = {
-  -- { import = 'plugins' },
-}
+local specs = {}
 
 -- Check if optional plugins should be enabled
 local enable_optional_plugins = os.getenv('NVIM_OPTIONAL_PLUGINS')
@@ -59,7 +57,7 @@ require('lazy').setup({
   },
   install = {
     missing = true,
-    colorscheme = { 'default' },
+    colorscheme = { enable_optional_plugins == '1' and active_theme or 'default' },
   },
   checker = {
     enabled = true,
