@@ -33,7 +33,7 @@ end
 
 return {
   'folke/which-key.nvim',
-  dependencies = { 'echasnovski/mini.icons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   opts = {
     preset = 'modern',

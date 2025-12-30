@@ -3,7 +3,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
-  dependencies = { 'echasnovski/mini.icons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {
     sections = {
       lualine_a = { { 'mode', icon = ' ' }, { 'searchcount', icon = ' ' } },

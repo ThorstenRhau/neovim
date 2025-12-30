@@ -2,11 +2,10 @@
 ---@type LazySpec
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'echasnovski/mini.icons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   opts = {
     'fzf-native', -- https://github.com/ibhagwan/fzf-lua/tree/main/lua/fzf-lua/profiles
-    file_icons = 'mini',
     defaults = { git_icons = false },
     oldfiles = { cwd_only = true },
     undotree = { previewer = 'undotree_native' },

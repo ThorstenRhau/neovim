@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'stevearc/oil.nvim',
-  dependencies = { 'echasnovski/mini.icons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   cmd = 'Oil',
   init = function()
     if vim.fn.argc() == 1 then
