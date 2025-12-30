@@ -37,7 +37,7 @@ if not ok then
 end
 
 local specs = {
-  { import = 'plugins' },
+  -- { import = 'plugins' },
 }
 
 -- Check if optional plugins should be enabled
