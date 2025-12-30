@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-Personal Neovim config using lazy.nvim with ~35 optional plugins. No Claude attribution in commits.
+Personal Neovim config using lazy.nvim with ~37 optional plugins. No Claude attribution in commits.
 
 ## Commands
 
@@ -16,8 +16,8 @@ make install-hooks # Enable git pre-commit hook
 
 Controlled by `NVIM_OPTIONAL_PLUGINS` environment variable:
 
-- **Default**: Only loads `lua/plugins/` (mini-icons only)
-- **Full** (`=1`): Also loads `lua/optional/` (~35 plugins) and `lua/themes/`
+- **Minimal** (default): Only loads `lua/config/` (options, keymaps, autocmds)
+- **Full** (`=1`): Also loads `lua/optional/` (~37 plugins) and `lua/themes/`
 
 Assume Full mode unless otherwise specified.
 
@@ -29,119 +29,119 @@ lua/config/
   options.lua         # Editor settings (indent, search, undo, folds, LSP borders)
   keymaps.lua         # Core keymaps (window nav, buffer nav, smart j/k)
   autocmd.lua         # Format opts, filetype settings, yank highlight, cursor restore
-lua/plugins/          # Always-loaded (mini-icons only)
-lua/optional/         # Full mode plugins (~35 files)
+  toggles.lua         # UI toggle keymaps (full mode only)
+lua/optional/         # Full mode plugins (~37 files)
 lua/themes/           # Theme configs (catppuccin)
 ```
 
 ## Core Config Details
 
 ### options.lua
-- 4-space indent with expandtab, smart case search
-- Indent-based folding, persistent undo (~/.local/share/nvim/undo)
+- 2-space indent with expandtab, smart case search
+- Indent-based folding (foldlevel=99), persistent undo (~/.local/share/nvim/undo)
 - Ripgrep for grep, rounded LSP borders, mouse in normal/visual
+- Global statusline (laststatus=3)
 
 ### keymaps.lua
 - `j/k` wrap-aware, `<C-h/j/k/l>` window nav, `<S-h/l>` buffer nav
+- `<S-Up/Down/Left/Right>` window resize
 - `<Esc>` clears search, `x/X` don't yank
 
 ### autocmd.lua
 - Remove auto-comment on new lines
 - Markdown: wrap, spell, textwidth=80
 - Git commit: textwidth=72, colorcolumn 50,73
-- Close with `q`: help, qf, Trouble, lazy, mason, lspinfo, man, notify
-- Persistent folds, cursor position restore, highlight on yank
-- Disable undo for /tmp/*, *.env files
+- Close with `q`: checkhealth, git, help, lspinfo, man, notify, qf, startuptime
+- Persistent cursor position restore, highlight on yank
+- Disable undo for /tmp/*, *.env, SSH/GPG dirs, credentials
 - Clean old undo files (>14 days) on startup
 
-## Plugins
+### toggles.lua (full mode)
+- `<leader>uf/uz/uw/uL/ud/ul/uc/uT/ub/uh` - Various UI toggles
 
-### Always Loaded
-- **mini-icons** (`echasnovski/mini.icons`) - Icon provider, mocks nvim-web-devicons
+## Plugins (Full Mode)
 
 ### Completion & LSP
-- **blink-cmp** (`saghen/blink.cmp`) - Completion with fuzzy matching, ghost text
-- **lsp** (`neovim/nvim-lspconfig`) - LSP config with mason integration, jsonls/yamlls with schemas
-- **lazydev** (`folke/lazydev.nvim`) - Lua development with type hints
+- **blink-cmp** - Completion with super-tab, fuzzy matching, ghost text
+- **lsp** (nvim-lspconfig) - LSP with mason, jsonls/yamlls with schemastore
+- **lazydev** - Lua development with type hints
 
 ### Formatting & Linting
-- **formatters** (`stevearc/conform.nvim`) - prettier, stylua, ruff_format, shfmt, taplo
-- **linters** (`mfussenegger/nvim-lint`) - eslint_d, jsonlint, selene, markdownlint, ruff, yamllint
+- **formatters** (conform.nvim) - prettier, stylua, ruff_format, shfmt, taplo
+- **linters** (nvim-lint) - eslint_d, jsonlint, selene, markdownlint, ruff, yamllint
 
 ### Git
-- **gitsigns** (`lewis6991/gitsigns.nvim`) - Signs, blame, hunk navigation (`]h`/`[h`)
-- **neogit** (`NeogitOrg/neogit`) - Magit-like interface (`<leader>gg`, `<leader>gC`)
-- **diffview** (`sindrets/diffview.nvim`) - Diff viewer (`<leader>gd`, `<leader>gH`)
+- **gitsigns** - Signs, blame, hunk navigation (`]h`/`[h`)
+- **neogit** - Magit-like interface (`<leader>gg`, `<leader>gC`)
+- **diffview** - Diff viewer (`<leader>gd`, `<leader>gH`)
 
 ### Search & Navigation
-- **fzf-lua** (`ibhagwan/fzf-lua`) - Fuzzy finder (`<leader>ff`, `<leader>fg`, `<leader>/`)
-- **trouble** (`folke/trouble.nvim`) - Diagnostics panel (`<leader>xx`, `<leader>xX`)
+- **fzf-lua** - Fuzzy finder (`<leader>ff`, `<leader>fg`, `<leader>/`, `<leader><leader>`)
+- **trouble** - Diagnostics panel (`<leader>xx`, `<leader>xX`)
 
 ### UI
-- **noice** (`folke/noice.nvim`) - Modern cmdline/messages/notifications
-- **lualine** (`nvim-lualine/lualine.nvim`) - Statusline
-- **which-key** (`folke/which-key.nvim`) - Keymap popup guide
-- **snacks** (`folke/snacks.nvim`) - Toggles (`<leader>u*` for spell, wrap, diagnostics, etc.)
-- **indent-blankline** (`lukas-reineke/indent-blankline.nvim`) - Indent guides
-- **statuscol** (`luukvbaal/statuscol.nvim`) - Custom status column
-- **neoscroll** (`karb94/neoscroll.nvim`) - Smooth scrolling
-- **ui-input** (`MunifTanjim/nui.nvim`) - Enhanced vim.ui.input
-- **render-markdown** (`MeanderingProgrammer/render-markdown.nvim`) - Markdown rendering (`<leader>um`)
+- **noice** - Modern cmdline/messages/notifications
+- **lualine** - Statusline
+- **which-key** - Keymap popup guide (modern preset)
+- **indent-blankline** - Indent guides with scope
+- **statuscol** - Custom status column
+- **neoscroll** - Smooth scrolling
+- **ui-input** (nui.nvim) - Enhanced vim.ui.input
+- **render-markdown** - Markdown rendering (`<leader>um`)
+- **nvim-web-devicons** - File icons
 
 ### Text Editing
-- **mini.nvim** - ai, align, bracketed, operators, pairs, splitjoin, surround, jump2d
-- **tabout** (`abecodes/tabout.nvim`) - Tab to exit quotes/brackets
+- **mini.nvim** - align, bracketed, operators, pairs, splitjoin, surround, jump2d
+- **tabout** - Tab to exit quotes/brackets
 
 ### Code
-- **treesitter** (`nvim-treesitter/nvim-treesitter`) - Syntax, context, folding
-- **treesitter-textobjects** (`nvim-treesitter/nvim-treesitter-textobjects`) - Text objects (`af/if`, `ac/ic`), navigation (`]]`/`[[`), swap (`<leader>cs*`)
-- **vim-illuminate** (`RRethy/vim-illuminate`) - Highlight word under cursor
-- **vim-matchup** (`andymass/vim-matchup`) - Enhanced matching for brackets/tags (`<C-k>` for context)
+- **treesitter** - Syntax, folding, indentation (with context)
+- **treesitter-textobjects** - Text objects (`af/if`, `ac/ic`), navigation (`]]`/`[[`), swap
+- **vim-illuminate** - Highlight word under cursor
+- **vim-matchup** - Enhanced matching (`<C-k>` for context)
 
 ### Tools
-- **oil** (`stevearc/oil.nvim`) - File browser in buffer (`<leader>o`)
-- **toggleterm** (`akinsho/toggleterm.nvim`) - Terminal (`<leader>t`, `<C-\>`)
-- **debuggers** (`mfussenegger/nvim-dap`) - DAP with UI (`<leader>d*`)
-- **persistence** (`folke/persistence.nvim`) - Session management (`<leader>q*`)
+- **oil** - File browser (`<leader>o`)
+- **toggleterm** - Terminal (`<leader>t`, `<C-\>`)
+- **debuggers** (nvim-dap) - DAP with UI (`<leader>d*`)
+- **persistence** - Session management (`<leader>q*`)
 - **mason** - Package manager for LSP/DAP/linters/formatters
 - **colorizer** / **colorpicker** - Color display and picking
 - **live-preview** - Browser preview for markdown/html
 
 ### AI
-- **claudecode** (`coder/claudecode.nvim`) - Claude integration (`<leader>a*`)
+- **claudecode** - Claude integration (`<leader>a*`)
 
 ### Theme
-- **catppuccin** - Default theme (latte/mocha variants that change based on
-macOS appearance)
+- **catppuccin** - latte (light) / mocha (dark) based on macOS appearance
 
 ## Key Mapping Groups
 
 | Prefix | Purpose |
 |--------|---------|
 | `<leader>a` | Claude AI |
-| `<leader>c` | Code (LSP, format, split/join) |
-| `<leader>cs` | Code swap (params, functions) |
-| `<leader>d` | Debug |
-| `<leader>f` | Find files |
-| `<leader>g` | Git |
+| `<leader>b` | Buffer (close, split, keep only) |
+| `<leader>c` | Code (LSP actions, rename, split/join) |
+| `<leader>f` | Find (files, git files, buffers, oldfiles) |
+| `<leader>g` | Git (neogit, diffview, gitsigns) |
+| `<leader>l` | Lazy plugin manager |
+| `<leader>m` | Mason package manager |
 | `<leader>o` | Oil file explorer |
 | `<leader>q` | Session |
 | `<leader>s` | Search/grep |
-| `<leader>t` | Terminal |
-| `<leader>u` | UI toggles (spell, wrap, diagnostics, markdown) |
+| `<leader>u` | UI toggles |
 | `<leader>x` | Trouble diagnostics |
-| `gd/gr/gI` | LSP go-to |
+| `gd/gr/gI/gy` | LSP go-to (via fzf-lua) |
+| `ga/gA` | Align (mini.align) |
+| `s` | Surround (mini.surround) |
 | `]h/[h` | Git hunk nav |
-| `]]/[[` | Function navigation |
-| `]C/[C` | Class navigation |
-| `af/if/ac/ic/aa/ia/ai/ii/al/il` | Treesitter text objects |
-| `;/,` | Repeat last move |
-| `<C-k>` | Show match context |
+| `]]/[[` | Function/class navigation |
+| `af/if/ac/ic/aa/ia` | Treesitter text objects |
 
 ## Config Files
 
-- `.stylua.toml` - 120 cols, 2-space indent, single quotes, sort requires
-- `selene.toml` - Neovim standard, allows lowercase_global
+- `.stylua.toml` - 120 cols, 2-space indent, single quotes
+- `selene.toml` - Neovim standard
 - `.prettierrc.toml` - Prose wrap always
 - `taplo.toml` - TOML formatting
 
