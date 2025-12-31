@@ -43,7 +43,7 @@ return {
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestions' },
     -- Git
     { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git Status' },
-    { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git Commits' },
+    { '<leader>gC', '<cmd>FzfLua git_commits<cr>', desc = 'Commit History ' },
     { '<leader>gf', '<cmd>FzfLua git_bcommits<cr>', desc = 'File Commits' },
     { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git Branches' },
     { '<leader>gB', '<cmd>FzfLua git_blame<cr>', desc = 'Git Blame' },
