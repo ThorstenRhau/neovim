@@ -48,6 +48,7 @@ o.wrap = false
 opt.backspace = { 'indent', 'eol', 'start' }
 opt.path:append({ '**' })
 opt.shortmess:append('IcCFWs')
+opt.fillchars:append({ diff = '░' })
 opt.spelllang = { 'en', 'sv' }
 opt.wildignore:append({
   '*.o',
