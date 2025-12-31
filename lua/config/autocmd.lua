@@ -106,7 +106,7 @@ vim.api.nvim_create_autocmd('VimResized', {
 
 -- Reload file if changed externally
 -- Debounce checktime on BufEnter/CursorHold to avoid excessive filesystem checks
-local last_checktime = 0
+local last_debounced_checktime = 0
 local checktime_cooldown = 500 -- milliseconds
 local immediate_events = { FocusGained = true, TermClose = true, TermLeave = true }
 
@@ -120,7 +120,6 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
 
     if immediate_events[args.event] then
       vim.cmd.checktime()
-      last_checktime = vim.uv.now()
       return
     end
 
@@ -130,9 +129,9 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
     end
 
     local now = vim.uv.now()
-    if (now - last_checktime) > checktime_cooldown then
+    if (now - last_debounced_checktime) > checktime_cooldown then
       vim.cmd.checktime()
-      last_checktime = now
+      last_debounced_checktime = now
     end
   end,
 })
@@ -184,47 +183,82 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Disable persistent undo for sensitive files
-local tmpdir = vim.env.TMPDIR or '/tmp'
-local sensitive_patterns = {
-  -- Temp directories
-  '/tmp/*',
-  '/private/tmp/*', -- macOS
-  tmpdir .. '/*',
-  '/var/tmp/*',
-
-  -- Environment files
-  '.env',
-  '.env.*',
-  '*.env',
-  '*/.env',
-  '*/.env.*',
-
-  -- SSH and GPG
-  '*/.ssh/*',
-  '*/.gnupg/*',
-
-  -- Credentials and keys
-  '*_rsa',
-  '*_ed25519',
-  '*_ecdsa',
-  '*_dsa',
-  '*.pem',
-  '*.key',
-  '*.p12',
-  '*.pfx',
-  '*.crt',
-  '*.cer',
-
-  -- Password managers
-  '/dev/shm/*', -- pass, gopass use this
-}
-
 vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
   group = augroup('no_undo_sensitive'),
-  pattern = sensitive_patterns,
   desc = 'Disable undofile for sensitive paths',
-  callback = function()
-    vim.bo.undofile = false
+  callback = function(event)
+    local path = vim.api.nvim_buf_get_name(event.buf)
+    if path == '' then
+      return
+    end
+
+    local function disable_undo()
+      vim.bo[event.buf].undofile = false
+    end
+
+    -- Temp directories
+    local tmpdir = (vim.env.TMPDIR or '/tmp'):gsub('/$', '')
+    local temp_dirs = {
+      '/tmp/',
+      '/private/tmp/',
+      tmpdir .. '/',
+      '/var/tmp/',
+      '/dev/shm/',
+    }
+
+    for _, dir in ipairs(temp_dirs) do
+      if vim.startswith(path, dir) then
+        return disable_undo()
+      end
+    end
+
+    -- Environment files
+    local basename = vim.fn.fnamemodify(path, ':t')
+    if basename == '.env' or basename:match('^%.env%.') or basename:match('%.env$') then
+      return disable_undo()
+    end
+
+    -- SSH and GPG directories
+    if path:match('/%.ssh/') or path:match('/%.gnupg/') then
+      return disable_undo()
+    end
+
+    -- SSH keys (id_rsa, id_ed25519, id_ecdsa, id_dsa, and .pub variants)
+    if basename:match('^id_[a-z0-9]+') then
+      return disable_undo()
+    end
+
+    -- Certificate and key files
+    local sensitive_extensions = {
+      '.pem',
+      '.key',
+      '.p12',
+      '.pfx',
+      '.crt',
+      '.cer',
+      '.gpg',
+      '.keystore',
+      '.jks',
+    }
+    for _, ext in ipairs(sensitive_extensions) do
+      if vim.endswith(path:lower(), ext) then
+        return disable_undo()
+      end
+    end
+
+    -- Shell history (dotfiles ending in _history)
+    if basename:match('^%..+_history$') then
+      return disable_undo()
+    end
+
+    -- Generic sensitive patterns
+    local sensitive_patterns = { 'secret', 'password', 'credential', 'auth_token' }
+    local lower_path = path:lower()
+    for _, pattern in ipairs(sensitive_patterns) do
+      if lower_path:match(pattern) then
+        return disable_undo()
+      end
+    end
   end,
 })
 
