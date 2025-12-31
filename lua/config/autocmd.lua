@@ -33,16 +33,6 @@ local function close_or_quit()
   end
 end
 
--- Remove 'c', 'r', 'o' from format options for all filetypes
-vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('formatoptions'),
-  pattern = '*',
-  desc = 'Remove auto-comment formatoptions',
-  callback = function()
-    vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
-  end,
-})
-
 -- Markdown-specific settings
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('markdown'),
