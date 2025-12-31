@@ -8,27 +8,41 @@ return {
     { '<leader>gH', '<cmd>DiffviewFileHistory %<cr>', mode = { 'n', 'v' }, desc = 'DiffView File History' },
     { '<leader>gL', '<cmd>DiffviewFileHistory<cr>', desc = 'DiffView Project History' },
     { '<leader>gq', '<cmd>DiffviewClose<cr>', desc = 'DiffView Close' },
+    { '<leader>gt', '<cmd>DiffviewToggleFiles<cr>', desc = 'DiffView Toggle File Panel' },
+    { '<leader>gf', '<cmd>DiffviewFocusFiles<cr>', desc = 'DiffView Focus Files' },
   },
+  ---@module "diffview"
+  ---@type DiffViewOptions
   opts = {
     enhanced_diff_hl = true,
     default_args = {
-      DiffviewOpen = { '--imply-local' },
+      DiffviewOpen = { '--imply-local', '--untracked-files=no' },
     },
     view = {
       default = {
         winbar_info = true,
       },
       merge_tool = {
+        layout = 'diff3_horizontal',
         winbar_info = true,
       },
       file_history = {
         winbar_info = true,
       },
     },
+    file_panel = {
+      listing_style = 'tree',
+      win_config = {
+        position = 'left',
+        width = 35,
+      },
+    },
     hooks = {
-      diff_buf_read = function(_)
+      diff_buf_read = function(bufnr)
         vim.opt_local.wrap = false
         vim.opt_local.list = false
+        vim.opt_local.spell = false
+        vim.diagnostic.enable(false, { bufnr = bufnr })
       end,
     },
   },
