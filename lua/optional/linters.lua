@@ -42,11 +42,33 @@ return {
       yaml = { 'yamllint' },
     }
 
-    local custom_config = vim.fn.getcwd() .. '/.nvim-lint.lua'
+    -- SECURITY: Trusted project allowlist for custom lint configs
+    local trusted_projects = {
+      -- Add your trusted paths here:
+      -- vim.fn.expand('~/code/'),
+      -- vim.fn.expand('~/work/trusted-project'),
+    }
+
+    local function is_trusted_project(dir)
+      for _, trusted in ipairs(trusted_projects) do
+        if vim.startswith(dir, vim.fn.expand(trusted)) then
+          return true
+        end
+      end
+      return false
+    end
+
+    local cwd = vim.fn.getcwd()
+    local custom_config = cwd .. '/.nvim-lint.lua'
+
     if vim.fn.filereadable(custom_config) == 1 then
-      local ok, err = pcall(dofile, custom_config)
-      if not ok then
-        vim.notify('Failed to load .nvim-lint.lua: ' .. tostring(err), vim.log.levels.WARN)
+      if is_trusted_project(cwd) then
+        local ok, err = pcall(dofile, custom_config)
+        if not ok then
+          vim.notify('Failed to load .nvim-lint.lua: ' .. tostring(err), vim.log.levels.WARN)
+        end
+      else
+        vim.notify('Blocked untrusted .nvim-lint.lua in: ' .. cwd, vim.log.levels.WARN)
       end
     end
 
