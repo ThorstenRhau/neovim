@@ -15,11 +15,13 @@ return {
   ---@type DiffViewOptions
   opts = {
     enhanced_diff_hl = true,
+    use_icons = true,
     default_args = {
       DiffviewOpen = { '--imply-local', '--untracked-files=no' },
     },
     view = {
       default = {
+        layout = 'diff2_horizontal',
         winbar_info = true,
       },
       merge_tool = {
@@ -34,7 +36,7 @@ return {
       listing_style = 'tree',
       win_config = {
         position = 'left',
-        width = 35,
+        width = 30,
       },
     },
     hooks = {
@@ -43,6 +45,12 @@ return {
         vim.opt_local.list = false
         vim.opt_local.spell = false
         vim.diagnostic.enable(false, { bufnr = bufnr })
+      end,
+      view_opened = function(view)
+        -- Hide file panel for all views except merge_tool
+        if view.class:name() ~= 'MergeTool' then
+          vim.cmd('DiffviewToggleFiles')
+        end
       end,
     },
   },
