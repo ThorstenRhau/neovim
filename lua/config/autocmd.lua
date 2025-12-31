@@ -15,11 +15,20 @@ local function close_or_quit()
   local win_count = #wins
   local listed_bufs = vim.fn.getbufinfo({ buflisted = 1 })
 
+  -- If last window and only one (or zero) listed buffers
   if win_count == 1 and #listed_bufs <= 1 then
-    vim.cmd('qall!')
+    -- Check for unsaved changes before quitting
+    local modified = vim.fn.getbufinfo({ bufmodified = 1 })
+    if #modified > 0 then
+      vim.notify('Unsaved changes in buffer(s). Use :qa! to force quit.', vim.log.levels.ERROR)
+      return
+    end
+    vim.cmd('qa') -- Quit all (non-forcing, safer than qall!)
   elseif win_count == 1 then
-    vim.notify('Cannot close the last window without quitting Neovim.', vim.log.levels.WARN)
+    -- Last window but multiple buffers - close buffer, show another
+    vim.cmd('bdelete')
   else
+    -- Multiple windows - just close this one
     pcall(vim.cmd.close)
   end
 end
