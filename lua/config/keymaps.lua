@@ -9,11 +9,6 @@ local function smart_motion(key, direction)
   end, { desc = direction == 'gj' and 'Down' or 'Up', expr = true, silent = true })
 end
 
-smart_motion('j', 'gj')
-smart_motion('k', 'gk')
-smart_motion('<Down>', 'gj')
-smart_motion('<Up>', 'gk')
-
 -- Window navigation
 map('n', '<C-h>', '<C-w>h', { desc = 'Go to Left Window', silent = true, nowait = true })
 map('n', '<C-j>', '<C-w>j', { desc = 'Go to Lower Window', silent = true, nowait = true })
