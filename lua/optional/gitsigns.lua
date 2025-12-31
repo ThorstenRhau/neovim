@@ -66,6 +66,16 @@ return {
         end
       end, 'Prev Hunk')
 
+      map('n', ']H', function()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        gs.nav_hunk('last')
+      end, 'Last Hunk')
+
+      map('n', '[H', function()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        gs.nav_hunk('first')
+      end, 'First Hunk')
+
       -- Actions
       map('n', '<leader>ghs', gs.stage_hunk, 'Stage Hunk')
       map('n', '<leader>ghr', gs.reset_hunk, 'Reset Hunk')
@@ -90,6 +100,11 @@ return {
       end, 'Diff This ~1')
       map('n', '<leader>ghP', gs.preview_hunk_inline, 'Preview Hunk Inline')
       map('n', '<leader>ghq', gs.setqflist, 'Hunks to Quickfix')
+      map('n', '<leader>ghQ', function()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        gs.setqflist('all')
+      end, 'All Hunks to Quickfix')
+      map('n', '<leader>gha', gs.blame, 'Blame File')
 
       -- Toggles
       map('n', '<leader>ghl', gs.toggle_linehl, 'Toggle Line Highlight')
@@ -98,7 +113,7 @@ return {
       map('n', '<leader>ghw', gs.toggle_word_diff, 'Toggle Word Diff')
 
       -- Text object
-      map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'GitSigns Select Hunk')
+      map({ 'o', 'x' }, 'ih', gs.select_hunk, 'Select Hunk')
     end,
   },
 }
