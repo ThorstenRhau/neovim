@@ -13,7 +13,7 @@ make clean         # Remove nvim cache/state/data
 make install-hooks # Enable git pre-commit hook
 ```
 
-Use the Claude Code **git-skill** for git operations.
+Use the Claude Code skill **git-use** for git operations.
 
 ## Two-Mode System
 
