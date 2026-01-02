@@ -30,7 +30,12 @@ return {
           end,
         },
         'diagnostics',
-        'filename',
+        {
+          'filename',
+          file_status = true,
+          newfile_status = true,
+          path = 3,
+        },
       },
       lualine_x = {
         'lsp_status',
