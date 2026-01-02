@@ -8,7 +8,7 @@ return {
   config = function()
     require('modus-themes').setup({
       style = 'auto',
-      variant = 'tinted',
+      variant = 'default',
       transparent = false,
     })
     vim.cmd.colorscheme('modus')
