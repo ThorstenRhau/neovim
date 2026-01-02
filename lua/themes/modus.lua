@@ -20,6 +20,11 @@ return {
           colors.bg_main = '#141414'
         end
       end,
+      on_highlights = function(highlights, colors)
+        -- Make indent lines subtle but visible
+        highlights.IblIndent = { fg = colors.bg_active, nocombine = true }
+        highlights.IblScope = { fg = colors.cyan_faint, nocombine = true }
+      end,
     })
     vim.cmd.colorscheme('modus')
   end,
