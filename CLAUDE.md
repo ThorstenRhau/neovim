@@ -34,7 +34,7 @@ lua/config/
   autocmd.lua         # Format opts, filetype settings, yank highlight, cursor restore
   toggles.lua         # UI toggle keymaps (full mode only)
 lua/optional/         # Full mode plugins (~37 files)
-lua/themes/           # Theme configs (catppuccin)
+lua/themes/           # Theme configs (melange)
 ```
 
 ## Core Config Details
@@ -136,7 +136,7 @@ lua/themes/           # Theme configs (catppuccin)
 
 ### Theme
 
-- **catppuccin** - latte (light) / mocha (dark) based on macOS appearance
+- **melange** - Warm, earthy colorscheme with light and dark variants
 
 ## Key Mapping Groups
 
