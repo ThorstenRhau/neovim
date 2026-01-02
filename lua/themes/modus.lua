@@ -13,7 +13,11 @@ return {
       on_colors = function(colors)
         -- Override light variant background to light grey instead of pure white
         if colors.bg_main == '#ffffff' then
-          colors.bg_main = '#f5f5f5'
+          colors.bg_main = '#f0f0f0'
+        end
+        -- Override dark variant background to slightly lighter black
+        if colors.bg_main == '#000000' then
+          colors.bg_main = '#141414'
         end
       end,
     })
