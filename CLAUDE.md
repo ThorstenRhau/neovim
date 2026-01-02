@@ -90,7 +90,7 @@ lua/themes/           # Theme configs (modus)
 ### Search & Navigation
 
 - **fzf-lua** - Fuzzy finder (`<leader>ff`, `<leader>fg`, `<leader>/`,
-  `<leader><leader>`)
+  `<leader><leader>`, `<leader>n`)
 - **trouble** - Diagnostics panel (`<leader>xx`, `<leader>xX`)
 
 ### UI
@@ -149,6 +149,7 @@ lua/themes/           # Theme configs (modus)
 | `<leader>g`         | Git (neogit, diffview, gitsigns)           |
 | `<leader>l`         | Lazy plugin manager                        |
 | `<leader>m`         | Mason package manager                      |
+| `<leader>n`         | Messages history (fzf-lua)                 |
 | `<leader>o`         | Oil file explorer                          |
 | `<leader>q`         | Session                                    |
 | `<leader>s`         | Search/grep                                |

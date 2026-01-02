@@ -35,6 +35,17 @@ return {
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command History' },
     { '<leader>U', '<cmd>FzfLua undotree<cr>', desc = 'Undo Tree' },
+    {
+      '<leader>n',
+      function()
+        local messages = vim.split(vim.fn.execute('messages'), '\n')
+        require('fzf-lua').fzf_exec(messages, {
+          prompt = 'Messages> ',
+          previewer = false,
+        })
+      end,
+      desc = 'Messages',
+    },
     -- Find
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find Files' },
