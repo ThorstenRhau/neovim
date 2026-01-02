@@ -43,7 +43,7 @@ local enable_optional_plugins = os.getenv('NVIM_OPTIONAL_PLUGINS')
 
 -- Conditionally add optional plugins
 -- Define the plugin specifications
-local active_theme = 'melange'
+local active_theme = 'modus'
 if enable_optional_plugins == '1' then
   table.insert(specs, { import = 'themes.' .. active_theme })
   table.insert(specs, { import = 'optional' }) -- Load all optional plugins

@@ -34,7 +34,7 @@ lua/config/
   autocmd.lua         # Format opts, filetype settings, yank highlight, cursor restore
   toggles.lua         # UI toggle keymaps (full mode only)
 lua/optional/         # Full mode plugins (~37 files)
-lua/themes/           # Theme configs (melange)
+lua/themes/           # Theme configs (modus)
 ```
 
 ## Core Config Details
@@ -136,7 +136,7 @@ lua/themes/           # Theme configs (melange)
 
 ### Theme
 
-- **melange** - Warm, earthy colorscheme with light and dark variants
+- **modus** - Accessible, high-contrast colorscheme with light (Operandi) and dark (Vivendi) variants
 
 ## Key Mapping Groups
 
