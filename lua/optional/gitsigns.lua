@@ -9,6 +9,7 @@ return {
   ---@type Gitsigns.Config
   ---@diagnostic disable: missing-fields
   opts = {
+    attach_to_untracked = false,
     signs = {
       add = { text = '┃' },
       change = { text = '┃' },

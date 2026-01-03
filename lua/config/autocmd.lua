@@ -111,7 +111,7 @@ local last_debounced_checktime = 0
 local checktime_cooldown = 500 -- milliseconds
 local immediate_events = { FocusGained = true, TermClose = true, TermLeave = true }
 
-vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter', 'CursorHold' }, {
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'CursorHold' }, {
   group = augroup('checktime'),
   desc = 'Check for file changes',
   callback = function(args)
@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave', 'BufEnter
       return
     end
 
-    -- Debounced events: BufEnter, CursorHold
+    -- Debounced events: CursorHold
     if not vim.api.nvim_buf_is_valid(args.buf) or vim.bo[args.buf].buftype ~= '' then
       return
     end
