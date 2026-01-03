@@ -72,10 +72,17 @@ return {
       end
     end
 
+    local lint_timer = nil
     vim.api.nvim_create_autocmd('BufWritePost', {
       group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
       callback = function()
-        lint.try_lint()
+        if lint_timer then
+          lint_timer:stop()
+        end
+        lint_timer = vim.defer_fn(function()
+          lint.try_lint()
+          lint_timer = nil
+        end, 100)
       end,
     })
   end,

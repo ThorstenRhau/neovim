@@ -10,7 +10,7 @@ end
 
 local function min_width(width)
   return function()
-    return vim.fn.winwidth(0) > width
+    return vim.api.nvim_win_get_width(0) > width
   end
 end
 
