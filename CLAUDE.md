@@ -1,7 +1,7 @@
 # Neovim Configuration
 
-Personal Neovim config using lazy.nvim with ~37 optional plugins. No Claude
-attribution in commits.
+Personal Neovim config using lazy.nvim with 35 optional plugin files (~60+
+total plugins with dependencies).
 
 ## Commands
 
@@ -9,8 +9,6 @@ attribution in commits.
 make all           # Format and lint (pre-commit hook)
 make format        # Format with stylua
 make lint          # Lint with selene
-make clean         # Remove nvim cache/state/data
-make install-hooks # Enable git pre-commit hook
 ```
 
 Use the Claude Code skill **git-use** for git operations.
@@ -27,45 +25,65 @@ Assume Full mode unless otherwise specified.
 ## Structure
 
 ```
-init.lua              # Entry point, bootstraps lazy.nvim, leader=Space, localleader='
-lua/config/
-  options.lua         # Editor settings (indent, search, undo, folds, LSP borders)
-  keymaps.lua         # Core keymaps (window nav, buffer nav, smart j/k)
-  autocmd.lua         # Format opts, filetype settings, yank highlight, cursor restore
-  toggles.lua         # UI toggle keymaps (full mode only)
-lua/optional/         # Full mode plugins (~37 files)
-lua/themes/           # Theme configs (modus)
+├── CLAUDE.md
+├── init.lua
+├── lazy-lock.json
+├── LICENSE
+├── lua
+│   ├── config
+│   │   ├── autocmd.lua
+│   │   ├── keymaps.lua
+│   │   ├── options.lua
+│   │   └── toggles.lua
+│   ├── optional
+│   │   ├── blink-cmp.lua
+│   │   ├── claudecode.lua
+│   │   ├── colorizer.lua
+│   │   ├── colorpicker.lua
+│   │   ├── debuggers.lua
+│   │   ├── diffview.lua
+│   │   ├── formatters.lua
+│   │   ├── fzf-lua.lua
+│   │   ├── gitsigns.lua
+│   │   ├── indent-blankline.lua
+│   │   ├── lazydev.lua
+│   │   ├── linters.lua
+│   │   ├── live-preview.lua
+│   │   ├── lsp.lua
+│   │   ├── lualine.lua
+│   │   ├── mason-lspconfig.lua
+│   │   ├── mason-tool-installer.lua
+│   │   ├── mason.lua
+│   │   ├── mini-nvim.lua
+│   │   ├── neogit.lua
+│   │   ├── neoscroll.lua
+│   │   ├── nvim-web-devicons.lua
+│   │   ├── oil.lua
+│   │   ├── persistence.lua
+│   │   ├── render-markdown.lua
+│   │   ├── statuscol.lua
+│   │   ├── tabout.lua
+│   │   ├── toggleterm.lua
+│   │   ├── treesitter-textobjects.lua
+│   │   ├── treesitter.lua
+│   │   ├── trouble.lua
+│   │   ├── ui-input.lua
+│   │   ├── vim-illuminate.lua
+│   │   ├── vim-matchup.lua
+│   │   └── whichkey.lua
+│   └── themes
+│       └── modus.lua
+├── Makefile
+├── neovim.yaml
+├── README.md
+├── selene.toml
+├── spell
+│   ├── en.utf-8.add
+│   ├── en.utf-8.add.spl
+│   ├── en.utf-8.spl
+│   └── sv.utf-8.spl
+└── taplo.toml
 ```
-
-## Core Config Details
-
-### options.lua
-
-- 2-space indent with expandtab, smart case search
-- Indent-based folding (foldlevel=99), persistent undo
-  (~/.local/share/nvim/undo)
-- Ripgrep for grep, rounded LSP borders, mouse in normal/visual
-- Global statusline (laststatus=3)
-
-### keymaps.lua
-
-- `j/k` wrap-aware, `<C-h/j/k/l>` window nav, `<S-h/l>` buffer nav
-- `<S-Up/Down/Left/Right>` window resize
-- `<Esc>` clears search, `x/X` don't yank
-
-### autocmd.lua
-
-- Remove auto-comment on new lines
-- Markdown: wrap, spell, textwidth=80
-- Git commit: textwidth=72, colorcolumn 50,73
-- Close with `q`: checkhealth, git, help, lspinfo, man, notify, qf, startuptime
-- Persistent cursor position restore, highlight on yank
-- Disable undo for /tmp/_, _.env, SSH/GPG dirs, credentials
-- Clean old undo files (>14 days) on startup
-
-### toggles.lua (full mode)
-
-- `<leader>uf/uz/uw/uL/ud/ul/uc/us/uT/ub/uh` - Various UI toggles
 
 ## Plugins (Full Mode)
 
@@ -95,13 +113,11 @@ lua/themes/           # Theme configs (modus)
 
 ### UI
 
-- **noice** - Modern cmdline/messages/notifications
-- **lualine** - Statusline
+- **lualine** - Statusline with width-responsive sections
 - **which-key** - Keymap popup guide (modern preset)
-- **indent-blankline** - Indent guides with scope
+- **indent-blankline** - Indent guides with scope (`<leader>ug`)
 - **statuscol** - Custom status column
 - **neoscroll** - Smooth scrolling
-- **smear-cursor** - Animated cursor movement (`<leader>us`)
 - **ui-input** (nui.nvim) - Enhanced vim.ui.input
 - **render-markdown** - Markdown rendering (`<leader>um`)
 - **nvim-web-devicons** - File icons
@@ -137,6 +153,8 @@ lua/themes/           # Theme configs (modus)
 ### Theme
 
 - **modus** - Accessible, high-contrast colorscheme with light (Operandi) and dark (Vivendi) variants
+
+Appearance changes between light and dark appearance based on 'vim.o.background'
 
 ## Key Mapping Groups
 
