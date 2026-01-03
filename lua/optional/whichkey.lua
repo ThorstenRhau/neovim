@@ -1,6 +1,3 @@
----@module "lazy"
----@type LazySpec
-
 -- Toggle virtual text for diagnostics
 local function toggle_virtual_text()
   local current_value = vim.diagnostic.config().virtual_text
@@ -31,13 +28,15 @@ local function ListActiveLinters()
   end
 end
 
+---@module "lazy"
+---@type LazySpec
 return {
   'folke/which-key.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   opts = {
     preset = 'modern',
-    delay = 300,
+    delay = 1000,
     spec = {
       -- Root menu
       { '<leader>,', '<cmd>b#<CR>', desc = 'Switch buffer', icon = { icon = '󰯍 ', color = 'yellow' } },
