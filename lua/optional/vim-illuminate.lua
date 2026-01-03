@@ -26,6 +26,9 @@ return {
       },
       under_cursor = false,
       modes_allowlist = { 'n' },
+      should_enable = function(bufnr)
+        return vim.bo[bufnr].buftype ~= 'terminal'
+      end,
     })
   end,
 }

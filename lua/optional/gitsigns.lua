@@ -42,6 +42,9 @@ return {
       col = 1,
     },
     on_attach = function(bufnr)
+      if vim.bo[bufnr].buftype == 'terminal' then
+        return false
+      end
       local gs = require('gitsigns')
 
       local function map(mode, l, r, desc)
