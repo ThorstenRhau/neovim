@@ -55,8 +55,8 @@ return {
       keyword = { range = 'full' },
       list = { selection = { preselect = true, auto_insert = false } },
       documentation = {
-        auto_show = false,
-        auto_show_delay_ms = 500,
+        auto_show = true,
+        auto_show_delay_ms = 100,
         treesitter_highlighting = true,
         window = { border = 'rounded' },
       },
@@ -118,6 +118,7 @@ return {
 
     signature = {
       enabled = true,
+      trigger = { enabled = false }, -- Manual-only mode (use <C-k> to trigger)
       window = { border = 'rounded', show_documentation = false },
     },
 
