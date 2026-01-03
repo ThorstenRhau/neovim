@@ -10,7 +10,7 @@ return {
         'treesitter',
         'regex',
       },
-      delay = 500,
+      delay = 100,
       filetypes_denylist = {
         'Trouble',
         'checkhealth',
