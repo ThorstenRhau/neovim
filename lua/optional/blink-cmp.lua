@@ -1,5 +1,19 @@
 ---@module "lazy"
 ---@type LazySpec
+
+-- Lazy cache for completion menu performance
+local devicons, lspkind
+local function ensure_cached()
+  if not devicons then
+    local ok, mod = pcall(require, 'nvim-web-devicons')
+    devicons = ok and mod or false
+  end
+  if not lspkind then
+    local ok, mod = pcall(require, 'lspkind')
+    lspkind = ok and mod or false
+  end
+end
+
 return {
   'saghen/blink.cmp',
   dependencies = { 'rafamadriz/friendly-snippets', 'onsails/lspkind.nvim' },
@@ -58,10 +72,10 @@ return {
           components = {
             kind_icon = {
               text = function(ctx)
+                ensure_cached()
                 local icon = ctx.kind_icon
                 if ctx.source_name == 'Path' then
-                  local ok, devicons = pcall(require, 'nvim-web-devicons')
-                  if ok then
+                  if devicons then
                     local ext = vim.fn.fnamemodify(ctx.label, ':e')
                     local dev_icon = devicons.get_icon(ctx.label, ext)
                     if dev_icon then
@@ -69,18 +83,17 @@ return {
                     end
                   end
                 else
-                  local ok, lspkind = pcall(require, 'lspkind')
-                  if ok then
+                  if lspkind then
                     icon = lspkind.symbolic(ctx.kind, { mode = 'symbol' }) or icon
                   end
                 end
                 return icon .. ctx.icon_gap
               end,
               highlight = function(ctx)
+                ensure_cached()
                 local hl = ctx.kind_hl
                 if ctx.source_name == 'Path' then
-                  local ok, devicons = pcall(require, 'nvim-web-devicons')
-                  if ok then
+                  if devicons then
                     local ext = vim.fn.fnamemodify(ctx.label, ':e')
                     local _, dev_hl = devicons.get_icon(ctx.label, ext)
                     if dev_hl then

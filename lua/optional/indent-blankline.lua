@@ -18,6 +18,7 @@ return {
   ---@module "ibl"
   ---@type ibl.config
   opts = {
+    debounce = 100,
     scope = {
       enabled = true,
       show_start = true,

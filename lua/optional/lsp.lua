@@ -91,6 +91,7 @@ return {
 
     -- Diagnostic configuration
     vim.diagnostic.config({
+      debounce = 150,
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '󰅚',
