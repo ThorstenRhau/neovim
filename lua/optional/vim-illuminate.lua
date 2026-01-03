@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'RRethy/vim-illuminate',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = 'VeryLazy',
   config = function()
     require('illuminate').configure({
       providers = {

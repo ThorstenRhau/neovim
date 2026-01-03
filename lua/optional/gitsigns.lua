@@ -2,7 +2,7 @@
 ---@type LazySpec
 return {
   'lewis6991/gitsigns.nvim',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = 'VeryLazy',
   cmd = { 'Gitsigns' },
 
   ---@module 'gitsigns'

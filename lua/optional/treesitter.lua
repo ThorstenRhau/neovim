@@ -13,6 +13,7 @@ return {
     },
   },
   lazy = false,
+  priority = 900,
   branch = 'main',
   build = ':TSUpdate',
   config = function()
