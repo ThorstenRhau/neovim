@@ -28,9 +28,6 @@ return {
         bash = { 'shfmt' },
         fish = { 'fish_indent' },
         toml = { 'taplo' },
-        terraform = { 'terraform_fmt' },
-        tf = { 'terraform_fmt' },
-        ['terraform-vars'] = { 'terraform_fmt' },
         xml = { 'xmlformat' },
         ['_'] = { 'trim_whitespace' },
       },
@@ -48,14 +45,10 @@ return {
       local lint = require('lint')
 
       lint.linters_by_ft = {
-        ansible = { 'ansible_lint' },
         bash = { 'shellcheck' },
-        dockerfile = { 'hadolint' },
         lua = { 'selene' },
         markdown = { 'markdownlint' },
         sh = { 'shellcheck' },
-        terraform = { 'tflint' },
-        tf = { 'tflint' },
         yaml = { 'yamllint' },
       }
 
