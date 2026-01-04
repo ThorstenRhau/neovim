@@ -1,3 +1,10 @@
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return { added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed }
+  end
+end
+
 return {
   {
     'folke/which-key.nvim',
@@ -42,19 +49,23 @@ return {
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff' },
+        lualine_b = {
+          'branch',
+          { 'diff', source = diff_source },
+        },
         lualine_c = {
           {
             'filename',
-            path = 1,
+            path = 4,
             symbols = {
-              modified = ' ●',
-              readonly = ' ',
+              modified = '●',
+              readonly = '',
               unnamed = '[No Name]',
             },
           },
         },
         lualine_x = {
+          'lsp_status',
           {
             'diagnostics',
             symbols = {
@@ -77,6 +88,16 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
+      extensions = {
+        'lazy',
+        'mason',
+        'oil',
+        'trouble',
+        'fzf',
+        'nvim-dap-ui',
+        'quickfix',
+        'toggleterm',
+      },
     },
   },
   {
@@ -97,6 +118,7 @@ return {
         '[q',
         function()
           if require('trouble').is_open() then
+            ---@diagnostic disable-next-line: missing-fields, missing-parameter
             require('trouble').prev({ skip_groups = true, jump = true })
           else
             local ok, err = pcall(vim.cmd.cprev)
@@ -111,6 +133,7 @@ return {
         ']q',
         function()
           if require('trouble').is_open() then
+            ---@diagnostic disable-next-line: missing-fields, missing-parameter
             require('trouble').next({ skip_groups = true, jump = true })
           else
             local ok, err = pcall(vim.cmd.cnext)
