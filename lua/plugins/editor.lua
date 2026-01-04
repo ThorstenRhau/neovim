@@ -90,4 +90,21 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ft = { 'markdown' },
+    keys = {
+      {
+        '<leader>tm',
+        function()
+          require('render-markdown').toggle()
+        end,
+        desc = 'Toggle markdown render',
+      },
+    },
+    opts = {
+      pipe_table = { preset = 'round' },
+    },
+  },
 }
