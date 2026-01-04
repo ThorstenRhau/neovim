@@ -24,6 +24,9 @@ require('lazy').setup({
   install = { colorscheme = { 'modus_vivendi', 'habamax' } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
+  ui = {
+    border = 'rounded',
+  },
   performance = {
     rtp = {
       disabled_plugins = {

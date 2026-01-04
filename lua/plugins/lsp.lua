@@ -3,7 +3,11 @@ return {
     'williamboman/mason.nvim',
     cmd = 'Mason',
     build = ':MasonUpdate',
-    opts = {},
+    opts = {
+      ui = {
+        border = 'rounded',
+      },
+    },
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',

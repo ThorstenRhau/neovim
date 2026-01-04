@@ -61,6 +61,9 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Fill chars
 opt.fillchars = { eob = ' ', fold = ' ', foldsep = ' ' }
 
+-- Floating window border (Neovim 0.11+)
+o.winborder = 'rounded'
+
 -- Folding (treesitter-based, configured per filetype)
 o.foldlevel = 99
 o.foldlevelstart = 99
