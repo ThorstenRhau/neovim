@@ -12,6 +12,7 @@ return {
     { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word' },
     { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD' },
     { '<leader>fv', '<cmd>FzfLua grep_visual<cr>', mode = 'v', desc = 'Grep selection' },
+    { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resum' },
 
     -- LSP
     { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'Go to definition' },
@@ -40,10 +41,10 @@ return {
     { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
   },
   opts = {
-    'telescope',
+    'ivy',
     winopts = {
-      height = 0.85,
-      width = 0.80,
+      height = 0.90,
+      width = 0.90,
       row = 0.35,
       col = 0.50,
       border = 'rounded',
