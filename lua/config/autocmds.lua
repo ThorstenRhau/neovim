@@ -5,7 +5,7 @@ local augroup = vim.api.nvim_create_augroup
 autocmd('TextYankPost', {
   group = augroup('highlight_yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank({ timeout = 200 })
+    vim.highlight.on_yank()
   end,
 })
 
@@ -38,19 +38,26 @@ autocmd('VimResized', {
 autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
   pattern = {
+    'checkhealth',
+    'git',
+    'gitsigns-blame',
     'help',
     'lspinfo',
     'man',
     'notify',
     'qf',
-    'checkhealth',
     'startuptime',
-    'tsplayground',
-    'spectre_panel',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+    vim.keymap.set('n', 'q', function()
+      -- If this is the last window, quit Neovim (useful for MANPAGER)
+      if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then
+        vim.cmd('quit')
+      else
+        vim.cmd('close')
+      end
+    end, { buffer = event.buf, silent = true })
   end,
 })
 
