@@ -107,4 +107,27 @@ return {
       pipe_table = { preset = 'round' },
     },
   },
+  -- Color picker and highlighter
+  {
+    'uga-rosa/ccc.nvim',
+    cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle' },
+    keys = {
+      { '<leader>tC', '<cmd>CccHighlighterToggle<cr>', desc = 'Toggle color highlight' },
+      { '<leader>cp', '<cmd>CccPick<cr>', desc = 'Color picker' },
+      { '<leader>cc', '<cmd>CccConvert<cr>', desc = 'Convert color format' },
+    },
+    opts = {
+      highlighter = {
+        auto_enable = false,
+        lsp = true,
+      },
+      highlight_mode = 'background',
+      virtual_symbol = '●',
+      virtual_pos = 'inline-left',
+      recognize = {
+        input = true,
+        output = true,
+      },
+    },
+  },
 }
