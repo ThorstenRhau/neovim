@@ -13,7 +13,7 @@ return {
     { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word' },
     { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD' },
     { '<leader>fv', '<cmd>FzfLua grep_visual<cr>', mode = 'v', desc = 'Grep selection' },
-    { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resum' },
+    { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
 
     -- LSP
     { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'Go to definition' },
