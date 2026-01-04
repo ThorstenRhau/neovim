@@ -65,8 +65,12 @@ map('n', '<leader>xn', '<cmd>cnext<cr>', { desc = 'Next quickfix' })
 map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'Previous quickfix' })
 
 -- Diagnostic navigation
-map('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
-map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+map('n', ']d', function()
+  vim.diagnostic.jump({ count = 1 })
+end, { desc = 'Next diagnostic' })
+map('n', '[d', function()
+  vim.diagnostic.jump({ count = -1 })
+end, { desc = 'Previous diagnostic' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
 
 -- Lazy
@@ -74,14 +78,19 @@ map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- Toggle options
 map('n', '<leader>tw', function()
-  vim.opt.wrap = not vim.opt.wrap:get()
+  vim.o.wrap = not vim.o.wrap
 end, { desc = 'Toggle wrap' })
 map('n', '<leader>tn', function()
-  vim.opt.relativenumber = not vim.opt.relativenumber:get()
+  vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = 'Toggle relative numbers' })
 map('n', '<leader>ts', function()
-  vim.opt.spell = not vim.opt.spell:get()
+  vim.o.spell = not vim.o.spell
 end, { desc = 'Toggle spelling' })
 map('n', '<leader>tc', function()
-  vim.opt.cursorline = not vim.opt.cursorline:get()
+  vim.o.cursorline = not vim.o.cursorline
 end, { desc = 'Toggle cursorline' })
+map('n', '<leader>tl', function()
+  local config = vim.diagnostic.config() or {}
+  local new_value = not config.virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_value })
+end, { desc = 'Toggle diagnostic lines' })
