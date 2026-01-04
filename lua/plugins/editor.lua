@@ -1,0 +1,92 @@
+return {
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {
+      check_ts = true,
+      fast_wrap = {
+        map = '<M-e>',
+        chars = { '{', '[', '(', '"', "'" },
+        pattern = [=[[%'%"%>%]%)%}%,]]=],
+        end_key = '$',
+        before_key = 'h',
+        after_key = 'l',
+        cursor_pos_before = true,
+        keys = 'qwertyuiopzxcvbnmasdfghjkl',
+        manual_position = true,
+        highlight = 'Search',
+        highlight_grey = 'Comment',
+      },
+    },
+  },
+  {
+    'abecodes/tabout.nvim',
+    event = 'InsertEnter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = {
+      tabkey = '<Tab>',
+      backwards_tabkey = '<S-Tab>',
+      act_as_tab = true,
+      act_as_shift_tab = false,
+      enable_backwards = true,
+      completion = true,
+      tabouts = {
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = '`', close = '`' },
+        { open = '(', close = ')' },
+        { open = '[', close = ']' },
+        { open = '{', close = '}' },
+        { open = '<', close = '>' },
+      },
+      ignore_beginning = true,
+      exclude = {},
+    },
+  },
+  {
+    'andymass/vim-matchup',
+    event = 'VeryLazy',
+    init = function()
+      vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+    end,
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
+    main = 'ibl',
+    opts = {
+      indent = {
+        char = '│',
+        tab_char = '│',
+      },
+      scope = {
+        show_start = false,
+        show_end = false,
+      },
+      exclude = {
+        filetypes = {
+          'help',
+          'lazy',
+          'mason',
+          'neo-tree',
+          'notify',
+          'oil',
+          'toggleterm',
+          'trouble',
+        },
+      },
+    },
+  },
+  {
+    'folke/ts-comments.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  },
+  {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    opts = {},
+  },
+}
