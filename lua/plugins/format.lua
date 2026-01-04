@@ -28,7 +28,6 @@ return {
         bash = { 'shfmt' },
         fish = { 'fish_indent' },
         toml = { 'taplo' },
-        xml = { 'xmlformat' },
         ['_'] = { 'trim_whitespace' },
       },
       formatters = {
