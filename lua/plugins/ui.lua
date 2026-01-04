@@ -146,25 +146,4 @@ return {
       },
     },
   },
-  {
-    'stevearc/dressing.nvim',
-    event = 'VeryLazy',
-    opts = {
-      input = {
-        default_prompt = '➜ ',
-        win_options = {
-          winblend = 0,
-        },
-      },
-      select = {
-        backend = { 'fzf_lua', 'builtin' },
-        fzf_lua = {
-          winopts = {
-            height = 0.5,
-            width = 0.5,
-          },
-        },
-      },
-    },
-  },
 }
