@@ -29,7 +29,14 @@ return {
       ['<CR>'] = { 'accept', 'fallback' },
     },
     sources = {
-      default = { 'lsp', 'snippets', 'path', 'buffer' },
+      default = { 'lazydev', 'lsp', 'snippets', 'path', 'buffer' },
+      providers = {
+        lazydev = {
+          name = 'LazyDev',
+          module = 'lazydev.integrations.blink',
+          score_offset = 100, -- show at top of suggestions
+        },
+      },
     },
     completion = {
       accept = {
