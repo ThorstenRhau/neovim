@@ -25,10 +25,6 @@ return {
         'bash-language-server',
         'marksman',
         'taplo',
-        'dockerfile-language-server',
-        'docker-compose-language-service',
-        'terraform-ls',
-        'ansible-language-server',
 
         -- Formatters
         'stylua',
@@ -40,8 +36,6 @@ return {
         'hadolint',
         'shellcheck',
         'markdownlint',
-        'tflint',
-        'ansible-lint',
       },
       auto_update = false,
       run_on_start = true,
@@ -196,38 +190,6 @@ return {
         capabilities = capabilities,
       }
 
-      -- Docker
-      vim.lsp.config.dockerls = {
-        cmd = { 'docker-langserver', '--stdio' },
-        filetypes = { 'dockerfile' },
-        root_markers = { 'Dockerfile', '.git' },
-        capabilities = capabilities,
-      }
-
-      -- Docker Compose
-      vim.lsp.config.docker_compose_language_service = {
-        cmd = { 'docker-compose-langserver', '--stdio' },
-        filetypes = { 'yaml.docker-compose' },
-        root_markers = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml', '.git' },
-        capabilities = capabilities,
-      }
-
-      -- Terraform
-      vim.lsp.config.terraformls = {
-        cmd = { 'terraform-ls', 'serve' },
-        filetypes = { 'terraform', 'terraform-vars', 'tf' },
-        root_markers = { '.terraform', '.git' },
-        capabilities = capabilities,
-      }
-
-      -- Ansible
-      vim.lsp.config.ansiblels = {
-        cmd = { 'ansible-language-server', '--stdio' },
-        filetypes = { 'yaml.ansible' },
-        root_markers = { 'ansible.cfg', '.ansible-lint', '.git' },
-        capabilities = capabilities,
-      }
-
       -- Enable all configured servers
       vim.lsp.enable({
         'lua_ls',
@@ -238,10 +200,6 @@ return {
         'bashls',
         'marksman',
         'taplo',
-        'dockerls',
-        'docker_compose_language_service',
-        'terraformls',
-        'ansiblels',
       })
 
       -- LSP keymaps on attach

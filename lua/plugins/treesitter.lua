@@ -20,8 +20,6 @@ return {
         'xml',
         'markdown',
         'markdown_inline',
-        'dockerfile',
-        'terraform',
         'hcl',
         'vim',
         'vimdoc',
