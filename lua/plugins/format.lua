@@ -44,14 +44,15 @@ return {
       local lint = require('lint')
 
       lint.linters_by_ft = {
-        yaml = { 'yamllint' },
-        dockerfile = { 'hadolint' },
-        sh = { 'shellcheck' },
+        ansible = { 'ansible_lint' },
         bash = { 'shellcheck' },
+        dockerfile = { 'hadolint' },
+        lua = { 'selene' },
         markdown = { 'markdownlint' },
+        sh = { 'shellcheck' },
         terraform = { 'tflint' },
         tf = { 'tflint' },
-        ansible = { 'ansible_lint' },
+        yaml = { 'yamllint' },
       }
 
       -- Custom yamllint config
