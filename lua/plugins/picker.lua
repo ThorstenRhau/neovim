@@ -1,0 +1,107 @@
+return {
+  'ibhagwan/fzf-lua',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  cmd = 'FzfLua',
+  keys = {
+    { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+    { '<leader><space>', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+    { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
+    { '<leader>,', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
+    { '<leader>fr', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
+    { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Git files' },
+    { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word' },
+    { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD' },
+    { '<leader>fv', '<cmd>FzfLua grep_visual<cr>', mode = 'v', desc = 'Grep selection' },
+
+    -- LSP
+    { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'Go to definition' },
+    { 'gr', '<cmd>FzfLua lsp_references<cr>', desc = 'References' },
+    { 'gI', '<cmd>FzfLua lsp_implementations<cr>', desc = 'Implementations' },
+    { 'gy', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'Type definition' },
+    { '<leader>ss', '<cmd>FzfLua lsp_document_symbols<cr>', desc = 'Document symbols' },
+    { '<leader>sS', '<cmd>FzfLua lsp_workspace_symbols<cr>', desc = 'Workspace symbols' },
+    { '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', desc = 'Document diagnostics' },
+    { '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', desc = 'Workspace diagnostics' },
+
+    -- Git
+    { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git branches' },
+    { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git commits' },
+    { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'Git buffer commits' },
+    { '<leader>gS', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
+
+    -- Search
+    { '<leader>sh', '<cmd>FzfLua help_tags<cr>', desc = 'Help tags' },
+    { '<leader>sk', '<cmd>FzfLua keymaps<cr>', desc = 'Keymaps' },
+    { '<leader>sm', '<cmd>FzfLua marks<cr>', desc = 'Marks' },
+    { '<leader>sj', '<cmd>FzfLua jumps<cr>', desc = 'Jumps' },
+    { '<leader>sc', '<cmd>FzfLua commands<cr>', desc = 'Commands' },
+    { '<leader>sC', '<cmd>FzfLua command_history<cr>', desc = 'Command history' },
+    { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command history' },
+    { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
+  },
+  opts = {
+    'telescope',
+    winopts = {
+      height = 0.85,
+      width = 0.80,
+      row = 0.35,
+      col = 0.50,
+      border = 'rounded',
+      preview = {
+        layout = 'flex',
+        flip_columns = 120,
+        scrollbar = false,
+      },
+    },
+    keymap = {
+      builtin = {
+        ['<C-d>'] = 'preview-page-down',
+        ['<C-u>'] = 'preview-page-up',
+      },
+      fzf = {
+        ['ctrl-q'] = 'select-all+accept',
+        ['ctrl-d'] = 'preview-page-down',
+        ['ctrl-u'] = 'preview-page-up',
+      },
+    },
+    files = {
+      fd_opts = '--color=never --type f --hidden --follow --exclude .git',
+      cwd_prompt = false,
+    },
+    grep = {
+      rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
+    },
+    lsp = {
+      symbols = {
+        symbol_icons = {
+          File = ' ',
+          Module = ' ',
+          Namespace = ' ',
+          Package = ' ',
+          Class = ' ',
+          Method = ' ',
+          Property = ' ',
+          Field = ' ',
+          Constructor = ' ',
+          Enum = ' ',
+          Interface = ' ',
+          Function = ' ',
+          Variable = ' ',
+          Constant = ' ',
+          String = ' ',
+          Number = ' ',
+          Boolean = ' ',
+          Array = ' ',
+          Object = ' ',
+          Key = ' ',
+          Null = ' ',
+          EnumMember = ' ',
+          Struct = ' ',
+          Event = ' ',
+          Operator = ' ',
+          TypeParameter = ' ',
+        },
+      },
+    },
+  },
+}
