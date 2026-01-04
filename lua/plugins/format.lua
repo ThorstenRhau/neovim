@@ -7,7 +7,7 @@ return {
       {
         '<leader>cf',
         function()
-          require('conform').format({ async = true, lsp_fallback = true }, function(err)
+          require('conform').format({ async = true, lsp_format = 'fallback' }, function(err)
             if not err then
               vim.notify('File formatted', vim.log.levels.INFO)
             end
