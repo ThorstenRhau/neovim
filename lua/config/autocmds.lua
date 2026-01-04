@@ -93,6 +93,30 @@ autocmd('TermOpen', {
   end,
 })
 
+-- Markdown settings
+autocmd('FileType', {
+  group = augroup('markdown_settings', { clear = true }),
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldlevel = 99
+  end,
+})
+
+-- Git commit message settings
+autocmd('FileType', {
+  group = augroup('gitcommit_settings', { clear = true }),
+  pattern = 'gitcommit',
+  callback = function()
+    vim.opt_local.textwidth = 72
+    vim.opt_local.colorcolumn = '50,73'
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
+  end,
+})
+
 -- Trim whitespace command
 vim.api.nvim_create_user_command('TrimWhitespace', function()
   local save_cursor = vim.fn.getpos('.')
