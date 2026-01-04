@@ -249,16 +249,14 @@ return {
           border = 'rounded',
           source = true,
         },
-        virtual_text = {
-          prefix = '●',
-          spacing = 4,
-        },
+        virtual_text = false,
+        virtual_lines = { current_line = true },
         signs = {
           text = {
-            [vim.diagnostic.severity.ERROR] = ' ',
-            [vim.diagnostic.severity.WARN] = ' ',
-            [vim.diagnostic.severity.INFO] = ' ',
-            [vim.diagnostic.severity.HINT] = ' ',
+            [vim.diagnostic.severity.ERROR] = '󰅚',
+            [vim.diagnostic.severity.WARN] = '󰀪',
+            [vim.diagnostic.severity.INFO] = '󰋽',
+            [vim.diagnostic.severity.HINT] = '󰌵',
           },
         },
       })
