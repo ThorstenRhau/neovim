@@ -6,27 +6,41 @@ return {
     opts = {},
   },
   {
-    'williamboman/mason-lspconfig.nvim',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = {
-      'williamboman/mason.nvim',
-    },
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    dependencies = { 'williamboman/mason.nvim' },
+    cmd = { 'MasonToolsInstall', 'MasonToolsUpdate', 'MasonToolsClean' },
+    event = 'VeryLazy',
     opts = {
       ensure_installed = {
-        'lua_ls',
+        -- LSP servers
+        'lua-language-server',
         'basedpyright',
         'ruff',
-        'yamlls',
-        'jsonls',
-        'bashls',
+        'yaml-language-server',
+        'json-lsp',
+        'bash-language-server',
         'marksman',
         'taplo',
-        'dockerls',
-        'docker_compose_language_service',
-        'terraformls',
-        'ansiblels',
+        'dockerfile-language-server',
+        'docker-compose-language-service',
+        'terraform-ls',
+        'ansible-language-server',
+
+        -- Formatters
+        'stylua',
+        'prettier',
+        'shfmt',
+
+        -- Linters
+        'yamllint',
+        'hadolint',
+        'shellcheck',
+        'markdownlint',
+        'tflint',
+        'ansible-lint',
       },
-      automatic_installation = true,
+      auto_update = false,
+      run_on_start = true,
     },
   },
   {
@@ -38,7 +52,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
       'saghen/blink.cmp',
       'b0o/schemastore.nvim',
     },
