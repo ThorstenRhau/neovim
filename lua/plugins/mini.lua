@@ -46,23 +46,4 @@ return {
       mappings = { start_jumping = '' },
     },
   },
-
-  -- Animate common Neovim actions
-  {
-    'echasnovski/mini.animate',
-    version = false,
-    event = 'VeryLazy',
-    opts = {},
-    config = function(_, opts)
-      require('mini.animate').setup(opts)
-      vim.keymap.set('n', '<leader>ta', function()
-        vim.g.minianimate_disable = not vim.g.minianimate_disable
-        if vim.g.minianimate_disable then
-          vim.notify('Animations disabled', vim.log.levels.INFO)
-        else
-          vim.notify('Animations enabled', vim.log.levels.INFO)
-        end
-      end, { desc = 'Toggle animations' })
-    end,
-  },
 }
