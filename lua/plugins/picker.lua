@@ -1,6 +1,7 @@
 return {
   'ibhagwan/fzf-lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = 'VeryLazy',
   cmd = 'FzfLua',
   keys = {
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
@@ -105,4 +106,15 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    local fzf = require('fzf-lua')
+    fzf.setup(opts)
+    -- Register as vim.ui.select handler with auto-sizing
+    fzf.register_ui_select(function(_, items)
+      local min_h, max_h = 0.15, 0.70
+      local h = (#items + 4) / vim.o.lines
+      h = math.max(min_h, math.min(max_h, h))
+      return { winopts = { height = h, width = 0.50, row = 0.40 } }
+    end)
+  end,
 }
