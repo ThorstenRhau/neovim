@@ -62,8 +62,9 @@ return {
         tab_char = '│',
       },
       scope = {
-        show_start = false,
-        show_end = false,
+        enabled = true,
+        show_start = true,
+        show_end = true,
       },
       exclude = {
         filetypes = {
