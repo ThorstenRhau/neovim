@@ -1,32 +1,18 @@
 return {
   'saghen/blink.cmp',
   version = '1.*',
-  event = 'InsertEnter',
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
     'rafamadriz/friendly-snippets',
   },
   opts = {
-    keymap = {
-      preset = 'none',
-      ['<Tab>'] = {
-        function(cmp)
-          if cmp.snippet_active() then
-            return cmp.accept()
-          elseif cmp.is_visible() then
-            return cmp.select_and_accept()
-          end
-        end,
-        'snippet_forward',
-        'fallback',
+    keymap = { preset = 'super-tab' },
+    cmdline = {
+      keymap = { preset = 'inherit' },
+      completion = {
+        menu = { auto_show = true },
+        ghost_text = { enabled = true },
       },
-      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
-      ['<C-n>'] = { 'select_next', 'fallback' },
-      ['<C-p>'] = { 'select_prev', 'fallback' },
-      ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ['<C-e>'] = { 'hide', 'fallback' },
-      ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-      ['<CR>'] = { 'accept', 'fallback' },
     },
     sources = {
       default = { 'lazydev', 'lsp', 'snippets', 'path', 'buffer' },
