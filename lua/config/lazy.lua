@@ -21,8 +21,8 @@ require('lazy').setup({
   defaults = {
     lazy = false,
   },
-  install = { colorscheme = { 'modus_vivendi', 'habamax' } },
-  checker = { enabled = true, notify = false },
+  install = { colorscheme = { 'default' } },
+  checker = { enabled = true, notify = true },
   change_detection = { notify = false },
   ui = {
     border = 'rounded',
