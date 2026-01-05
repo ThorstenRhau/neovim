@@ -5,6 +5,19 @@ local function diff_source()
   end
 end
 
+local function opencode_statusline()
+  local ok, opencode = pcall(require, 'opencode')
+  if ok then
+    return opencode.statusline()
+  end
+  return ''
+end
+
+local function opencode_active()
+  local ok, status = pcall(require, 'opencode.status')
+  return ok and status.status ~= nil
+end
+
 return {
   {
     'folke/which-key.nvim',
@@ -19,6 +32,7 @@ return {
         { '<leader>c', group = 'code' },
         { '<leader>h', group = 'hunk' },
         { '<leader>t', group = 'toggle' },
+        { '<leader>o', group = 'opencode' },
         { '<leader>x', group = 'diagnostics' },
         { '<leader>b', group = 'buffer' },
         { '<leader>w', group = 'window' },
@@ -65,6 +79,7 @@ return {
           },
         },
         lualine_x = {
+          { opencode_statusline, cond = opencode_active },
           'lsp_status',
           {
             'diagnostics',
