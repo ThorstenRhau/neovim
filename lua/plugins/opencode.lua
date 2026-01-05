@@ -22,7 +22,7 @@ return {
     {
       '<leader>oa',
       function()
-        require('opencode').ask()
+        require('opencode').ask('', { submit = true })
       end,
       mode = { 'n', 'x' },
       desc = 'Ask opencode',
@@ -62,6 +62,29 @@ return {
       end,
       expr = true,
       desc = 'Add line to opencode',
+    },
+
+    -- Focus opencode window
+    {
+      '<leader>of',
+      function()
+        -- Find and focus the opencode terminal window
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local buf_name = vim.api.nvim_buf_get_name(buf)
+          if buf_name:match('opencode') then
+            vim.api.nvim_set_current_win(win)
+            vim.cmd('startinsert')
+            return
+          end
+        end
+        -- If opencode window not found, toggle it open and enter insert mode
+        require('opencode').toggle()
+        vim.schedule(function()
+          vim.cmd('startinsert')
+        end)
+      end,
+      desc = 'Focus opencode',
     },
 
     -- Session controls
