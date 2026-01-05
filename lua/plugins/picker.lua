@@ -5,7 +5,7 @@ return {
   cmd = 'FzfLua',
   keys = {
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
-    { '<leader><space>', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+    { '<leader><space>', '<cmd>FzfLua global<cr>', desc = 'Global search' },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>,', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
@@ -13,7 +13,7 @@ return {
     { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word' },
     { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD' },
     { '<leader>fv', '<cmd>FzfLua grep_visual<cr>', mode = 'v', desc = 'Grep selection' },
-    { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resume' },
+    { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
 
     -- LSP
     { 'gd', '<cmd>FzfLua lsp_definitions<cr>', desc = 'Go to definition' },
