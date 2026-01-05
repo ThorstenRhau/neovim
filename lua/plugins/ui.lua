@@ -37,8 +37,7 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    lazy = true,
-    event = "UIEnter",
+    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
