@@ -50,11 +50,11 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.fillchars:append({
   diff = '░',
   eob = ' ',
-  fold = '·',
-  foldopen = '󰍝',
-  foldclose = '󰍟',
-  foldsep = '│',
-  msgsep = '─',
+  fold = '⋯',
+  foldopen = '▼',
+  foldclose = '▶',
+  foldsep = '┊',
+  msgsep = '━',
 })
 
 -- Floating window border (Neovim 0.11+)
