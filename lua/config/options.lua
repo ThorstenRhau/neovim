@@ -59,7 +59,15 @@ o.list = true
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Fill chars
-opt.fillchars = { eob = ' ', fold = ' ', foldsep = ' ' }
+opt.fillchars:append({
+  diff = '░',
+  eob = ' ',
+  fold = '·',
+  foldopen = '󰍝',
+  foldclose = '󰍟',
+  foldsep = '│',
+  msgsep = '─',
+})
 
 -- Floating window border (Neovim 0.11+)
 o.winborder = 'rounded'
