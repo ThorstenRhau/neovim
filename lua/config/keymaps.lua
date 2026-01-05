@@ -92,3 +92,24 @@ map('n', '<leader>tl', function()
   local new_value = not config.virtual_lines
   vim.diagnostic.config({ virtual_lines = new_value })
 end, { desc = 'Toggle diagnostic lines' })
+
+-- Spell language selection
+local function set_spell_lang(lang, lang_name)
+  vim.o.spelllang = lang
+  if not vim.o.spell then
+    vim.o.spell = true
+  end
+  vim.notify('Spell language: ' .. lang_name, vim.log.levels.INFO)
+end
+
+map('n', '<leader>tSu', function()
+  set_spell_lang('en_us', 'English (US)')
+end, { desc = 'Set spell lang to English (US)' })
+
+map('n', '<leader>tSg', function()
+  set_spell_lang('en_gb', 'English (GB)')
+end, { desc = 'Set spell lang to English (GB)' })
+
+map('n', '<leader>tSs', function()
+  set_spell_lang('sv', 'Swedish')
+end, { desc = 'Set spell lang to Swedish' })
