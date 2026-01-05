@@ -92,6 +92,15 @@ map('n', '<leader>tl', function()
   local new_value = not config.virtual_lines
   vim.diagnostic.config({ virtual_lines = new_value })
 end, { desc = 'Toggle diagnostic lines' })
+map('n', '<leader>ta', function()
+  if vim.b.completion == false then
+    vim.b.completion = true
+    vim.notify('Completion enabled', vim.log.levels.INFO)
+  else
+    vim.b.completion = false
+    vim.notify('Completion disabled', vim.log.levels.INFO)
+  end
+end, { desc = 'Toggle auto-completion' })
 
 -- Spell language selection
 local function set_spell_lang(lang, lang_name)
