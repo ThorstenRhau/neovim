@@ -47,7 +47,6 @@ return {
         bash = { 'shellcheck' },
         lua = { 'selene' },
         markdown = { 'markdownlint' },
-        sh = { 'shellcheck' },
         yaml = { 'yamllint' },
       }
 
