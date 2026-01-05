@@ -18,6 +18,7 @@ map('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move selection up' })
 
 -- Buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
+map('n', '<leader>,', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next buffer' })
 map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
 map('n', '<leader>bD', '<cmd>bdelete!<cr>', { desc = 'Delete buffer (force)' })
@@ -49,9 +50,6 @@ map('v', '>', '>gv', { desc = 'Indent right' })
 
 -- Save
 map({ 'n', 'i', 'x', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save file' })
-
--- Quit
-map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit all' })
 
 -- Better paste
 map('x', 'p', '"_dP', { desc = 'Paste without yanking' })
