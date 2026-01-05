@@ -250,7 +250,15 @@ return {
           source = true,
         },
         virtual_text = false,
-        virtual_lines = { current_line = true },
+        virtual_lines = {
+          current_line = true,
+          format = function(diagnostic)
+            if diagnostic.source then
+              return string.format('[%s] %s', diagnostic.source, diagnostic.message)
+            end
+            return diagnostic.message
+          end,
+        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚',
