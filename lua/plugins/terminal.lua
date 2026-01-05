@@ -41,10 +41,16 @@ local function toggle_terminal()
   end
 end
 
--- Terminal keymaps (applied to all terminals)
+-- Terminal keymaps (applied to all terminals except fzf-lua)
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('terminal_keymaps', { clear = true }),
   callback = function()
+    -- Skip fzf-lua buffers (they handle their own keymaps)
+    local bufname = vim.api.nvim_buf_get_name(0)
+    if bufname:match('fzf') then
+      return
+    end
+
     local opts = { buffer = 0 }
     vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], opts)
     vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
