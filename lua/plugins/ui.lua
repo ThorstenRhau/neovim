@@ -20,6 +20,7 @@ return {
         { '<leader>h', group = 'hunk' },
         { '<leader>t', group = 'toggle' },
         { '<leader>o', group = 'opencode' },
+        { '<leader>q', group = 'project/session' },
         { '<leader>x', group = 'diagnostics' },
         { '<leader>b', group = 'buffer' },
         { '<leader>w', group = 'window' },
