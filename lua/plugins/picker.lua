@@ -1,10 +1,31 @@
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'elanmed/fzf-lua-frecency.nvim' },
   event = 'VeryLazy',
   cmd = 'FzfLua',
   keys = {
-    { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Find files' },
+    {
+      '<leader>ff',
+      function()
+        require('fzf-lua-frecency').frecency({ cwd_only = true })
+      end,
+      desc = 'Find files (frecency)',
+    },
+    {
+      '<leader>fF',
+      function()
+        require('fzf-lua-frecency').frecency()
+      end,
+      desc = 'Frecent files (all)',
+    },
+    {
+      '<leader>fX',
+      function()
+        require('fzf-lua-frecency').clear_db()
+        vim.notify('Frecency database cleared', vim.log.levels.INFO)
+      end,
+      desc = 'Clear frecency database',
+    },
     { '<leader><space>', '<cmd>FzfLua global<cr>', desc = 'Global search' },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>,', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
@@ -116,5 +137,10 @@ return {
       h = math.max(min_h, math.min(max_h, h))
       return { winopts = { height = h, width = 0.50, row = 0.40 } }
     end)
+    -- Setup frecency (registers extension, creates autocommand for tracking)
+    require('fzf-lua-frecency').setup({
+      display_score = true,
+      stat_file = true,
+    })
   end,
 }
