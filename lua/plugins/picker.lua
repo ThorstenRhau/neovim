@@ -55,7 +55,7 @@ return {
     { '<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', mode = { 'n', 'v' }, desc = 'Code actions' },
     { '<leader>ci', '<cmd>FzfLua lsp_incoming_calls<cr>', desc = 'Incoming calls' },
     { '<leader>co', '<cmd>FzfLua lsp_outgoing_calls<cr>', desc = 'Outgoing calls' },
-    { '<leader>cf', '<cmd>FzfLua lsp_finder<cr>', desc = 'LSP finder' },
+    { '<leader>cs', '<cmd>FzfLua lsp_finder<cr>', desc = 'LSP finder' },
 
     -- Git
     { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git branches' },
