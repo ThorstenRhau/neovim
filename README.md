@@ -9,7 +9,7 @@
 
 Personal configuration, maintained since December 2023. After 1000+ commits I
 decided it was time for a complete rewrite in January 2026 — a clean slate built
-on Neovim 0.11's native APIs.
+on Neovim 0.11.x native API.
 
 The `main` branch is my daily driver. I use this config for my actual work, so
 it's well-tested but occasionally in flux.
@@ -30,7 +30,7 @@ typeface [Berkeley Mono](https://usgraphics.com/products/berkeley-mono).
 
 This config is built around a few core principles:
 
-- **Modern APIs first** — Uses Neovim 0.11's native `vim.lsp.config`,
+- **Modern API first** — Uses Neovim 0.11's native `vim.lsp.config`,
   `vim.lsp.enable()`, `vim.diagnostic.jump()`, and built-in floating window
   borders. No compatibility shims for older versions.
 
@@ -48,9 +48,9 @@ This config is built around a few core principles:
   (`<leader>f` for files, `<leader>s` for search, `<leader>g` for git).
   which-key makes everything discoverable.
 
-- **Readable UI** — Modus color scheme tweaks to avoid pure black or white
-  backgrounds and added custom highlights for better plugin integration. Smooth
-  scrolling. No visual clutter.
+- **Readable User Interface** — Modus color scheme tweaks to avoid pure black or
+  white backgrounds and added custom highlights for better plugin integration.
+  Smooth scrolling. No visual clutter.
 
 ## Structure
 
