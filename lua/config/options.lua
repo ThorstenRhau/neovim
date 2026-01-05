@@ -12,6 +12,7 @@ o.incsearch = true
 o.linebreak = true
 o.mouse = 'nv'
 o.number = true
+o.numberwidth = 2
 o.pumheight = 10
 o.relativenumber = true
 o.scrolloff = 8
