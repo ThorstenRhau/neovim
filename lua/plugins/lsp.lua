@@ -33,7 +33,6 @@ return {
 
         -- Linters
         'yamllint',
-        'hadolint',
         'shellcheck',
         'markdownlint',
       },
