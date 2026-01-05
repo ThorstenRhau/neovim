@@ -12,6 +12,13 @@ return {
       desc = 'Find files (frecency)',
     },
     {
+      '<leader><space>',
+      function()
+        require('fzf-lua-frecency').frecency({ cwd_only = true })
+      end,
+      desc = 'Find files (frecency)',
+    },
+    {
       '<leader>fF',
       function()
         require('fzf-lua-frecency').frecency()
@@ -26,7 +33,6 @@ return {
       end,
       desc = 'Clear frecency database',
     },
-    { '<leader><space>', '<cmd>FzfLua global<cr>', desc = 'Global search' },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
