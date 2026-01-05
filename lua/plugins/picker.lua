@@ -50,7 +50,7 @@ return {
     { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git branches' },
     { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git commits' },
     { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'Git buffer commits' },
-    { '<leader>gS', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
+    { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
 
     -- Search
     { '<leader>sh', '<cmd>FzfLua help_tags<cr>', desc = 'Help tags' },
