@@ -1,49 +1,36 @@
 local opt = vim.opt
 local o = vim.o
 
--- Line numbers
-o.number = true
-o.relativenumber = true
-o.signcolumn = 'yes'
-
--- Tabs & indentation
-o.tabstop = 4
-o.shiftwidth = 4
-o.softtabstop = 4
-o.expandtab = true
-o.smartindent = true
-
--- Line wrapping
-o.wrap = false
-o.linebreak = true
-
--- Search
-o.ignorecase = true
-o.smartcase = true
-o.hlsearch = true
-o.incsearch = true
-
--- Appearance
-o.termguicolors = true
+o.clipboard = ''
+o.completeopt = 'menu,menuone,noselect'
 o.cursorline = true
-o.scrolloff = 8
-o.sidescrolloff = 8
+o.expandtab = true
+o.hidden = true
+o.hlsearch = true
+o.ignorecase = true
+o.incsearch = true
+o.linebreak = true
+o.mouse = 'a'
+o.number = true
 o.pumheight = 10
+o.relativenumber = true
+o.scrolloff = 8
+o.shiftwidth = 4
 o.showmode = false
-
--- Split behavior
+o.sidescrolloff = 8
+o.signcolumn = 'yes'
+o.smartcase = true
+o.smartindent = true
+o.softtabstop = 4
 o.splitbelow = true
 o.splitright = true
-
--- Behavior
-o.hidden = true
-o.mouse = 'a'
-o.clipboard = ''
+o.tabstop = 4
+o.termguicolors = true
+o.timeoutlen = 300
 o.undofile = true
 o.undolevels = 10000
 o.updatetime = 250
-o.timeoutlen = 300
-o.completeopt = 'menu,menuone,noselect'
+o.wrap = false
 
 -- Disable builtin plugins
 vim.g.loaded_netrw = 1
