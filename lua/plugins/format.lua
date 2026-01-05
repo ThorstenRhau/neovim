@@ -64,9 +64,6 @@ return {
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave', 'BufEnter' }, {
         group = lint_augroup,
         callback = function()
-          local ctx = { filename = vim.api.nvim_buf_get_name(0) }
-          ctx.dirname = vim.fn.fnamemodify(ctx.filename, ':h')
-
           -- Don't lint if buffer is not a file
           if vim.bo.buftype ~= '' then
             return

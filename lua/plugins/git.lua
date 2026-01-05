@@ -65,7 +65,7 @@ return {
         map('n', '<leader>hB', gs.blame, 'Blame buffer')
         map('n', '<leader>hd', gs.diffthis, 'Diff this')
         map('n', '<leader>hD', function()
-          gs.diffthis({ base = '~' })
+          gs.diffthis('~')
         end, 'Diff this ~')
 
         -- Toggles
