@@ -5,19 +5,6 @@ local function diff_source()
   end
 end
 
-local function opencode_statusline()
-  local ok, opencode = pcall(require, 'opencode')
-  if ok then
-    return opencode.statusline()
-  end
-  return ''
-end
-
-local function opencode_active()
-  local ok, status = pcall(require, 'opencode.status')
-  return ok and status.status ~= nil
-end
-
 return {
   {
     'folke/which-key.nvim',
@@ -49,7 +36,7 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    event = 'VeryLazy',
+    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
@@ -79,7 +66,6 @@ return {
           },
         },
         lualine_x = {
-          { opencode_statusline, cond = opencode_active },
           'lsp_status',
           {
             'diagnostics',
