@@ -48,7 +48,7 @@ return {
         },
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { 'mode', 'searchcount', 'selectioncount' },
         lualine_b = {
           'branch',
           { 'diff', source = diff_source },
