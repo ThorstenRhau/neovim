@@ -157,6 +157,123 @@ return {
         highlights.MasonHighlightBlockSecondary = { fg = colors.bg_main, bg = colors.yellow }
         highlights.MasonMuted = { fg = colors.fg_dim }
         highlights.MasonMutedBlock = { fg = colors.bg_main, bg = colors.fg_dim }
+
+        -- nvim-treesitter-context
+        highlights.TreesitterContext = { bg = colors.bg_dim }
+        highlights.TreesitterContextLineNumber = { fg = colors.fg_dim, bg = colors.bg_dim }
+        highlights.TreesitterContextSeparator = { fg = colors.border }
+        highlights.TreesitterContextBottom = { underline = true, sp = colors.border }
+        highlights.TreesitterContextLineNumberBottom = { underline = true, sp = colors.border }
+
+        -- Neogit
+        highlights.NeogitSectionHeader = { fg = colors.magenta_cooler, bold = true }
+        highlights.NeogitSectionHeaderCount = { fg = colors.magenta_cooler }
+        highlights.NeogitBranch = { fg = colors.blue, bold = true }
+        highlights.NeogitBranchHead = { fg = colors.blue, bold = true, underline = true }
+        highlights.NeogitRemote = { fg = colors.green, bold = true }
+        highlights.NeogitTagName = { fg = colors.yellow }
+        highlights.NeogitTagDistance = { fg = colors.cyan_faint }
+        highlights.NeogitChangeModified = { fg = colors.fg_changed_intense, italic = true }
+        highlights.NeogitChangeAdded = { fg = colors.fg_added_intense, italic = true }
+        highlights.NeogitChangeDeleted = { fg = colors.fg_removed_intense, italic = true }
+        highlights.NeogitChangeRenamed = { fg = colors.magenta, italic = true }
+        highlights.NeogitChangeUpdated = { fg = colors.yellow_warmer, italic = true }
+        highlights.NeogitChangeCopied = { fg = colors.cyan, italic = true }
+        highlights.NeogitChangeUnmerged = { fg = colors.yellow, italic = true }
+        highlights.NeogitChangeNewFile = { fg = colors.fg_added_intense, italic = true }
+        highlights.NeogitDiffHeader = { fg = colors.blue, bg = colors.bg_dim, bold = true }
+        highlights.NeogitDiffHeaderHighlight = { fg = colors.yellow_warmer, bg = colors.bg_dim, bold = true }
+        highlights.NeogitDiffContext = { bg = colors.bg_dim }
+        highlights.NeogitDiffContextHighlight = { bg = colors.bg_active }
+        highlights.NeogitDiffAdd = { fg = colors.fg_added, bg = colors.bg_added }
+        highlights.NeogitDiffAddHighlight = { fg = colors.fg_added, bg = colors.bg_added_refine }
+        highlights.NeogitDiffDelete = { fg = colors.fg_removed, bg = colors.bg_removed }
+        highlights.NeogitDiffDeleteHighlight = { fg = colors.fg_removed, bg = colors.bg_removed_refine }
+        highlights.NeogitCommitViewHeader = { fg = colors.magenta, bg = colors.bg_magenta_nuanced }
+        highlights.NeogitFilePath = { fg = colors.blue, italic = true }
+        highlights.NeogitGraphAuthor = { fg = colors.cyan_faint }
+        highlights.NeogitGraphRed = { fg = colors.red }
+        highlights.NeogitGraphGreen = { fg = colors.green }
+        highlights.NeogitGraphBlue = { fg = colors.blue }
+        highlights.NeogitGraphYellow = { fg = colors.yellow }
+        highlights.NeogitGraphPurple = { fg = colors.magenta }
+        highlights.NeogitGraphCyan = { fg = colors.cyan }
+        highlights.NeogitGraphOrange = { fg = colors.yellow_warmer }
+        highlights.NeogitGraphGray = { fg = colors.fg_dim }
+        highlights.NeogitGraphWhite = { fg = colors.fg_main }
+        highlights.NeogitPopupSectionTitle = { fg = colors.blue, bold = true }
+        highlights.NeogitPopupBranchName = { fg = colors.magenta }
+        highlights.NeogitPopupSwitchKey = { fg = colors.magenta_cooler }
+        highlights.NeogitPopupSwitchEnabled = { fg = colors.green }
+        highlights.NeogitPopupSwitchDisabled = { fg = colors.fg_dim }
+        highlights.NeogitPopupOptionKey = { fg = colors.magenta_cooler }
+        highlights.NeogitPopupOptionEnabled = { fg = colors.green }
+        highlights.NeogitPopupOptionDisabled = { fg = colors.fg_dim }
+        highlights.NeogitPopupActionKey = { fg = colors.magenta_cooler }
+        highlights.NeogitPopupActionDisabled = { fg = colors.fg_dim }
+        highlights.NeogitSignatureGood = { fg = colors.green }
+        highlights.NeogitSignatureBad = { fg = colors.red, bold = true }
+        highlights.NeogitSignatureMissing = { fg = colors.magenta }
+        highlights.NeogitSignatureNone = { fg = colors.fg_dim }
+
+        -- Trouble v3
+        highlights.TroubleNormal = { fg = colors.fg_main, bg = colors.bg_dim }
+        highlights.TroubleNormalNC = { link = 'TroubleNormal' }
+        highlights.TroubleText = { fg = colors.fg_main }
+        highlights.TroublePreview = { link = 'Visual' }
+        highlights.TroubleFilename = { fg = colors.blue }
+        highlights.TroubleBasename = { fg = colors.blue }
+        highlights.TroubleDirectory = { fg = colors.blue }
+        highlights.TroubleSource = { fg = colors.fg_dim }
+        highlights.TroubleCode = { fg = colors.magenta }
+        highlights.TroublePos = { fg = colors.fg_dim }
+        highlights.TroubleCount = { fg = colors.magenta, bg = colors.bg_active, bold = true }
+        highlights.TroubleIndent = { fg = colors.fg_dim }
+        highlights.TroubleIndentFoldClosed = { fg = colors.blue }
+        highlights.TroubleIndentFoldOpen = { fg = colors.fg_dim }
+        highlights.TroubleIndentTop = { fg = colors.fg_dim }
+        highlights.TroubleIndentMiddle = { fg = colors.fg_dim }
+        highlights.TroubleIndentLast = { fg = colors.fg_dim }
+        highlights.TroubleIndentWs = { fg = colors.fg_dim }
+        highlights.TroubleIconArray = { link = '@punctuation.bracket' }
+        highlights.TroubleIconBoolean = { link = '@boolean' }
+        highlights.TroubleIconClass = { link = '@type' }
+        highlights.TroubleIconConstant = { link = '@constant' }
+        highlights.TroubleIconConstructor = { link = '@constructor' }
+        highlights.TroubleIconEnum = { link = '@type' }
+        highlights.TroubleIconEnumMember = { link = '@constant' }
+        highlights.TroubleIconEvent = { link = 'Special' }
+        highlights.TroubleIconField = { link = '@variable.member' }
+        highlights.TroubleIconFile = { link = 'Normal' }
+        highlights.TroubleIconFunction = { link = '@function' }
+        highlights.TroubleIconInterface = { link = '@type' }
+        highlights.TroubleIconKey = { link = '@variable.member' }
+        highlights.TroubleIconMethod = { link = '@function.method' }
+        highlights.TroubleIconModule = { link = '@module' }
+        highlights.TroubleIconNamespace = { link = '@module' }
+        highlights.TroubleIconNull = { link = '@constant.builtin' }
+        highlights.TroubleIconNumber = { link = '@number' }
+        highlights.TroubleIconObject = { link = '@constant' }
+        highlights.TroubleIconOperator = { link = '@operator' }
+        highlights.TroubleIconPackage = { link = '@module' }
+        highlights.TroubleIconProperty = { link = '@property' }
+        highlights.TroubleIconString = { link = '@string' }
+        highlights.TroubleIconStruct = { link = '@type' }
+        highlights.TroubleIconTypeParameter = { link = '@type' }
+        highlights.TroubleIconVariable = { link = '@variable' }
+
+        -- toggleterm.nvim
+        highlights.ToggleTerm = { bg = colors.bg_dim }
+        highlights.ToggleTermBorder = { fg = colors.border, bg = colors.bg_dim }
+
+        -- ccc.nvim
+        highlights.CccFloatBorder = { fg = colors.border, bg = colors.bg_dim }
+        highlights.CccFloatNormal = { fg = colors.fg_main, bg = colors.bg_dim }
+
+        -- vim-matchup
+        highlights.MatchWord = { bg = colors.bg_paren_match }
+        highlights.MatchWordCur = { bg = colors.bg_paren_match }
+        highlights.MatchParenCur = { bg = colors.bg_paren_match, bold = true }
       end,
     })
     vim.cmd.colorscheme('modus')
