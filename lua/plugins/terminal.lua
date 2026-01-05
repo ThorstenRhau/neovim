@@ -1,78 +1,60 @@
-return {
-  'akinsho/toggleterm.nvim',
-  version = '*',
-  keys = {
-    { '<C-\\>', '<cmd>ToggleTerm<cr>', desc = 'Toggle terminal' },
-    { '<leader>tf', '<cmd>ToggleTerm direction=float<cr>', desc = 'Float terminal' },
-    { '<leader>th', '<cmd>ToggleTerm direction=horizontal size=15<cr>', desc = 'Horizontal terminal' },
-    { '<leader>tv', '<cmd>ToggleTerm direction=vertical size=80<cr>', desc = 'Vertical terminal' },
-  },
-  opts = {
-    size = function(term)
-      if term.direction == 'horizontal' then
-        return 15
-      elseif term.direction == 'vertical' then
-        return vim.o.columns * 0.4
-      end
-    end,
-    open_mapping = [[<C-\>]],
-    hide_numbers = true,
-    shade_filetypes = {},
-    shade_terminals = false,
-    start_in_insert = true,
-    insert_mappings = true,
-    terminal_mappings = true,
-    persist_size = true,
-    persist_mode = true,
-    direction = 'float',
-    close_on_exit = true,
-    shell = vim.o.shell,
-    auto_scroll = true,
-    float_opts = {
-      border = 'rounded',
-      winblend = 0,
-    },
-    winbar = {
-      enabled = false,
-    },
-  },
-  config = function(_, opts)
-    require('toggleterm').setup(opts)
+-- Built-in terminal toggle
+-- Simple horizontal terminal at the bottom of the window
 
-    -- Terminal keymaps
-    local function set_terminal_keymaps()
-      local map = vim.keymap.set
-      local term_opts = { buffer = 0 }
-      map('t', '<esc><esc>', [[<C-\><C-n>]], term_opts)
-      map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], term_opts)
-      map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], term_opts)
-      map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], term_opts)
-      map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], term_opts)
-    end
+local term_buf = nil
+local term_win = nil
 
-    vim.api.nvim_create_autocmd('TermOpen', {
-      pattern = 'term://*toggleterm#*',
-      callback = function()
-        set_terminal_keymaps()
-      end,
-    })
+local function get_height()
+  return math.floor(vim.o.lines * 0.3)
+end
 
-    -- Lazygit terminal
-    local Terminal = require('toggleterm.terminal').Terminal
-    local lazygit = Terminal:new({
-      cmd = 'lazygit',
-      dir = 'git_dir',
-      direction = 'float',
-      float_opts = {
-        border = 'rounded',
-      },
-      on_open = function(_)
-        vim.cmd('startinsert!')
-      end,
-    })
+local function open_terminal()
+  -- Create a horizontal split at the bottom
+  vim.cmd('botright split')
+  vim.cmd('resize ' .. get_height())
 
-    vim.keymap.set('n', '<leader>gl', function()
-      lazygit:toggle()
-    end, { desc = 'Lazygit' })
+  if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+    -- Reuse existing terminal buffer
+    vim.api.nvim_win_set_buf(0, term_buf)
+  else
+    -- Create new terminal
+    vim.cmd('terminal')
+    term_buf = vim.api.nvim_get_current_buf()
+  end
+
+  term_win = vim.api.nvim_get_current_win()
+  vim.cmd('startinsert')
+end
+
+local function close_terminal()
+  if term_win and vim.api.nvim_win_is_valid(term_win) then
+    vim.api.nvim_win_close(term_win, true)
+  end
+  term_win = nil
+end
+
+local function toggle_terminal()
+  if term_win and vim.api.nvim_win_is_valid(term_win) then
+    close_terminal()
+  else
+    open_terminal()
+  end
+end
+
+-- Terminal keymaps (applied to all terminals)
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('terminal_keymaps', { clear = true }),
+  callback = function()
+    local opts = { buffer = 0 }
+    vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
   end,
-}
+})
+
+vim.keymap.set('n', '<leader>tt', toggle_terminal, { desc = 'Toggle terminal' })
+
+-- Return empty table (no plugin to load)
+return {}

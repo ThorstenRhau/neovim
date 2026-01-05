@@ -262,10 +262,6 @@ return {
         highlights.TroubleIconTypeParameter = { link = '@type' }
         highlights.TroubleIconVariable = { link = '@variable' }
 
-        -- toggleterm.nvim
-        highlights.ToggleTerm = { bg = colors.bg_dim }
-        highlights.ToggleTermBorder = { fg = colors.border, bg = colors.bg_dim }
-
         -- ccc.nvim
         highlights.CccFloatBorder = { fg = colors.border, bg = colors.bg_dim }
         highlights.CccFloatNormal = { fg = colors.fg_main, bg = colors.bg_dim }

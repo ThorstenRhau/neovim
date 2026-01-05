@@ -73,7 +73,7 @@ This config is built around a few core principles:
 │       ├── lsp.lua             # LSP servers, Mason
 │       ├── mini.lua            # mini.nvim modules
 │       ├── picker.lua          # fzf-lua
-│       ├── terminal.lua        # toggleterm + lazygit
+│       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
 │       └── ui.lua              # which-key, lualine, trouble
 └── after/ftplugin/             # Filetype-specific settings
