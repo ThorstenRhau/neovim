@@ -74,7 +74,6 @@ return {
           'neo-tree',
           'notify',
           'oil',
-          'toggleterm',
           'trouble',
         },
       },

@@ -98,7 +98,6 @@ return {
         'fzf',
         'nvim-dap-ui',
         'quickfix',
-        'toggleterm',
       },
     },
   },
