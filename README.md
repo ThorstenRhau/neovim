@@ -54,7 +54,7 @@ This config is built around a few core principles:
 
 ## Structure
 
-```
+```txt
 ~/.config/nvim/
 ├── init.lua                    # Entry point
 ├── lua/
