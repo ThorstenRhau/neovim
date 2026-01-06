@@ -104,6 +104,7 @@ return {
     },
     opts = {
       pipe_table = { preset = 'round' },
+      latex = { enabled = false },
     },
   },
   -- Color picker and highlighter
