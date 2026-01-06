@@ -83,16 +83,6 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
--- Disable line numbers in terminal
-autocmd('TermOpen', {
-  group = augroup('terminal_settings', { clear = true }),
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = 'no'
-  end,
-})
-
 -- Git commit message settings
 autocmd('FileType', {
   group = augroup('gitcommit_settings', { clear = true }),
