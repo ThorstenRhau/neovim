@@ -10,24 +10,25 @@ return {
       })
 
       local parsers = {
-        'lua',
-        'python',
         'bash',
-        'fish',
-        'yaml',
-        'json',
-        'toml',
-        'xml',
-        'markdown',
-        'markdown_inline',
-        'hcl',
-        'vim',
-        'vimdoc',
-        'regex',
         'diff',
+        'fish',
         'git_rebase',
         'gitcommit',
+        'hcl',
+        'json',
+        'lua',
+        'make',
+        'markdown',
+        'markdown_inline',
+        'python',
         'query',
+        'regex',
+        'toml',
+        'vim',
+        'vimdoc',
+        'xml',
+        'yaml',
       }
 
       vim.api.nvim_create_autocmd('User', {
