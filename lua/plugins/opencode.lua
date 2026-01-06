@@ -138,7 +138,7 @@ return {
       callback = function()
         local opts = { buffer = 0 }
         -- Exit terminal mode
-        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], opts)
+        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR><Cmd>stopinsert<CR>]], opts)
         -- Window navigation from terminal mode
         vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
         vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
