@@ -11,11 +11,15 @@ return {
 
       local parsers = {
         'bash',
+        'css',
         'diff',
         'fish',
         'git_rebase',
         'gitcommit',
         'hcl',
+        'html',
+        'javascript',
+        'jsdoc',
         'json',
         'lua',
         'make',
@@ -25,17 +29,12 @@ return {
         'query',
         'regex',
         'toml',
+        'tsx',
+        'typescript',
         'vim',
         'vimdoc',
         'xml',
         'yaml',
-        -- Web development
-        'html',
-        'css',
-        'javascript',
-        'typescript',
-        'tsx',
-        'jsdoc',
       }
 
       vim.api.nvim_create_autocmd('User', {
