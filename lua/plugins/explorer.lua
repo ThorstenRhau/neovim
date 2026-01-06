@@ -1,36 +1,78 @@
 return {
-  'stevearc/oil.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
-  keys = {
-    { '-', '<cmd>Oil --float<cr>', desc = 'Open parent directory' },
-    { '<leader>e', '<cmd>Oil --float<cr>', desc = 'File explorer' },
-  },
-  opts = {
-    delete_to_trash = true,
-    skip_confirm_for_simple_edits = true,
-    watch_for_changes = true,
-    keymaps = {
-      ['gd'] = {
-        desc = 'Toggle file detail view',
-        callback = function()
-          local oil = require('oil')
-          local config = require('oil.config')
-          if #config.columns == 1 then
-            oil.set_columns({ 'icon', 'permissions', 'size', 'mtime' })
-          else
-            oil.set_columns({ 'icon' })
-          end
+  {
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '-', '<cmd>Oil --float<cr>', desc = 'Open parent directory' },
+      { '<leader>e', '<cmd>Oil --float<cr>', desc = 'File explorer' },
+    },
+    opts = {
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
+      watch_for_changes = true,
+      keymaps = {
+        ['gd'] = {
+          desc = 'Toggle file detail view',
+          callback = function()
+            local oil = require('oil')
+            local config = require('oil.config')
+            if #config.columns == 1 then
+              oil.set_columns({ 'icon', 'permissions', 'size', 'mtime' })
+            else
+              oil.set_columns({ 'icon' })
+            end
+          end,
+        },
+      },
+      view_options = {
+        is_always_hidden = function(name, _)
+          return name == '..' or name == '.git'
         end,
       },
+      float = {
+        max_width = 100,
+        max_height = 30,
+      },
     },
-    view_options = {
-      is_always_hidden = function(name, _)
-        return name == '..' or name == '.git'
-      end,
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '3.x',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle file tree' },
     },
-    float = {
-      max_width = 100,
-      max_height = 30,
+    opts = {
+      hijack_directories = {
+        enable = false,
+      },
+      update_focused_file = {
+        enable = true,
+      },
+      view = {
+        side = 'right',
+        width = 25,
+      },
+      renderer = {
+        group_empty = true,
+        highlight_git = 'name',
+        highlight_opened_files = 'name',
+        highlight_diagnostics = 'name',
+        highlight_modified = 'name',
+        indent_markers = {
+          enable = false,
+        },
+      },
+      diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+      },
+      modified = {
+        enable = true,
+      },
+      filters = {
+        custom = { '^.git$' },
+      },
     },
   },
 }
