@@ -66,9 +66,6 @@ return {
               unnamed = '[No Name]',
             },
           },
-        },
-        lualine_x = {
-          'lsp_status',
           {
             'diagnostics',
             symbols = {
@@ -78,6 +75,9 @@ return {
               hint = '󰌵',
             },
           },
+        },
+        lualine_x = {
+          'lsp_status',
           'filetype',
         },
         lualine_y = { 'progress' },
