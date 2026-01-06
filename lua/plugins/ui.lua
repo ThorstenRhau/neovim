@@ -53,7 +53,7 @@ return {
       sections = {
         lualine_a = { 'mode', 'searchcount', 'selectioncount' },
         lualine_b = {
-          'branch',
+          { 'branch', icon = '' },
           { 'diff', source = diff_source },
         },
         lualine_c = {
