@@ -75,19 +75,7 @@ return {
     { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
   },
   opts = {
-    'ivy',
-    winopts = {
-      height = 0.90,
-      width = 0.90,
-      row = 0.35,
-      col = 0.50,
-      border = 'rounded',
-      preview = {
-        layout = 'flex',
-        flip_columns = 120,
-        scrollbar = false,
-      },
-    },
+    'telescope',
     keymap = {
       builtin = {
         ['<Esc>'] = 'hide',
