@@ -209,7 +209,6 @@ return {
             vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
           end
 
-          map('n', 'K', vim.lsp.buf.hover, 'Hover')
           map('n', '<leader>cr', vim.lsp.buf.rename, 'Rename')
           map('n', '<leader>cS', vim.lsp.buf.signature_help, 'Signature help')
           map('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')

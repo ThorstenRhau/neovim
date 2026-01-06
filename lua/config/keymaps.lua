@@ -62,13 +62,7 @@ map('n', '[<space>', 'O<esc>j', { desc = 'Add blank line above' })
 map('n', '<leader>xn', '<cmd>cnext<cr>', { desc = 'Next quickfix' })
 map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'Previous quickfix' })
 
--- Diagnostic navigation
-map('n', ']d', function()
-  vim.diagnostic.jump({ count = 1 })
-end, { desc = 'Next diagnostic' })
-map('n', '[d', function()
-  vim.diagnostic.jump({ count = -1 })
-end, { desc = 'Previous diagnostic' })
+-- Diagnostic
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
 
 -- Lazy
