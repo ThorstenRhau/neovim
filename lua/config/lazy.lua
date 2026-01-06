@@ -22,7 +22,7 @@ require('lazy').setup({
     lazy = false,
   },
   install = { colorscheme = { 'default' } },
-  checker = { enabled = true, notify = true },
+  checker = { enabled = false, notify = false },
   change_detection = { notify = false },
   ui = {
     border = 'rounded',
