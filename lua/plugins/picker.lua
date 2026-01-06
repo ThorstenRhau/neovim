@@ -90,6 +90,7 @@ return {
     },
     keymap = {
       builtin = {
+        ['<Esc>'] = 'hide',
         ['<C-d>'] = 'preview-page-down',
         ['<C-u>'] = 'preview-page-up',
       },
