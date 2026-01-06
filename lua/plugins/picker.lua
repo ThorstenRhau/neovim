@@ -64,6 +64,7 @@ return {
     { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
 
     -- Search
+    { '<leader>sg', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>sh', '<cmd>FzfLua help_tags<cr>', desc = 'Help tags' },
     { '<leader>sk', '<cmd>FzfLua keymaps<cr>', desc = 'Keymaps' },
     { '<leader>sm', '<cmd>FzfLua marks<cr>', desc = 'Marks' },
