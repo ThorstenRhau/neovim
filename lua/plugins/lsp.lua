@@ -16,31 +16,24 @@ return {
     event = 'VeryLazy',
     opts = {
       ensure_installed = {
-        -- LSP servers
-        'lua-language-server',
         'basedpyright',
-        'ruff',
-        'yaml-language-server',
-        'json-lsp',
         'bash-language-server',
-        'marksman',
-        'taplo',
-
-        -- Web development
-        'vtsls',
-        'html-lsp',
         'css-lsp',
         'eslint-lsp',
-
-        -- Formatters
-        'stylua',
-        'prettier',
-        'shfmt',
-
-        -- Linters
-        'yamllint',
-        'shellcheck',
+        'html-lsp',
+        'json-lsp',
+        'lua-language-server',
         'markdownlint',
+        'marksman',
+        'prettier',
+        'ruff',
+        'shellcheck',
+        'shfmt',
+        'stylua',
+        'taplo',
+        'vtsls',
+        'yaml-language-server',
+        'yamllint',
       },
       auto_update = false,
       run_on_start = true,
@@ -295,19 +288,18 @@ return {
 
       -- Enable all configured servers
       vim.lsp.enable({
-        'lua_ls',
         'basedpyright',
-        'ruff',
-        'yamlls',
-        'jsonls',
         'bashls',
-        'marksman',
-        'taplo',
-        -- Web development
-        'vtsls',
-        'html',
         'cssls',
         'eslint',
+        'html',
+        'jsonls',
+        'lua_ls',
+        'marksman',
+        'ruff',
+        'taplo',
+        'vtsls',
+        'yamlls',
       })
 
       -- LSP keymaps on attach
