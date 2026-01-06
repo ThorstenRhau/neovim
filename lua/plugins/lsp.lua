@@ -26,6 +26,12 @@ return {
         'marksman',
         'taplo',
 
+        -- Web development
+        'vtsls',
+        'html-lsp',
+        'css-lsp',
+        'eslint-lsp',
+
         -- Formatters
         'stylua',
         'prettier',
@@ -189,6 +195,104 @@ return {
         capabilities = capabilities,
       }
 
+      -- TypeScript/JavaScript (vtsls - fast TS server)
+      vim.lsp.config.vtsls = {
+        cmd = { 'vtsls', '--stdio' },
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+        },
+        root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+        capabilities = capabilities,
+        settings = {
+          typescript = {
+            inlayHints = {
+              parameterNames = { enabled = 'all' },
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+            },
+          },
+          javascript = {
+            inlayHints = {
+              parameterNames = { enabled = 'all' },
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+            },
+          },
+        },
+      }
+
+      -- HTML
+      vim.lsp.config.html = {
+        cmd = { 'vscode-html-language-server', '--stdio' },
+        filetypes = { 'html' },
+        root_markers = { 'package.json', '.git' },
+        capabilities = capabilities,
+        init_options = {
+          provideFormatter = true,
+          embeddedLanguages = { css = true, javascript = true },
+          configurationSection = { 'html', 'css', 'javascript' },
+        },
+      }
+
+      -- CSS/SCSS/Less
+      vim.lsp.config.cssls = {
+        cmd = { 'vscode-css-language-server', '--stdio' },
+        filetypes = { 'css', 'scss', 'less' },
+        root_markers = { 'package.json', '.git' },
+        capabilities = capabilities,
+        settings = {
+          css = { validate = true },
+          scss = { validate = true },
+          less = { validate = true },
+        },
+      }
+
+      -- ESLint (linting via LSP - recommended approach)
+      vim.lsp.config.eslint = {
+        cmd = { 'vscode-eslint-language-server', '--stdio' },
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+        },
+        root_markers = {
+          '.eslintrc',
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.yaml',
+          '.eslintrc.yml',
+          '.eslintrc.json',
+          'eslint.config.js',
+          'eslint.config.mjs',
+          'eslint.config.cjs',
+          'package.json',
+        },
+        capabilities = capabilities,
+        settings = {
+          codeAction = {
+            disableRuleComment = { enable = true, location = 'separateLine' },
+            showDocumentation = { enable = true },
+          },
+          codeActionOnSave = { enable = false, mode = 'all' },
+          format = false,
+          quiet = false,
+          run = 'onType',
+          validate = 'on',
+        },
+      }
+
       -- Enable all configured servers
       vim.lsp.enable({
         'lua_ls',
@@ -199,6 +303,11 @@ return {
         'bashls',
         'marksman',
         'taplo',
+        -- Web development
+        'vtsls',
+        'html',
+        'cssls',
+        'eslint',
       })
 
       -- LSP keymaps on attach

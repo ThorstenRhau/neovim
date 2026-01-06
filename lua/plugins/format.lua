@@ -28,6 +28,15 @@ return {
         bash = { 'shfmt' },
         fish = { 'fish_indent' },
         toml = { 'taplo' },
+        -- Web development
+        html = { 'prettier' },
+        css = { 'prettier' },
+        scss = { 'prettier' },
+        less = { 'prettier' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
         ['_'] = { 'trim_whitespace' },
       },
       formatters = {
