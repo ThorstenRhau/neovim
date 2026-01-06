@@ -29,6 +29,13 @@ return {
         'vimdoc',
         'xml',
         'yaml',
+        -- Web development
+        'html',
+        'css',
+        'javascript',
+        'typescript',
+        'tsx',
+        'jsdoc',
       }
 
       vim.api.nvim_create_autocmd('User', {
