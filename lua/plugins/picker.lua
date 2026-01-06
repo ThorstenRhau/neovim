@@ -107,6 +107,16 @@ return {
     grep = {
       rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
     },
+    git = {
+      status = {
+        winopts = {
+          preview = {
+            layout = 'vertical',
+            vertical = 'up:60%',
+          },
+        },
+      },
+    },
     lsp = {
       symbols = {
         symbol_icons = {
