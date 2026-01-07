@@ -28,6 +28,49 @@ return {
         highlights.IblIndent = { fg = colors.bg_active, nocombine = true }
         highlights.IblScope = { fg = colors.cyan_faint, nocombine = true }
 
+        -- fzf-lua
+        -- Preview window
+        highlights.FzfLuaPreviewNormal = { bg = colors.bg_dim }
+        highlights.FzfLuaPreviewBorder = { fg = colors.border, bg = colors.bg_dim }
+        highlights.FzfLuaPreviewTitle = { fg = colors.fg_dim, bg = colors.bg_dim }
+        highlights.FzfLuaCursorLine = { bg = colors.bg_hl_line }
+        -- fzf terminal colors
+        highlights.FzfLuaFzfNormal = { fg = colors.fg_main, bg = colors.bg_main }
+        highlights.FzfLuaFzfCursorLine = { bg = colors.bg_hl_line }
+        highlights.FzfLuaFzfMatch = { fg = colors.magenta, bold = true }
+        highlights.FzfLuaFzfBorder = { fg = colors.border }
+        highlights.FzfLuaFzfPointer = { fg = colors.magenta_cooler }
+        highlights.FzfLuaFzfMarker = { fg = colors.green }
+        highlights.FzfLuaFzfPrompt = { fg = colors.blue_warmer }
+        -- Path/file display
+        highlights.FzfLuaDirPart = { fg = colors.fg_dim }
+        highlights.FzfLuaFilePart = { fg = colors.fg_main }
+        highlights.FzfLuaDirIcon = { fg = colors.blue }
+        -- Buffer/lines
+        highlights.FzfLuaBufLineNr = { fg = colors.fg_dim }
+        highlights.FzfLuaBufId = { fg = colors.fg_dim }
+        -- Search/live query
+        highlights.FzfLuaSearch = { fg = colors.bg_main, bg = colors.yellow }
+        highlights.FzfLuaLivePrompt = { fg = colors.magenta_warmer }
+
+        -- nvim-tree
+        -- Git status
+        highlights.NvimTreeGitStaged = { fg = colors.green }
+        highlights.NvimTreeGitRenamed = { fg = colors.magenta }
+        highlights.NvimTreeGitMerge = { fg = colors.yellow }
+        highlights.NvimTreeGitIgnored = { fg = colors.fg_dim }
+        -- Folder states
+        highlights.NvimTreeFolderName = { fg = colors.blue }
+        highlights.NvimTreeOpenedFolderName = { fg = colors.blue, bold = true }
+        highlights.NvimTreeEmptyFolderName = { fg = colors.blue }
+        -- Operations
+        highlights.NvimTreeModifiedIcon = { fg = colors.yellow_warmer }
+        highlights.NvimTreeCutHL = { fg = colors.red, strikethrough = true }
+        highlights.NvimTreeCopiedHL = { fg = colors.cyan }
+        -- UI
+        highlights.NvimTreeWindowPicker = { fg = colors.bg_main, bg = colors.blue, bold = true }
+        highlights.NvimTreeExecFile = { fg = colors.green }
+
         if colors.bg_main == '#f5f5f5' then
           -- Light mode color tweaks
           highlights.LineNrAbove = { fg = colors.fg_dim, bg = '#efefef' }
@@ -50,7 +93,7 @@ return {
         highlights.BlinkCmpScrollBarGutter = { bg = colors.bg_dim }
         highlights.BlinkCmpLabel = { fg = colors.fg_main }
         highlights.BlinkCmpLabelDeprecated = { fg = colors.fg_dim, strikethrough = true }
-        highlights.BlinkCmpLabelMatch = { fg = colors.blue, bold = true }
+        highlights.BlinkCmpLabelMatch = { fg = colors.magenta, bold = true }
         highlights.BlinkCmpLabelDetail = { fg = colors.fg_dim }
         highlights.BlinkCmpLabelDescription = { fg = colors.fg_dim }
         highlights.BlinkCmpKind = { fg = colors.magenta }
@@ -270,6 +313,24 @@ return {
         highlights.MatchWord = { bg = colors.bg_paren_match }
         highlights.MatchWordCur = { bg = colors.bg_paren_match }
         highlights.MatchParenCur = { bg = colors.bg_paren_match, bold = true }
+
+        -- mini.jump2d
+        highlights.MiniJump2dSpotAhead = { fg = colors.fg_dim, nocombine = true }
+        highlights.MiniJump2dSpotUnique = { fg = colors.magenta_cooler, bold = true, nocombine = true }
+        highlights.MiniJump2dDim = { fg = colors.fg_dim }
+
+        -- which-key v3
+        highlights.WhichKeyNormal = { fg = colors.fg_main, bg = colors.bg_dim }
+        highlights.WhichKeyBorder = { fg = colors.border, bg = colors.bg_dim }
+        highlights.WhichKeyTitle = { fg = colors.blue, bg = colors.bg_dim, bold = true }
+        highlights.WhichKeyIcon = { fg = colors.blue }
+
+        -- render-markdown
+        highlights.RenderMarkdownBullet = { fg = colors.blue }
+        highlights.RenderMarkdownDash = { fg = colors.border }
+        highlights.RenderMarkdownTableHead = { fg = colors.blue, bold = true }
+        highlights.RenderMarkdownTableRow = { fg = colors.fg_main }
+        highlights.RenderMarkdownLink = { fg = colors.cyan }
       end,
     })
     vim.cmd.colorscheme('modus')
