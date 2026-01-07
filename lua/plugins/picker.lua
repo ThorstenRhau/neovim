@@ -34,6 +34,7 @@ return {
       desc = 'Clear frecency database',
     },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
+    { '<leader>u', '<cmd>FzfLua undotree<cr>', desc = 'Undo' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Git files' },
