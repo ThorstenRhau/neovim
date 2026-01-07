@@ -10,8 +10,8 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      preset = 'modern',
-      delay = 300,
+      preset = 'helix',
+      delay = 200,
       spec = {
         { '<leader>f', group = 'file/find' },
         { '<leader>s', group = 'search' },
@@ -30,9 +30,7 @@ return {
         { ']', group = 'next' },
       },
       icons = {
-        breadcrumb = '»',
-        separator = '➜',
-        group = '+',
+        mappings = false,
       },
     },
   },
