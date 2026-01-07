@@ -2,6 +2,20 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
+    keys = {
+      { '<leader>hs', '<cmd>Gitsigns stage_hunk<cr>', desc = 'Stage hunk' },
+      { '<leader>hr', '<cmd>Gitsigns reset_hunk<cr>', desc = 'Reset hunk' },
+      { '<leader>hS', '<cmd>Gitsigns stage_buffer<cr>', desc = 'Stage buffer' },
+      { '<leader>hu', '<cmd>Gitsigns reset_buffer_index<cr>', desc = 'Unstage buffer' },
+      { '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'Reset buffer' },
+      { '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', desc = 'Preview hunk' },
+      { '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', desc = 'Blame line' },
+      { '<leader>hB', '<cmd>Gitsigns blame<cr>', desc = 'Blame buffer' },
+      { '<leader>hd', '<cmd>Gitsigns diffthis<cr>', desc = 'Diff this' },
+      { '<leader>hD', '<cmd>Gitsigns diffthis ~<cr>', desc = 'Diff this ~' },
+      { '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<cr>', desc = 'Toggle line blame' },
+      { '<leader>hl', '<cmd>Gitsigns toggle_linehl<cr>', desc = 'Toggle line highlight' },
+    },
     opts = {
       attach_to_untracked = false,
       on_attach = function(bufnr)
@@ -30,30 +44,13 @@ return {
           end
         end, 'Prev hunk')
 
-        -- Actions
-        map('n', '<leader>hs', gs.stage_hunk, 'Stage hunk')
-        map('n', '<leader>hr', gs.reset_hunk, 'Reset hunk')
+        -- Visual mode actions (need buffer context)
         map('v', '<leader>hs', function()
           gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, 'Stage hunk')
         map('v', '<leader>hr', function()
           gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, 'Reset hunk')
-        map('n', '<leader>hS', gs.stage_buffer, 'Stage buffer')
-        map('n', '<leader>hu', gs.reset_buffer_index, 'Unstage buffer')
-        map('n', '<leader>hR', gs.reset_buffer, 'Reset buffer')
-        map('n', '<leader>hp', gs.preview_hunk_inline, 'Preview hunk')
-        map('n', '<leader>hb', function()
-          gs.blame_line({ full = true })
-        end, 'Blame line')
-        map('n', '<leader>hB', gs.blame, 'Blame buffer')
-        map('n', '<leader>hd', gs.diffthis, 'Diff this')
-        map('n', '<leader>hD', function()
-          gs.diffthis('~')
-        end, 'Diff this ~')
-
-        -- Toggles
-        map('n', '<leader>tb', gs.toggle_current_line_blame, 'Toggle line blame')
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'Select hunk')
