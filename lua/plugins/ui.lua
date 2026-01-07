@@ -12,6 +12,9 @@ return {
     opts = {
       preset = 'helix',
       delay = 200,
+      win = {
+        border = 'none',
+      },
       spec = {
         { '<leader>f', group = 'file/find' },
         { '<leader>s', group = 'search' },

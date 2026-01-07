@@ -76,8 +76,7 @@ return {
     { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
   },
   opts = {
-    -- Combining profiles for layout and performance options.
-    { 'telescope', 'fzf-native' },
+    'borderless', -- FzfLua profile
     keymap = {
       builtin = {
         ['<Esc>'] = 'hide',
