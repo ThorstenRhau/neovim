@@ -10,7 +10,7 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      preset = 'helix',
+      preset = 'classic',
       delay = 200,
       win = {
         border = 'none',
