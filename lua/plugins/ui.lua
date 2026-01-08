@@ -153,4 +153,50 @@ return {
       easing = 'sine',
     },
   },
+  {
+    'chentoast/marks.nvim',
+    event = 'VeryLazy',
+    opts = {
+      default_mappings = false,
+      signs = true,
+      mappings = {
+        set_next = 'm,',
+        next = "m'",
+        preview = 'm:',
+        delete_line = 'dm-',
+        delete_buf = 'dm<space>',
+      },
+    },
+  },
+  {
+    'luukvbaal/statuscol.nvim',
+    event = 'VeryLazy',
+    opts = {
+      relculright = true,
+      ft_ignore = { 'help', 'lazy', 'mason', 'neo-tree', 'oil', 'trouble' },
+      bt_ignore = { 'nofile', 'terminal' },
+      segments = {
+        -- Marks: user-set marks (a-z, A-Z) - hidden when no marks in buffer
+        {
+          sign = { name = { 'Marks_' }, maxwidth = 1, colwidth = 1, auto = true },
+          click = 'v:lua.ScSa',
+        },
+        -- Signs: diagnostics + gitsigns shared column (diagnostics priority)
+        {
+          sign = {
+            namespace = { 'diagnostic', 'gitsigns' },
+            maxwidth = 1,
+            colwidth = 1,
+            auto = true,
+          },
+          click = 'v:lua.ScSa',
+        },
+        -- Line numbers
+        {
+          text = { '%l', ' ' },
+          click = 'v:lua.ScLa',
+        },
+      },
+    },
+  },
 }

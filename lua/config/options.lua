@@ -16,7 +16,6 @@ o.scrolloff = 8
 o.shiftwidth = 4
 o.showmode = false
 o.sidescrolloff = 8
-o.signcolumn = 'yes'
 o.smartcase = true
 o.smartindent = true
 o.softtabstop = 4
