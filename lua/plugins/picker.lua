@@ -88,7 +88,7 @@ return {
         border = 'single',
         default = 'bat',
         layout = 'flex',
-        flip_columns = 100,
+        flip_columns = 120,
         horizontal = 'right:55%',
         vertical = 'down:45%',
         delay = 50,
