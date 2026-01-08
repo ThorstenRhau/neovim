@@ -78,6 +78,12 @@ return {
   opts = {
     -- Combining profiles for layout and performance options.
     'fzf-native',
+    winopts = {
+      border = 'single',
+      preview = {
+        border = 'single',
+      },
+    },
     keymap = {
       builtin = {
         ['<Esc>'] = 'hide',
