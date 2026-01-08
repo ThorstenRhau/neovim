@@ -23,6 +23,7 @@ return {
         'bash-language-server',
         'css-lsp',
         'eslint-lsp',
+        'fish-lsp',
         'html-lsp',
         'json-lsp',
         'lua-language-server',
@@ -175,6 +176,14 @@ return {
         capabilities = capabilities,
       }
 
+      -- Fish shell
+      vim.lsp.config.fish_lsp = {
+        cmd = { 'fish-lsp', 'start' },
+        filetypes = { 'fish' },
+        root_markers = { '.git' },
+        capabilities = capabilities,
+      }
+
       -- Markdown
       vim.lsp.config.marksman = {
         cmd = { 'marksman', 'server' },
@@ -295,6 +304,7 @@ return {
         'bashls',
         'cssls',
         'eslint',
+        'fish_lsp',
         'html',
         'jsonls',
         'lua_ls',
