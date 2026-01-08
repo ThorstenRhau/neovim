@@ -76,14 +76,37 @@ return {
     { '<leader>sr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
   },
   opts = {
-    -- Combining profiles for layout and performance options.
-    'fzf-native',
+    'default-title', -- Titles for picker windows
     winopts = {
+      height = 0.90,
+      width = 0.90,
+      row = 0.5,
+      col = 0.5,
       border = 'single',
+      backdrop = 40,
       preview = {
         border = 'single',
+        default = 'bat',
+        layout = 'flex',
+        flip_columns = 100,
+        horizontal = 'right:55%',
+        vertical = 'down:45%',
+        delay = 50,
       },
     },
+    previewers = {
+      builtin = {
+        treesitter = { context = false },
+      },
+    },
+    defaults = {
+      formatter = 'path.filename_first',
+    },
+    -- Native previewers for special content (faster)
+    manpages = { previewer = 'man_native' },
+    helptags = { previewer = 'help_native' },
+    tags = { previewer = 'bat' },
+    btags = { previewer = 'bat' },
     keymap = {
       builtin = {
         ['<Esc>'] = 'hide',
@@ -108,12 +131,13 @@ return {
         winopts = {
           preview = {
             layout = 'vertical',
-            vertical = 'up:60%',
+            vertical = 'up:60%', -- Diff on top, file list middle, input at bottom
           },
         },
       },
     },
     lsp = {
+      code_actions = { previewer = 'codeaction_native' },
       symbols = {
         symbol_icons = {
           File = '󰈙 ',
