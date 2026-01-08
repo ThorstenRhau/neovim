@@ -77,7 +77,7 @@ return {
   },
   opts = {
     -- Combining profiles for layout and performance options.
-    { 'telescope', 'fzf-native' },
+    'fzf-native',
     keymap = {
       builtin = {
         ['<Esc>'] = 'hide',
