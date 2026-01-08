@@ -45,7 +45,7 @@ opt.fillchars:append({
 })
 
 -- Floating window border (Neovim 0.11+)
-o.winborder = 'none'
+o.winborder = 'rounded'
 
 -- Folding (treesitter-based, configured per filetype)
 o.foldlevel = 99
