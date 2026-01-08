@@ -42,7 +42,7 @@ return {
         position = { row = 1, col = 0 },
         size = { width = math.max(40, #default_value + 5) },
         border = {
-          style = 'single',
+          style = 'rounded',
           text = { top = prompt_text, top_align = 'left' },
         },
         win_options = {

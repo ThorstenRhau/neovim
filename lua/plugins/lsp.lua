@@ -8,7 +8,7 @@ return {
     build = ':MasonUpdate',
     opts = {
       ui = {
-        border = 'none',
+        border = 'rounded',
       },
     },
   },
@@ -346,7 +346,7 @@ return {
       vim.diagnostic.config({
         severity_sort = true,
         float = {
-          border = 'none',
+          border = 'rounded',
           source = true,
         },
         virtual_text = false,
