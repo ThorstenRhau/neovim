@@ -40,6 +40,7 @@ return {
       },
       menu = {
         border = 'single',
+        scrollbar = false,
         draw = {
           columns = {
             { 'kind_icon' },
