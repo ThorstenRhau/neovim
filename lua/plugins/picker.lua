@@ -5,13 +5,6 @@ return {
   cmd = 'FzfLua',
   keys = {
     {
-      '<leader>ff',
-      function()
-        require('fzf-lua-frecency').frecency({ cwd_only = true })
-      end,
-      desc = 'Find files (frecency)',
-    },
-    {
       '<leader><space>',
       function()
         require('fzf-lua-frecency').frecency({ cwd_only = true })
@@ -35,6 +28,7 @@ return {
     },
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>u', '<cmd>FzfLua undotree<cr>', desc = 'Undo' },
+    { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Files' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Git files' },
@@ -77,6 +71,9 @@ return {
   },
   opts = {
     'default-title', -- Titles for picker windows
+    fzf_opts = {
+      ['--scheme'] = 'path',
+    },
     winopts = {
       height = 0.90,
       width = 0.90,
@@ -122,6 +119,9 @@ return {
     files = {
       fd_opts = '--color=never --type f --hidden --follow --exclude .git',
       cwd_prompt = false,
+      fzf_opts = {
+        ['--tiebreak'] = 'pathname,chunk,begin',
+      },
     },
     grep = {
       rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
