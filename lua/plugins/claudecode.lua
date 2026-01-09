@@ -19,9 +19,7 @@ return {
         split_side = 'right',
         split_width_percentage = 0.40,
         provider = 'native',
-        show_native_term_exit_tip = true,
         auto_close = false,
-        env = {},
         snacks_win_opts = {},
       },
     })
