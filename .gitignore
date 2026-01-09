@@ -7,3 +7,5 @@ tasks/
 # compiled spell files
 spell/*.spl
 
+# Lazy lock file
+lazy-lock.json
