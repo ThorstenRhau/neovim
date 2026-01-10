@@ -1,38 +1,17 @@
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons', 'elanmed/fzf-lua-frecency.nvim' },
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   cmd = 'FzfLua',
   keys = {
-    {
-      '<leader><space>',
-      function()
-        require('fzf-lua-frecency').frecency({ cwd_only = true })
-      end,
-      desc = 'Find files (frecency)',
-    },
-    {
-      '<leader>fF',
-      function()
-        require('fzf-lua-frecency').frecency()
-      end,
-      desc = 'Frecent files (all)',
-    },
-    {
-      '<leader>fX',
-      function()
-        require('fzf-lua-frecency').clear_db()
-        vim.notify('Frecency database cleared', vim.log.levels.INFO)
-      end,
-      desc = 'Clear frecency database',
-    },
-
     { '<leader>/', '<cmd>FzfLua live_grep<cr>', desc = 'Grep' },
     { '<leader>:', '<cmd>FzfLua command_history<cr>', desc = 'Command history' },
+    { '<leader><space>', '<cmd>FzfLua files<cr>', desc = 'Files' },
     { '<leader>ca', '<cmd>FzfLua lsp_code_actions<cr>', mode = { 'n', 'v' }, desc = 'Code actions' },
     { '<leader>ci', '<cmd>FzfLua lsp_incoming_calls<cr>', desc = 'Incoming calls' },
     { '<leader>co', '<cmd>FzfLua lsp_outgoing_calls<cr>', desc = 'Outgoing calls' },
     { '<leader>cs', '<cmd>FzfLua lsp_finder<cr>', desc = 'LSP finder' },
+    { '<leader>fS', '<cmd>FzfLua spellcheck<cr>', desc = 'Spellcheck document' },
     { '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', desc = 'Grep WORD' },
     { '<leader>fb', '<cmd>FzfLua buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Files' },
@@ -40,7 +19,6 @@ return {
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestion' },
-    { '<leader>fS', '<cmd>FzfLua spellcheck<cr>', desc = 'Spellcheck document' },
     { '<leader>fv', '<cmd>FzfLua grep_visual<cr>', mode = 'v', desc = 'Grep selection' },
     { '<leader>fw', '<cmd>FzfLua grep_cword<cr>', desc = 'Grep word' },
     { '<leader>gC', '<cmd>FzfLua git_bcommits<cr>', desc = 'Git buffer commits' },
@@ -177,10 +155,5 @@ return {
       h = math.max(min_h, math.min(max_h, h))
       return { winopts = { height = h, width = 0.50, row = 0.40 } }
     end)
-    -- Setup frecency (registers extension, creates autocommand for tracking)
-    require('fzf-lua-frecency').setup({
-      display_score = true,
-      stat_file = true,
-    })
   end,
 }
