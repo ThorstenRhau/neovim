@@ -30,7 +30,7 @@ return {
           if vim.wo.diff then
             vim.cmd.normal({ ']c', bang = true })
           else
-            ---@diagnostic disable-next-line: param-type-mismatch
+            ---@diagnostic disable-next-line: param-type-mismatch, missing-fields
             gs.nav_hunk('next', { target = 'all' })
           end
         end, 'Next hunk')
@@ -39,7 +39,7 @@ return {
           if vim.wo.diff then
             vim.cmd.normal({ '[c', bang = true })
           else
-            ---@diagnostic disable-next-line: param-type-mismatch
+            ---@diagnostic disable-next-line: param-type-mismatch, missing-fields
             gs.nav_hunk('prev', { target = 'all' })
           end
         end, 'Prev hunk')
@@ -97,12 +97,9 @@ return {
       enhanced_diff_hl = true,
       use_icons = true,
       default_args = {
-        DiffviewOpen = { '--imply-local', '--untracked-files=no' },
+        DiffviewOpen = { '--untracked-files=no' },
       },
       view = {
-        default = {
-          layout = 'diff2_horizontal',
-        },
         merge_tool = {
           layout = 'diff3_mixed',
         },
