@@ -102,7 +102,15 @@ return {
       latex = { enabled = false },
     },
   },
-  -- Color picker and highlighter
+  {
+    'brianhuster/live-preview.nvim',
+    dependencies = { 'ibhagwan/fzf-lua' },
+    opts = {},
+    keys = {
+      { '<leader>tM', '<cmd>LivePreview start<cr>', desc = 'Markdown in browser' },
+      { '<leader>tQ', '<cmd>LivePreview close<cr>', desc = 'Stop Markdown preview' },
+    },
+  },
   {
     'uga-rosa/ccc.nvim',
     cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle' },
