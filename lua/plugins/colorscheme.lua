@@ -85,23 +85,6 @@ return {
           highlights.SignColumn = { bg = '#242424' }
         end
 
-        -- Blink.cmp completion menu
-        highlights.BlinkCmpMenu = { bg = colors.bg_dim }
-        highlights.BlinkCmpMenuBorder = { fg = colors.border, bg = colors.bg_dim }
-        highlights.BlinkCmpMenuSelection = { bg = colors.bg_active }
-        highlights.BlinkCmpScrollBarThumb = { bg = colors.fg_dim }
-        highlights.BlinkCmpScrollBarGutter = { bg = colors.bg_dim }
-        highlights.BlinkCmpLabel = { fg = colors.fg_main }
-        highlights.BlinkCmpLabelDeprecated = { fg = colors.fg_dim, strikethrough = true }
-        highlights.BlinkCmpLabelMatch = { fg = colors.fg_main, underline = true }
-        highlights.BlinkCmpLabelDetail = { fg = colors.fg_dim }
-        highlights.BlinkCmpLabelDescription = { fg = colors.fg_dim }
-        highlights.BlinkCmpKind = { fg = colors.magenta }
-        highlights.BlinkCmpSource = { fg = colors.fg_dim }
-        highlights.BlinkCmpGhostText = { fg = colors.fg_dim, italic = true }
-        highlights.BlinkCmpDoc = { bg = colors.bg_dim }
-        highlights.BlinkCmpDocBorder = { fg = colors.border, bg = colors.bg_dim }
-
         -- LSP kind colors
         highlights.BlinkCmpKindFunction = { fg = colors.magenta }
         highlights.BlinkCmpKindMethod = { fg = colors.magenta }
@@ -122,33 +105,6 @@ return {
         highlights.BlinkCmpKindValue = { fg = colors.cyan }
         highlights.BlinkCmpKindFile = { fg = colors.blue }
         highlights.BlinkCmpKindFolder = { fg = colors.blue }
-
-        -- nvim-dap-ui
-        highlights.DapUIScope = { fg = colors.cyan }
-        highlights.DapUIType = { fg = colors.magenta }
-        highlights.DapUIValue = { fg = colors.fg_main }
-        highlights.DapUIModifiedValue = { fg = colors.cyan, bold = true }
-        highlights.DapUIDecoration = { fg = colors.cyan }
-        highlights.DapUIThread = { fg = colors.green }
-        highlights.DapUIStoppedThread = { fg = colors.cyan }
-        highlights.DapUISource = { fg = colors.magenta }
-        highlights.DapUILineNumber = { fg = colors.fg_dim }
-        highlights.DapUIFloatBorder = { fg = colors.cyan }
-        highlights.DapUIWatchesEmpty = { fg = colors.red }
-        highlights.DapUIWatchesValue = { fg = colors.green }
-        highlights.DapUIWatchesError = { fg = colors.red }
-        highlights.DapUIBreakpointsPath = { fg = colors.cyan }
-        highlights.DapUIBreakpointsInfo = { fg = colors.green }
-        highlights.DapUIBreakpointsCurrentLine = { fg = colors.green, bold = true }
-        highlights.DapUIBreakpointsDisabledLine = { fg = colors.fg_dim }
-        highlights.DapUIStepOver = { fg = colors.cyan }
-        highlights.DapUIStepInto = { fg = colors.cyan }
-        highlights.DapUIStepBack = { fg = colors.cyan }
-        highlights.DapUIStepOut = { fg = colors.cyan }
-        highlights.DapUIStop = { fg = colors.red }
-        highlights.DapUIPlayPause = { fg = colors.green }
-        highlights.DapUIRestart = { fg = colors.green }
-        highlights.DapUIUnavailable = { fg = colors.fg_dim }
 
         -- diffview.nvim
         highlights.DiffviewFilePanelTitle = { fg = colors.blue, bold = true }
@@ -172,23 +128,6 @@ return {
         highlights.DiffviewDim1 = { fg = colors.fg_dim }
         highlights.DiffviewPrimary = { fg = colors.blue }
         highlights.DiffviewSecondary = { fg = colors.cyan }
-
-        -- oil.nvim
-        highlights.OilDir = { fg = colors.blue, bold = true }
-        highlights.OilDirIcon = { fg = colors.blue }
-        highlights.OilSocket = { fg = colors.magenta }
-        highlights.OilLink = { fg = colors.cyan }
-        highlights.OilOrphanLink = { fg = colors.red }
-        highlights.OilLinkTarget = { fg = colors.fg_dim }
-        highlights.OilOrphanLinkTarget = { fg = colors.red }
-        highlights.OilFile = { fg = colors.fg_main }
-        highlights.OilCreate = { fg = colors.green }
-        highlights.OilDelete = { fg = colors.red }
-        highlights.OilMove = { fg = colors.yellow }
-        highlights.OilCopy = { fg = colors.cyan }
-        highlights.OilChange = { fg = colors.yellow }
-        highlights.OilTrash = { fg = colors.red }
-        highlights.OilTrashSourcePath = { fg = colors.fg_dim }
 
         -- mason.nvim
         highlights.MasonHeader = { fg = colors.bg_main, bg = colors.blue, bold = true }
@@ -305,10 +244,6 @@ return {
         highlights.TroubleIconTypeParameter = { link = '@type' }
         highlights.TroubleIconVariable = { link = '@variable' }
 
-        -- ccc.nvim
-        highlights.CccFloatBorder = { fg = colors.border, bg = colors.bg_dim }
-        highlights.CccFloatNormal = { fg = colors.fg_main, bg = colors.bg_dim }
-
         -- vim-matchup
         highlights.MatchWord = { bg = colors.bg_paren_match }
         highlights.MatchWordCur = { bg = colors.bg_paren_match }
@@ -324,13 +259,6 @@ return {
         highlights.WhichKeyBorder = { fg = colors.border, bg = colors.bg_dim }
         highlights.WhichKeyTitle = { fg = colors.blue, bg = colors.bg_dim, bold = true }
         highlights.WhichKeyIcon = { fg = colors.blue }
-
-        -- render-markdown
-        highlights.RenderMarkdownBullet = { fg = colors.blue }
-        highlights.RenderMarkdownDash = { fg = colors.border }
-        highlights.RenderMarkdownTableHead = { fg = colors.blue, bold = true }
-        highlights.RenderMarkdownTableRow = { fg = colors.fg_main }
-        highlights.RenderMarkdownLink = { fg = colors.cyan }
       end,
     })
     vim.cmd.colorscheme('modus')
