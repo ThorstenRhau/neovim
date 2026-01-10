@@ -16,7 +16,6 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     dependencies = { 'williamboman/mason.nvim' },
     cmd = { 'MasonToolsInstall', 'MasonToolsUpdate', 'MasonToolsClean' },
-    event = 'VeryLazy',
     opts = {
       ensure_installed = {
         'basedpyright',
@@ -40,7 +39,7 @@ return {
         'yamllint',
       },
       auto_update = false,
-      run_on_start = true,
+      run_on_start = false,
     },
   },
   {
