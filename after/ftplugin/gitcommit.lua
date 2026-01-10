@@ -1,10 +1,7 @@
-vim.opt_local.tabstop = 2
-vim.opt_local.shiftwidth = 2
-vim.opt_local.softtabstop = 2
+vim.opt_local.textwidth = 72
+vim.opt_local.colorcolumn = '50,73'
+vim.opt_local.wrap = true
 if vim.bo.buftype == '' then
   vim.opt_local.spell = true
 end
-vim.treesitter.start()
-vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-vim.wo[0][0].foldmethod = 'expr'
-vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+require('config.ftplugin').indent(2).treesitter()

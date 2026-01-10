@@ -1,6 +1,15 @@
 return {
   'coder/claudecode.nvim',
 
+  init = function()
+    vim.api.nvim_create_autocmd('TermOpen', {
+      pattern = 'term://*claude*',
+      callback = function()
+        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], { buffer = 0 })
+      end,
+    })
+  end,
+
   keys = {
     { '<leader>aa', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
     { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', mode = { 'n', 'v' }, desc = 'Focus Claude' },
@@ -28,22 +37,4 @@ return {
       auto_close = false,
     },
   },
-
-  config = function(_, opts)
-    require('claudecode').setup(opts)
-
-    -- Terminal keymaps for claude buffer
-    vim.api.nvim_create_autocmd('TermOpen', {
-      pattern = 'term://*claude*',
-      callback = function()
-        local keymap_opts = { buffer = 0 }
-        -- Exit terminal mode
-        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR><Cmd>stopinsert<CR>]], keymap_opts)
-        vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], keymap_opts)
-        vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], keymap_opts)
-        vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], keymap_opts)
-        vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], keymap_opts)
-      end,
-    })
-  end,
 }

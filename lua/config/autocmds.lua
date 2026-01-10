@@ -4,9 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 -- Highlight on yank
 autocmd('TextYankPost', {
   group = augroup('highlight_yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = vim.highlight.on_yank,
 })
 
 -- Return to last edit position
@@ -83,23 +81,9 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   end,
 })
 
--- Git commit message settings
-autocmd('FileType', {
-  group = augroup('gitcommit_settings', { clear = true }),
-  pattern = 'gitcommit',
-  callback = function()
-    vim.opt_local.textwidth = 72
-    vim.opt_local.colorcolumn = '50,73'
-    vim.opt_local.spell = true
-    vim.opt_local.wrap = true
-  end,
-})
-
 -- Trim whitespace command
 vim.api.nvim_create_user_command('TrimWhitespace', function()
   local save_cursor = vim.fn.getpos('.')
   vim.cmd([[%s/\s\+$//e]])
   vim.fn.setpos('.', save_cursor)
 end, { desc = 'Trim trailing whitespace' })
-
-vim.keymap.set('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'Trim whitespace' })

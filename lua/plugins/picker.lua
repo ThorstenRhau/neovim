@@ -31,8 +31,6 @@ return {
     { '<leader>gS', '<cmd>FzfLua git_stash<cr>', desc = 'Git stash' },
     { '<leader>gb', '<cmd>FzfLua git_branches<cr>', desc = 'Git branches' },
     { '<leader>gc', '<cmd>FzfLua git_commits<cr>', desc = 'Git commits' },
-    { '<leader>gd', '<cmd>FzfLua git_diff<cr>', desc = 'Git diff' },
-    { '<leader>gh', '<cmd>FzfLua git_hunks<cr>', desc = 'Git hunks' },
     { '<leader>gs', '<cmd>FzfLua git_status<cr>', desc = 'Git status' },
     { '<leader>gt', '<cmd>FzfLua git_tags<cr>', desc = 'Git tags' },
     { '<leader>s/', '<cmd>FzfLua search_history<cr>', desc = 'Search history' },

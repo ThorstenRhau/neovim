@@ -5,7 +5,4 @@ vim.opt_local.conceallevel = 2
 if vim.bo.buftype == '' then
   vim.opt_local.spell = true
 end
-vim.treesitter.start()
-vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-vim.wo[0][0].foldmethod = 'expr'
-vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+require('config.ftplugin').treesitter()

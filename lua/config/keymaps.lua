@@ -62,25 +62,25 @@ map('n', '[<space>', 'O<esc>j', { desc = 'Add blank line above' })
 map('n', '<leader>xn', '<cmd>cnext<cr>', { desc = 'Next quickfix' })
 map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'Previous quickfix' })
 
--- Diagnostic
+-- Code
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Line diagnostics' })
+map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'Trim whitespace' })
 
 -- Lazy
 map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 
 -- Toggle options
-map('n', '<leader>tw', function()
-  vim.o.wrap = not vim.o.wrap
-end, { desc = 'Toggle wrap' })
-map('n', '<leader>tn', function()
-  vim.o.relativenumber = not vim.o.relativenumber
-end, { desc = 'Toggle relative numbers' })
-map('n', '<leader>ts', function()
-  vim.o.spell = not vim.o.spell
-end, { desc = 'Toggle spelling' })
-map('n', '<leader>tc', function()
-  vim.o.cursorline = not vim.o.cursorline
-end, { desc = 'Toggle cursorline' })
+local toggles = {
+  { 'w', 'wrap', 'Toggle wrap' },
+  { 'n', 'relativenumber', 'Toggle relative numbers' },
+  { 's', 'spell', 'Toggle spelling' },
+  { 'c', 'cursorline', 'Toggle cursorline' },
+}
+for _, t in ipairs(toggles) do
+  map('n', '<leader>t' .. t[1], function()
+    vim.o[t[2]] = not vim.o[t[2]]
+  end, { desc = t[3] })
+end
 map('n', '<leader>tl', function()
   local config = vim.diagnostic.config() or {}
   local new_value = not config.virtual_lines
@@ -105,14 +105,13 @@ local function set_spell_lang(lang, lang_name)
   vim.notify('Spell language: ' .. lang_name, vim.log.levels.INFO)
 end
 
-map('n', '<leader>tSu', function()
-  set_spell_lang('en_us', 'English (US)')
-end, { desc = 'Set spell lang to English (US)' })
-
-map('n', '<leader>tSg', function()
-  set_spell_lang('en_gb', 'English (GB)')
-end, { desc = 'Set spell lang to English (GB)' })
-
-map('n', '<leader>tSs', function()
-  set_spell_lang('sv', 'Swedish')
-end, { desc = 'Set spell lang to Swedish' })
+local spell_langs = {
+  { key = 'u', lang = 'en_us', name = 'English (US)' },
+  { key = 'g', lang = 'en_gb', name = 'English (GB)' },
+  { key = 's', lang = 'sv', name = 'Swedish' },
+}
+for _, sl in ipairs(spell_langs) do
+  map('n', '<leader>tS' .. sl.key, function()
+    set_spell_lang(sl.lang, sl.name)
+  end, { desc = 'Set spell lang to ' .. sl.name })
+end

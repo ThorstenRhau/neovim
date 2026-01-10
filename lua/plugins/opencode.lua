@@ -1,5 +1,15 @@
 return {
   'NickvanDyke/opencode.nvim',
+
+  init = function()
+    vim.api.nvim_create_autocmd('TermOpen', {
+      pattern = 'term://*opencode*',
+      callback = function()
+        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], { buffer = 0 })
+      end,
+    })
+  end,
+
   keys = {
     -- Toggle opencode terminal
     {
@@ -128,20 +138,5 @@ return {
         },
       },
     }
-
-    -- Terminal keymaps for opencode buffer
-    vim.api.nvim_create_autocmd('TermOpen', {
-      pattern = 'term://*opencode*',
-      callback = function()
-        local opts = { buffer = 0 }
-        -- Exit terminal mode
-        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR><Cmd>stopinsert<CR>]], opts)
-        -- Window navigation from terminal mode
-        vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-        vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-        vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-        vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-      end,
-    })
   end,
 }
