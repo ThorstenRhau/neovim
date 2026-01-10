@@ -39,8 +39,7 @@ return {
         },
       },
       menu = {
-        border = 'single',
-        scrollbar = false,
+        scrollbar = true,
         draw = {
           columns = {
             { 'kind_icon' },
