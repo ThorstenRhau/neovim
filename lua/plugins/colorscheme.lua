@@ -93,7 +93,7 @@ return {
         highlights.BlinkCmpScrollBarGutter = { bg = colors.bg_dim }
         highlights.BlinkCmpLabel = { fg = colors.fg_main }
         highlights.BlinkCmpLabelDeprecated = { fg = colors.fg_dim, strikethrough = true }
-        highlights.BlinkCmpLabelMatch = { fg = colors.magenta, bold = true }
+        highlights.BlinkCmpLabelMatch = { fg = colors.fg_main, underline = true }
         highlights.BlinkCmpLabelDetail = { fg = colors.fg_dim }
         highlights.BlinkCmpLabelDescription = { fg = colors.fg_dim }
         highlights.BlinkCmpKind = { fg = colors.magenta }
