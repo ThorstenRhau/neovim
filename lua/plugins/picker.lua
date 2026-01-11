@@ -148,6 +148,12 @@ return {
     grep = {
       rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
     },
+    command_history = {
+      fzf_opts = { ['--scheme'] = 'history' },
+    },
+    search_history = {
+      fzf_opts = { ['--scheme'] = 'history' },
+    },
     git = {
       status = {
         winopts = {
