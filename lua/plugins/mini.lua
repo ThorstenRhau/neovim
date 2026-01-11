@@ -8,7 +8,6 @@ return {
     priority = 1000,
     config = function()
       require('mini.icons').setup()
-      ---@diagnostic disable-next-line: undefined_variable
       MiniIcons.mock_nvim_web_devicons()
     end,
   },
