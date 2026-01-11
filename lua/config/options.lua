@@ -52,3 +52,4 @@ o.foldlevelstart = 99
 
 -- Spelling
 o.spelllang = 'en_us'
+o.spellsuggest = 'best,20' -- Limits to 20 suggestions
