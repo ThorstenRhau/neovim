@@ -1,3 +1,5 @@
+local constants = require('config.constants')
+
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
@@ -66,12 +68,7 @@ return {
           },
           {
             'diagnostics',
-            symbols = {
-              error = '󰅚',
-              warn = '󰀪',
-              info = '󰋽',
-              hint = '󰌵',
-            },
+            symbols = constants.diagnostic_symbols,
           },
         },
         lualine_x = {
