@@ -148,19 +148,4 @@ return {
       easing = 'sine',
     },
   },
-  {
-    'chentoast/marks.nvim',
-    event = 'VeryLazy',
-    opts = {
-      default_mappings = false,
-      signs = true,
-      mappings = {
-        set_next = 'm,',
-        next = "m'",
-        preview = 'm:',
-        delete_line = 'dm-',
-        delete_buf = 'dm<space>',
-      },
-    },
-  },
 }
