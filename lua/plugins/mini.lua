@@ -17,8 +17,8 @@ return {
     'echasnovski/mini.align',
     version = false,
     keys = {
-      { 'ga', mode = { 'n', 'x' }, desc = 'Align' },
-      { 'gA', mode = { 'n', 'x' }, desc = 'Align with preview' },
+      { 'ga', mode = { 'n', 'x' }, desc = 'align' },
+      { 'gA', mode = { 'n', 'x' }, desc = 'align with preview' },
     },
     opts = {},
   },
@@ -28,14 +28,14 @@ return {
     'echasnovski/mini.splitjoin',
     version = false,
     keys = {
-      { 'gS', mode = { 'n', 'x' }, desc = 'Toggle split/join' },
+      { 'gS', mode = { 'n', 'x' }, desc = 'toggle split/join' },
       {
         '<leader>cj',
         function()
           require('mini.splitjoin').toggle()
         end,
         mode = { 'n', 'x' },
-        desc = 'Toggle split/join',
+        desc = 'toggle split/join',
       },
     },
     opts = {},

@@ -15,17 +15,18 @@ return {
       preset = 'modern',
       delay = 200,
       spec = {
-        { '<leader>f', group = 'file/find' },
-        { '<leader>s', group = 'search' },
-        { '<leader>g', group = 'git' },
+        { '<leader>a', group = 'claude' },
+        { '<leader>b', group = 'buffer' },
         { '<leader>c', group = 'code' },
+        { '<leader>f', group = 'file/find' },
+        { '<leader>g', group = 'git' },
         { '<leader>h', group = 'hunk' },
-        { '<leader>t', group = 'toggle' },
         { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'project/session' },
-        { '<leader>x', group = 'diagnostics' },
-        { '<leader>b', group = 'buffer' },
+        { '<leader>s', group = 'search' },
+        { '<leader>t', group = 'toggle' },
         { '<leader>w', group = 'window' },
+        { '<leader>x', group = 'diagnostics' },
         { 'g', group = 'goto' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
@@ -103,12 +104,12 @@ return {
       auto_close = true,
     },
     keys = {
-      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics' },
-      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer diagnostics' },
-      { '<leader>xs', '<cmd>Trouble symbols toggle<cr>', desc = 'Symbols' },
-      { '<leader>xl', '<cmd>Trouble lsp toggle<cr>', desc = 'LSP references' },
-      { '<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'Location list' },
-      { '<leader>xq', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix list' },
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'diagnostics' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'buffer diagnostics' },
+      { '<leader>xs', '<cmd>Trouble symbols toggle<cr>', desc = 'symbols' },
+      { '<leader>xl', '<cmd>Trouble lsp toggle<cr>', desc = 'lsp references' },
+      { '<leader>xL', '<cmd>Trouble loclist toggle<cr>', desc = 'location list' },
+      { '<leader>xq', '<cmd>Trouble qflist toggle<cr>', desc = 'quickfix list' },
       {
         '[q',
         function()
@@ -122,7 +123,7 @@ return {
             end
           end
         end,
-        desc = 'Previous trouble/quickfix item',
+        desc = 'previous trouble/quickfix item',
       },
       {
         ']q',
@@ -137,7 +138,7 @@ return {
             end
           end
         end,
-        desc = 'Next trouble/quickfix item',
+        desc = 'next trouble/quickfix item',
       },
     },
   },
@@ -145,9 +146,12 @@ return {
     'sphamba/smear-cursor.nvim',
     event = 'VeryLazy',
     keys = {
-      { '<leader>ts', '<cmd>SmearCursorToggle<cr>', desc = 'Toggle cursor smear' },
+      { '<leader>ts', '<cmd>SmearCursorToggle<cr>', desc = 'cursor smear' },
     },
-    opts = {},
+    opts = {
+      smear_insert_mode = false,
+      legacy_computing_symbols_support = true,
+    },
   },
   {
     'karb94/neoscroll.nvim',

@@ -90,22 +90,22 @@ return {
       -- Movement
       map({ 'n', 'x', 'o' }, ']f', function()
         require('nvim-treesitter-textobjects.move').goto_next_start('@function.outer', 'textobjects')
-      end, { desc = 'Next function start' })
+      end, { desc = 'next function start' })
       map({ 'n', 'x', 'o' }, '[f', function()
         require('nvim-treesitter-textobjects.move').goto_previous_start('@function.outer', 'textobjects')
-      end, { desc = 'Previous function start' })
+      end, { desc = 'previous function start' })
       map({ 'n', 'x', 'o' }, ']F', function()
         require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
-      end, { desc = 'Next function end' })
+      end, { desc = 'next function end' })
       map({ 'n', 'x', 'o' }, '[F', function()
         require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
-      end, { desc = 'Previous function end' })
+      end, { desc = 'previous function end' })
       map({ 'n', 'x', 'o' }, ']c', function()
         require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
-      end, { desc = 'Next class start' })
+      end, { desc = 'next class start' })
       map({ 'n', 'x', 'o' }, '[c', function()
         require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
-      end, { desc = 'Previous class start' })
+      end, { desc = 'previous class start' })
     end,
   },
   {
@@ -122,7 +122,7 @@ return {
         function()
           require('treesitter-context').go_to_context()
         end,
-        desc = 'Go to context',
+        desc = 'go to context',
       },
     },
   },

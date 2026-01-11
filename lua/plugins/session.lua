@@ -8,35 +8,35 @@ return {
         function()
           require('persistence').load()
         end,
-        desc = 'Restore session',
+        desc = 'previous session',
       },
       {
         '<leader>qs',
         function()
           require('persistence').load()
         end,
-        desc = 'Restore session',
+        desc = 'previous session',
       },
       {
         '<leader>qS',
         function()
           require('persistence').select()
         end,
-        desc = 'Select session',
+        desc = 'select session',
       },
       {
         '<leader>ql',
         function()
           require('persistence').load({ last = true })
         end,
-        desc = 'Restore last session',
+        desc = 'restore last session',
       },
       {
         '<leader>qd',
         function()
           require('persistence').stop()
         end,
-        desc = 'Stop session tracking',
+        desc = 'stop session tracking',
       },
     },
     opts = {},

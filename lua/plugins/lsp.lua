@@ -3,7 +3,7 @@ return {
     'williamboman/mason.nvim',
     cmd = 'Mason',
     keys = {
-      { '<leader>m', '<cmd>Mason<cr>', desc = 'Mason' },
+      { '<leader>m', '<cmd>Mason<cr>', desc = 'mason' },
     },
     build = ':MasonUpdate',
     opts = {
@@ -262,9 +262,9 @@ return {
             vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
           end
 
-          map('n', '<leader>cr', vim.lsp.buf.rename, 'Rename')
-          map('n', '<leader>cS', vim.lsp.buf.signature_help, 'Signature help')
-          map('i', '<C-k>', vim.lsp.buf.signature_help, 'Signature help')
+          map('n', '<leader>cr', vim.lsp.buf.rename, 'rename')
+          map('n', '<leader>cS', vim.lsp.buf.signature_help, 'signature help')
+          map('i', '<C-k>', vim.lsp.buf.signature_help, 'signature help')
 
           -- Document highlight on cursor hold
           local client = vim.lsp.get_client_by_id(event.data.client_id)

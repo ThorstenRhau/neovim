@@ -3,18 +3,18 @@ return {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     keys = {
-      { '<leader>hs', '<cmd>Gitsigns stage_hunk<cr>', desc = 'Stage hunk' },
-      { '<leader>hr', '<cmd>Gitsigns reset_hunk<cr>', desc = 'Reset hunk' },
-      { '<leader>hS', '<cmd>Gitsigns stage_buffer<cr>', desc = 'Stage buffer' },
-      { '<leader>hu', '<cmd>Gitsigns reset_buffer_index<cr>', desc = 'Unstage buffer' },
-      { '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'Reset buffer' },
-      { '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', desc = 'Preview hunk' },
-      { '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', desc = 'Blame line' },
-      { '<leader>hB', '<cmd>Gitsigns blame<cr>', desc = 'Blame buffer' },
-      { '<leader>hd', '<cmd>Gitsigns diffthis<cr>', desc = 'Diff this' },
-      { '<leader>hD', '<cmd>Gitsigns diffthis ~<cr>', desc = 'Diff this ~' },
-      { '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<cr>', desc = 'Toggle line blame' },
-      { '<leader>hl', '<cmd>Gitsigns toggle_linehl<cr>', desc = 'Toggle line highlight' },
+      { '<leader>hs', '<cmd>Gitsigns stage_hunk<cr>', desc = 'stage hunk' },
+      { '<leader>hr', '<cmd>Gitsigns reset_hunk<cr>', desc = 'reset hunk' },
+      { '<leader>hS', '<cmd>Gitsigns stage_buffer<cr>', desc = 'stage buffer' },
+      { '<leader>hu', '<cmd>Gitsigns reset_buffer_index<cr>', desc = 'unstage buffer' },
+      { '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'reset buffer' },
+      { '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', desc = 'preview hunk' },
+      { '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', desc = 'blame line' },
+      { '<leader>hB', '<cmd>Gitsigns blame<cr>', desc = 'blame buffer' },
+      { '<leader>hd', '<cmd>Gitsigns diffthis<cr>', desc = 'diff this' },
+      { '<leader>hD', '<cmd>Gitsigns diffthis ~<cr>', desc = 'diff this ~' },
+      { '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<cr>', desc = 'line blame' },
+      { '<leader>hl', '<cmd>Gitsigns toggle_linehl<cr>', desc = 'toggle line highlight' },
     },
     opts = {
       attach_to_untracked = false,
@@ -33,7 +33,7 @@ return {
             ---@diagnostic disable-next-line: param-type-mismatch, missing-fields
             gs.nav_hunk('next', { target = 'all' })
           end
-        end, 'Next hunk')
+        end, 'next hunk')
 
         map('n', '[h', function()
           if vim.wo.diff then
@@ -42,18 +42,18 @@ return {
             ---@diagnostic disable-next-line: param-type-mismatch, missing-fields
             gs.nav_hunk('prev', { target = 'all' })
           end
-        end, 'Prev hunk')
+        end, 'prev hunk')
 
         -- Visual mode actions (need buffer context)
         map('v', '<leader>hs', function()
           gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, 'Stage hunk')
+        end, 'stage hunk')
         map('v', '<leader>hr', function()
           gs.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, 'Reset hunk')
+        end, 'reset hunk')
 
         -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'Select hunk')
+        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', 'select hunk')
       end,
     },
   },
@@ -66,7 +66,7 @@ return {
     },
     cmd = { 'Neogit', 'NeogitCommit', 'NeogitResetState', 'NeogitLogCurrent' },
     keys = {
-      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Neogit' },
+      { '<leader>gg', '<cmd>Neogit<cr>', desc = 'neogit' },
     },
     opts = {
       disable_insert_on_commit = true,
@@ -88,10 +88,10 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
     keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'Diffview' },
-      { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'File history' },
-      { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', desc = 'Branch history' },
-      { '<leader>gq', '<cmd>DiffviewClose<cr>', desc = 'DiffView Close' },
+      { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'diffview' },
+      { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'file history' },
+      { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', desc = 'branch history' },
+      { '<leader>gq', '<cmd>DiffviewClose<cr>', desc = 'diffview close' },
     },
     opts = {
       enhanced_diff_hl = true,

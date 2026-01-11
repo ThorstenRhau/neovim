@@ -17,7 +17,7 @@ return {
       function()
         require('opencode').toggle()
       end,
-      desc = 'Toggle opencode',
+      desc = 'toggle opencode',
     },
     {
       '<C-.>',
@@ -25,7 +25,7 @@ return {
         require('opencode').toggle()
       end,
       mode = { 'n', 't' },
-      desc = 'Toggle opencode',
+      desc = 'toggle opencode',
     },
 
     -- Ask/prompt
@@ -35,7 +35,7 @@ return {
         require('opencode').ask('', { submit = true })
       end,
       mode = { 'n', 'x' },
-      desc = 'Ask opencode',
+      desc = 'ask opencode',
     },
     {
       '<leader>oA',
@@ -43,7 +43,7 @@ return {
         require('opencode').ask('@this: ', { submit = true })
       end,
       mode = { 'n', 'x' },
-      desc = 'Ask opencode about this',
+      desc = 'ask opencode about this',
     },
 
     -- Select from prompts/commands
@@ -53,7 +53,7 @@ return {
         require('opencode').select()
       end,
       mode = { 'n', 'x' },
-      desc = 'Select opencode action',
+      desc = 'select opencode action',
     },
 
     -- Operator for ranges
@@ -63,7 +63,7 @@ return {
         return require('opencode').operator('@this ')
       end,
       expr = true,
-      desc = 'Add range to opencode',
+      desc = 'add range to opencode',
     },
     {
       'goo',
@@ -71,7 +71,7 @@ return {
         return require('opencode').operator('@this ') .. '_'
       end,
       expr = true,
-      desc = 'Add line to opencode',
+      desc = 'add line to opencode',
     },
 
     -- Focus opencode window
@@ -94,7 +94,7 @@ return {
           vim.cmd('startinsert')
         end)
       end,
-      desc = 'Focus opencode',
+      desc = 'focus opencode',
     },
 
     -- Session controls
@@ -103,28 +103,28 @@ return {
       function()
         require('opencode').command('session.new')
       end,
-      desc = 'New session',
+      desc = 'new session',
     },
     {
       '<leader>oi',
       function()
         require('opencode').command('session.interrupt')
       end,
-      desc = 'Interrupt session',
+      desc = 'interrupt session',
     },
     {
       '<leader>ou',
       function()
         require('opencode').command('session.undo')
       end,
-      desc = 'Undo',
+      desc = 'undo',
     },
     {
       '<leader>or',
       function()
         require('opencode').command('session.redo')
       end,
-      desc = 'Redo',
+      desc = 'redo',
     },
   },
   config = function()

@@ -19,7 +19,7 @@ return {
             end
           end)
         end,
-        desc = 'Format buffer',
+        desc = 'format buffer',
       },
     },
     opts = {

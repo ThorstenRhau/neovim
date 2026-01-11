@@ -2,8 +2,8 @@ return {
   {
     'stevearc/oil.nvim',
     keys = {
-      { '-', '<cmd>Oil --float<cr>', desc = 'Open parent directory' },
-      { '<leader>e', '<cmd>Oil --float<cr>', desc = 'File explorer' },
+      { '-', '<cmd>Oil --float<cr>', desc = 'open parent directory' },
+      { '<leader>e', '<cmd>Oil --float<cr>', desc = 'file explorer' },
     },
     opts = {
       delete_to_trash = true,
@@ -11,7 +11,7 @@ return {
       watch_for_changes = true,
       keymaps = {
         ['gd'] = {
-          desc = 'Toggle file detail view',
+          desc = 'toggle file detail view',
           callback = function()
             local oil = require('oil')
             local config = require('oil.config')
@@ -38,7 +38,7 @@ return {
     'nvim-tree/nvim-tree.lua',
     version = '3.x',
     keys = {
-      { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle file tree' },
+      { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'file tree' },
     },
     opts = {
       hijack_directories = {

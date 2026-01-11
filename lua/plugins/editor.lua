@@ -94,7 +94,7 @@ return {
         function()
           require('render-markdown').toggle()
         end,
-        desc = 'Toggle markdown render',
+        desc = 'markdown render',
       },
     },
     opts = {
@@ -107,17 +107,17 @@ return {
     dependencies = { 'ibhagwan/fzf-lua' },
     opts = {},
     keys = {
-      { '<leader>tM', '<cmd>LivePreview start<cr>', desc = 'Markdown in browser' },
-      { '<leader>tQ', '<cmd>LivePreview close<cr>', desc = 'Stop Markdown preview' },
+      { '<leader>tM', '<cmd>LivePreview start<cr>', desc = 'markdown in browser' },
+      { '<leader>tQ', '<cmd>LivePreview close<cr>', desc = 'stop markdown preview' },
     },
   },
   {
     'uga-rosa/ccc.nvim',
     cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle' },
     keys = {
-      { '<leader>tC', '<cmd>CccHighlighterToggle<cr>', desc = 'Toggle color highlight' },
-      { '<leader>cp', '<cmd>CccPick<cr>', desc = 'Color picker' },
-      { '<leader>cc', '<cmd>CccConvert<cr>', desc = 'Convert color format' },
+      { '<leader>tC', '<cmd>CccHighlighterToggle<cr>', desc = 'color highlight' },
+      { '<leader>cp', '<cmd>CccPick<cr>', desc = 'color picker' },
+      { '<leader>cc', '<cmd>CccConvert<cr>', desc = 'convert color format' },
     },
     opts = {
       highlighter = {

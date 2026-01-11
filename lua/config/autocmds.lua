@@ -88,7 +88,7 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
   local save_cursor = vim.fn.getpos('.')
   vim.cmd([[%s/\s\+$//e]])
   vim.fn.setpos('.', save_cursor)
-end, { desc = 'Trim trailing whitespace' })
+end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
 autocmd('FileType', {

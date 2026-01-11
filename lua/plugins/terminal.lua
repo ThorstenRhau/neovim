@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
-vim.keymap.set('n', '<leader>tt', toggle_terminal, { desc = 'Toggle terminal' })
+vim.keymap.set('n', '<leader>tt', toggle_terminal, { desc = 'terminal' })
 
 -- Return empty table (no plugin to load)
 return {}
