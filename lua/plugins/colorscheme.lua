@@ -365,23 +365,6 @@ local function set_opencode_highlights(highlights, colors)
   highlights.OpencodeAgent = { fg = colors.magenta }
 end
 
-local function set_statusline_highlights(highlights, colors)
-  -- Mode colors
-  highlights.StatusLineMode = { fg = colors.fg_main, bg = colors.bg_active, bold = true }
-  highlights.StatusLineModeInsert = { fg = colors.bg_main, bg = colors.green, bold = true }
-  highlights.StatusLineModeVisual = { fg = colors.bg_main, bg = colors.magenta, bold = true }
-  highlights.StatusLineModeReplace = { fg = colors.bg_main, bg = colors.red, bold = true }
-  highlights.StatusLineModeCommand = { fg = colors.bg_main, bg = colors.yellow, bold = true }
-
-  -- Git diff in statusline
-  highlights.StatusLineDiffAdd = { fg = colors.fg_added_intense }
-  highlights.StatusLineDiffChange = { fg = colors.fg_changed_intense }
-  highlights.StatusLineDiffDelete = { fg = colors.fg_removed_intense }
-
-  -- Git branch
-  highlights.StatusLineGitBranch = { fg = colors.cyan }
-end
-
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -445,9 +428,6 @@ return {
 
         -- AI integration
         set_opencode_highlights(highlights, colors)
-
-        -- Statusline
-        set_statusline_highlights(highlights, colors)
       end,
     })
     vim.cmd.colorscheme('modus')

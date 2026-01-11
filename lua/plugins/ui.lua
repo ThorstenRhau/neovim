@@ -1,3 +1,12 @@
+local constants = require('config.constants')
+
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return { added = gitsigns.added, modified = gitsigns.changed, removed = gitsigns.removed }
+  end
+end
+
 return {
   {
     'folke/which-key.nvim',
@@ -24,6 +33,66 @@ return {
       },
       icons = {
         mappings = false,
+      },
+    },
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    lazy = false,
+    opts = {
+      options = {
+        theme = 'auto',
+        globalstatus = true,
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          statusline = { 'lazy', 'mason', 'oil' },
+        },
+      },
+      sections = {
+        lualine_a = { 'mode', 'searchcount', 'selectioncount' },
+        lualine_b = {
+          { 'branch', icon = '' },
+          { 'diff', source = diff_source },
+        },
+        lualine_c = {
+          {
+            'filename',
+            path = 1,
+            symbols = {
+              modified = '●',
+              readonly = '',
+              unnamed = '[No Name]',
+            },
+          },
+          {
+            'diagnostics',
+            symbols = constants.diagnostic_symbols,
+          },
+        },
+        lualine_x = {
+          'lsp_status',
+          'filetype',
+        },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { { 'filename', path = 1 } },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      extensions = {
+        'lazy',
+        'mason',
+        'oil',
+        'trouble',
+        'fzf',
+        'nvim-dap-ui',
+        'quickfix',
       },
     },
   },
