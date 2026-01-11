@@ -142,6 +142,14 @@ return {
     },
   },
   {
+    'sphamba/smear-cursor.nvim',
+    event = 'VeryLazy',
+    keys = {
+      { '<leader>ts', '<cmd>SmearCursorToggle<cr>', desc = 'Toggle cursor smear' },
+    },
+    opts = {},
+  },
+  {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
     opts = {
