@@ -20,6 +20,21 @@ return {
     { '<leader>ff', '<cmd>FzfLua files<cr>', desc = 'Files' },
     { '<leader>fg', '<cmd>FzfLua git_files<cr>', desc = 'Git files' },
     { '<leader>fl', '<cmd>FzfLua blines<cr>', desc = 'Buffer lines' },
+    {
+      '<leader>fm',
+      function()
+        local messages = vim.fn.execute('messages')
+        local lines = vim.split(messages, '\n')
+        require('fzf-lua').fzf_exec(lines, {
+          prompt = 'Messages❯ ',
+          fzf_opts = {
+            ['--no-multi'] = '',
+            ['--layout'] = 'reverse-list',
+          },
+        })
+      end,
+      desc = 'Messages',
+    },
     { '<leader>fo', '<cmd>FzfLua oldfiles<cr>', desc = 'Recent files' },
     { '<leader>fr', '<cmd>FzfLua resume<cr>', desc = 'Resume last search' },
     { '<leader>fs', '<cmd>FzfLua spell_suggest<cr>', desc = 'Spelling suggestion' },
