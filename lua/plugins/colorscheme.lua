@@ -304,6 +304,67 @@ local function set_whichkey_highlights(highlights, colors)
   highlights.WhichKeyIcon = { fg = colors.blue }
 end
 
+local function set_oil_highlights(highlights, colors)
+  -- Directory types
+  highlights.OilDir = { fg = colors.blue, bold = true }
+  highlights.OilDirIcon = { fg = colors.blue }
+  highlights.OilDirHidden = { fg = colors.fg_dim }
+
+  -- File types
+  highlights.OilFile = { fg = colors.fg_main }
+  highlights.OilSocket = { fg = colors.magenta }
+  highlights.OilLink = { fg = colors.cyan }
+  highlights.OilOrphanLink = { fg = colors.red }
+
+  -- Link targets
+  highlights.OilLinkTarget = { fg = colors.fg_dim }
+  highlights.OilOrphanLinkTarget = { fg = colors.red_faint }
+
+  -- Actions in preview window
+  highlights.OilCreate = { fg = colors.green }
+  highlights.OilDelete = { fg = colors.red }
+  highlights.OilMove = { fg = colors.yellow }
+  highlights.OilCopy = { fg = colors.cyan }
+  highlights.OilChange = { fg = colors.yellow_warmer }
+  highlights.OilRestore = { fg = colors.green }
+  highlights.OilPurge = { fg = colors.red, bold = true }
+  highlights.OilTrash = { fg = colors.red_faint }
+  highlights.OilTrashSourcePath = { fg = colors.fg_dim, italic = true }
+end
+
+local function set_gitsigns_highlights(highlights, colors)
+  -- Current line blame
+  highlights.GitSignsCurrentLineBlame = { fg = colors.fg_dim }
+
+  -- Preview highlights
+  highlights.GitSignsAddPreview = { fg = colors.fg_added, bg = colors.bg_added }
+  highlights.GitSignsDeletePreview = { fg = colors.fg_removed, bg = colors.bg_removed }
+
+  -- Inline word diff
+  highlights.GitSignsAddInline = { bg = colors.bg_added_refine }
+  highlights.GitSignsDeleteInline = { bg = colors.bg_removed_refine }
+  highlights.GitSignsChangeInline = { bg = colors.bg_changed_refine }
+  highlights.GitSignsAddLnInline = { bg = colors.bg_added_refine }
+  highlights.GitSignsDeleteLnInline = { bg = colors.bg_removed_refine }
+  highlights.GitSignsChangeLnInline = { bg = colors.bg_changed_refine }
+
+  -- Virtual lines for deleted content
+  highlights.GitSignsDeleteVirtLn = { fg = colors.fg_removed, bg = colors.bg_removed }
+  highlights.GitSignsDeleteVirtLnInLine = { bg = colors.bg_removed_refine }
+  highlights.GitSignsVirtLnum = { fg = colors.fg_dim, bg = colors.bg_dim }
+end
+
+local function set_ccc_highlights(highlights, colors)
+  highlights.CccFloatNormal = { fg = colors.fg_active, bg = colors.bg_active }
+  highlights.CccFloatBorder = { fg = colors.border, bg = colors.bg_active }
+end
+
+local function set_opencode_highlights(highlights, colors)
+  highlights.OpencodeContextPlaceholder = { fg = colors.cyan_cooler }
+  highlights.OpencodeContextValue = { fg = colors.blue_warmer }
+  highlights.OpencodeAgent = { fg = colors.magenta }
+end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -338,6 +399,7 @@ return {
 
         -- File explorer
         set_nvim_tree_highlights(highlights, colors)
+        set_oil_highlights(highlights, colors)
 
         -- Completion
         set_blink_cmp_highlights(highlights, colors)
@@ -345,6 +407,7 @@ return {
         -- Git plugins
         set_diffview_highlights(highlights, colors)
         set_neogit_highlights(highlights, colors)
+        set_gitsigns_highlights(highlights, colors)
 
         -- LSP/Mason
         set_mason_highlights(highlights, colors)
@@ -359,6 +422,12 @@ return {
         set_matchup_highlights(highlights, colors)
         set_mini_jump2d_highlights(highlights, colors)
         set_whichkey_highlights(highlights, colors)
+
+        -- Color picker
+        set_ccc_highlights(highlights, colors)
+
+        -- AI integration
+        set_opencode_highlights(highlights, colors)
       end,
     })
     vim.cmd.colorscheme('modus')
