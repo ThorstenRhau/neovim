@@ -17,6 +17,10 @@ it's well-tested but occasionally in flux.
 If anything here serves as a reference or inspiration for your own setup, I'm
 glad it could help.
 
+## Showcase
+
+![neovim screenshot](https://rhau.se/my_neovim.jpg)
+
 ## Philosophy
 
 This config is built around a few core principles:
