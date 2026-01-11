@@ -17,15 +17,6 @@ it's well-tested but occasionally in flux.
 If anything here serves as a reference or inspiration for your own setup, I'm
 glad it could help.
 
-## Showcase
-
-The theme is a modified version of
-[Modus](https://github.com/miikanissi/modus-themes.nvim) paired with the
-typeface [Berkeley Mono](https://usgraphics.com/products/berkeley-mono).
-
-![Modus Vivendi - Dark Theme](./.img/dark.webp)
-![Modus Operandi - Light Theme](./.img/light.webp)
-
 ## Philosophy
 
 This config is built around a few core principles:
