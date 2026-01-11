@@ -4,8 +4,8 @@ tasks/
 # macOS files created by Finder.app
 **/.DS_Store
 
-# compiled spell files
-spell/*.spl
+# spell files
+spell/
 
 # Lazy lock file
 lazy-lock.json
