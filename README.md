@@ -51,10 +51,13 @@ This config is built around a few core principles:
 ├── lua/
 │   ├── config/                 # Core configuration
 │   │   ├── autocmds.lua        # Auto-commands
+│   │   ├── constants.lua       # Global constants
+│   │   ├── ftplugin.lua        # Filetype plugin helper
 │   │   ├── keymaps.lua         # Global keymaps
 │   │   ├── lazy.lua            # Plugin manager bootstrap
 │   │   └── options.lua         # Vim options
 │   └── plugins/                # Plugin specs (one file per category)
+│       ├── claudecode.lua      # Claude Code integration
 │       ├── colorscheme.lua     # Modus theme + custom highlights
 │       ├── completion.lua      # blink.cmp
 │       ├── editor.lua          # Editing aids
@@ -63,9 +66,12 @@ This config is built around a few core principles:
 │       ├── git.lua             # gitsigns, neogit, diffview
 │       ├── lsp.lua             # LSP servers, Mason
 │       ├── mini.lua            # mini.nvim modules
+│       ├── opencode.lua        # Opencode integration
 │       ├── picker.lua          # fzf-lua
+│       ├── session.lua         # Session management
 │       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
+│       ├── ui-input.lua        # UI input enhancements
 │       └── ui.lua              # which-key, lualine, trouble
 └── after/ftplugin/             # Filetype-specific settings
 ```
