@@ -39,7 +39,6 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     lazy = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       options = {
         theme = 'auto',
@@ -100,7 +99,6 @@ return {
   {
     'folke/trouble.nvim',
     cmd = 'Trouble',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       focus = true,
       auto_close = true,

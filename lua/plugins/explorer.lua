@@ -1,7 +1,6 @@
 return {
   {
     'stevearc/oil.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '-', '<cmd>Oil --float<cr>', desc = 'Open parent directory' },
       { '<leader>e', '<cmd>Oil --float<cr>', desc = 'File explorer' },
@@ -38,7 +37,6 @@ return {
   {
     'nvim-tree/nvim-tree.lua',
     version = '3.x',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle file tree' },
     },

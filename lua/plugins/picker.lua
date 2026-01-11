@@ -1,7 +1,6 @@
 ---@diagnostic disable: missing-fields
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   cmd = 'FzfLua',
   keys = {
