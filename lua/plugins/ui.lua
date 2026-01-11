@@ -21,7 +21,6 @@ return {
         { '<leader>c', group = 'code' },
         { '<leader>h', group = 'hunk' },
         { '<leader>t', group = 'toggle' },
-        { '<leader>tS', group = 'spell lang' },
         { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'project/session' },
         { '<leader>x', group = 'diagnostics' },

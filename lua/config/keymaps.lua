@@ -95,23 +95,3 @@ map('n', '<leader>ta', function()
     vim.notify('Completion disabled', vim.log.levels.INFO)
   end
 end, { desc = 'Toggle auto-completion' })
-
--- Spell language selection
-local function set_spell_lang(lang, lang_name)
-  vim.o.spelllang = lang
-  if not vim.o.spell then
-    vim.o.spell = true
-  end
-  vim.notify('Spell language: ' .. lang_name, vim.log.levels.INFO)
-end
-
-local spell_langs = {
-  { key = 'u', lang = 'en_us', name = 'English (US)' },
-  { key = 'g', lang = 'en_gb', name = 'English (GB)' },
-  { key = 's', lang = 'sv', name = 'Swedish' },
-}
-for _, sl in ipairs(spell_langs) do
-  map('n', '<leader>tS' .. sl.key, function()
-    set_spell_lang(sl.lang, sl.name)
-  end, { desc = 'Set spell lang to ' .. sl.name })
-end

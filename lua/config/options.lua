@@ -52,7 +52,3 @@ o.foldlevelstart = 99
 
 -- Spelling
 o.spelllang = 'en_us'
-opt.spellfile = {
-  vim.fn.stdpath('config') .. '/spell/en.utf-8.add',
-  vim.fn.stdpath('config') .. '/spell/sv.utf-8.add',
-}
