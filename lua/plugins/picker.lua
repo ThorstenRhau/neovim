@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
   'ibhagwan/fzf-lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -85,33 +86,38 @@ return {
     { 'gr', '<cmd>FzfLua lsp_references<cr>', desc = 'References' },
     { 'gy', '<cmd>FzfLua lsp_typedefs<cr>', desc = 'Type definition' },
   },
+  ---@module "fzf-lua"
+  ---@type fzf-lua.config
   opts = {
     'default-title', -- Titles for picker windows
     fzf_opts = {
       ['--scheme'] = 'path',
     },
+    ---@type fzf-lua.config.Winopts
     winopts = {
       height = 0.90,
       width = 0.90,
       row = 0.5,
       col = 0.5,
       border = 'single',
-      backdrop = 40,
+      backdrop = false,
       preview = {
         border = 'single',
         default = 'bat',
         layout = 'flex',
         flip_columns = 120,
-        horizontal = 'right:55%',
-        vertical = 'down:45%',
+        horizontal = 'right:65%',
+        vertical = 'down:65%',
         delay = 50,
       },
     },
+    ---@type fzf-lua.config.Previewers
     previewers = {
       builtin = {
         treesitter = { context = false },
       },
     },
+    ---@type fzf-lua.config.Defaults
     defaults = {
       formatter = 'path.filename_first',
     },
@@ -152,6 +158,7 @@ return {
         },
       },
     },
+    ---@type fzf-lua.config.Lsp
     lsp = {
       code_actions = { previewer = 'codeaction_native' },
       symbols = {
