@@ -1,9 +1,9 @@
-std = "lua51+luajit"
+std = "neovim"
 
 [config]
-globals = ["MiniIcons", "vim"]
+globals = ["MiniIcons"]
 
 [rules]
+global_usage     = "allow"
 lowercase_global = "allow"
 mixed_table      = "allow"
-unused_variable  = "allow"
