@@ -12,6 +12,8 @@ o.number = true
 o.numberwidth = 2
 o.pumheight = 10
 o.relativenumber = true
+o.signcolumn = 'auto:1'
+o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 o.scrolloff = 8
 o.shiftwidth = 4
 o.showmode = false

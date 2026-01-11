@@ -163,35 +163,4 @@ return {
       },
     },
   },
-  {
-    'luukvbaal/statuscol.nvim',
-    event = 'VeryLazy',
-    opts = {
-      relculright = true,
-      ft_ignore = { 'help', 'lazy', 'mason', 'neo-tree', 'oil', 'trouble' },
-      bt_ignore = { 'nofile', 'terminal' },
-      segments = {
-        -- Marks: user-set marks (a-z, A-Z) - hidden when no marks in buffer
-        {
-          sign = { name = { 'Marks_' }, maxwidth = 1, colwidth = 1, auto = true },
-          click = 'v:lua.ScSa',
-        },
-        -- Signs: diagnostics + gitsigns shared column (diagnostics priority)
-        {
-          sign = {
-            namespace = { 'diagnostic', 'gitsigns' },
-            maxwidth = 1,
-            colwidth = 1,
-            auto = true,
-          },
-          click = 'v:lua.ScSa',
-        },
-        -- Line numbers
-        {
-          text = { '%l', ' ' },
-          click = 'v:lua.ScLa',
-        },
-      },
-    },
-  },
 }
