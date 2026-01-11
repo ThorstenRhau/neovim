@@ -4,7 +4,9 @@ local augroup = vim.api.nvim_create_augroup
 -- Highlight on yank
 autocmd('TextYankPost', {
   group = augroup('highlight_yank', { clear = true }),
-  callback = vim.highlight.on_yank,
+  callback = function()
+    vim.hl.on_yank()
+  end,
 })
 
 -- Return to last edit position
