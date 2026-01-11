@@ -40,23 +40,4 @@ return {
     },
     opts = {},
   },
-
-  -- Jump within visible lines
-  {
-    'echasnovski/mini.jump2d',
-    version = false,
-    keys = {
-      {
-        '<leader>j',
-        function()
-          require('mini.jump2d').start()
-        end,
-        mode = { 'n', 'x', 'o' },
-        desc = 'Jump 2D',
-      },
-    },
-    opts = {
-      mappings = { start_jumping = '' },
-    },
-  },
 }
