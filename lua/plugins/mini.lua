@@ -6,7 +6,7 @@ return {
     'nvim-mini/mini.icons',
     version = false,
     lazy = false,
-    priority = 1000,
+    priority = 900,
     config = function()
       require('mini.icons').setup()
       _G.MiniIcons.mock_nvim_web_devicons()
