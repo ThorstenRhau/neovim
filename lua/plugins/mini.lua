@@ -2,7 +2,7 @@ return {
   -- Icons using modern material design
   {
 
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
     version = false,
     lazy = false,
     priority = 1000,
@@ -14,7 +14,7 @@ return {
 
   -- Align text interactively
   {
-    'echasnovski/mini.align',
+    'nvim-mini/mini.align',
     version = false,
     keys = {
       { 'ga', mode = { 'n', 'x' }, desc = 'align' },
@@ -25,7 +25,7 @@ return {
 
   -- Split and join arguments
   {
-    'echasnovski/mini.splitjoin',
+    'nvim-mini/mini.splitjoin',
     version = false,
     keys = {
       { 'gS', mode = { 'n', 'x' }, desc = 'toggle split/join' },
@@ -39,5 +39,16 @@ return {
       },
     },
     opts = {},
+  },
+
+  -- Statusline
+  {
+    'nvim-mini/mini.statusline',
+    version = false,
+    event = 'VeryLazy',
+    opts = {
+      use_icons = true,
+      content = {},
+    },
   },
 }
