@@ -1,0 +1,8 @@
+---
+name: mini
+base: neovim
+globals:
+  MiniIcons:
+    any: true
+  MiniStatusline:
+    any: true

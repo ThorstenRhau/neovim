@@ -1,7 +1,4 @@
-std = "neovim"
-
-[config]
-globals = ["MiniIcons"]
+std = "neovim+selene_mini"
 
 [rules]
 global_usage     = "allow"

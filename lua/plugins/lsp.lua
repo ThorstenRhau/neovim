@@ -198,7 +198,7 @@ return {
               runtime = { version = 'LuaJIT' },
               workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME } },
               telemetry = { enable = false },
-              diagnostics = { globals = { 'vim' } },
+              diagnostics = { globals = { 'vim', 'MiniIcons', 'MiniStatusline' } },
             },
           },
         },
