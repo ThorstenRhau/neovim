@@ -35,6 +35,7 @@ autocmd('VimResized', {
 })
 
 -- Close certain filetypes with q
+-- Note: 'man' is excluded because Neovim has built-in q handling for man pages
 autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
   pattern = {
@@ -43,7 +44,6 @@ autocmd('FileType', {
     'gitsigns-blame',
     'help',
     'lspinfo',
-    'man',
     'notify',
     'qf',
     'startuptime',
@@ -51,13 +51,11 @@ autocmd('FileType', {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', function()
-      -- If this is the last window, quit Neovim (useful for MANPAGER)
-      if vim.fn.winnr('$') == 1 and vim.fn.tabpagenr('$') == 1 then
-        vim.cmd('quit')
-      else
-        vim.cmd('close')
+      local ok = pcall(vim.cmd.bdelete, { bang = true })
+      if not ok then
+        vim.cmd.quit()
       end
-    end, { buffer = event.buf, silent = true })
+    end, { buffer = event.buf, silent = true, desc = 'Close buffer' })
   end,
 })
 
