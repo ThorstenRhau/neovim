@@ -89,12 +89,21 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
 end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
-autocmd('FileType', {
+autocmd('BufWinEnter', {
   group = augroup('statuscolumn_exclusions', { clear = true }),
-  pattern = { 'help', 'lazy', 'mason', 'neo-tree', 'oil', 'trouble' },
   callback = function()
-    vim.wo.statuscolumn = ''
-    vim.wo.signcolumn = 'no'
+    local dominated_filetypes = {
+      'help',
+      'lazy',
+      'mason',
+      'NvimTree',
+      'oil',
+      'trouble',
+    }
+    if vim.tbl_contains(dominated_filetypes, vim.bo.filetype) then
+      vim.wo.statuscolumn = ''
+      vim.wo.signcolumn = 'no'
+    end
   end,
 })
 

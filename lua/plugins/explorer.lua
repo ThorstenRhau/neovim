@@ -6,6 +6,9 @@ return {
       { '<leader>e', '<cmd>Oil --float<cr>', desc = 'file explorer' },
     },
     opts = {
+      win_options = {
+        statuscolumn = '',
+      },
       delete_to_trash = true,
       skip_confirm_for_simple_edits = true,
       watch_for_changes = true,
@@ -31,6 +34,11 @@ return {
       float = {
         max_width = 100,
         max_height = 30,
+        win_options = {
+          statuscolumn = '',
+          number = false,
+          relativenumber = false,
+        },
       },
     },
   },
