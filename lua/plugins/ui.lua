@@ -77,7 +77,7 @@ return {
     'sphamba/smear-cursor.nvim',
     event = 'VeryLazy',
     keys = {
-      { '<leader>ts', '<cmd>SmearCursorToggle<cr>', desc = 'cursor smear' },
+      { '<leader>tS', '<cmd>SmearCursorToggle<cr>', desc = 'cursor smear' },
     },
     opts = {
       smear_insert_mode = false,
