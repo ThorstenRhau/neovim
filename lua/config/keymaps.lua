@@ -8,14 +8,6 @@ map('i', 'jj', '<Esc>', { desc = 'escape' })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'down' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
 
--- Move lines
-map('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'move line down' })
-map('n', '<A-k>', '<cmd>m .-2<cr>==', { desc = 'move line up' })
-map('i', '<A-j>', '<esc><cmd>m .+1<cr>==gi', { desc = 'move line down' })
-map('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'move line up' })
-map('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'move selection down' })
-map('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'move selection up' })
-
 -- Buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<leader>,', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
