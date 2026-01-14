@@ -82,6 +82,10 @@ return {
             return
           end
 
+          if vim.g.disable_auto_lint then
+            return
+          end
+
           lint.try_lint()
         end,
       })

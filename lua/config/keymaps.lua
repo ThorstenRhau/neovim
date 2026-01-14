@@ -87,3 +87,16 @@ map('n', '<leader>ta', function()
     vim.notify('Completion disabled', vim.log.levels.INFO)
   end
 end, { desc = 'auto-completion' })
+
+map('n', '<leader>tL', function()
+  vim.g.disable_auto_lint = not vim.g.disable_auto_lint
+  if vim.g.disable_auto_lint then
+    vim.diagnostic.reset(nil, 0)
+    vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 }))
+    vim.notify('LSP & Linter disabled', vim.log.levels.INFO)
+  else
+    vim.cmd('LspStart')
+    require('lint').try_lint()
+    vim.notify('LSP & Linter enabled', vim.log.levels.INFO)
+  end
+end, { desc = 'LSP & linter' })
