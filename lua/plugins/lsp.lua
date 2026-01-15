@@ -34,6 +34,7 @@ return {
         'shfmt',
         'stylua',
         'taplo',
+        'tinymist',
         'vtsls',
         'yaml-language-server',
         'yamllint',
@@ -216,6 +217,14 @@ return {
           cmd = { 'taplo', 'lsp', 'stdio' },
           filetypes = { 'toml' },
           root_markers = { '.taplo.toml', 'taplo.toml', '.git' },
+        },
+        tinymist = {
+          cmd = { 'tinymist' },
+          filetypes = { 'typst' },
+          root_markers = { 'typst.toml', '.git' },
+          settings = {
+            formatterMode = 'typstyle',
+          },
         },
         vtsls = {
           cmd = { 'vtsls', '--stdio' },

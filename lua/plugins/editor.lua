@@ -87,6 +87,15 @@ return {
     },
   },
   {
+    'chomosuke/typst-preview.nvim',
+    ft = 'typst',
+    version = '1.*',
+    keys = {
+      { '<leader>tp', '<cmd>TypstPreviewToggle<cr>', desc = 'typst preview' },
+    },
+    opts = {},
+  },
+  {
     'uga-rosa/ccc.nvim',
     cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle' },
     keys = {
