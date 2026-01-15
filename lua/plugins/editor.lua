@@ -93,7 +93,11 @@ return {
     keys = {
       { '<leader>tp', '<cmd>TypstPreviewToggle<cr>', desc = 'typst preview' },
     },
-    opts = {},
+    opts = {
+      dependencies_bin = {
+        ['typst-preview'] = 'tinymist',
+      },
+    },
   },
   {
     'uga-rosa/ccc.nvim',
