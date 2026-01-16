@@ -43,7 +43,7 @@ make format     # StyLua
 make all        # Both (runs on pre-commit)
 ```
 
-No test suite. Validate with `make lint` before committing.
+No test suite. Validate with `make all` before committing.
 
 ## Style
 
