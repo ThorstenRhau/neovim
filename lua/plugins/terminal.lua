@@ -68,4 +68,3 @@ return {
     vim.keymap.set('n', '<leader>tt', toggle_terminal, { desc = 'terminal' })
   end,
 }
-
