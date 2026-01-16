@@ -101,10 +101,10 @@ return {
       map({ 'n', 'x', 'o' }, '[F', function()
         require('nvim-treesitter-textobjects.move').goto_previous_end('@function.outer', 'textobjects')
       end, { desc = 'previous function end' })
-      map({ 'n', 'x', 'o' }, ']c', function()
+      map({ 'n', 'x', 'o' }, ']k', function()
         require('nvim-treesitter-textobjects.move').goto_next_start('@class.outer', 'textobjects')
       end, { desc = 'next class start' })
-      map({ 'n', 'x', 'o' }, '[c', function()
+      map({ 'n', 'x', 'o' }, '[k', function()
         require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
       end, { desc = 'previous class start' })
     end,
