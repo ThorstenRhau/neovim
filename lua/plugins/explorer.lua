@@ -44,7 +44,6 @@ return {
   },
   {
     'nvim-tree/nvim-tree.lua',
-    version = '3.x',
     keys = {
       { '<leader>tr', '<cmd>NvimTreeToggle<cr>', desc = 'file tree' },
     },
