@@ -11,7 +11,7 @@ return {
   ---@type Everforest.Config
   ---@diagnostic disable: missing-fields
   opts = {
-    background = 'medium',
+    background = 'hard',
     transparent_background_level = 0,
     italics = true,
     disable_italic_comments = false,
