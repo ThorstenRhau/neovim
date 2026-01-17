@@ -26,7 +26,7 @@ o.splitright = true
 o.tabstop = 4
 o.timeoutlen = 300
 o.undofile = true
-o.undolevels = 10000
+o.undolevels = 1000
 o.updatetime = 250
 o.wrap = false
 
