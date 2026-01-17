@@ -74,17 +74,6 @@ return {
     },
   },
   {
-    'sphamba/smear-cursor.nvim',
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>tS', '<cmd>SmearCursorToggle<cr>', desc = 'cursor smear' },
-    },
-    opts = {
-      smear_insert_mode = false,
-      legacy_computing_symbols_support = true,
-    },
-  },
-  {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
     opts = {
