@@ -5,7 +5,7 @@ return {
     vim.api.nvim_create_autocmd('TermOpen', {
       pattern = 'term://*claude*',
       callback = function()
-        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], { buffer = 0 })
+        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], { buffer = 0, desc = 'exit terminal mode' })
       end,
     })
   end,

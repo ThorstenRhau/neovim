@@ -56,12 +56,11 @@ return {
           return
         end
 
-        local opts = { buffer = 0 }
-        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], opts)
-        vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-        vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-        vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-        vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+        vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], { buffer = 0, desc = 'exit terminal mode' })
+        vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = 'go to left window' })
+        vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buffer = 0, desc = 'go to lower window' })
+        vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buffer = 0, desc = 'go to upper window' })
+        vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { buffer = 0, desc = 'go to right window' })
       end,
     })
 
