@@ -52,7 +52,7 @@ return {
       callback = function()
         -- Skip fzf-lua buffers (they handle their own keymaps)
         local bufname = vim.api.nvim_buf_get_name(0)
-        if bufname:match('fzf') then
+        if bufname:match('fzf') or bufname:match('claude') or bufname:match('opencode') then
           return
         end
 
