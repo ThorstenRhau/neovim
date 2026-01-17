@@ -1,15 +1,13 @@
--- .luacheckrc
 std = "luajit"
 unused = true
 
--- core globals
 globals = {
     "vim",
 }
 
--- allow these additional names without error
-new_globals = {
-    "vim",
+read_globals = {
+    "MiniStatusline",
+    "MiniIcons",
 }
 
 include_files = { "lua/**/*.lua", "init.lua" }
