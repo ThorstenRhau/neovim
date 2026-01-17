@@ -1,25 +1,29 @@
--- https://github.com/rose-pine/neovim
+-- https://github.com/neanias/everforest-nvim
 
 ---@module "lazy"
 ---@type LazySpec
 return {
-  'rose-pine/neovim',
-  name = 'rose-pine',
+  'neanias/everforest-nvim',
+  name = 'everforest',
   lazy = false,
   priority = 1000,
+  ---@module "everforest"
+  ---@type Everforest.Config
+  ---@diagnostic disable: missing-fields
   opts = {
-    variant = 'auto',
-    dark_variant = 'moon',
-
-    styles = {
-      bold = true,
-      italic = true,
-      transparency = false,
-    },
+    background = 'medium',
+    transparent_background_level = 0,
+    italics = true,
+    disable_italic_comments = false,
+    inlay_hints_background = 'dimmed',
+    on_highlights = function(hl, palette)
+      hl['@string.special.symbol.ruby'] = { link = '@field' }
+      hl['DiagnosticUnderlineWarn'] = { undercurl = true, sp = palette.yellow }
+    end,
   },
   config = function(_, opts)
-    require('rose-pine').setup(opts)
-    vim.cmd.colorscheme('rose-pine')
+    require('everforest').setup(opts)
+    vim.cmd.colorscheme('everforest')
 
     -- Re-enable automatic background detection after initial colorscheme load
     local function parsecolor(c)
@@ -36,7 +40,7 @@ return {
     end
 
     vim.api.nvim_create_autocmd('TermResponse', {
-      group = vim.api.nvim_create_augroup('rose_pine_background_sync', { clear = true }),
+      group = vim.api.nvim_create_augroup('everforest_background_sync', { clear = true }),
       nested = true,
       desc = 'Update background based on terminal emulator response',
       callback = function(args)
@@ -49,7 +53,7 @@ return {
             local new_bg = luminance < 0.5 and 'dark' or 'light'
             if vim.o.background ~= new_bg then
               vim.o.background = new_bg
-              vim.cmd.colorscheme('rose-pine')
+              vim.cmd.colorscheme('everforest')
             end
           end
         end
