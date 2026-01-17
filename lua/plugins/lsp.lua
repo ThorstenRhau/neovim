@@ -244,7 +244,11 @@ return {
               schemaStore = { enable = true },
               schemas = {
                 ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
-                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose*.yml',
+                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = {
+                  'docker-compose*.yml',
+                  'compose.yaml',
+                  'compose.yml',
+                },
                 ['kubernetes'] = '/*.k8s.yaml',
               },
               validate = true,
