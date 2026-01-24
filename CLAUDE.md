@@ -30,7 +30,6 @@ Personal Neovim config (Lua, requires **Neovim 0.11.5+**).
 │       ├── session.lua         # Session management
 │       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       ├── ui-input.lua        # UI input enhancements
 │       └── ui.lua              # which-key, lualine, trouble
 └── after/ftplugin/             # Filetype-specific settings
 ```
