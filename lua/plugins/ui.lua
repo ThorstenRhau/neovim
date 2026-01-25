@@ -3,7 +3,7 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      preset = 'modern',
+      preset = 'helix',
       delay = 200,
       spec = {
         { '<leader>a', group = 'claude' },
