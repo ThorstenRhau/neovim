@@ -1,29 +1,24 @@
--- https://github.com/neanias/everforest-nvim
+-- https://github.com/rebelot/kanagawa.nvim
 
 ---@module "lazy"
 ---@type LazySpec
 return {
-  'neanias/everforest-nvim',
-  name = 'everforest',
+  dir = '~/git/kanagawa.nvim',
+  name = 'kanagawa',
   lazy = false,
   priority = 1000,
-  ---@module "everforest"
-  ---@type Everforest.Config
-  ---@diagnostic disable: missing-fields
+  ---@module "kanagawa"
+  ---@type KanagawaConfig
   opts = {
-    background = 'hard',
-    transparent_background_level = 0,
-    italics = true,
-    disable_italic_comments = false,
-    inlay_hints_background = 'dimmed',
-    on_highlights = function(hl, palette)
-      hl['@string.special.symbol.ruby'] = { link = '@field' }
-      hl['DiagnosticUnderlineWarn'] = { undercurl = true, sp = palette.yellow }
-    end,
+    compile = true,
+    background = {
+      dark = 'wave',
+      light = 'lotus',
+    },
   },
   config = function(_, opts)
-    require('everforest').setup(opts)
-    vim.cmd.colorscheme('everforest')
+    require('kanagawa').setup(opts)
+    vim.cmd.colorscheme('kanagawa')
 
     -- Re-enable automatic background detection after initial colorscheme load
     local function parsecolor(c)
@@ -40,7 +35,7 @@ return {
     end
 
     vim.api.nvim_create_autocmd('TermResponse', {
-      group = vim.api.nvim_create_augroup('everforest_background_sync', { clear = true }),
+      group = vim.api.nvim_create_augroup('kanagawa_background_sync', { clear = true }),
       nested = true,
       desc = 'Update background based on terminal emulator response',
       callback = function(args)
@@ -53,7 +48,7 @@ return {
             local new_bg = luminance < 0.5 and 'dark' or 'light'
             if vim.o.background ~= new_bg then
               vim.o.background = new_bg
-              vim.cmd.colorscheme('everforest')
+              vim.cmd.colorscheme('kanagawa')
             end
           end
         end
