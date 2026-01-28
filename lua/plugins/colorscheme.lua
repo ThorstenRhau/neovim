@@ -3,8 +3,7 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-  dir = '~/git/kanagawa.nvim',
-  name = 'kanagawa',
+  'rebelot/kanagawa.nvim',
   lazy = false,
   priority = 1000,
   ---@module "kanagawa"
