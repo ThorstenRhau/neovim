@@ -27,9 +27,14 @@ return {
   },
   {
     'andymass/vim-matchup',
-    event = 'VeryLazy',
+    event = 'BufReadPre',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     init = function()
       vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_treesitter_stopline = 500
+      vim.g.matchup_treesitter_include_match_words = false
+      vim.g.matchup_treesitter_enable_quotes = true
     end,
   },
   {
