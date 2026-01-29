@@ -75,7 +75,6 @@ This config is built around a few core principles:
 │       ├── session.lua         # Session management
 │       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       ├── ui-input.lua        # UI input enhancements
 │       └── ui.lua              # which-key, lualine, trouble
 └── after/ftplugin/             # Filetype-specific settings
 ```
