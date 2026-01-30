@@ -25,7 +25,6 @@ Personal Neovim config (Lua, requires **Neovim 0.11.5+**).
 │       ├── git.lua             # gitsigns, neogit, diffview
 │       ├── lsp.lua             # LSP servers, Mason
 │       ├── mini.lua            # mini.nvim modules
-│       ├── opencode.lua        # Opencode integration
 │       ├── picker.lua          # fzf-lua
 │       ├── session.lua         # Session management
 │       ├── terminal.lua        # built-in terminal

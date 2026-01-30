@@ -12,7 +12,6 @@ return {
         { '<leader>f', group = 'file/find' },
         { '<leader>g', group = 'git' },
         { '<leader>h', group = 'hunk' },
-        { '<leader>o', group = 'opencode' },
         { '<leader>q', group = 'project/session' },
         { '<leader>s', group = 'search' },
         { '<leader>t', group = 'toggle' },
