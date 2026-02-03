@@ -6,6 +6,9 @@ return {
     'rafamadriz/friendly-snippets',
   },
   opts = {
+    fuzzy = {
+      implementation = 'prefer_rust',
+    },
     keymap = { preset = 'super-tab' },
     cmdline = {
       keymap = { preset = 'inherit' },
