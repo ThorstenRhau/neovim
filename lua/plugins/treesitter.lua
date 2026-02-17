@@ -40,6 +40,7 @@ return {
         'vimdoc',
         'xml',
         'yaml',
+        'yang',
       }
 
       vim.api.nvim_create_autocmd('User', {
