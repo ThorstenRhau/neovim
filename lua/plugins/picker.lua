@@ -88,6 +88,7 @@ return {
   ---@type fzf-lua.config
   opts = {
     'default-title', -- Titles for picker windows
+    fzf_colors = true, -- Sync fzf colors from Neovim highlights
     fzf_opts = {
       ['--scheme'] = 'path',
     },

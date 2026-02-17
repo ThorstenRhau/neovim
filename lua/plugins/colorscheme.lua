@@ -14,6 +14,32 @@ return {
       dark = 'wave',
       light = 'lotus',
     },
+    colors = {
+      palette = {
+        -- Dark backgrounds (wave) — warm charcoal inspired by claude.ai
+        sumiInk0 = '#1e1d1b', -- darkest (floats, statuslines)
+        sumiInk1 = '#222120', -- bg_dim, bg_m2
+        sumiInk2 = '#262523', -- bg_m1
+        sumiInk3 = '#2b2a27', -- main background
+        sumiInk4 = '#343330', -- bg_p1, gutter
+        sumiInk5 = '#3d3c38', -- bg_p2, cursorline
+        sumiInk6 = '#545350', -- nontext, whitespace
+
+        -- Diff backgrounds (wave) — warm tints replacing cool blue originals
+        winterGreen = '#2e3329', -- diff add bg
+        winterRed = '#3b2b2b', -- diff delete bg
+        winterBlue = '#302f2c', -- diff change/context bg
+        winterYellow = '#49443c', -- diff text bg
+
+        -- Light backgrounds (lotus) — warm cream inspired by claude.ai
+        lotusWhite0 = '#e8e2d6', -- darkest light bg (floats)
+        lotusWhite1 = '#ece6da', -- bg_dim, bg_m2
+        lotusWhite2 = '#f0eadf', -- bg_m1
+        lotusWhite3 = '#f5efe3', -- main background
+        lotusWhite4 = '#ebe5d9', -- bg_p1, gutter
+        lotusWhite5 = '#e5dfd3', -- bg_p2, cursorline
+      },
+    },
   },
   config = function(_, opts)
     require('kanagawa').setup(opts)
