@@ -280,7 +280,7 @@ return {
           map('i', '<C-k>', vim.lsp.buf.signature_help, 'signature help')
 
           -- Document highlight on cursor hold
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          local client = vim.lsp.get_clients({ id = event.data.client_id })[1]
           if client and client:supports_method('textDocument/documentHighlight') then
             local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {

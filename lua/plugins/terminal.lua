@@ -13,20 +13,28 @@ return {
       return math.floor(vim.o.lines * 0.3)
     end
 
-    local function open_terminal()
-      -- Create a horizontal split at the bottom
-      vim.cmd('botright split')
-      vim.cmd('resize ' .. get_height())
+    local function is_terminal_alive(buf)
+      if not buf or not vim.api.nvim_buf_is_valid(buf) then
+        return false
+      end
+      local chan = vim.bo[buf].channel
+      return chan and chan > 0 and vim.fn.jobwait({ chan }, 0)[1] == -1
+    end
 
-      if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
-        -- Reuse existing terminal buffer
-        vim.api.nvim_win_set_buf(0, term_buf)
+    local function open_terminal()
+      if is_terminal_alive(term_buf) then
+        -- Reuse existing terminal buffer directly
+        vim.cmd('botright sbuffer ' .. term_buf)
       else
-        -- Create new terminal
-        vim.cmd('terminal')
+        -- Clean up dead buffer if it exists
+        if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
+          vim.api.nvim_buf_delete(term_buf, { force = true })
+        end
+        vim.cmd('botright split | terminal')
         term_buf = vim.api.nvim_get_current_buf()
       end
 
+      vim.cmd('resize ' .. get_height())
       term_win = vim.api.nvim_get_current_win()
       vim.cmd('startinsert')
     end

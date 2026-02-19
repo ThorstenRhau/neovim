@@ -106,7 +106,7 @@ return {
       },
       highlight_mode = 'background',
       virtual_symbol = '●',
-      virtual_pos = 'inline-left',
+      virtual_pos = 'inline',
       recognize = {
         input = true,
         output = true,

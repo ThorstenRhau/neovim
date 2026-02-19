@@ -91,12 +91,18 @@ end, { desc = 'auto-completion' })
 map('n', '<leader>tL', function()
   vim.g.disable_auto_lint = not vim.g.disable_auto_lint
   if vim.g.disable_auto_lint then
-    vim.diagnostic.reset(nil, 0)
-    vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 }))
+    vim.diagnostic.enable(false, { bufnr = 0 })
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+      client:stop()
+    end
     vim.notify('LSP & Linter disabled', vim.log.levels.INFO)
   else
+    vim.diagnostic.enable(true, { bufnr = 0 })
     vim.cmd('LspStart')
-    require('lint').try_lint()
+    local ok, lint = pcall(require, 'lint')
+    if ok then
+      lint.try_lint()
+    end
     vim.notify('LSP & Linter enabled', vim.log.levels.INFO)
   end
 end, { desc = 'LSP & linter' })

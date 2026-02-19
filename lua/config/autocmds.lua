@@ -10,11 +10,11 @@ autocmd('TextYankPost', {
 })
 
 -- Return to last edit position
+local exclude_ft = { gitcommit = true, gitrebase = true, help = true }
 autocmd('BufReadPost', {
   group = augroup('restore_cursor', { clear = true }),
   callback = function(event)
-    local exclude_ft = { 'gitcommit', 'gitrebase', 'help' }
-    if vim.tbl_contains(exclude_ft, vim.bo[event.buf].filetype) then
+    if exclude_ft[vim.bo[event.buf].filetype] then
       return
     end
 
@@ -75,7 +75,7 @@ autocmd('BufWritePre', {
 autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   group = augroup('checktime', { clear = true }),
   callback = function()
-    if vim.o.buftype ~= 'nofile' then
+    if vim.bo.buftype ~= 'nofile' then
       vim.cmd('checktime')
     end
   end,
@@ -89,18 +89,11 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
 end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
+local dominated_filetypes = { help = true, lazy = true, mason = true, NvimTree = true, oil = true, trouble = true }
 autocmd('BufWinEnter', {
   group = augroup('statuscolumn_exclusions', { clear = true }),
-  callback = function()
-    local dominated_filetypes = {
-      'help',
-      'lazy',
-      'mason',
-      'NvimTree',
-      'oil',
-      'trouble',
-    }
-    if vim.tbl_contains(dominated_filetypes, vim.bo.filetype) then
+  callback = function(event)
+    if dominated_filetypes[vim.bo[event.buf].filetype] then
       vim.wo.statuscolumn = ''
       vim.wo.signcolumn = 'no'
     end
@@ -111,7 +104,7 @@ autocmd('OptionSet', {
   group = augroup('statuscolumn_exclusions', { clear = false }),
   pattern = 'buftype',
   callback = function()
-    local buftype = vim.bo.buftype
+    local buftype = vim.v.option_new
     if buftype == 'nofile' or buftype == 'terminal' then
       vim.wo.statuscolumn = ''
       vim.wo.signcolumn = 'no'

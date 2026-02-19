@@ -6,7 +6,7 @@ return {
       { '<leader>hs', '<cmd>Gitsigns stage_hunk<cr>', desc = 'stage hunk' },
       { '<leader>hr', '<cmd>Gitsigns reset_hunk<cr>', desc = 'reset hunk' },
       { '<leader>hS', '<cmd>Gitsigns stage_buffer<cr>', desc = 'stage buffer' },
-      { '<leader>hu', '<cmd>Gitsigns reset_buffer_index<cr>', desc = 'unstage buffer' },
+      { '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = 'unstage hunk' },
       { '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', desc = 'reset buffer' },
       { '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', desc = 'preview hunk' },
       { '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', desc = 'blame line' },
@@ -64,7 +64,7 @@ return {
       'sindrets/diffview.nvim',
       'ibhagwan/fzf-lua',
     },
-    cmd = { 'Neogit', 'NeogitCommit', 'NeogitResetState', 'NeogitLogCurrent' },
+    cmd = { 'Neogit' },
     keys = {
       { '<leader>gg', '<cmd>Neogit<cr>', desc = 'neogit' },
     },
@@ -85,7 +85,6 @@ return {
   },
   {
     'sindrets/diffview.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
     keys = {
       { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'diffview' },
