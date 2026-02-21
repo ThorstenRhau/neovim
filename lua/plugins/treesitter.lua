@@ -108,6 +108,12 @@ return {
       map({ 'n', 'x', 'o' }, '[k', function()
         require('nvim-treesitter-textobjects.move').goto_previous_start('@class.outer', 'textobjects')
       end, { desc = 'previous class start' })
+      map({ 'n', 'x', 'o' }, ']K', function()
+        require('nvim-treesitter-textobjects.move').goto_next_end('@class.outer', 'textobjects')
+      end, { desc = 'next class end' })
+      map({ 'n', 'x', 'o' }, '[K', function()
+        require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
+      end, { desc = 'previous class end' })
     end,
   },
   {
