@@ -14,6 +14,12 @@ return {
       dark = 'wave',
       light = 'lotus',
     },
+    overrides = function(colors)
+      return {
+        IblIndent = { fg = colors.theme.ui.bg_p2 },
+        IblScope = { fg = colors.theme.ui.special },
+      }
+    end,
     colors = {
       palette = {
         -- Dark backgrounds (wave) — warm charcoal inspired by claude.ai
