@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "make all"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import json,sys; d=json.load(sys.stdin); fp=d.get('file_path',''); (sys.stderr.write('lazy-lock.json is managed by lazy.nvim\\n') or sys.exit(1)) if fp.endswith('lazy-lock.json') else None\""
+          }
+        ]
+      }
+    ]
+  }
+}
