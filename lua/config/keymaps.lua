@@ -67,6 +67,7 @@ local toggles = {
   { 'n', 'relativenumber', 'relative numbers' },
   { 's', 'spell', 'spelling' },
   { 'c', 'cursorline', 'cursorline' },
+  { 'h', 'list', 'hidden chars' },
 }
 for _, t in ipairs(toggles) do
   map('n', '<leader>t' .. t[1], function()
