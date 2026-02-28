@@ -9,7 +9,7 @@ return {
   ---@module "kanagawa"
   ---@type KanagawaConfig
   opts = {
-    compile = true,
+    compile = false,
     background = {
       dark = 'wave',
       light = 'lotus',
