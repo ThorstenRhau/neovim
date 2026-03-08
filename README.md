@@ -7,76 +7,16 @@
 [![Last Rewrite](https://img.shields.io/badge/last%20rewrite-Jan%202026-blue)](https://github.com/ThorstenRhau/neovim)
 [![First Commit](https://img.shields.io/badge/first%20commit-Dec%202023-gray)](https://github.com/ThorstenRhau/neovim)
 
-Personal configuration, maintained since December 2023. After 1000+ commits I
-decided it was time for a complete rewrite in January 2026 — a clean slate built
-on Neovim 0.11.x native API.
+Personal config, maintained since December 2023. After 1000+ commits it was time
+for a full rewrite in January 2026, targeting the Neovim 0.11.x native API.
 
-The `main` branch is my daily driver. I use this config for my actual work, so
-it's well-tested but occasionally in flux.
+The `main` branch is my daily driver. Well-tested but occasionally in flux.
 
-If anything here serves as a reference or inspiration for your own setup, I'm
-glad it could help.
+Feel free to steal anything useful.
 
 ## Showcase
 
-![neovim screenshot](https://rhau.se/my_neovim.jpg)
-
-## Philosophy
-
-This config is built around a few core principles:
-
-- **Modern API first** — Uses Neovim 0.11's native `vim.lsp.config`,
-  `vim.lsp.enable()`, `vim.diagnostic.jump()`, and built-in floating window
-  borders. No compatibility shims for older versions.
-
-- **Treesitter on main** — Runs the `main` branch of nvim-treesitter for the
-  latest parser improvements and syntax highlighting.
-
-- **Modular by design** — One concern per file. Core config lives in
-  `lua/config/`, plugin specs live in `lua/plugins/`. Easy to navigate and
-  maintain.
-
-- **Performance** — Lazy-loading via events, commands, and keys. Disabled
-  built-in plugins I don't use.
-
-- **Keyboard-first, discoverable** — Space as leader with semantic groupings
-  (`<leader>f` for files, `<leader>s` for search, `<leader>g` for git).
-  which-key makes everything discoverable.
-
-- **Readable User Interface** — Modus color scheme tweaks to avoid pure black or
-  white backgrounds and added custom highlights for better plugin integration.
-  Smooth scrolling. No visual clutter.
-
-## Structure
-
-```txt
-~/.config/nvim/
-├── init.lua                    # Entry point
-├── lua/
-│   ├── config/                 # Core configuration
-│   │   ├── autocmds.lua        # Auto-commands
-│   │   ├── constants.lua       # Global constants
-│   │   ├── ftplugin.lua        # Filetype plugin helper
-│   │   ├── keymaps.lua         # Global keymaps
-│   │   ├── lazy.lua            # Plugin manager bootstrap
-│   │   └── options.lua         # Vim options
-│   └── plugins/                # Plugin specs (one file per category)
-│       ├── claudecode.lua      # Claude Code integration
-│       ├── colorscheme.lua     # Modus theme + custom highlights
-│       ├── completion.lua      # blink.cmp
-│       ├── editor.lua          # Editing aids
-│       ├── explorer.lua        # oil.nvim
-│       ├── format.lua          # conform.nvim + nvim-lint
-│       ├── git.lua             # gitsigns, neogit, diffview
-│       ├── lsp.lua             # LSP servers, Mason
-│       ├── mini.lua            # mini.nvim modules
-│       ├── picker.lua          # fzf-lua
-│       ├── session.lua         # Session management
-│       ├── terminal.lua        # built-in terminal
-│       ├── treesitter.lua      # Treesitter + textobjects
-│       └── ui.lua              # which-key, lualine, trouble
-└── after/ftplugin/             # Filetype-specific settings
-```
+![Neovim screenshot](https://rhau.se/my_neovim.jpg)
 
 ## Requirements
 
@@ -95,8 +35,8 @@ brew install neovim ripgrep fd git node
 git clone --depth=1 https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 ```
 
-## Acknowledgments
+## Thanks
 
-This config wouldn't exist without the incredible Neovim community — plugin
-authors, core contributors, and everyone sharing their knowledge and ideas. The
-ecosystem is what makes Neovim special.
+Big thanks to the Neovim community. Plugin authors, core contributors, and
+everyone sharing information and ideas. The ecosystem is what makes Neovim fun
+to use for me.
