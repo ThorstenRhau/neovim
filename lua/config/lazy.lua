@@ -21,7 +21,7 @@ require('lazy').setup({
   defaults = {
     lazy = false,
   },
-  install = { colorscheme = { 'default' } },
+  install = { colorscheme = { 'claude', 'default' } },
   change_detection = { notify = false },
   ui = {
     border = 'single',
