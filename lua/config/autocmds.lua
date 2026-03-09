@@ -108,7 +108,7 @@ autocmd('TermResponse', {
         local new_bg = luminance < 0.5 and 'dark' or 'light'
         if vim.o.background ~= new_bg then
           vim.o.background = new_bg
-          vim.cmd.colorscheme('claude')
+          vim.cmd.colorscheme('claude-theme')
         end
       end
     end
