@@ -14,6 +14,9 @@ local function base(p)
     CursorIM = { link = 'Cursor' },
     CursorLine = { bg = p.bg5 },
     CursorColumn = { bg = p.bg5 },
+    TermCursor = { link = 'Cursor' },
+    CursorLineFold = { fg = p.fg3, bg = p.bg5 },
+    CursorLineSign = { fg = p.fg3, bg = p.bg5 },
     CursorLineNr = { fg = p.accent2, bold = true },
 
     LineNr = { fg = p.fg3 },
@@ -44,6 +47,8 @@ local function base(p)
     PmenuKindSel = { fg = p.blue, bg = p.sel },
     PmenuExtra = { fg = p.fg2, bg = p.bg1 },
     PmenuExtraSel = { fg = p.fg2, bg = p.sel },
+    PmenuMatch = { fg = p.accent, bg = p.bg1, bold = true },
+    PmenuMatchSel = { fg = p.accent, bg = p.sel, bold = true },
 
     Visual = { bg = p.sel },
     VisualNOS = { bg = p.sel },
@@ -54,6 +59,7 @@ local function base(p)
     Substitute = { fg = p.bg3, bg = p.red },
 
     MatchParen = { fg = p.accent, bold = true, underline = true },
+    SnippetTabstop = { bg = p.bg5 },
 
     WildMenu = { fg = p.bg3, bg = p.accent2 },
     QuickFixLine = { bg = p.bg5 },
@@ -65,6 +71,8 @@ local function base(p)
     ModeMsg = { fg = p.fg1, bold = true },
     WarningMsg = { fg = p.yellow },
     ErrorMsg = { fg = p.red },
+    MsgArea = { fg = p.fg0 },
+    MsgSeparator = { fg = p.fg3, bg = p.bg4 },
 
     NonText = { fg = p.fg3 },
     Whitespace = { fg = p.fg3 },
@@ -82,6 +90,9 @@ local function base(p)
     DiffDelete = { bg = p.diff_del },
     DiffChange = { bg = p.diff_change },
     DiffText = { bg = p.diff_text },
+    Added = { fg = p.green },
+    Changed = { fg = p.yellow },
+    Removed = { fg = p.red },
 
     -- Diagnostics
     DiagnosticError = { fg = p.red },
@@ -110,11 +121,25 @@ local function base(p)
     DiagnosticFloatingWarn = { fg = p.yellow },
     DiagnosticFloatingInfo = { fg = p.blue },
     DiagnosticFloatingHint = { fg = p.green },
+    DiagnosticFloatingOk = { fg = p.green },
+
+    DiagnosticDeprecated = { strikethrough = true },
+    DiagnosticUnnecessary = { fg = p.fg3 },
+
+    DiagnosticVirtualTextOk = { fg = p.green, bg = p.diff_add },
+    DiagnosticSignOk = { fg = p.green },
+
+    DiagnosticVirtualLinesError = { fg = p.red },
+    DiagnosticVirtualLinesWarn = { fg = p.yellow },
+    DiagnosticVirtualLinesInfo = { fg = p.blue },
+    DiagnosticVirtualLinesHint = { fg = p.green },
+    DiagnosticVirtualLinesOk = { fg = p.green },
 
     -- LSP references
     LspReferenceText = { bg = p.bg5 },
     LspReferenceRead = { bg = p.bg5 },
     LspReferenceWrite = { bg = p.bg5, bold = true },
+    LspReferenceTarget = { bg = p.bg5 },
     LspInlayHint = { fg = p.fg3, bg = p.bg4, italic = true },
     LspCodeLens = { fg = p.fg2 },
     LspCodeLensSeparator = { fg = p.fg3 },
@@ -164,6 +189,11 @@ local function base(p)
     Ignore = { fg = p.fg3 },
     Error = { fg = p.red, bold = true },
     Todo = { fg = p.yellow, bold = true },
+
+    -- Misc UI
+    ComplMatchIns = { fg = p.accent, bold = true },
+    FloatShadow = { bg = p.bg0, blend = 50 },
+    FloatShadowThrough = { bg = p.bg0, blend = 80 },
 
     -- Quickfix / Location list
     qfLineNr = { fg = p.fg2 },

@@ -46,6 +46,8 @@ local function plugins(p)
     BlinkCmpSignatureHelp = { fg = p.fg0, bg = p.bg0 },
     BlinkCmpSignatureHelpBorder = { fg = p.fg3, bg = p.bg0 },
     BlinkCmpSignatureHelpActiveParameter = { fg = p.accent, bold = true },
+    BlinkCmpGhostText = { fg = p.fg3, italic = true },
+    BlinkCmpSource = { fg = p.fg2 },
 
     -- vim-matchup
     MatchWord = { bg = p.bg5 },
@@ -171,13 +173,6 @@ local function plugins(p)
     NeogitGraphBoldPurple = { fg = p.purple, bold = true },
 
     -- diffview
-    DiffviewNormal = { link = 'Normal' },
-    DiffviewCursorLine = { link = 'CursorLine' },
-    DiffviewVertSplit = { link = 'VertSplit' },
-    DiffviewSignColumn = { link = 'SignColumn' },
-    DiffviewStatusLine = { link = 'StatusLine' },
-    DiffviewStatusLineNC = { link = 'StatusLineNC' },
-    DiffviewEndOfBuffer = { link = 'EndOfBuffer' },
     DiffviewFilePanelRootPath = { fg = p.fg3 },
     DiffviewFilePanelTitle = { fg = p.accent, bold = true },
     DiffviewFilePanelCounter = { fg = p.fg2 },
@@ -228,9 +223,9 @@ local function plugins(p)
     MiniStatuslineInactive = { fg = p.fg3, bg = p.bg1 },
 
     -- mini.icons
-    MiniIconsAzure = { fg = '#5A7FA0' },
+    MiniIconsAzure = { fg = p.cyan },
     MiniIconsBlue = { fg = p.blue },
-    MiniIconsCyan = { fg = '#6BA8A8' },
+    MiniIconsCyan = { fg = p.cyan },
     MiniIconsGreen = { fg = p.green },
     MiniIconsGrey = { fg = p.fg2 },
     MiniIconsOrange = { fg = p.accent },
