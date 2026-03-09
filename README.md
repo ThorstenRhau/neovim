@@ -18,9 +18,9 @@ Feel free to steal anything useful.
 
 ![Neovim screenshot](https://rhau.se/my_neovim.jpg)
 
-After a super long search for the theme I like I asked Claude Code to interview
-me and based on my liking CC created a theme for me. Feel free to steal it. The
-font that I use in the screenshot is Berkeley Mono.
+After a long search for the perfect color theme I gave up and asked Claude Code
+to interview me and based on my liking CC created a theme for me. Feel free to
+steal it. The font that I use in the screenshot is Berkeley Mono.
 
 ## Requirements
 
