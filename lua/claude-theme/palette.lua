@@ -27,6 +27,10 @@ local function palette(background)
       diff_text = '#e2dac0',
       sel = '#dddcd6',
       match = '#e8d8b0',
+      gsign_add = '#2D8A28',
+      gsign_change = '#B07800',
+      gsign_del = '#C82A2A',
+      gsign_untracked = '#7878A0',
     }
   end
 
@@ -56,6 +60,10 @@ local function palette(background)
     diff_text = '#444039',
     sel = '#3d3d3a',
     match = '#4a4030',
+    gsign_add = '#7DA47A',
+    gsign_change = '#C4A855',
+    gsign_del = '#C67777',
+    gsign_untracked = '#5a5955',
   }
 end
 

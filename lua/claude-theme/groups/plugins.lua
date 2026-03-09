@@ -114,12 +114,12 @@ local function plugins(p)
     OilTypeSocket = { fg = p.accent2 },
 
     -- gitsigns
-    GitSignsAdd = { fg = p.green },
-    GitSignsChange = { fg = p.yellow },
-    GitSignsDelete = { fg = p.red },
-    GitSignsTopDelete = { fg = p.red },
+    GitSignsAdd = { fg = p.gsign_add },
+    GitSignsChange = { fg = p.gsign_change },
+    GitSignsDelete = { fg = p.gsign_del },
+    GitSignsTopDelete = { fg = p.gsign_del },
     GitSignsChangeDelete = { fg = p.accent },
-    GitSignsUntracked = { fg = p.fg3 },
+    GitSignsUntracked = { fg = p.gsign_untracked },
     GitSignsAddNr = { link = 'GitSignsAdd' },
     GitSignsChangeNr = { link = 'GitSignsChange' },
     GitSignsDeleteNr = { link = 'GitSignsDelete' },
