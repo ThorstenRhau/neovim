@@ -55,9 +55,9 @@ local function plugins(p)
     MatchParenCur = { fg = p.accent, bold = true, underline = true },
 
     -- indent-blankline
-    IblIndent = { fg = p.bg5 },
+    IblIndent = { fg = p.fg3 },
     IblScope = { fg = p.fg3 },
-    IblWhitespace = { fg = p.bg5 },
+    IblWhitespace = { fg = p.fg3 },
 
     -- render-markdown
     RenderMarkdownH1 = { fg = p.accent, bold = true },
