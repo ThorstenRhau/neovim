@@ -33,9 +33,9 @@ o.wrap = false
 
 -- Cursor appearance and blinking
 o.guicursor = table.concat({
-  'n-v-c-sm:block', -- Normal, Visual, Command, Showmatch: block cursor
-  'i-ci-ve:ver25', -- Insert, Command-insert, Visual-exclusive: vertical bar (25% width)
-  'r-cr-o:hor20', -- Replace, Command-replace, Operator-pending: horizontal bar (20% height)
+  'n-v-c-sm:block-Cursor', -- Normal, Visual, Command, Showmatch: block cursor
+  'i-ci-ve:ver25-Cursor', -- Insert, Command-insert, Visual-exclusive: vertical bar (25% width)
+  'r-cr-o:hor20-Cursor', -- Replace, Command-replace, Operator-pending: horizontal bar (20% height)
   'a:blinkwait500-blinkoff500-blinkon500',
 }, ',')
 
