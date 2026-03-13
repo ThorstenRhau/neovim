@@ -44,6 +44,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd('User', {
+        group = vim.api.nvim_create_augroup('treesitter_install', { clear = true }),
         pattern = 'LazyDone',
         once = true,
         callback = function()

@@ -3,6 +3,7 @@ return {
 
   init = function()
     vim.api.nvim_create_autocmd('TermOpen', {
+      group = vim.api.nvim_create_augroup('claudecode_terminal', { clear = true }),
       pattern = 'term://*claude*',
       callback = function()
         vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><Cmd>wincmd h<CR>]], { buffer = 0, desc = 'exit terminal mode' })
