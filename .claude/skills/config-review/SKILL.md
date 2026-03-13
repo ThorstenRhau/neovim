@@ -16,14 +16,37 @@ Before starting, read these files to understand the project:
 4. All files in `lua/plugins/`
 5. All files in `after/ftplugin/`
 
+## Tool Usage
+
+Use the available tools to **verify findings before reporting**. A finding based only on grep without verification is not production-grade.
+
+### context7 MCP (library documentation)
+
+Use `resolve-library-id` then `query-docs` to fetch current plugin API docs. Required when:
+
+- Checking if a plugin supports `opts` before flagging `config = function()` (Phase 2)
+- Verifying correct option names, types, or defaults for border/UI config (Phase 2)
+- Confirming Mason package names map to the correct server/tool (Phase 4)
+- Checking conform.nvim or nvim-lint API for formatter/linter configuration (Phase 4)
+- Determining if two plugins have genuinely overlapping functionality (Phase 5)
+
+### LSP tool (Lua code intelligence)
+
+Use LSP operations (hover, go-to-definition, find-references, document-symbols) to:
+
+- Confirm a grep match is an actual function call, not a comment or string (Phase 1)
+- Trace keymap callbacks to their definitions to check for conflicts (Phase 3)
+- Verify require paths resolve and function signatures are correct (Phase 4)
+- Check call hierarchy when uncertain whether a module-scope variable is used (Phase 4)
+
 ## Audit Phases
 
-Execute all 10 phases in order. For each finding, record a severity, an ID tag, the file:line reference, and a suggested fix.
+Execute all 5 phases in order. For each finding, record a severity, an ID tag, the file:line reference, and a suggested fix.
 
 ### Phase 1: Static Analysis
 
 1. Run `make all` and capture output. Report any lint or format errors.
-2. Grep all Lua files for deprecated Neovim 0.11+ APIs:
+2. Grep all Lua files for deprecated Neovim 0.11+ APIs. Use LSP hover to confirm each match is a real call (not a comment or string) before reporting:
    - `vim.lsp.buf_get_clients` (use `vim.lsp.get_clients`)
    - `vim.lsp.get_active_clients` (use `vim.lsp.get_clients`)
    - `vim.lsp.for_each_buffer_client`
@@ -49,72 +72,60 @@ Execute all 10 phases in order. For each finding, record a severity, an ID tag, 
 
 ### Phase 2: Convention Compliance
 
-Check all plugin specs and config files against CLAUDE.md conventions:
+Check plugin specs and config files against CLAUDE.md conventions:
 
 1. **desc on keymaps**: every `vim.keymap.set` and every `keys = {}` entry in plugin specs must have a `desc` field.
-2. **opts over config**: flag any plugin spec using `config = function()` that could use `opts = {}` instead. Only allow `config` when it needs conditional logic or multiple function calls.
-3. **border = 'single'**: any plugin that renders floating UI should set `border = 'single'`. Check completion, LSP hover/signature, pickers, trouble, neogit, diffview, etc.
-4. **Lazy-load triggers**: since `defaults.lazy = false`, every plugin without an explicit `event`, `cmd`, `keys`, or `ft` trigger loads at startup. Flag plugins that could be lazy-loaded.
-5. **Style**: single quotes, trailing commas, 2-space indent (StyLua handles this, but flag any manual violations).
+   - Guard: local `map` wrappers that accept `desc` as a parameter (e.g., `local map = function(mode, lhs, rhs, desc)`) satisfy this requirement. Check the wrapper definition before flagging.
+
+2. **opts over config**: flag plugin specs using `config = function()` that could use `opts = {}` instead.
+   - Guard: `config = function()` is correct when it: (a) calls multiple setup functions, (b) sets `vim.g.*` variables, (c) creates autocmds or keymaps outside the spec's `keys` table, (d) uses conditional logic, or (e) calls APIs not exposed through lazy.nvim's opts mechanism.
+   - Before flagging, use context7 to verify the plugin supports `opts` for the feature in question.
+
+3. **border = 'single'**: check plugins rendering floating UI for border consistency.
+   - Guard: this config sets `vim.o.winborder = 'single'` globally (Neovim 0.11+). Only flag plugins that explicitly override border to something other than `'single'`, or plugins documented to ignore `vim.o.winborder` and need explicit border config. Use context7 to verify whether a plugin respects `vim.o.winborder` before flagging.
 
 ### Phase 3: Keymap Audit
 
-1. Collect ALL keymaps from `lua/config/keymaps.lua` and all plugin spec `keys = {}` tables.
+1. Collect ALL keymaps from `lua/config/keymaps.lua` and all plugin spec `keys = {}` tables, plus keymaps set in `config`/`on_attach` callbacks.
 2. Find duplicate or conflicting bindings (same lhs in same mode).
+   - Guard: buffer-local keymaps (from LspAttach, ftplugin, on_attach) intentionally override global keymaps. Only flag duplicates within the same scope (both global, or both in the same buffer-attach context).
 3. Identify keymaps that shadow important Neovim builtins without clear intent.
-4. Check which-key spec registrations: are all `<leader>` prefixes documented?
+   - Guard: intentional overrides with a `desc` field are not findings. Standard overrides like `j`/`k` with `gj`/`gk`, `p` with `"_dP`, `<Esc>` with `nohlsearch` are well-known patterns. Do not flag these.
+4. Check which-key registrations: verify all `<leader>` prefixes used in keymaps are registered as groups.
 
-### Phase 4: LSP Configuration
+### Phase 4: Toolchain Coherence
 
-1. Verify each LSP server config has appropriate root markers (`root_markers` or `root_dir`).
-2. Check that blink.cmp capabilities are propagated to LSP servers.
-3. Cross-reference Mason `ensure_installed` list against:
-   - Servers configured in LSP setup
-   - Formatters referenced in conform.nvim
-   - Linters referenced in nvim-lint
-4. Flag Mason tools that are installed but not referenced, or referenced but not installed.
-5. Check for deprecated LSP API patterns.
+1. **LSP root markers**: verify each server config in the `servers` table has `root_markers`.
+   - Guard: `.git` as the sole root marker is acceptable for file-level servers (bashls, fish_lsp, lemminx, taplo). Only flag missing root markers for project-oriented servers that need project-level context (basedpyright, vtsls, eslint, lua_ls, etc.).
+
+2. **Mason cross-reference**: cross-reference `mason-tool-installer` `ensure_installed` list against:
+   - Servers configured in the LSP `servers` table (use Mason-to-server name mapping, e.g., `bash-language-server` maps to `bashls`)
+   - Formatters referenced in conform.nvim `formatters_by_ft`
+   - Linters referenced in nvim-lint `linters_by_ft`
+   - Flag tools in Mason not referenced anywhere, or tools referenced but not in Mason.
+   - Guard: tools that are system-installed or bundled with an LSP server (e.g., ruff provides both linting and formatting) should not be flagged as missing from Mason.
+
+3. **Ftplugin helper consistency**: check that `after/ftplugin/*.lua` files use `require('config.ftplugin')` helper consistently.
+   - Guard: `expandtab = false` (tabs) cannot be set via the indent helper, so files like `make.lua` that set tabs manually are correct. Only flag files that set `tabstop`/`shiftwidth`/`softtabstop` manually when the helper's `.indent(N)` would work.
+
+4. **Textobject symmetry**: if `@function.outer` exists as a keymap, `@function.inner` should too. Same for `@class` and `@parameter`.
+
+5. **Augroup hygiene**: check all `nvim_create_autocmd` calls use a named `nvim_create_augroup`.
+   - Guard: `clear = false` is correct when multiple autocmds intentionally share a group across different events. Only flag autocmds with no group at all.
+
+6. **Global state**: flag non-local variables in module scope.
+   - Guard: accessing documented globals (`vim`, `MiniIcons`, `MiniStatusline`) is correct. Only flag when a module-scope variable lacks `local` and is not an access to a known global.
 
 ### Phase 5: Plugin Health
 
-1. Look for potentially redundant plugins (overlapping functionality).
-2. Check that lazy-load events make sense (e.g., `BufReadPre` vs `VeryLazy` vs `BufEnter`).
-3. Verify declared `dependencies` are actually needed and present.
-4. Check for plugins that declare dependencies on things already loaded unconditionally.
+1. **Redundant plugins**: look for plugins with overlapping functionality that are both loaded.
+   - Use context7 to verify overlap claims. Two plugins in the same domain (e.g., file explorers, autopairs, surround) are only redundant if they are both actively loaded and serve the same use case.
 
-### Phase 6: Performance
+2. **Lazy-load event appropriateness**: check that lazy-load events match plugin behavior.
+   - Guard: trust existing events unless there is a concrete problem. Only flag if: (a) a plugin with `event = 'VeryLazy'` sets buffer-local options and would miss the first buffer, (b) a plugin with `event = 'InsertEnter'` also needs to work in normal mode, or (c) a plugin with `event = 'BufReadPre'` does not need to process the initial buffer read.
 
-1. List all plugins that load at startup (no lazy trigger, given `defaults.lazy = false`).
-2. Flag plugins that could safely be deferred.
-3. Check autocmds for expensive patterns (e.g., `*` pattern with heavy callbacks, missing buffer-local cleanup).
-4. Check for disabled builtins in options (e.g., builtin plugins like netrw, matchparen).
-
-### Phase 7: Filetype Plugins
-
-1. Check `after/ftplugin/` for consistency:
-   - Are indent sizes consistent per language? Expected: 2 for lua/yaml/json/html/css/nix, 4 for python/rust/go, tab for make/go.
-   - Do all ftplugin files use the helper from `lua/config/ftplugin.lua` if one exists?
-2. For each LSP server configured, check if there is a corresponding ftplugin.
-3. Flag missing ftplugins for common filetypes that have configured LSP servers.
-
-### Phase 8: Treesitter
-
-1. List Treesitter `ensure_installed` parsers.
-2. Cross-reference against LSP servers: flag languages with an LSP server but no Treesitter parser, and vice versa.
-3. Check textobject definitions for symmetry (if `@function.outer` exists, `@function.inner` should too).
-
-### Phase 9: Completion
-
-1. Review blink.cmp source configuration.
-2. Verify LSP capabilities include completion snippets if a snippet source is configured.
-3. Check that completion keymaps don't conflict with other insert-mode bindings.
-
-### Phase 10: Code Quality
-
-1. Check that all autocmds use named `vim.api.nvim_create_augroup` with `clear = true`.
-2. Flag unnecessary global state (non-local variables in module scope).
-3. Look for missing pcall/error handling around operations that can fail (e.g., `require` in optional contexts).
-4. Identify code that could be simplified.
+3. **Completion keymap conflicts**: check that blink.cmp keymaps (from its preset) do not conflict with other insert-mode keymaps.
+   - Use context7 to look up the blink.cmp keymap preset and compare against insert-mode keymaps from `lua/config/keymaps.lua` and other plugin specs.
 
 ## Output Format
 
@@ -155,15 +166,18 @@ Produce a single markdown report with this structure:
 
 ## Severity Definitions
 
-- **Critical**: broken functionality, security issues, deprecated APIs that will break on upgrade
-- **Warning**: convention violations, missing best practices, potential performance issues
-- **Info**: suggestions for improvement, minor inconsistencies, nice-to-haves
+- **Critical**: broken functionality right now. Runtime errors. `make all` failures.
+- **Warning**: convention violations from CLAUDE.md. Toolchain mismatches (Mason vs configured tools). Duplicate keymaps in the same scope. Deprecated APIs (still functional but should be updated).
+- **Info**: consistency improvements, minor opportunities. Not wrong, just could be better.
 
 ## Rules
 
 1. Do NOT modify any files. This is a read-only audit.
 2. Do NOT create any files (no reports saved to disk).
 3. Use context7 MCP (`resolve-library-id` then `query-docs`) to verify plugin APIs when uncertain about correct configuration.
-4. Be specific: always include file:line references.
-5. Do not flag intentional design choices as issues (e.g., `defaults.lazy = false` is intentional, but plugins that could benefit from lazy triggers should still be noted as Info).
-6. Group related findings under the same ID if they share a root cause.
+4. Use the LSP tool to verify grep matches are real code, not comments or strings.
+5. Be specific: always include file:line references.
+6. Do not flag intentional design choices as issues (e.g., `defaults.lazy = false` is intentional, `config = function()` with multiple calls is correct, dependencies on unconditionally loaded plugins ensure load ordering).
+7. Group related findings under the same ID if they share a root cause.
+8. **Zero false positives is more important than coverage.** If a check might flag correct code, skip the finding rather than report it. The user can request deeper investigation.
+9. **Do not report the absence of optional features.** Missing pcall around non-optional requires, missing ftplugin for a filetype, missing treesitter parser for an LSP server: none of these are findings unless they cause a concrete problem.
