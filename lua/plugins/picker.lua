@@ -103,9 +103,7 @@ return {
       preview = {
         border = 'single',
         default = 'bat',
-        layout = 'flex',
-        flip_columns = 120,
-        horizontal = 'right:65%',
+        layout = 'vertical',
         vertical = 'down:65%',
         delay = 50,
       },
