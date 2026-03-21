@@ -62,6 +62,13 @@ return {
         yaml = { 'yamllint' },
       }
 
+      -- Disable line-length rule
+      lint.linters.markdownlint.args = {
+        '--disable',
+        'MD013',
+        '--',
+      }
+
       -- Custom yamllint config
       lint.linters.yamllint.args = {
         '-d',
