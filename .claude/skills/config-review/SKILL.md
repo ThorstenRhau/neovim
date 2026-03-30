@@ -46,7 +46,7 @@ Execute all 5 phases in order. For each finding, record a severity, an ID tag, t
 ### Phase 1: Static Analysis
 
 1. Run `make all` and capture output. Report any lint or format errors.
-2. Grep all Lua files for deprecated Neovim 0.11+ APIs. Use LSP hover to confirm each match is a real call (not a comment or string) before reporting:
+2. Grep all Lua files for deprecated Neovim 0.12+ APIs. Use LSP hover to confirm each match is a real call (not a comment or string) before reporting:
    - `vim.lsp.buf_get_clients` (use `vim.lsp.get_clients`)
    - `vim.lsp.get_active_clients` (use `vim.lsp.get_clients`)
    - `vim.lsp.for_each_buffer_client`
@@ -82,7 +82,7 @@ Check plugin specs and config files against CLAUDE.md conventions:
    - Before flagging, use context7 to verify the plugin supports `opts` for the feature in question.
 
 3. **border = 'single'**: check plugins rendering floating UI for border consistency.
-   - Guard: this config sets `vim.o.winborder = 'single'` globally (Neovim 0.11+). Only flag plugins that explicitly override border to something other than `'single'`, or plugins documented to ignore `vim.o.winborder` and need explicit border config. Use context7 to verify whether a plugin respects `vim.o.winborder` before flagging.
+   - Guard: this config sets `vim.o.winborder = 'single'` globally (Neovim 0.12+). Only flag plugins that explicitly override border to something other than `'single'`, or plugins documented to ignore `vim.o.winborder` and need explicit border config. Use context7 to verify whether a plugin respects `vim.o.winborder` before flagging.
 
 ### Phase 3: Keymap Audit
 
