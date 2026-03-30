@@ -10,6 +10,7 @@ o.linebreak = true
 o.mouse = 'nv'
 o.number = true
 o.numberwidth = 2
+o.pumborder = 'single'
 o.pumheight = 10
 o.relativenumber = true
 o.scrolloff = 8
@@ -29,6 +30,7 @@ o.timeoutlen = 300
 o.undofile = true
 o.undolevels = 1000
 o.updatetime = 250
+o.winborder = 'single'
 o.wrap = false
 
 -- Cursor appearance and blinking
@@ -53,10 +55,6 @@ opt.fillchars:append({
   foldsep = '┊',
   msgsep = '━',
 })
-
--- Floating window border (Neovim 0.11+)
-o.winborder = 'single'
-o.pumborder = 'single'
 
 -- Folding (treesitter-based, configured per filetype)
 o.foldlevel = 99
