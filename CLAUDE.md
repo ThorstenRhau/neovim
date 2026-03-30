@@ -1,6 +1,6 @@
 # AGENTS.md - Neovim Configuration
 
-Personal Neovim config (Lua, requires **Neovim 0.11.5+**).
+Personal Neovim config (Lua, requires **Neovim 0.12+**).
 
 ## Structure
 
@@ -39,7 +39,7 @@ Personal Neovim config (Lua, requires **Neovim 0.11.5+**).
 │       ├── session.lua         # Session management
 │       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       └── ui.lua              # which-key, lualine, trouble
+│       └── ui.lua              # which-key, trouble, neoscroll
 └── after/ftplugin/             # Filetype-specific settings
 ```
 
