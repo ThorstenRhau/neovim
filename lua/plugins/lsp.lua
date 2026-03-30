@@ -267,6 +267,8 @@ return {
       vim.lsp.enable(server_names)
 
       -- LSP keymaps on attach
+      local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
@@ -276,12 +278,10 @@ return {
 
           map('n', '<leader>cr', vim.lsp.buf.rename, 'rename')
           map('n', '<leader>cS', vim.lsp.buf.signature_help, 'signature help')
-          map('i', '<C-k>', vim.lsp.buf.signature_help, 'signature help')
 
           -- Document highlight on cursor hold
           local client = vim.lsp.get_clients({ id = event.data.client_id })[1]
           if client and client:supports_method('textDocument/documentHighlight') then
-            local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_group,
@@ -292,14 +292,15 @@ return {
               group = highlight_group,
               callback = vim.lsp.buf.clear_references,
             })
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event2.buf })
-              end,
-            })
           end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('LspDetach', {
+        group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+        callback = function(event)
+          vim.lsp.buf.clear_references()
+          vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event.buf })
         end,
       })
 

@@ -74,10 +74,15 @@ for _, t in ipairs(toggles) do
     vim.o[t[2]] = not vim.o[t[2]]
   end, { desc = t[3] })
 end
+local saved_vlines
 map('n', '<leader>tl', function()
-  local config = vim.diagnostic.config() or {}
-  local new_value = not config.virtual_lines
-  vim.diagnostic.config({ virtual_lines = new_value })
+  local current = vim.diagnostic.config().virtual_lines
+  if current then
+    saved_vlines = current
+    vim.diagnostic.config({ virtual_lines = false })
+  else
+    vim.diagnostic.config({ virtual_lines = saved_vlines or { current_line = true } })
+  end
 end, { desc = 'diagnostic lines' })
 map('n', '<leader>ta', function()
   if vim.b.completion == false then

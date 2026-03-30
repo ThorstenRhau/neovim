@@ -1,5 +1,13 @@
 local M = {}
 
+function M.prose()
+  vim.opt_local.wrap = true
+  if vim.bo.buftype == '' then
+    vim.opt_local.spell = true
+  end
+  return M
+end
+
 function M.indent(size)
   vim.opt_local.tabstop = size
   vim.opt_local.shiftwidth = size

@@ -146,7 +146,7 @@ autocmd('OptionSet', {
   end,
 })
 
--- Disable list mode in terminal buffers (listchars look broken with ANSI colors)
+-- listchars render broken in terminal buffers with ANSI colors
 autocmd('TermOpen', {
   group = augroup('terminal_list', { clear = true }),
   callback = function()
