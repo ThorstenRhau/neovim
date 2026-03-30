@@ -92,6 +92,28 @@ return {
     opts = {
       pipe_table = { preset = 'round' },
       latex = { enabled = false },
+      code = {
+        sign = false,
+        width = 'block',
+        right_pad = 1,
+      },
+      heading = {
+        sign = false,
+      },
+      checkbox = {
+        custom = {
+          todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
+        },
+      },
+    },
+  },
+  {
+    'tadmccorkle/markdown.nvim',
+    ft = { 'markdown' },
+    opts = {},
+    keys = {
+      { '<leader>ct', '<cmd>MDInsertToc<cr>', ft = 'markdown', desc = 'insert TOC' },
+      { '<leader>cx', '<cmd>MDTaskToggle<cr>', ft = 'markdown', desc = 'toggle task' },
     },
   },
   {

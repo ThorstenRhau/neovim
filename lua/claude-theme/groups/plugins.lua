@@ -81,6 +81,7 @@ local function plugins(p)
     RenderMarkdownSign = { fg = p.fg2, bg = p.bg3 },
     RenderMarkdownChecked = { fg = p.green },
     RenderMarkdownUnchecked = { fg = p.fg3 },
+    RenderMarkdownTodo = { fg = p.yellow },
     RenderMarkdownTableHead = { fg = p.accent, bold = true },
     RenderMarkdownTableRow = { fg = p.fg0 },
     RenderMarkdownTableFill = { fg = p.fg3 },
