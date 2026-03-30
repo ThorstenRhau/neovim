@@ -145,3 +145,11 @@ autocmd('OptionSet', {
     end
   end,
 })
+
+-- Disable list mode in terminal buffers (listchars look broken with ANSI colors)
+autocmd('TermOpen', {
+  group = augroup('terminal_list', { clear = true }),
+  callback = function()
+    vim.wo.list = false
+  end,
+})
