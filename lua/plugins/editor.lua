@@ -112,7 +112,11 @@ return {
     ft = { 'markdown' },
     opts = {},
     keys = {
+      { '<leader>cl', '<cmd>MDListItemBelow<cr>', ft = 'markdown', desc = 'list item below' },
+      { '<leader>cL', '<cmd>MDListItemAbove<cr>', ft = 'markdown', desc = 'list item above' },
+      { '<leader>cN', '<cmd>MDResetListNumbering<cr>', ft = 'markdown', desc = 'reset list numbering' },
       { '<leader>ct', '<cmd>MDInsertToc<cr>', ft = 'markdown', desc = 'insert TOC' },
+      { '<leader>cT', '<cmd>MDToc<cr>', ft = 'markdown', desc = 'show TOC' },
       { '<leader>cx', '<cmd>MDTaskToggle<cr>', ft = 'markdown', desc = 'toggle task' },
     },
   },
