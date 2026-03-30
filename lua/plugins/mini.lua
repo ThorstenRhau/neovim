@@ -71,7 +71,10 @@ return {
     'nvim-mini/mini.bracketed',
     version = false,
     event = 'BufReadPost',
-    opts = {},
+    opts = {
+      file = { suffix = '' },
+      quickfix = { suffix = '' },
+    },
   },
 
   -- Move selected text with meta+hjkl
