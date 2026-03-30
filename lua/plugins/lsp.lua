@@ -264,7 +264,11 @@ return {
         table.insert(server_names, name)
       end
 
-      vim.lsp.enable(server_names)
+      vim.g.managed_lsp_servers = server_names
+
+      if not vim.g.disable_auto_lsp then
+        vim.lsp.enable(server_names)
+      end
 
       -- LSP keymaps on attach
       local highlight_group = vim.api.nvim_create_augroup('lsp-highlight', { clear = true })

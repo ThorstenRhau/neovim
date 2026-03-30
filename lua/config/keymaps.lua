@@ -95,20 +95,35 @@ map('n', '<leader>ta', function()
 end, { desc = 'auto-completion' })
 
 map('n', '<leader>tL', function()
-  vim.g.disable_auto_lint = not vim.g.disable_auto_lint
-  if vim.g.disable_auto_lint then
-    vim.diagnostic.enable(false, { bufnr = 0 })
-    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      client:stop()
+  local managed_servers = vim.g.managed_lsp_servers or {}
+  local enabled = vim.g.disable_auto_lsp == true
+
+  vim.g.disable_auto_lsp = not enabled
+  vim.g.disable_auto_lint = not enabled
+
+  if enabled then
+    vim.diagnostic.enable(true)
+    if #managed_servers > 0 then
+      vim.lsp.enable(managed_servers, true)
     end
-    vim.notify('LSP & Linter disabled', vim.log.levels.INFO)
-  else
-    vim.diagnostic.enable(true, { bufnr = 0 })
-    vim.cmd('LspStart')
+
     local ok, lint = pcall(require, 'lint')
     if ok then
-      lint.try_lint()
+      for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buftype == '' then
+          vim.api.nvim_buf_call(bufnr, function()
+            lint.try_lint()
+          end)
+        end
+      end
     end
-    vim.notify('LSP & Linter enabled', vim.log.levels.INFO)
+
+    vim.notify('Global LSP & linter enabled', vim.log.levels.INFO)
+  else
+    vim.diagnostic.enable(false)
+    if #managed_servers > 0 then
+      vim.lsp.enable(managed_servers, false)
+    end
+    vim.notify('Global LSP & linter disabled', vim.log.levels.INFO)
   end
-end, { desc = 'LSP & linter' })
+end, { desc = 'global LSP & linter' })
