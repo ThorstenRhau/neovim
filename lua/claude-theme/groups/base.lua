@@ -51,6 +51,9 @@ local function base(p)
     PmenuExtraSel = { fg = p.fg2, bg = p.sel },
     PmenuMatch = { fg = p.accent, bg = p.bg1, bold = true },
     PmenuMatchSel = { fg = p.accent, bg = p.sel, bold = true },
+    PmenuBorder = { fg = p.fg3, bg = p.bg1 },
+    PmenuShadow = { bg = p.bg0, blend = 50 },
+    PmenuShadowThrough = { bg = p.bg0, blend = 80 },
 
     Visual = { bg = p.sel },
     VisualNOS = { bg = p.sel },
@@ -62,6 +65,7 @@ local function base(p)
 
     MatchParen = { fg = p.accent, bold = true, underline = true },
     SnippetTabstop = { bg = p.bg5 },
+    SnippetTabstopActive = { bg = p.match },
 
     WildMenu = { fg = p.bg3, bg = p.accent2 },
     QuickFixLine = { bg = p.bg5 },
@@ -74,6 +78,9 @@ local function base(p)
     WarningMsg = { fg = p.yellow },
     ErrorMsg = { fg = p.red },
     MsgArea = { fg = p.fg0 },
+    OkMsg = { fg = p.green },
+    StderrMsg = { fg = p.red },
+    StdoutMsg = { fg = p.fg0 },
     MsgSeparator = { fg = p.fg3, bg = p.bg4 },
 
     NonText = { fg = p.fg3 },
@@ -92,6 +99,7 @@ local function base(p)
     DiffDelete = { bg = p.diff_del },
     DiffChange = { bg = p.diff_change },
     DiffText = { bg = p.diff_text },
+    DiffTextAdd = { bg = p.diff_add },
     Added = { fg = p.green },
     Changed = { fg = p.yellow },
     Removed = { fg = p.red },
