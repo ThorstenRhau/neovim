@@ -80,7 +80,7 @@ map('n', '<leader>tm', function()
 end, { desc = 'markdown render' })
 
 -- Markdown.nvim
-require('markdown').setup({})
+require('markdown').setup({}) ---@diagnostic disable-line: missing-fields
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
@@ -96,7 +96,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Live preview
-require('live-preview').setup({})
+require('livepreview.config').set({})
 
 map('n', '<leader>tM', '<cmd>LivePreview start<cr>', { desc = 'markdown in browser' })
 map('n', '<leader>tQ', '<cmd>LivePreview close<cr>', { desc = 'stop markdown preview' })
@@ -109,7 +109,7 @@ require('ccc').setup({
   },
   highlight_mode = 'background',
   virtual_symbol = '●',
-  virtual_pos = 'inline',
+  virtual_pos = 'inline-right',
   recognize = {
     input = true,
     output = true,
