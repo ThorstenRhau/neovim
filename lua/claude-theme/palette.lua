@@ -31,6 +31,8 @@ local function palette(background)
       gsign_change = '#B07800',
       gsign_del = '#C82A2A',
       gsign_untracked = '#7878A0',
+      indent = '#e0ddd8',
+      indent_active = '#a8a49c',
     }
   end
 
@@ -64,6 +66,8 @@ local function palette(background)
     gsign_change = '#C4A855',
     gsign_del = '#C67777',
     gsign_untracked = '#5a5955',
+    indent = '#333330',
+    indent_active = '#636360',
   }
 end
 
