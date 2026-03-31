@@ -101,22 +101,3 @@ require('livepreview.config').set({})
 
 map('n', '<leader>tM', '<cmd>LivePreview start<cr>', { desc = 'markdown in browser' })
 map('n', '<leader>tQ', '<cmd>LivePreview close<cr>', { desc = 'stop markdown preview' })
-
--- Color picker
-require('ccc').setup({
-  highlighter = {
-    auto_enable = false,
-    lsp = true,
-  },
-  highlight_mode = 'background',
-  virtual_symbol = '●',
-  virtual_pos = 'inline-right',
-  recognize = {
-    input = true,
-    output = true,
-  },
-})
-
-map('n', '<leader>tC', '<cmd>CccHighlighterToggle<cr>', { desc = 'color highlight' })
-map('n', '<leader>cp', '<cmd>CccPick<cr>', { desc = 'color picker' })
-map('n', '<leader>cc', '<cmd>CccConvert<cr>', { desc = 'convert color format' })

@@ -351,10 +351,6 @@ local function plugins(p)
     NvimTreeDiagnosticWarnIcon = { fg = p.yellow },
     NvimTreeDiagnosticInfoIcon = { fg = p.blue },
     NvimTreeDiagnosticHintIcon = { fg = p.green },
-
-    -- ccc.nvim
-    CccFloatNormal = { link = 'NormalFloat' },
-    CccFloatBorder = { link = 'FloatBorder' },
   }
 end
 

@@ -49,7 +49,6 @@ vim.pack.add({
   { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
   { src = 'https://github.com/tadmccorkle/markdown.nvim', name = 'markdown.nvim' },
   { src = 'https://github.com/brianhuster/live-preview.nvim' },
-  { src = 'https://github.com/uga-rosa/ccc.nvim' },
 
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
