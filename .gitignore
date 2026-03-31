@@ -7,5 +7,5 @@ tasks/
 # spell files
 spell/
 
-# Lazy lock file
-lazy-lock.json
+# vim.pack lock file
+nvim-pack-lock.json

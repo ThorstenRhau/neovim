@@ -8,6 +8,7 @@ vim.g.maplocalleader = '\\'
 
 -- Load other config modules
 require('config.options')
-require('config.lazy')
+require('config.pack')
+require('config.terminal')
 require('config.keymaps')
 require('config.autocmds')

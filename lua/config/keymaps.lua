@@ -58,8 +58,10 @@ map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'previous quickfix' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
 map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 
--- Lazy
-map('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'lazy' })
+-- Plugins
+map('n', '<leader>l', function()
+  vim.pack.update()
+end, { desc = 'update plugins' })
 
 -- Toggle options
 local toggles = {

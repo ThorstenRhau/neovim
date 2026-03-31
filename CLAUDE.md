@@ -23,11 +23,11 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   │   ├── constants.lua       # Global constants
 │   │   ├── ftplugin.lua        # Filetype plugin helper
 │   │   ├── keymaps.lua         # Global keymaps
-│   │   ├── lazy.lua            # Plugin manager bootstrap
-│   │   └── options.lua         # Vim options
-│   └── plugins/                # Plugin specs (one file per category)
+│   │   ├── options.lua         # Vim options
+│   │   ├── pack.lua            # vim.pack plugin declarations
+│   │   └── terminal.lua        # Built-in terminal toggle
+│   └── plugins/                # Plugin setup (one file per category)
 │       ├── claudecode.lua      # Claude Code integration
-│       ├── colorscheme.lua     # Placeholder (theme is bundled, not a plugin)
 │       ├── completion.lua      # blink.cmp
 │       ├── editor.lua          # Editing aids
 │       ├── explorer.lua        # oil.nvim
@@ -37,7 +37,6 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── mini.lua            # mini.nvim modules
 │       ├── picker.lua          # fzf-lua
 │       ├── session.lua         # Session management
-│       ├── terminal.lua        # built-in terminal
 │       ├── treesitter.lua      # Treesitter + textobjects
 │       └── ui.lua              # which-key, trouble, neoscroll
 └── after/ftplugin/             # Filetype-specific settings
@@ -67,7 +66,7 @@ No test suite. Validate with `make all` before committing.
 
 - **StyLua**: 2-space indent, 120 line width, single quotes, trailing commas
 - **Selene**: `neovim` stdlib, global `vim` expected
-- Prefer `opts = {}` over `config = function()` in plugin specs
+- Plugin declarations go in `config/pack.lua`, setup/keymaps go in `plugins/*.lua`
 - Always include `desc` on keymaps
 
 ## Commits

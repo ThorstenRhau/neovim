@@ -1,154 +1,121 @@
-return {
-  {
-    'abecodes/tabout.nvim',
-    event = 'InsertEnter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = {
-      tabkey = '<Tab>',
-      backwards_tabkey = '<S-Tab>',
-      act_as_tab = true,
-      act_as_shift_tab = false,
-      enable_backwards = true,
-      completion = true,
-      tabouts = {
-        { open = "'", close = "'" },
-        { open = '"', close = '"' },
-        { open = '`', close = '`' },
-        { open = '(', close = ')' },
-        { open = '[', close = ']' },
-        { open = '{', close = '}' },
-        { open = '<', close = '>' },
-      },
-      ignore_beginning = true,
-      exclude = {},
-    },
+local map = vim.keymap.set
+
+-- Tabout
+require('tabout').setup({
+  tabkey = '<Tab>',
+  backwards_tabkey = '<S-Tab>',
+  act_as_tab = true,
+  act_as_shift_tab = false,
+  enable_backwards = true,
+  completion = true,
+  tabouts = {
+    { open = "'", close = "'" },
+    { open = '"', close = '"' },
+    { open = '`', close = '`' },
+    { open = '(', close = ')' },
+    { open = '[', close = ']' },
+    { open = '{', close = '}' },
+    { open = '<', close = '>' },
   },
-  {
-    'andymass/vim-matchup',
-    event = 'BufReadPre',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    init = function()
-      vim.g.matchup_matchparen_offscreen = { method = 'popup' }
-      vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_treesitter_stopline = 500
-      vim.g.matchup_treesitter_include_match_words = false
-      vim.g.matchup_treesitter_enable_quotes = true
-    end,
+  ignore_beginning = true,
+  exclude = {},
+})
+
+-- Indent blankline
+require('ibl').setup({
+  indent = {
+    char = '│',
+    tab_char = '│',
   },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'VeryLazy',
-    main = 'ibl',
-    opts = {
-      indent = {
-        char = '│',
-        tab_char = '│',
-      },
-      scope = {
-        enabled = true,
-        show_start = true,
-        show_end = true,
-        include = {
-          node_type = {
-            bash = { 'if_statement', 'for_statement', 'while_statement', 'case_statement', 'compound_statement' },
-            css = { 'rule_set', 'media_statement', 'block' },
-            hcl = { 'block', 'object' },
-            javascript = { 'object', 'array' },
-            lua = { 'table_constructor' },
-            python = { 'if_statement', 'for_statement', 'while_statement', 'with_statement', 'try_statement' },
-            tsx = { 'object', 'array' },
-            typescript = { 'object', 'array' },
-            xml = { 'element' },
-          },
-        },
-      },
-      exclude = {
-        filetypes = {
-          'lazy',
-          'mason',
-          'neo-tree',
-          'notify',
-          'oil',
-          'trouble',
-        },
+  scope = {
+    enabled = true,
+    show_start = true,
+    show_end = true,
+    include = {
+      node_type = {
+        bash = { 'if_statement', 'for_statement', 'while_statement', 'case_statement', 'compound_statement' },
+        css = { 'rule_set', 'media_statement', 'block' },
+        hcl = { 'block', 'object' },
+        javascript = { 'object', 'array' },
+        lua = { 'table_constructor' },
+        python = { 'if_statement', 'for_statement', 'while_statement', 'with_statement', 'try_statement' },
+        tsx = { 'object', 'array' },
+        typescript = { 'object', 'array' },
+        xml = { 'element' },
       },
     },
   },
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    ft = { 'markdown' },
-    keys = {
-      {
-        '<leader>tm',
-        function()
-          require('render-markdown').toggle()
-        end,
-        desc = 'markdown render',
-      },
-    },
-    opts = {
-      pipe_table = { preset = 'round' },
-      latex = { enabled = false },
-      code = {
-        sign = false,
-        width = 'block',
-        right_pad = 1,
-      },
-      heading = {
-        sign = false,
-      },
-      checkbox = {
-        custom = {
-          todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
-        },
-      },
+  exclude = {
+    filetypes = {
+      'mason',
+      'neo-tree',
+      'notify',
+      'oil',
+      'trouble',
     },
   },
-  {
-    'tadmccorkle/markdown.nvim',
-    ft = { 'markdown' },
-    opts = {},
-    keys = {
-      { '<leader>cl', '<cmd>MDListItemBelow<cr>', ft = 'markdown', desc = 'list item below' },
-      { '<leader>cL', '<cmd>MDListItemAbove<cr>', ft = 'markdown', desc = 'list item above' },
-      { '<leader>cN', '<cmd>MDResetListNumbering<cr>', ft = 'markdown', desc = 'reset list numbering' },
-      { '<leader>ct', '<cmd>MDInsertToc<cr>', ft = 'markdown', desc = 'insert TOC' },
-      { '<leader>cT', '<cmd>MDToc<cr>', ft = 'markdown', desc = 'show TOC' },
-      { '<leader>cx', '<cmd>MDTaskToggle<cr>', ft = 'markdown', desc = 'toggle task' },
+})
+
+-- Render markdown
+require('render-markdown').setup({
+  pipe_table = { preset = 'round' },
+  latex = { enabled = false },
+  code = {
+    sign = false,
+    width = 'block',
+    right_pad = 1,
+  },
+  heading = {
+    sign = false,
+  },
+  checkbox = {
+    custom = {
+      todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
     },
   },
-  {
-    'brianhuster/live-preview.nvim',
-    dependencies = { 'ibhagwan/fzf-lua' },
-    opts = {},
-    keys = {
-      { '<leader>tM', '<cmd>LivePreview start<cr>', desc = 'markdown in browser' },
-      { '<leader>tQ', '<cmd>LivePreview close<cr>', desc = 'stop markdown preview' },
-    },
+})
+
+map('n', '<leader>tm', function()
+  require('render-markdown').toggle()
+end, { desc = 'markdown render' })
+
+-- Markdown.nvim
+require('markdown').setup({})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function(ev)
+    local b = ev.buf
+    map('n', '<leader>cl', '<cmd>MDListItemBelow<cr>', { buffer = b, desc = 'list item below' })
+    map('n', '<leader>cL', '<cmd>MDListItemAbove<cr>', { buffer = b, desc = 'list item above' })
+    map('n', '<leader>cN', '<cmd>MDResetListNumbering<cr>', { buffer = b, desc = 'reset list numbering' })
+    map('n', '<leader>ct', '<cmd>MDInsertToc<cr>', { buffer = b, desc = 'insert TOC' })
+    map('n', '<leader>cT', '<cmd>MDToc<cr>', { buffer = b, desc = 'show TOC' })
+    map('n', '<leader>cx', '<cmd>MDTaskToggle<cr>', { buffer = b, desc = 'toggle task' })
+  end,
+})
+
+-- Live preview
+require('live-preview').setup({})
+
+map('n', '<leader>tM', '<cmd>LivePreview start<cr>', { desc = 'markdown in browser' })
+map('n', '<leader>tQ', '<cmd>LivePreview close<cr>', { desc = 'stop markdown preview' })
+
+-- Color picker
+require('ccc').setup({
+  highlighter = {
+    auto_enable = false,
+    lsp = true,
   },
-  {
-    'uga-rosa/ccc.nvim',
-    cmd = { 'CccPick', 'CccConvert', 'CccHighlighterToggle' },
-    keys = {
-      { '<leader>tC', '<cmd>CccHighlighterToggle<cr>', desc = 'color highlight' },
-      { '<leader>cp', '<cmd>CccPick<cr>', desc = 'color picker' },
-      { '<leader>cc', '<cmd>CccConvert<cr>', desc = 'convert color format' },
-    },
-    opts = {
-      highlighter = {
-        auto_enable = false,
-        lsp = true,
-      },
-      highlight_mode = 'background',
-      virtual_symbol = '●',
-      virtual_pos = 'inline',
-      recognize = {
-        input = true,
-        output = true,
-      },
-    },
+  highlight_mode = 'background',
+  virtual_symbol = '●',
+  virtual_pos = 'inline',
+  recognize = {
+    input = true,
+    output = true,
   },
-}
+})
+
+map('n', '<leader>tC', '<cmd>CccHighlighterToggle<cr>', { desc = 'color highlight' })
+map('n', '<leader>cp', '<cmd>CccPick<cr>', { desc = 'color picker' })
+map('n', '<leader>cc', '<cmd>CccConvert<cr>', { desc = 'convert color format' })
