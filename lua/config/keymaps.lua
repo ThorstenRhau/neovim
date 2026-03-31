@@ -96,6 +96,17 @@ map('n', '<leader>ta', function()
   end
 end, { desc = 'auto-completion' })
 
+map('n', '<leader>tC', function()
+  local enabled = vim.g.document_color_enabled
+  if enabled == nil then
+    enabled = true
+  end
+  enabled = not enabled
+  vim.g.document_color_enabled = enabled
+  vim.lsp.document_color.enable(enabled)
+  vim.notify('Document colors ' .. (enabled and 'enabled' or 'disabled'), vim.log.levels.INFO)
+end, { desc = 'document colors' })
+
 map('n', '<leader>tL', function()
   local managed_servers = vim.g.managed_lsp_servers or {}
   local enabled = vim.g.disable_auto_lsp == true
