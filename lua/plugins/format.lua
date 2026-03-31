@@ -30,15 +30,11 @@ require('conform').setup({
 })
 
 map('n', '<leader>cf', function()
-  local pos = vim.api.nvim_win_get_cursor(0)
   require('conform').format({ async = true, lsp_format = 'fallback' }, function(err)
     if not err then
       vim.notify('File formatted', vim.log.levels.INFO)
     else
-      -- Fallback to Vim's native = formatting
-      vim.cmd('silent! normal! gg=G')
-      pcall(vim.api.nvim_win_set_cursor, 0, pos)
-      vim.notify('Formatted with native Vim =', vim.log.levels.INFO)
+      vim.notify('No formatter available for this filetype', vim.log.levels.WARN)
     end
   end)
 end, { desc = 'format buffer' })
