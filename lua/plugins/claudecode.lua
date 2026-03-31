@@ -36,6 +36,7 @@ map('n', '<leader>ar', '<cmd>ClaudeCode --resume<cr>', { desc = 'resume claude s
 map('n', '<leader>aR', '<cmd>ClaudeCode --continue<cr>', { desc = 'continue claude session' })
 map('n', '<leader>am', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'select claude model' })
 vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('claudecode_tree_keymaps', { clear = true }),
   pattern = { 'NvimTree', 'oil' },
   callback = function(ev)
     vim.keymap.set(

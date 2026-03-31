@@ -48,7 +48,7 @@ require('ibl').setup({
   exclude = {
     filetypes = {
       'mason',
-      'neo-tree',
+      'NvimTree',
       'notify',
       'oil',
       'trouble',
@@ -83,6 +83,7 @@ end, { desc = 'markdown render' })
 require('markdown').setup({}) ---@diagnostic disable-line: missing-fields
 
 vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('markdown_nvim_keymaps', { clear = true }),
   pattern = 'markdown',
   callback = function(ev)
     local b = ev.buf

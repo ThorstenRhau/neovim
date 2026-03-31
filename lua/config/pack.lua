@@ -7,15 +7,20 @@ vim.g.matchup_treesitter_enable_quotes = true
 
 -- Build hooks (must be registered before vim.pack.add)
 vim.api.nvim_create_autocmd('PackChanged', {
+  group = vim.api.nvim_create_augroup('pack_changed', { clear = true }),
   callback = function(ev)
     if ev.data.kind == 'delete' then
       return
     end
     local name = ev.data.spec.name
     if name == 'nvim-treesitter' then
-      pcall(vim.cmd, 'TSUpdate')
+      pcall(function()
+        vim.cmd('TSUpdate')
+      end)
     elseif name == 'mason.nvim' then
-      pcall(vim.cmd, 'MasonUpdate')
+      pcall(function()
+        vim.cmd('MasonUpdate')
+      end)
     end
   end,
 })
