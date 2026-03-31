@@ -13,9 +13,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
     local name = ev.data.spec.name
     if name == 'nvim-treesitter' then
-      vim.cmd('TSUpdate')
+      pcall(vim.cmd, 'TSUpdate')
     elseif name == 'mason.nvim' then
-      vim.cmd('MasonUpdate')
+      pcall(vim.cmd, 'MasonUpdate')
     end
   end,
 })
