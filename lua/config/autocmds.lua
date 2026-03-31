@@ -153,3 +153,6 @@ autocmd('TermOpen', {
     vim.wo.list = false
   end,
 })
+
+-- Enable document colors with virtual text style by default
+vim.lsp.document_color.enable(true, nil, { style = 'virtual' })

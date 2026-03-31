@@ -103,7 +103,7 @@ map('n', '<leader>tC', function()
   end
   enabled = not enabled
   vim.g.document_color_enabled = enabled
-  vim.lsp.document_color.enable(enabled)
+  vim.lsp.document_color.enable(enabled, nil, { style = 'virtual' })
   vim.notify('Document colors ' .. (enabled and 'enabled' or 'disabled'), vim.log.levels.INFO)
 end, { desc = 'document colors' })
 
