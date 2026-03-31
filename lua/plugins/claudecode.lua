@@ -14,8 +14,6 @@ require('claudecode').setup({
     provider = 'native',
     show_native_term_exit_tip = true,
     auto_close = false,
-    env = {},
-    snacks_win_opts = {},
   },
   diff_opts = {
     layout = 'vertical',
