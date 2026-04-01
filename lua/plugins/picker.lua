@@ -180,6 +180,11 @@ map('n', '<leader>sc', '<cmd>FzfLua commands<cr>', { desc = 'commands' })
 map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'document diagnostics' })
 map('n', '<leader>se', '<cmd>FzfLua registers<cr>', { desc = 'registers' })
 map('n', '<leader>sf', '<cmd>FzfLua filetypes<cr>', { desc = 'filetypes' })
+map('n', '<leader>sG', function()
+  fzf.live_grep({
+    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --no-ignore',
+  })
+end, { desc = 'grep (no ignore)' })
 map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'grep' })
 map('n', '<leader>sh', '<cmd>FzfLua help_tags<cr>', { desc = 'help tags' })
 map('n', '<leader>si', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', { desc = 'live workspace symbols' })
