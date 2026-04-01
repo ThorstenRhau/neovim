@@ -5,8 +5,16 @@ _G.MiniIcons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
--- Extended a/i textobjects
-require('mini.ai').setup()
+-- Extended a/i textobjects (treesitter selection, built-in function call under F)
+local ai = require('mini.ai')
+ai.setup({
+  custom_textobjects = {
+    f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+    a = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+    c = ai.gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' }),
+    F = ai.gen_spec.function_call(),
+  },
+})
 
 -- Surround actions (sa=add, sd=delete, sr=replace)
 require('mini.surround').setup()

@@ -54,7 +54,6 @@ vim.pack.add({
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.align' },
-
   { src = 'https://github.com/nvim-mini/mini.ai' },
   { src = 'https://github.com/nvim-mini/mini.surround' },
   { src = 'https://github.com/nvim-mini/mini.pairs' },
