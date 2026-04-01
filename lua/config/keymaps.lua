@@ -46,6 +46,23 @@ map({ 'n', 'i', 'x', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'save file' })
 -- Better paste
 map('x', 'p', '"_dP', { desc = 'paste without yanking' })
 
+-- Incremental selection
+map({ 'n', 'x', 'o' }, '<A-o>', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require('vim.treesitter._select').select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = 'select parent node' })
+
+map({ 'n', 'x', 'o' }, '<A-i>', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require('vim.treesitter._select').select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = 'select child node' })
+
 -- Add blank lines
 map('n', ']<space>', 'o<esc>k', { desc = 'add blank line below' })
 map('n', '[<space>', 'O<esc>j', { desc = 'add blank line above' })
