@@ -46,7 +46,7 @@ vim.pack.add({
   { src = 'https://github.com/abecodes/tabout.nvim' },
   { src = 'https://github.com/andymass/vim-matchup' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
-  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
+  { src = 'https://github.com/OXY2DEV/markview.nvim' },
   { src = 'https://github.com/tadmccorkle/markdown.nvim', name = 'markdown.nvim' },
   { src = 'https://github.com/brianhuster/live-preview.nvim' },
 

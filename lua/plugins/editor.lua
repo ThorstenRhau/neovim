@@ -56,28 +56,16 @@ require('ibl').setup({
   },
 })
 
--- Render markdown
-require('render-markdown').setup({
-  pipe_table = { preset = 'round' },
-  latex = { enabled = false },
-  code = {
-    sign = false,
-    width = 'block',
-    right_pad = 1,
-  },
-  heading = {
-    sign = false,
-  },
-  checkbox = {
-    custom = {
-      todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
-    },
+-- Render markdown, typst, latex, html in-buffer
+require('markview').setup({
+  preview = {
+    icon_provider = 'mini',
+    hybrid_modes = { 'n' },
+    edit_range = { 1, 1 },
   },
 })
 
-map('n', '<leader>tm', function()
-  require('render-markdown').toggle()
-end, { desc = 'markdown render' })
+map('n', '<leader>tm', '<cmd>Markview toggle<cr>', { desc = 'markdown render' })
 
 -- Markdown.nvim
 require('markdown').setup({}) ---@diagnostic disable-line: missing-fields
