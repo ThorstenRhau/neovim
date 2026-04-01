@@ -60,6 +60,7 @@ vim.pack.add({
   { src = 'https://github.com/nvim-mini/mini.move' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
+  { src = 'https://github.com/nvim-mini/mini.sessions' },
 
   -- Picker
   { src = 'https://github.com/ibhagwan/fzf-lua' },
@@ -83,9 +84,6 @@ vim.pack.add({
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 
-  -- Session
-  { src = 'https://github.com/folke/persistence.nvim' },
-
   -- Claude Code
   { src = 'https://github.com/coder/claudecode.nvim' },
 }, { load = true, confirm = false })
@@ -101,5 +99,4 @@ require('plugins.git')
 require('plugins.format')
 require('plugins.ui')
 require('plugins.explorer')
-require('plugins.session')
 require('plugins.claudecode')

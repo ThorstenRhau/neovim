@@ -4,5 +4,7 @@ base: neovim
 globals:
   MiniIcons:
     any: true
+  MiniSessions:
+    any: true
   MiniStatusline:
     any: true

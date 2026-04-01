@@ -75,6 +75,67 @@ require('mini.statusline').setup({
   },
 })
 
+-- Session management
+require('mini.sessions').setup({
+  autoread = false,
+  autowrite = true,
+  directory = vim.fn.stdpath('state') .. '/sessions/',
+})
+
+-- Derive a session name from the current working directory
+local function cwd_session()
+  return (vim.fn.getcwd():gsub('/', '%%'))
+end
+
+-- Auto-create session on quit when none is active (persistence.nvim compat)
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  group = vim.api.nvim_create_augroup('mini_sessions_autosave', { clear = true }),
+  callback = function()
+    if vim.g.minisessions_disable then
+      return
+    end
+    if vim.v.this_session == '' then
+      MiniSessions.write(cwd_session())
+    end
+  end,
+})
+
+local map = vim.keymap.set
+map('n', '<leader>S', function()
+  local name = cwd_session()
+  if MiniSessions.detected[name] then
+    MiniSessions.read(name)
+  else
+    vim.notify('No session for this directory', vim.log.levels.INFO)
+  end
+end, { desc = 'restore session' })
+map('n', '<leader>qs', function()
+  local name = cwd_session()
+  if MiniSessions.detected[name] then
+    MiniSessions.read(name)
+  else
+    vim.notify('No session for this directory', vim.log.levels.INFO)
+  end
+end, { desc = 'restore session' })
+map('n', '<leader>qS', function()
+  MiniSessions.select('read')
+end, { desc = 'select session' })
+map('n', '<leader>ql', function()
+  MiniSessions.read(MiniSessions.get_latest())
+end, { desc = 'restore last session' })
+map('n', '<leader>qw', function()
+  local name = vim.fn.input('Session name: ')
+  if name ~= '' then
+    MiniSessions.write(name)
+  end
+end, { desc = 'write named session' })
+map('n', '<leader>qx', function()
+  MiniSessions.select('delete')
+end, { desc = 'delete session' })
+map('n', '<leader>qd', function()
+  vim.g.minisessions_disable = true
+end, { desc = 'stop session tracking' })
+
 -- Key clue popup
 local miniclue = require('mini.clue')
 miniclue.setup({
