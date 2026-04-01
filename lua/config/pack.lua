@@ -59,6 +59,7 @@ vim.pack.add({
   { src = 'https://github.com/nvim-mini/mini.bracketed' },
   { src = 'https://github.com/nvim-mini/mini.move' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
+  { src = 'https://github.com/nvim-mini/mini.clue' },
 
   -- Picker
   { src = 'https://github.com/ibhagwan/fzf-lua' },
@@ -74,7 +75,7 @@ vim.pack.add({
   { src = 'https://github.com/mfussenegger/nvim-lint' },
 
   -- UI
-  { src = 'https://github.com/folke/which-key.nvim' },
+
   { src = 'https://github.com/folke/trouble.nvim' },
   { src = 'https://github.com/karb94/neoscroll.nvim' },
 

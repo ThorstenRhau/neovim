@@ -1,30 +1,5 @@
 local map = vim.keymap.set
 
--- Which-key
-require('which-key').setup({
-  preset = 'helix',
-  delay = 200,
-  spec = {
-    { '<leader>a', group = 'claude', mode = { 'n', 'v' } },
-    { '<leader>b', group = 'buffer' },
-    { '<leader>c', group = 'code', mode = { 'n', 'v' } },
-    { '<leader>f', group = 'file/find', mode = { 'n', 'v' } },
-    { '<leader>g', group = 'git' },
-    { '<leader>h', group = 'hunk', mode = { 'n', 'v' } },
-    { '<leader>q', group = 'project/session' },
-    { '<leader>s', group = 'search' },
-    { '<leader>t', group = 'toggle' },
-    { '<leader>w', group = 'window' },
-    { '<leader>x', group = 'diagnostics' },
-    { 'g', group = 'goto' },
-    { '[', group = 'prev', mode = { 'n', 'x', 'o' } },
-    { ']', group = 'next', mode = { 'n', 'x', 'o' } },
-  },
-  icons = {
-    mappings = false,
-  },
-})
-
 -- Trouble
 require('trouble').setup({
   focus = true,

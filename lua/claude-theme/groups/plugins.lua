@@ -242,15 +242,14 @@ local function plugins(p)
     TreesitterContextLineNumberBottom = { underline = true, sp = p.fg3 },
     TreesitterContextSeparator = { fg = p.fg3 },
 
-    -- which-key
-    WhichKey = { fg = p.accent },
-    WhichKeyGroup = { fg = p.blue },
-    WhichKeyDesc = { fg = p.fg0 },
-    WhichKeySeparator = { fg = p.fg3 },
-    WhichKeyValue = { fg = p.fg2 },
-    WhichKeyBorder = { fg = p.fg3, bg = p.bg0 },
-    WhichKeyNormal = { bg = p.bg0 },
-    WhichKeyTitle = { fg = p.accent, bg = p.bg0, bold = true },
+    -- mini.clue
+    MiniClueBorder = { fg = p.fg3, bg = p.bg0 },
+    MiniClueDescGroup = { fg = p.blue },
+    MiniClueDescSingle = { fg = p.fg0 },
+    MiniClueNextKey = { fg = p.accent },
+    MiniClueNextKeyWithPostkeys = { fg = p.accent, bold = true },
+    MiniClueSeparator = { fg = p.fg3 },
+    MiniClueTitle = { fg = p.accent, bg = p.bg0, bold = true },
 
     -- trouble.nvim
     TroubleNormal = { fg = p.fg0, bg = p.bg1 },

@@ -37,11 +37,11 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── format.lua          # conform.nvim + nvim-lint
 │       ├── git.lua             # gitsigns, neogit, diffview
 │       ├── lsp.lua             # LSP servers, Mason
-│       ├── mini.lua            # mini.nvim modules
+│       ├── mini.lua            # mini.nvim modules (including mini.clue key hints)
 │       ├── picker.lua          # fzf-lua
 │       ├── session.lua         # Session management (persistence.nvim)
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       └── ui.lua              # which-key, trouble, neoscroll
+│       └── ui.lua              # trouble, neoscroll
 └── after/ftplugin/             # Filetype-specific settings (35 filetypes)
 ```
 
