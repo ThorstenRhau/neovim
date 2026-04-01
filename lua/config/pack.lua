@@ -49,7 +49,6 @@ vim.pack.add({
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
   { src = 'https://github.com/OXY2DEV/markview.nvim' },
   { src = 'https://github.com/tadmccorkle/markdown.nvim', name = 'markdown.nvim' },
-  { src = 'https://github.com/brianhuster/live-preview.nvim' },
 
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },

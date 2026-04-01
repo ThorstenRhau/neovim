@@ -95,12 +95,6 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Live preview
-require('livepreview.config').set({})
-
-map('n', '<leader>tM', '<cmd>LivePreview start<cr>', { desc = 'markdown in browser' })
-map('n', '<leader>tQ', '<cmd>LivePreview close<cr>', { desc = 'stop markdown preview' })
-
 -- Built-in difftool
 map('n', '<leader>gD', function()
   vim.cmd.packadd('nvim.difftool')
