@@ -5,12 +5,6 @@ _G.MiniIcons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
--- Split and join arguments
-require('mini.splitjoin').setup()
-vim.keymap.set({ 'n', 'x' }, '<leader>cj', function()
-  require('mini.splitjoin').toggle()
-end, { desc = 'split/join' })
-
 -- Extended a/i textobjects
 require('mini.ai').setup()
 

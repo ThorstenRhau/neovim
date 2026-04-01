@@ -45,6 +45,7 @@ vim.pack.add({
   -- Editor
   { src = 'https://github.com/abecodes/tabout.nvim' },
   { src = 'https://github.com/andymass/vim-matchup' },
+  { src = 'https://github.com/Wansmer/treesj' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
   { src = 'https://github.com/OXY2DEV/markview.nvim' },
   { src = 'https://github.com/tadmccorkle/markdown.nvim', name = 'markdown.nvim' },
@@ -53,7 +54,7 @@ vim.pack.add({
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.align' },
-  { src = 'https://github.com/nvim-mini/mini.splitjoin' },
+
   { src = 'https://github.com/nvim-mini/mini.ai' },
   { src = 'https://github.com/nvim-mini/mini.surround' },
   { src = 'https://github.com/nvim-mini/mini.pairs' },
