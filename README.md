@@ -8,7 +8,7 @@
 [![First Commit](https://img.shields.io/badge/first%20commit-Dec%202023-gray)](https://github.com/ThorstenRhau/neovim)
 
 Personal config, maintained since December 2023. After 1000+ commits it was time
-for a full rewrite in January 2026, targeting the Neovim 0.12.x native API.
+for a full rewrite in January 2026.
 
 The `main` branch is my daily driver. Well-tested but occasionally in flux.
 
