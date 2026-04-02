@@ -5,7 +5,6 @@ local disabled_builtins = {
   'matchparen',
   'netrwPlugin',
   'tarPlugin',
-  'tohtml',
   'tutor',
   'zipPlugin',
 }
