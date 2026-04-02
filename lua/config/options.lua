@@ -26,6 +26,7 @@ o.number = true
 o.numberwidth = 2
 o.pumborder = 'single'
 o.pumheight = 10
+o.pummaxwidth = 60
 o.relativenumber = true
 o.scrolloff = 8
 o.shiftwidth = 4
