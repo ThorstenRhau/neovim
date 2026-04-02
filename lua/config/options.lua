@@ -48,7 +48,8 @@ o.updatetime = 250
 o.winborder = 'single'
 o.wrap = false
 
--- Diff settings
+-- Diff settings (override default linematch:40, add word-level inline diffs)
+opt.diffopt:remove('linematch:40')
 opt.diffopt:append({ 'linematch:60', 'inline:word' })
 
 -- Cursor appearance and blinking
