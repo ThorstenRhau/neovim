@@ -94,7 +94,7 @@ require('vim._core.ui2').enable({
       bufwrite = 'msg',
       confirm = 'cmd',
       emsg = 'pager',
-      echo = 'msg',
+      echo = 'cmd',
       echomsg = 'msg',
       echoerr = 'pager',
       completion = 'cmd',
