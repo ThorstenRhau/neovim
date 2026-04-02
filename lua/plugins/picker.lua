@@ -5,9 +5,6 @@ local fzf = require('fzf-lua')
 local opts = {
   'default-title', -- Titles for picker windows
   fzf_colors = true, -- Sync fzf colors from Neovim highlights
-  fzf_opts = {
-    ['--scheme'] = 'path',
-  },
   ---@type fzf-lua.config.Winopts
   winopts = {
     height = 0.90,
@@ -22,6 +19,7 @@ local opts = {
       layout = 'vertical',
       vertical = 'down:65%',
       delay = 50,
+      winopts = { number = false },
     },
   },
   ---@type fzf-lua.config.Previewers
@@ -54,12 +52,15 @@ local opts = {
   files = {
     fd_opts = '--color=never --type f --hidden --follow --exclude .git',
     cwd_prompt = false,
+    cwd_header = false,
     fzf_opts = {
+      ['--scheme'] = 'path',
       ['--tiebreak'] = 'pathname,chunk,begin',
     },
   },
   grep = {
-    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
+    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --glob=!.git',
+    fzf_opts = { ['--scheme'] = 'path' },
   },
   command_history = {
     fzf_opts = { ['--scheme'] = 'history' },
@@ -79,6 +80,7 @@ local opts = {
   },
   ---@type fzf-lua.config.Lsp
   lsp = {
+    jump_to_single_result = true,
     code_actions = { previewer = 'codeaction_native' },
     symbols = {
       symbol_icons = {
@@ -135,7 +137,7 @@ map('n', '<leader>cs', '<cmd>FzfLua lsp_finder<cr>', { desc = 'lsp finder' })
 map('n', '<leader>fL', '<cmd>FzfLua lines<cr>', { desc = 'lines (all buffers)' })
 map('n', '<leader>fS', '<cmd>FzfLua spellcheck<cr>', { desc = 'spellcheck document' })
 map('n', '<leader>fT', '<cmd>FzfLua treesitter<cr>', { desc = 'treesitter symbols' })
-map('n', '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', { desc = 'grep word' })
+map('n', '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', { desc = 'grep WORD' })
 map('n', '<leader>fa', '<cmd>FzfLua args<cr>', { desc = 'args list' })
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'buffers' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'files' })
@@ -182,7 +184,7 @@ map('n', '<leader>se', '<cmd>FzfLua registers<cr>', { desc = 'registers' })
 map('n', '<leader>sf', '<cmd>FzfLua filetypes<cr>', { desc = 'filetypes' })
 map('n', '<leader>sG', function()
   fzf.live_grep({
-    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --no-ignore',
+    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --no-ignore',
   })
 end, { desc = 'grep (no ignore)' })
 map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'grep' })
