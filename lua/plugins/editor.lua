@@ -74,6 +74,11 @@ require('markview').setup({
     hybrid_modes = { 'n' },
     edit_range = { 1, 1 },
   },
+  markdown = {
+    list_items = {
+      shift_width = 1,
+    },
+  },
 })
 
 map('n', '<leader>tm', '<cmd>Markview toggle<cr>', { desc = 'markdown render' })
