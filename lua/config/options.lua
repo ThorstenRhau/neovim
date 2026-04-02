@@ -58,7 +58,7 @@ o.guicursor = table.concat({
 
 -- Whitespace characters
 o.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', leadtab = '⇥ ' }
 
 -- Fill chars
 opt.fillchars:append({
