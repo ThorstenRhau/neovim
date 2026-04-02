@@ -48,6 +48,9 @@ o.updatetime = 250
 o.winborder = 'single'
 o.wrap = false
 
+-- Diff settings
+opt.diffopt:append({ 'linematch:60', 'inline:word' })
+
 -- Cursor appearance and blinking
 o.guicursor = table.concat({
   'n-v-c-sm:block-Cursor', -- Normal, Visual, Command, Showmatch: block cursor
