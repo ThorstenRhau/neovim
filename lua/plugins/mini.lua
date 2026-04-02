@@ -50,6 +50,7 @@ require('mini.statusline').setup({
         },
       })
       local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
+      local progress = vim.ui.progress_status() or ''
       local filename = MiniStatusline.section_filename({ trunc_width = 140 })
       local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
       local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
@@ -64,7 +65,7 @@ require('mini.statusline').setup({
 
       return MiniStatusline.combine_groups({
         { hl = mode_hl, strings = { mode } },
-        { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+        { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp, progress } },
         '%<',
         { hl = 'MiniStatuslineFilename', strings = { filename } },
         '%=',
