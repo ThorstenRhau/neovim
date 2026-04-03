@@ -78,7 +78,7 @@ require('markview').setup({
   },
   ---@diagnostic disable-next-line: missing-fields
   markdown = {
-    headings = presets.marker,
+    headings = presets.numbered,
     ---@diagnostic disable-next-line: missing-fields
     list_items = {
       shift_width = 1,
