@@ -68,13 +68,18 @@ require('ibl').setup({
 })
 
 -- Render markdown, typst, latex, html in-buffer
+local presets = require('markview.presets').headings
 require('markview').setup({
   preview = {
     icon_provider = 'mini',
     hybrid_modes = { 'n' },
+    linewise_hybrid_mode = true,
     edit_range = { 1, 1 },
   },
+  ---@diagnostic disable-next-line: missing-fields
   markdown = {
+    headings = presets.marker,
+    ---@diagnostic disable-next-line: missing-fields
     list_items = {
       shift_width = 1,
     },
