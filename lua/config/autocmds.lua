@@ -156,3 +156,20 @@ autocmd('TermOpen', {
 
 -- Enable document colors with virtual text style by default
 vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
+
+-- LSP progress via nvim_echo progress messages
+autocmd('LspProgress', {
+  group = augroup('lsp_progress', { clear = true }),
+  desc = 'Display LSP progress in echo area',
+  callback = function(ev)
+    local value = ev.data.params.value
+    vim.api.nvim_echo({ { value.message or 'done' } }, false, {
+      id = 'lsp.' .. ev.data.client_id .. '.' .. ev.data.params.token,
+      kind = 'progress',
+      source = 'vim.lsp',
+      title = value.title,
+      status = value.kind ~= 'end' and 'running' or 'success',
+      percent = value.percentage,
+    })
+  end,
+})
