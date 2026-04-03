@@ -93,6 +93,7 @@ local servers = {
     },
     settings = {
       basedpyright = { analysis = { typeCheckingMode = 'basic' } },
+      pyright = { disableOrganizeImports = true },
     },
   },
   cssls = {
@@ -119,6 +120,29 @@ local servers = {
       'eslint.config.mjs',
       'eslint.config.cjs',
       'package.json',
+    },
+    handlers = {
+      ['eslint/openDoc'] = function(_, result)
+        if result then
+          vim.ui.open(result.url)
+        end
+        return {}
+      end,
+      ['eslint/confirmESLintExecution'] = function()
+        return 4 -- approved
+      end,
+      ['eslint/probeFailed'] = function()
+        vim.notify('ESLint probe failed.', vim.log.levels.WARN)
+        return {}
+      end,
+      ['eslint/noLibrary'] = function()
+        vim.notify('Unable to find ESLint library.', vim.log.levels.WARN)
+        return {}
+      end,
+      ['eslint/noConfig'] = function()
+        vim.notify('Unable to find ESLint configuration.', vim.log.levels.WARN)
+        return {}
+      end,
     },
     settings = {
       codeAction = {
@@ -232,11 +256,15 @@ local servers = {
   },
 }
 
--- Configure all servers with shared capabilities
+-- Shared capabilities for all servers
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
+
+-- Register all servers
 local server_names = {}
 for name, config in pairs(servers) do
-  config.capabilities = capabilities
-  vim.lsp.config[name] = config
+  vim.lsp.config(name, config)
   table.insert(server_names, name)
 end
 
@@ -259,8 +287,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', '<leader>cr', vim.lsp.buf.rename, 'rename')
     map('n', '<leader>cS', vim.lsp.buf.signature_help, 'signature help')
 
-    -- Document highlight on cursor hold
     local client = vim.lsp.get_clients({ id = event.data.client_id })[1]
+
+    -- Disable ruff hover (basedpyright provides richer type-aware hover)
+    if client and client.name == 'ruff' then
+      client.server_capabilities.hoverProvider = false
+    end
+
+    -- Document highlight on cursor hold
     if client and client:supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = event.buf,
