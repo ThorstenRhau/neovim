@@ -17,6 +17,7 @@ local o = vim.o
 
 o.clipboard = ''
 o.completeopt = 'menu,menuone,noselect'
+o.confirm = true
 o.cursorline = true
 o.expandtab = true
 o.ignorecase = true
