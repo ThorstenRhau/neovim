@@ -26,14 +26,6 @@ autocmd('BufReadPost', {
   end,
 })
 
--- Auto-resize splits on window resize
-autocmd('VimResized', {
-  group = augroup('resize_splits', { clear = true }),
-  callback = function()
-    vim.cmd('tabdo wincmd =')
-  end,
-})
-
 -- Close certain filetypes with q
 -- Note: 'man' is excluded because Neovim has built-in q handling for man pages
 autocmd('FileType', {
