@@ -51,16 +51,6 @@ autocmd('FileType', {
   end,
 })
 
--- Check if file changed outside of vim
-autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
-  group = augroup('checktime', { clear = true }),
-  callback = function()
-    if vim.bo.buftype ~= 'nofile' then
-      vim.cmd('checktime')
-    end
-  end,
-})
-
 -- Trim whitespace command
 vim.api.nvim_create_user_command('TrimWhitespace', function()
   local save_cursor = vim.fn.getpos('.')
