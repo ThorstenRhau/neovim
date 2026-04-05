@@ -22,6 +22,7 @@ o.completeopt = 'fuzzy,noselect,popup'
 o.confirm = true
 o.cursorline = true
 o.expandtab = true
+o.foldcolumn = '0'
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.ignorecase = true
@@ -40,7 +41,7 @@ o.ruler = false
 o.scrolloff = 10
 o.shiftround = true
 o.shiftwidth = 4
-o.showbreak = '↪ '
+o.showbreak = '↳ '
 o.showmode = false
 o.sidescrolloff = 10
 o.signcolumn = 'auto:1'
@@ -53,7 +54,7 @@ o.spellsuggest = 'best,20'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
-o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
+o.statuscolumn = '%C%s%=%{v:relnum?v:relnum:v:lnum} '
 o.tabstop = 4
 o.termguicolors = true
 o.timeoutlen = 300
@@ -78,16 +79,16 @@ o.guicursor = table.concat({
 
 -- Whitespace characters
 o.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', leadtab = '⇥ ' }
+opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', extends = '›', precedes = '‹' }
 
 -- Fill chars
 opt.fillchars:append({
   diff = '░',
   eob = ' ',
-  fold = '⋯',
+  fold = '─',
   foldopen = '▼',
   foldclose = '▶',
-  foldsep = '┊',
+  foldsep = '│',
   msgsep = '━',
 })
 
