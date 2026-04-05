@@ -15,9 +15,8 @@ Before starting, read these files to understand the project:
 3. `lua/config/pack.lua` (vim.pack plugin declarations and require order)
 4. All files in `lua/config/`
 5. All files in `lua/plugins/`
-6. All files in `lua/claude-theme/` (bundled colorscheme: palette, highlight groups)
-7. All files in `after/ftplugin/`
-8. `Makefile`, `selene.toml`, `selene_mini.yml` (validation toolchain config)
+6. All files in `after/ftplugin/`
+7. `Makefile`, `selene.toml`, `selene_mini.yml` (validation toolchain config)
 
 ## Tool Usage
 
@@ -189,16 +188,6 @@ Check config files against CLAUDE.md conventions:
 
 4. **PackChanged hook coverage**: verify that `PackChanged` autocmd in `pack.lua` covers plugins that need post-install/update build steps.
    - Guard: only flag plugins that document a required build step (e.g., `TSUpdate` for treesitter, `MasonUpdate` for mason). Do not flag plugins that work without build steps.
-
-### Phase 6: Colorscheme Integrity
-
-1. **Stale plugin highlight groups**: compare the comment-delimited plugin sections in `lua/claude-theme/groups/plugins.lua` against plugins listed in `config/pack.lua`. Flag highlight group sections for plugins that are not installed.
-   - Guard: groups that match Neovim built-in highlight namespaces (e.g., `Diagnostic*`, `LspReference*`) belong in `base.lua`, not `plugins.lua`, and should not be flagged.
-
-2. **Missing plugin highlight groups**: for each plugin in `config/pack.lua` that defines custom highlight groups, check whether `plugins.lua` has a section for it. Use context7 to look up the plugin's highlight group names.
-   - Guard: plugins that only use built-in highlight groups or link to standard groups (e.g., `friendly-snippets`, `schemastore.nvim`, `plenary.nvim`) do not need entries in `plugins.lua`. Only flag plugins that define their own highlight namespace.
-
-3. **Palette key validity**: verify that every `p.*` reference in all `groups/*.lua` files corresponds to a key that exists in both the dark and light tables in `palette.lua`.
 
 ## Output Format
 

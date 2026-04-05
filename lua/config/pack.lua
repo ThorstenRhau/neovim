@@ -26,6 +26,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
 })
 
 vim.pack.add({
+  -- Colorscheme
+  { src = 'https://github.com/ThorstenRhau/token' },
+
   -- Treesitter
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },

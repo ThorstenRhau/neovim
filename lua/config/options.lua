@@ -84,9 +84,7 @@ o.foldlevelstart = 99
 o.spelllang = 'en_us'
 o.spellsuggest = 'best,20' -- Limits to 20 suggestions
 
--- Colorscheme (colors/claude-theme.lua is in rtp from stdpath('config'))
 o.termguicolors = true
-vim.cmd.colorscheme('claude-theme')
 
 -- Experimental UI2: floating cmdline and messages
 o.cmdheight = 1

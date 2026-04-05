@@ -8,26 +8,16 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 ~/.config/nvim/
 ├── init.lua                    # Entry point (sets background, leaders, loads config/)
 ├── Makefile                    # format, lint, clean, install-hooks targets
-├── colors/
-│   └── claude-theme.lua        # Colorscheme entry point (calls claude-theme.load())
 ├── .githooks/
 │   └── pre-commit              # Runs `make all` before each commit
 ├── lua/
-│   ├── claude-theme/           # Custom colorscheme (dark/light, no external deps)
-│   │   ├── init.lua            # load(): clears highlights, applies palette + groups
-│   │   ├── palette.lua         # Returns color table for 'dark' or 'light' background
-│   │   └── groups/             # Highlight group definitions (each returns fn(palette))
-│   │       ├── base.lua        # Core editor highlights
-│   │       ├── lsp.lua         # LSP semantic tokens, diagnostics
-│   │       ├── plugins.lua     # Plugin-specific highlights
-│   │       └── treesitter.lua  # Treesitter capture groups
 │   ├── config/                 # Core configuration
 │   │   ├── autocmds.lua        # Auto-commands
 │   │   ├── constants.lua       # Global constants (used by other modules)
 │   │   ├── ftplugin.lua        # Filetype helper: chainable .indent(n).treesitter().prose()
 │   │   ├── keymaps.lua         # Global keymaps
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (28 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (29 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
 │   └── plugins/                # Plugin setup (one file per category)
 │       ├── claudecode.lua      # Claude Code integration
@@ -49,15 +39,9 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 
 Uses native `vim.pack.add()`. Plugin declarations go in `config/pack.lua`, setup and keymaps go in `plugins/*.lua`. The `PackChanged` autocmd auto-runs `TSUpdate` and `MasonUpdate` after plugin updates.
 
-## Colorscheme (claude-theme)
+## Colorscheme
 
-Bundled colorscheme with dark and light variants. Not a plugin, loaded via `colors/claude-theme.lua`.
-
-- `palette.lua` returns all colors keyed by `vim.o.background` ('dark'|'light')
-- Each file in `groups/` exports a function that takes the palette and returns a `{ [group] = hl_opts }` table
-- `init.lua` clears cache, merges all group tables, and calls `nvim_set_hl`
-- Adding a new highlight group: add it to the appropriate `groups/*.lua` file
-- Adding a new palette color: add it to both dark and light tables in `palette.lua`
+Uses [token](https://github.com/ThorstenRhau/token) (external plugin, declared in `config/pack.lua`). Supports dark/light via `vim.o.background`. Background auto-detection from terminal emulator is handled in `config/autocmds.lua`.
 
 ## Validation
 

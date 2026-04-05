@@ -1,1 +1,0 @@
-require('claude-theme').load()

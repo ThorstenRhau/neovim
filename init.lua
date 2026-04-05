@@ -9,6 +9,7 @@ vim.g.maplocalleader = '\\'
 -- Load other config modules
 require('config.options')
 require('config.pack')
+vim.cmd.colorscheme('token')
 require('config.terminal')
 require('config.keymaps')
 require('config.autocmds')
