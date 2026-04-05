@@ -99,7 +99,8 @@ autocmd('LspProgress', {
   desc = 'Display LSP progress in echo area',
   callback = function(ev)
     local value = ev.data.params.value
-    vim.api.nvim_echo({ { value.message or '' } }, false, {
+    local msg = value.message or (value.kind == 'end' and 'done' or '')
+    vim.api.nvim_echo({ { msg } }, false, {
       id = 'lsp.' .. ev.data.client_id .. '.' .. ev.data.params.token,
       kind = 'progress',
       source = 'vim.lsp',
