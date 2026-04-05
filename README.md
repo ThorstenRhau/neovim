@@ -16,8 +16,9 @@ Feel free to steal anything useful.
 
 ## Showcase
 
-![Neovim token-light theme](https://rhau.se/token-light.jpg) <br>
-![Neovim token-dark theme](https://rhau.se/token-dark.jpg)
+| Dark | Light |
+|------|-------|
+| ![token-dark](https://rhau.se/token-dark.jpg) | ![token-light](https://rhau.se/token-light.jpg) |
 
 I use my own color theme [token](https://github.com/ThorstenRhau/token/) and the
 typeface Berkeley Mono
