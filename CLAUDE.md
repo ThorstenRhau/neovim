@@ -25,7 +25,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── diffview.lua        # diffview.nvim
 │       ├── formatter.lua       # conform.nvim
 │       ├── gitsigns.lua        # gitsigns.nvim
-│       ├── ibl.lua             # indent-blankline.nvim
+│       ├── hlchunk.lua         # hlchunk.nvim
 │       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers, Mason
 │       ├── mini.lua            # mini.nvim modules (splitjoin, clue, sessions, etc.)

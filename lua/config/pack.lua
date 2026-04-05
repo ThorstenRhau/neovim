@@ -48,7 +48,7 @@ vim.pack.add({
   { src = 'https://github.com/abecodes/tabout.nvim' },
   { src = 'https://github.com/andymass/vim-matchup' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
-  { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
+  { src = 'https://github.com/shellRaining/hlchunk.nvim' },
 
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
@@ -94,7 +94,7 @@ require('plugins.treesitter')
 require('plugins.completion')
 require('plugins.lsp')
 require('plugins.tabout')
-require('plugins.ibl')
+require('plugins.hlchunk')
 require('plugins.picker')
 require('plugins.gitsigns')
 require('plugins.neogit')
