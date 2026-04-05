@@ -184,6 +184,8 @@ local function plugins(p)
     NeogitDiffContextHighlight = { fg = p.fg0, bg = p.bg4 },
     NeogitDiffAddHighlight = { fg = p.green, bg = p.diff_add, bold = true },
     NeogitDiffDeleteHighlight = { fg = p.red, bg = p.diff_del, bold = true },
+    NeogitDiffAddInline = { bg = p.diff_add_inline },
+    NeogitDiffDeleteInline = { bg = p.diff_del_inline },
     NeogitChangeModified = { fg = p.yellow },
     NeogitChangeAdded = { fg = p.green },
     NeogitChangeDeleted = { fg = p.red },
