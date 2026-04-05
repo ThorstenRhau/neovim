@@ -100,38 +100,6 @@ autocmd('TermOpen', {
   end,
 })
 
--- Dynamic foldcolumn: show only when closed folds exist
-local function update_foldcolumn()
-  if vim.bo.buftype ~= '' or not vim.wo.foldenable then
-    vim.wo.foldcolumn = '0'
-    return
-  end
-  for lnum = 1, vim.api.nvim_buf_line_count(0) do
-    if vim.fn.foldclosed(lnum) ~= -1 then
-      vim.wo.foldcolumn = 'auto:1'
-      return
-    end
-  end
-  vim.wo.foldcolumn = '0'
-end
-
-autocmd('BufWinEnter', {
-  group = augroup('dynamic_foldcolumn', { clear = true }),
-  callback = update_foldcolumn,
-})
-
--- Keymaps update foldcolumn after fold operations (no FoldChanged event exists)
-local fold_keys = { 'za', 'zA', 'zc', 'zC', 'zi', 'zM', 'zn', 'zN', 'zo', 'zO', 'zR', 'zv', 'zx', 'zX' }
-for _, key in ipairs(fold_keys) do
-  vim.keymap.set('n', key, function()
-    local ok, err = pcall(vim.cmd.normal, { vim.v.count1 .. key, bang = true })
-    if not ok then
-      vim.notify(err:gsub('^Vim:', ''), vim.log.levels.ERROR)
-    end
-    update_foldcolumn()
-  end, { desc = 'Fold: ' .. key })
-end
-
 -- Enable document colors with virtual text style by default
 vim.lsp.document_color.enable(true, nil, { style = 'virtual' })
 

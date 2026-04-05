@@ -22,7 +22,6 @@ o.completeopt = 'fuzzy,noselect,popup'
 o.confirm = true
 o.cursorline = true
 o.expandtab = true
-o.foldcolumn = '0'
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.ignorecase = true
@@ -54,7 +53,7 @@ o.spellsuggest = 'best,20'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
-o.statuscolumn = '%C%s%=%{v:relnum?v:relnum:v:lnum} '
+o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 o.tabstop = 4
 o.termguicolors = true
 o.timeoutlen = 300
@@ -86,9 +85,9 @@ opt.fillchars:append({
   diff = '░',
   eob = ' ',
   fold = '─',
-  foldopen = '▼',
-  foldclose = '▶',
-  foldsep = '│',
+  -- foldopen = '▼',
+  -- foldclose = '▶',
+  -- foldsep = '│',
   msgsep = '━',
 })
 
