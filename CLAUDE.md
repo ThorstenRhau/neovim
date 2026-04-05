@@ -14,25 +14,31 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   ├── config/                 # Core configuration
 │   │   ├── autocmds.lua        # Auto-commands
 │   │   ├── constants.lua       # Global constants (used by other modules)
-│   │   ├── ftplugin.lua        # Filetype helper: chainable .indent(n).treesitter().prose()
-│   │   ├── keymaps.lua         # Global keymaps
+│   │   ├── ftplugin.lua        # Filetype settings: table-driven autocmd + chainable helpers
+│   │   ├── keymaps.lua         # Global keymaps (includes built-in difftool/undotree)
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (29 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (27 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
-│   └── plugins/                # Plugin setup (one file per category)
+│   └── plugins/                # Plugin setup (one file per plugin)
 │       ├── claudecode.lua      # Claude Code integration
 │       ├── completion.lua      # blink.cmp
-│       ├── editor.lua          # Editing aids
-│       ├── explorer.lua        # oil.nvim
-│       ├── format.lua          # conform.nvim + nvim-lint
-│       ├── git.lua             # gitsigns, neogit, diffview
+│       ├── diffview.lua        # diffview.nvim
+│       ├── formatter.lua       # conform.nvim
+│       ├── gitsigns.lua        # gitsigns.nvim
+│       ├── ibl.lua             # indent-blankline.nvim
+│       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers, Mason
 │       ├── mini.lua            # mini.nvim modules (including mini.clue key hints)
+│       ├── neogit.lua          # neogit
+│       ├── neoscroll.lua       # neoscroll.nvim
+│       ├── nvim-tree.lua       # nvim-tree.lua
+│       ├── oil.lua             # oil.nvim
 │       ├── picker.lua          # fzf-lua
-│       ├── session.lua         # Session management (persistence.nvim)
+│       ├── tabout.lua          # tabout.nvim
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       └── ui.lua              # trouble, neoscroll
-└── after/ftplugin/             # Filetype-specific settings (35 filetypes)
+│       ├── treesj.lua          # treesj
+│       └── trouble.lua         # trouble.nvim
+└── after/ftplugin/             # Complex filetype settings (5 filetypes)
 ```
 
 ## Plugin management

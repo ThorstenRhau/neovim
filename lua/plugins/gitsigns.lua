@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
--- Gitsigns
 require('gitsigns').setup({
   attach_to_untracked = false,
   on_attach = function(bufnr)
@@ -54,40 +53,3 @@ map('n', '<leader>hd', '<cmd>Gitsigns diffthis<cr>', { desc = 'diff this' })
 map('n', '<leader>hD', '<cmd>Gitsigns diffthis ~<cr>', { desc = 'diff this ~' })
 map('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<cr>', { desc = 'line blame' })
 map('n', '<leader>hl', '<cmd>Gitsigns toggle_linehl<cr>', { desc = 'toggle line highlight' })
-
--- Neogit
-require('neogit').setup({
-  disable_insert_on_commit = true,
-  graph_style = 'kitty',
-  process_spinner = true,
-  integrations = {
-    diffview = true,
-    fzf_lua = true,
-  },
-  signs = {
-    hunk = { '', '' },
-    item = { '▸', '▾' },
-    section = { '▸', '▾' },
-  },
-})
-
-map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'neogit' })
-
--- Diffview
-require('diffview').setup({
-  enhanced_diff_hl = true,
-  use_icons = true,
-  default_args = {
-    DiffviewOpen = { '--untracked-files=no' },
-  },
-  view = {
-    merge_tool = {
-      layout = 'diff3_mixed',
-    },
-  },
-})
-
-map('n', '<leader>gd', '<cmd>DiffviewOpen<cr>', { desc = 'diffview' })
-map('n', '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', { desc = 'file history' })
-map('n', '<leader>gH', '<cmd>DiffviewFileHistory<cr>', { desc = 'branch history' })
-map('n', '<leader>gq', '<cmd>DiffviewClose<cr>', { desc = 'diffview close' })

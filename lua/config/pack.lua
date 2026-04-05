@@ -49,8 +49,6 @@ vim.pack.add({
   { src = 'https://github.com/andymass/vim-matchup' },
   { src = 'https://github.com/Wansmer/treesj' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
-  { src = 'https://github.com/OXY2DEV/markview.nvim' },
-  { src = 'https://github.com/tadmccorkle/markdown.nvim', name = 'markdown.nvim' },
 
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
@@ -95,10 +93,17 @@ require('plugins.mini')
 require('plugins.treesitter')
 require('plugins.completion')
 require('plugins.lsp')
-require('plugins.editor')
+require('plugins.tabout')
+require('plugins.treesj')
+require('plugins.ibl')
 require('plugins.picker')
-require('plugins.git')
-require('plugins.format')
-require('plugins.ui')
-require('plugins.explorer')
+require('plugins.gitsigns')
+require('plugins.neogit')
+require('plugins.diffview')
+require('plugins.formatter')
+require('plugins.linter')
+require('plugins.trouble')
+require('plugins.neoscroll')
+require('plugins.oil')
+require('plugins.nvim-tree')
 require('plugins.claudecode')

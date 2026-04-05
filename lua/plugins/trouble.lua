@@ -1,6 +1,5 @@
 local map = vim.keymap.set
 
--- Trouble
 require('trouble').setup({
   focus = true,
   auto_close = true,
@@ -36,8 +35,3 @@ map('n', ']q', function()
     end
   end
 end, { desc = 'next trouble/quickfix item' })
-
--- Neoscroll
-require('neoscroll').setup({
-  easing = 'sine',
-})

@@ -157,3 +157,19 @@ map('n', '<leader>tL', function()
     vim.notify('Global LSP & linter disabled', vim.log.levels.INFO)
   end
 end, { desc = 'global LSP & linter' })
+
+-- Built-in difftool
+map('n', '<leader>gD', function()
+  vim.cmd.packadd('nvim.difftool')
+  local current = vim.api.nvim_buf_get_name(0)
+  local right = vim.fn.input('Diff against: ', '', 'file')
+  if right ~= '' then
+    require('difftool').open(current, right, { rename = { detect = true } })
+  end
+end, { desc = 'difftool' })
+
+-- Built-in undotree
+map('n', '<leader>tu', function()
+  vim.cmd.packadd('nvim.undotree')
+  require('undotree').open()
+end, { desc = 'undotree' })
