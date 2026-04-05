@@ -20,6 +20,8 @@ o.completeopt = 'menu,menuone,noselect'
 o.confirm = true
 o.cursorline = true
 o.expandtab = true
+o.foldlevel = 99
+o.foldlevelstart = 99
 o.ignorecase = true
 o.linebreak = true
 o.mouse = 'nv'
@@ -38,10 +40,13 @@ o.smartcase = true
 o.smartindent = true
 o.smoothscroll = true
 o.softtabstop = 4
+o.spelllang = 'en_us'
+o.spellsuggest = 'best,20'
 o.splitbelow = true
 o.splitright = true
 o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 o.tabstop = 4
+o.termguicolors = true
 o.timeoutlen = 300
 o.undofile = true
 o.undolevels = 1000
@@ -75,16 +80,6 @@ opt.fillchars:append({
   foldsep = '┊',
   msgsep = '━',
 })
-
--- Folding (treesitter-based, configured per filetype)
-o.foldlevel = 99
-o.foldlevelstart = 99
-
--- Spelling
-o.spelllang = 'en_us'
-o.spellsuggest = 'best,20' -- Limits to 20 suggestions
-
-o.termguicolors = true
 
 -- Experimental UI2: floating cmdline and messages
 o.cmdheight = 1
