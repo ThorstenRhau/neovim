@@ -15,6 +15,7 @@ end
 local opt = vim.opt
 local o = vim.o
 
+o.autoread = true
 o.breakindent = true
 o.clipboard = ''
 o.completeopt = 'fuzzy,noselect,popup'
