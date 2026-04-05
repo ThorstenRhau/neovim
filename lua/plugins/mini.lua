@@ -16,6 +16,12 @@ ai.setup({
   },
 })
 
+-- Split/join arguments (gS to toggle, <leader>cj as alias)
+require('mini.splitjoin').setup()
+vim.keymap.set('n', '<leader>cj', function()
+  MiniSplitjoin.toggle()
+end, { desc = 'split/join' })
+
 -- Surround actions (sa=add, sd=delete, sr=replace)
 require('mini.surround').setup()
 

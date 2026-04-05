@@ -28,7 +28,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── ibl.lua             # indent-blankline.nvim
 │       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers, Mason
-│       ├── mini.lua            # mini.nvim modules (including mini.clue key hints)
+│       ├── mini.lua            # mini.nvim modules (splitjoin, clue, sessions, etc.)
 │       ├── neogit.lua          # neogit
 │       ├── neoscroll.lua       # neoscroll.nvim
 │       ├── nvim-tree.lua       # nvim-tree.lua
@@ -36,7 +36,6 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── picker.lua          # fzf-lua
 │       ├── tabout.lua          # tabout.nvim
 │       ├── treesitter.lua      # Treesitter + textobjects
-│       ├── treesj.lua          # treesj
 │       └── trouble.lua         # trouble.nvim
 └── after/ftplugin/             # Complex filetype settings (5 filetypes)
 ```

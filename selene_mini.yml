@@ -6,5 +6,7 @@ globals:
     any: true
   MiniSessions:
     any: true
+  MiniSplitjoin:
+    any: true
   MiniStatusline:
     any: true

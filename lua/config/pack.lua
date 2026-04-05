@@ -47,7 +47,7 @@ vim.pack.add({
   -- Editor
   { src = 'https://github.com/abecodes/tabout.nvim' },
   { src = 'https://github.com/andymass/vim-matchup' },
-  { src = 'https://github.com/Wansmer/treesj' },
+  { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 
   -- Mini
@@ -94,7 +94,6 @@ require('plugins.treesitter')
 require('plugins.completion')
 require('plugins.lsp')
 require('plugins.tabout')
-require('plugins.treesj')
 require('plugins.ibl')
 require('plugins.picker')
 require('plugins.gitsigns')
