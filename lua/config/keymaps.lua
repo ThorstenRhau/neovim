@@ -76,7 +76,7 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
 map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 
 -- Open file with system default
-map('n', '<leader>co', '<cmd>!open %<cr>', { desc = 'open file externally' })
+map('n', '<leader>cO', '<cmd>!open %<cr>', { desc = 'open file externally' })
 
 -- Plugins
 map('n', '<leader>l', function()
