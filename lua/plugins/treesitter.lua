@@ -80,6 +80,7 @@ end, { desc = 'previous class end' })
 
 -- Context
 require('treesitter-context').setup({
+  line_numbers = true,
   max_lines = 3,
   min_window_height = 20,
 })
