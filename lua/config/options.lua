@@ -91,6 +91,12 @@ opt.fillchars:append({
   msgsep = '━',
 })
 
--- Experimental UI2: floating cmdline and messages
+-- UI2: floating cmdline and messages
 o.cmdheight = 1
-require('vim._core.ui2').enable({})
+require('vim._core.ui2').enable({
+  msg = {
+    targets = 'msg',
+    msg = { height = 0.3, timeout = 4000 },
+    pager = { height = 0.8 },
+  },
+})
