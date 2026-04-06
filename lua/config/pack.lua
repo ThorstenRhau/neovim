@@ -77,7 +77,6 @@ vim.pack.add({
 
   -- UI
 
-  { src = 'https://github.com/folke/trouble.nvim' },
   { src = 'https://github.com/karb94/neoscroll.nvim' },
 
   -- Explorer
@@ -101,7 +100,6 @@ require('plugins.neogit')
 require('plugins.diffview')
 require('plugins.formatter')
 require('plugins.linter')
-require('plugins.trouble')
 require('plugins.neoscroll')
 require('plugins.oil')
 require('plugins.nvim-tree')

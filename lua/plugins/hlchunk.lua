@@ -9,7 +9,6 @@ require('hlchunk').setup({
       NvimTree = true,
       notify = true,
       oil = true,
-      trouble = true,
     },
   },
   indent = {
@@ -21,7 +20,6 @@ require('hlchunk').setup({
       NvimTree = true,
       notify = true,
       oil = true,
-      trouble = true,
     },
   },
   line_num = { enable = false },
