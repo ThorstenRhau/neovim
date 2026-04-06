@@ -1,6 +1,7 @@
 -- Icons (must load first, other plugins depend on it)
-require('mini.icons').setup()
-_G.MiniIcons.mock_nvim_web_devicons()
+local icons = require('mini.icons')
+icons.setup()
+icons.mock_nvim_web_devicons()
 
 -- Align text interactively
 require('mini.align').setup()
@@ -17,9 +18,10 @@ ai.setup({
 })
 
 -- Split/join arguments (gS to toggle, <leader>cj as alias)
-require('mini.splitjoin').setup()
+local splitjoin = require('mini.splitjoin')
+splitjoin.setup()
 vim.keymap.set('n', '<leader>cj', function()
-  MiniSplitjoin.toggle()
+  splitjoin.toggle()
 end, { desc = 'split/join' })
 
 -- Surround actions (sa=add, sd=delete, sr=replace)
@@ -39,14 +41,15 @@ require('mini.move').setup()
 
 -- Statusline
 local constants = require('config.constants')
-require('mini.statusline').setup({
+local statusline = require('mini.statusline')
+statusline.setup({
   use_icons = true,
   content = {
     active = function()
-      local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-      local git = MiniStatusline.section_git({ trunc_width = 40 })
-      local diff = MiniStatusline.section_diff({ trunc_width = 75 })
-      local diagnostics = MiniStatusline.section_diagnostics({
+      local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+      local git = statusline.section_git({ trunc_width = 40 })
+      local diff = statusline.section_diff({ trunc_width = 75 })
+      local diagnostics = statusline.section_diagnostics({
         trunc_width = 75,
         signs = {
           ERROR = constants.diagnostic_symbols.error,
@@ -55,20 +58,20 @@ require('mini.statusline').setup({
           HINT = constants.diagnostic_symbols.hint,
         },
       })
-      local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
-      local filename = MiniStatusline.section_filename({ trunc_width = 140 })
-      local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-      local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
+      local lsp = statusline.section_lsp({ trunc_width = 75 })
+      local filename = statusline.section_filename({ trunc_width = 140 })
+      local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+      local search = statusline.section_searchcount({ trunc_width = 75 })
 
       -- Custom location section with lualine-style formatting
       local location = (function()
-        if MiniStatusline.is_truncated(75) then
+        if statusline.is_truncated(75) then
           return '%l│%2v'
         end
         return '%P %l│%2v'
       end)()
 
-      return MiniStatusline.combine_groups({
+      return statusline.combine_groups({
         { hl = mode_hl, strings = { mode } },
         { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
         '%<',
@@ -82,7 +85,8 @@ require('mini.statusline').setup({
 })
 
 -- Session management
-require('mini.sessions').setup({
+local sessions = require('mini.sessions')
+sessions.setup({
   autoread = false,
   autowrite = true,
   directory = vim.fn.stdpath('state') .. '/sessions/',
@@ -101,7 +105,7 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
       return
     end
     if vim.v.this_session == '' then
-      MiniSessions.write(cwd_session())
+      sessions.write(cwd_session())
     end
   end,
 })
@@ -109,34 +113,34 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
 local map = vim.keymap.set
 map('n', '<leader>S', function()
   local name = cwd_session()
-  if MiniSessions.detected[name] then
-    MiniSessions.read(name)
+  if sessions.detected[name] then
+    sessions.read(name)
   else
     vim.notify('No session for this directory', vim.log.levels.INFO)
   end
 end, { desc = 'restore session' })
 map('n', '<leader>qs', function()
   local name = cwd_session()
-  if MiniSessions.detected[name] then
-    MiniSessions.read(name)
+  if sessions.detected[name] then
+    sessions.read(name)
   else
     vim.notify('No session for this directory', vim.log.levels.INFO)
   end
 end, { desc = 'restore session' })
 map('n', '<leader>qS', function()
-  MiniSessions.select('read')
+  sessions.select('read')
 end, { desc = 'select session' })
 map('n', '<leader>ql', function()
-  MiniSessions.read(MiniSessions.get_latest())
+  sessions.read(sessions.get_latest())
 end, { desc = 'restore last session' })
 map('n', '<leader>qw', function()
   local name = vim.fn.input('Session name: ')
   if name ~= '' then
-    MiniSessions.write(name)
+    sessions.write(name)
   end
 end, { desc = 'write named session' })
 map('n', '<leader>qx', function()
-  MiniSessions.select('delete')
+  sessions.select('delete')
 end, { desc = 'delete session' })
 map('n', '<leader>qd', function()
   vim.g.minisessions_disable = true
