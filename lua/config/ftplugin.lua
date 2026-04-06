@@ -40,7 +40,7 @@ local settings = {
   javascriptreact = { indent = 2, treesitter = true },
   json = { indent = 2, treesitter = true },
   jsonc = { indent = 2, treesitter = true },
-  less = { indent = 2, treesitter = true },
+  less = { indent = 2 },
   lua = { indent = 2, treesitter = true },
   markdown = { prose = true, treesitter = true },
   python = { indent = 4, treesitter = true },

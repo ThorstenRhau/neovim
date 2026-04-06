@@ -3,6 +3,9 @@ require('nvim-treesitter').setup({
   install_dir = vim.fn.stdpath('data') .. '/site',
 })
 
+-- jsonc uses the json parser
+vim.treesitter.language.register('json', { 'jsonc' })
+
 local parsers = {
   'bash',
   'css',
@@ -27,6 +30,7 @@ local parsers = {
   'python',
   'query',
   'regex',
+  'scss',
   'toml',
   'tsx',
   'typescript',

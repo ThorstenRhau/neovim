@@ -17,7 +17,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   │   ├── ftplugin.lua        # Filetype settings: table-driven autocmd + chainable helpers
 │   │   ├── keymaps.lua         # Global keymaps (includes built-in difftool/undotree)
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (26 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (34 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
 │   └── plugins/                # Plugin setup (one file per plugin)
 │       ├── claudecode.lua      # Claude Code integration
@@ -35,8 +35,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── oil.lua             # oil.nvim
 │       ├── picker.lua          # fzf-lua
 │       ├── tabout.lua          # tabout.nvim
-│       ├── treesitter.lua      # Treesitter + textobjects
-│       └── trouble.lua         # trouble.nvim
+│       └── treesitter.lua      # Treesitter + textobjects
 └── after/ftplugin/             # Complex filetype settings (5 filetypes)
 ```
 
