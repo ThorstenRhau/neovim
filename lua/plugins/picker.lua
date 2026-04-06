@@ -140,7 +140,6 @@ map('n', '<leader>fT', '<cmd>FzfLua treesitter<cr>', { desc = 'treesitter symbol
 map('n', '<leader>fW', '<cmd>FzfLua grep_cWORD<cr>', { desc = 'grep WORD' })
 map('n', '<leader>fa', '<cmd>FzfLua args<cr>', { desc = 'args list' })
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'buffers' })
-map('n', '<leader>fe', '<cmd>FzfLua live_grep_glob<cr>', { desc = 'grep with glob filter' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'files' })
 map('n', '<leader>fg', '<cmd>FzfLua git_files<cr>', { desc = 'git files' })
 map('n', '<leader>fl', '<cmd>FzfLua blines<cr>', { desc = 'buffer lines' })
