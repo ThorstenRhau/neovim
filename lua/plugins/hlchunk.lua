@@ -3,7 +3,7 @@ require('hlchunk').setup({
     enable = true,
     notify = false,
     delay = 0,
-    textobject = 'ic',
+    textobject = 'ih',
     exclude_filetypes = {
       mason = true,
       NvimTree = true,
