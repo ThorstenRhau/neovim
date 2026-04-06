@@ -90,18 +90,3 @@ opt.fillchars:append({
   -- foldsep = '│',
   msgsep = '━',
 })
-
--- UI2: floating cmdline and messages
--- Route echomsg/progress to cmdline to avoid timer race in msg float
-o.cmdheight = 1
-require('vim._core.ui2').enable({
-  msg = {
-    target = 'msg',
-    targets = {
-      echomsg = 'cmd',
-      progress = 'cmd',
-    },
-    msg = { height = 0.3, timeout = 4000 },
-    pager = { height = 0.8 },
-  },
-})
