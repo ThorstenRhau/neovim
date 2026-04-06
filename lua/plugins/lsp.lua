@@ -37,10 +37,17 @@ require('mason-tool-installer').setup({
 
 -- Lazydev (Lua development)
 require('lazydev').setup({
-  library = {
-    -- Load luvit types when the `vim.uv` word is found
-    { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-  },
+  library = (function()
+    local lib = {
+      { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+    }
+    -- vim.pack installs to site/pack/core/opt -- lazydev only knows lazy.nvim's path
+    local pack_opt = vim.fn.stdpath('data') .. '/site/pack/core/opt'
+    for _, dir in ipairs(vim.fn.glob(pack_opt .. '/*', false, true)) do
+      table.insert(lib, { path = dir })
+    end
+    return lib
+  end)(),
 })
 
 -- LSP configuration
@@ -198,7 +205,7 @@ local servers = {
     settings = {
       Lua = {
         runtime = { version = 'LuaJIT' },
-        workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME } },
+        workspace = { checkThirdParty = false },
         telemetry = { enable = false },
         diagnostics = { globals = { 'vim', 'MiniIcons', 'MiniStatusline' } },
       },

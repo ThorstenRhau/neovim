@@ -15,17 +15,10 @@ local opts = {
     backdrop = false,
     preview = {
       border = 'single',
-      default = 'bat',
       layout = 'vertical',
       vertical = 'down:65%',
       delay = 50,
       winopts = { number = false },
-    },
-  },
-  ---@type fzf-lua.config.Previewers
-  previewers = {
-    builtin = {
-      treesitter = { context = false },
     },
   },
   ---@type fzf-lua.config.Defaults
@@ -35,8 +28,6 @@ local opts = {
   -- Native previewers for special content (faster)
   manpages = { previewer = 'man_native' },
   helptags = { previewer = 'help_native' },
-  tags = { previewer = 'bat' },
-  btags = { previewer = 'bat' },
   keymap = {
     builtin = {
       ['<Esc>'] = 'hide',
@@ -45,22 +36,18 @@ local opts = {
     },
     fzf = {
       ['ctrl-q'] = 'select-all+accept',
-      ['ctrl-d'] = 'preview-page-down',
-      ['ctrl-u'] = 'preview-page-up',
     },
   },
   files = {
-    fd_opts = '--color=never --type f --hidden --follow --exclude .git',
+    follow = true,
     cwd_prompt = false,
     cwd_header = false,
     fzf_opts = {
-      ['--scheme'] = 'path',
       ['--tiebreak'] = 'pathname,chunk,begin',
     },
   },
   grep = {
-    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --glob=!.git',
-    fzf_opts = { ['--scheme'] = 'path' },
+    hidden = true,
   },
   command_history = {
     fzf_opts = { ['--scheme'] = 'history' },
@@ -80,7 +67,6 @@ local opts = {
   },
   ---@type fzf-lua.config.Lsp
   lsp = {
-    jump_to_single_result = true,
     code_actions = { previewer = 'codeaction_native' },
     symbols = {
       symbol_icons = {
@@ -183,9 +169,7 @@ map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'documen
 map('n', '<leader>s"', '<cmd>FzfLua registers<cr>', { desc = 'registers' })
 map('n', '<leader>sf', '<cmd>FzfLua filetypes<cr>', { desc = 'filetypes' })
 map('n', '<leader>sG', function()
-  fzf.live_grep({
-    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --no-ignore',
-  })
+  fzf.live_grep({ no_ignore = true })
 end, { desc = 'grep (no ignore)' })
 map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'grep' })
 map('n', '<leader>sh', '<cmd>FzfLua help_tags<cr>', { desc = 'help tags' })
