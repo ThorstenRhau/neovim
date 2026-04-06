@@ -67,9 +67,8 @@ vim.pack.add({
 
   -- Git
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/sindrets/diffview.nvim' },
-  { src = 'https://github.com/NeogitOrg/neogit' },
+  { src = 'https://github.com/tpope/vim-fugitive' },
 
   -- Format
   { src = 'https://github.com/stevearc/conform.nvim' },
@@ -96,7 +95,7 @@ require('plugins.tabout')
 require('plugins.hlchunk')
 require('plugins.picker')
 require('plugins.gitsigns')
-require('plugins.neogit')
+require('plugins.fugitive')
 require('plugins.diffview')
 require('plugins.formatter')
 require('plugins.linter')

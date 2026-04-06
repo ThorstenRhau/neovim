@@ -31,7 +31,7 @@ requires conditional logic or calling multiple functions.
     -- plugin options here
   },
   keys = {
-    { '<leader>xx', '<cmd>PluginCmd<cr>', desc = 'Plugin: action description' },
+    { '<leader>xx', '<cmd>PluginCmd<cr>', desc = 'action description' },
   },
 },
 ```
@@ -42,7 +42,7 @@ requires conditional logic or calling multiple functions.
    `lazy = false` for plugins that must load at startup (colorscheme, etc.).
 
 2. **Keymaps**: every keymap entry must have a `desc` field. Use the format
-   `'Category: action'` (e.g. `'Git: open neogit'`, `'LSP: rename symbol'`).
+   `'action'` in lowercase (e.g. `'git status'`, `'rename symbol'`).
 
 3. **Border**: set `border = 'single'` for any UI component that accepts it
    (floating windows, pickers, hover docs, etc.).
@@ -64,7 +64,7 @@ requires conditional logic or calling multiple functions.
     layout = { width = 0.8, height = 0.6 },
   },
   keys = {
-    { '<leader>fp', '<cmd>NewPicker<cr>', desc = 'Picker: find something' },
+    { '<leader>fp', '<cmd>NewPicker<cr>', desc = 'find something' },
   },
 },
 ```
