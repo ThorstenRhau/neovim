@@ -1,40 +1,3 @@
--- Mason
-require('mason').setup({
-  ui = {
-    border = 'single',
-  },
-})
-vim.keymap.set('n', '<leader>m', '<cmd>Mason<cr>', { desc = 'mason' })
-
--- Mason tool installer
-require('mason-tool-installer').setup({
-  ensure_installed = {
-    'basedpyright',
-    'bash-language-server',
-    'css-lsp',
-    'eslint-lsp',
-    'fish-lsp',
-    'html-lsp',
-    'json-lsp',
-    'lemminx',
-    'lua-language-server',
-    'markdownlint',
-    'marksman',
-    'prettier',
-    'ruff',
-    'shellcheck',
-    'shfmt',
-    'stylua',
-    'taplo',
-    'tinymist',
-    'vtsls',
-    'yaml-language-server',
-    'yamllint',
-  },
-  auto_update = false,
-  run_on_start = true,
-})
-
 -- Lazydev (Lua development)
 require('lazydev').setup({
   library = {
@@ -247,11 +210,6 @@ local servers = {
         validate = true,
       },
     },
-  },
-  lemminx = {
-    cmd = { 'lemminx' },
-    filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg' },
-    root_markers = { '.git' },
   },
 }
 

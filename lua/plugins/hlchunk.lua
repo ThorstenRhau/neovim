@@ -5,7 +5,6 @@ require('hlchunk').setup({
     delay = 0,
     textobject = 'ih',
     exclude_filetypes = {
-      mason = true,
       NvimTree = true,
       notify = true,
       oil = true,
@@ -16,7 +15,6 @@ require('hlchunk').setup({
     notify = false,
     use_treesitter = true,
     exclude_filetypes = {
-      mason = true,
       NvimTree = true,
       notify = true,
       oil = true,

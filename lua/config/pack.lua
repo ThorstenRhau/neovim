@@ -17,10 +17,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
       pcall(function()
         vim.cmd('TSUpdate')
       end)
-    elseif name == 'mason.nvim' then
-      pcall(function()
-        vim.cmd('MasonUpdate')
-      end)
     end
   end,
 })
@@ -39,8 +35,6 @@ vim.pack.add({
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
 
   -- LSP
-  { src = 'https://github.com/williamboman/mason.nvim' },
-  { src = 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
   { src = 'https://github.com/b0o/schemastore.nvim' },
   { src = 'https://github.com/folke/lazydev.nvim' },
 
