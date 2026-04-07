@@ -40,7 +40,7 @@ brew install basedpyright bash-language-server fish-lsp lua-language-server \
 
 `vscode-langservers-extracted` provides cssls, eslint, html, and jsonls.
 
-## Installation
+## Cloning the config to your machine
 
 ```sh
 git clone --depth=1 https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
