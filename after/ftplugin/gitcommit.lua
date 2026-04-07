@@ -60,24 +60,41 @@ vim.api.nvim_set_current_win(commit_win)
 
 -- Auto-close diff when commit buffer leaves the window
 local augroup = vim.api.nvim_create_augroup('gitcommit_diff_split', { clear = true })
+local cleaned_up = false
 
+local function cleanup()
+  if cleaned_up then
+    return
+  end
+  cleaned_up = true
+  pcall(vim.api.nvim_win_close, diff_win, true)
+  pcall(vim.api.nvim_del_augroup_by_id, augroup)
+end
+
+-- Close diff window before quit so :wq exits Neovim
+vim.api.nvim_create_autocmd('QuitPre', {
+  group = augroup,
+  buffer = commit_buf,
+  once = true,
+  callback = cleanup,
+})
+
+local function deferred_cleanup()
+  vim.schedule(cleanup)
+end
+
+-- Handle non-quit closes (deferred to avoid layout changes during event processing)
 vim.api.nvim_create_autocmd('BufWinLeave', {
   group = augroup,
   buffer = commit_buf,
   once = true,
-  callback = function()
-    if vim.api.nvim_buf_is_valid(diff_buf) then
-      vim.api.nvim_buf_delete(diff_buf, { force = true })
-    end
-    pcall(vim.api.nvim_del_augroup_by_id, augroup)
-  end,
+  callback = deferred_cleanup,
 })
 
+-- Fallback: user closed the diff window directly
 vim.api.nvim_create_autocmd('BufWipeout', {
   group = augroup,
   buffer = diff_buf,
   once = true,
-  callback = function()
-    pcall(vim.api.nvim_del_augroup_by_id, augroup)
-  end,
+  callback = deferred_cleanup,
 })
