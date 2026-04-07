@@ -17,7 +17,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   │   ├── ftplugin.lua        # Filetype settings: table-driven autocmd + chainable helpers
 │   │   ├── keymaps.lua         # Global keymaps (includes built-in difftool/undotree)
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (34 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (32 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
 │   └── plugins/                # Plugin setup (one file per plugin)
 │       ├── claudecode.lua      # Claude Code integration
@@ -27,7 +27,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── gitsigns.lua        # gitsigns.nvim
 │       ├── hlchunk.lua         # hlchunk.nvim
 │       ├── linter.lua          # nvim-lint
-│       ├── lsp.lua             # LSP servers, Mason
+│       ├── lsp.lua             # LSP servers
 │       ├── mini.lua            # mini.nvim modules (splitjoin, clue, sessions, etc.)
 │       ├── fugitive.lua        # vim-fugitive
 │       ├── neoscroll.lua       # neoscroll.nvim
@@ -41,7 +41,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 
 ## Plugin management
 
-Uses native `vim.pack.add()`. Plugin declarations go in `config/pack.lua`, setup and keymaps go in `plugins/*.lua`. The `PackChanged` autocmd auto-runs `TSUpdate` and `MasonUpdate` after plugin updates.
+Uses native `vim.pack.add()`. Plugin declarations go in `config/pack.lua`, setup and keymaps go in `plugins/*.lua`. The `PackChanged` autocmd auto-runs `TSUpdate` after plugin updates. LSP servers, formatters, and linters are installed externally via Homebrew.
 
 ## Colorscheme
 

@@ -16,23 +16,29 @@ Feel free to steal anything useful.
 
 ## Showcase
 
-| Dark | Light |
-|------|-------|
+| Dark                                          | Light                                           |
+| --------------------------------------------- | ----------------------------------------------- |
 | ![token-dark](https://rhau.se/token-dark.jpg) | ![token-light](https://rhau.se/token-light.jpg) |
 
 I use my own color theme [token](https://github.com/ThorstenRhau/token/) and the
 typeface Berkeley Mono
 
-## Requirements
+## Dependencies
 
-- Neovim 0.12+
-- ripgrep, fd, git, node (for LSP servers)
+Neovim 0.12+, ripgrep, fd, git, node.
 
-### macOS
+I manage all software, including LSP servers, formatters, and linters via
+[Homebrew](https://brew.sh/):
 
 ```sh
 brew install neovim ripgrep fd git node
+brew install basedpyright bash-language-server fish-lsp lua-language-server \
+  marksman ruff taplo tinymist vscode-langservers-extracted vtsls \
+  yaml-language-server fish prettier shfmt stylua markdownlint-cli selene \
+  shellcheck yamllint
 ```
+
+`vscode-langservers-extracted` provides cssls, eslint, html, and jsonls.
 
 ## Installation
 

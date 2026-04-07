@@ -29,7 +29,7 @@ Use `resolve-library-id` then `query-docs` to fetch current plugin API docs. Req
 - Verifying correct option names, types, or defaults for border/UI config (Phase 2)
 - Verifying mini.clue trigger and clue configuration API (Phase 3)
 - Checking blink.cmp default keymaps for the configured preset when analyzing insert-mode conflicts (Phase 3/5)
-- Confirming Mason package names map to the correct server/tool (Phase 4)
+- Verifying LSP server command names match Homebrew-installed binaries (Phase 4)
 - Checking conform.nvim or nvim-lint API for formatter/linter configuration (Phase 4)
 - Confirming Neovim 0.12 internal module paths like `vim._core.ui2` are still valid (Phase 4)
 - Determining if two plugins have genuinely overlapping functionality (Phase 5)
@@ -137,14 +137,10 @@ Check config files against CLAUDE.md conventions:
 ### Phase 4: Toolchain Coherence
 
 1. **LSP root markers**: verify each server config in the `servers` table has `root_markers`.
-   - Guard: `.git` as the sole root marker is acceptable for file-level servers (bashls, fish_lsp, lemminx, taplo). Only flag missing root markers for project-oriented servers that need project-level context (basedpyright, vtsls, eslint, lua_ls, etc.).
+   - Guard: `.git` as the sole root marker is acceptable for file-level servers (bashls, fish_lsp, taplo). Only flag missing root markers for project-oriented servers that need project-level context (basedpyright, vtsls, eslint, lua_ls, etc.).
 
-2. **Mason cross-reference**: cross-reference `mason-tool-installer` `ensure_installed` list against:
-   - Servers configured in the LSP `servers` table (use Mason-to-server name mapping, e.g., `bash-language-server` maps to `bashls`)
-   - Formatters referenced in conform.nvim `formatters_by_ft`
-   - Linters referenced in nvim-lint `linters_by_ft`
-   - Flag tools in Mason not referenced anywhere, or tools referenced but not in Mason.
-   - Guard: tools that are system-installed or bundled with an LSP server (e.g., ruff provides both linting and formatting) should not be flagged as missing from Mason.
+2. **External tool availability**: verify that LSP servers, formatters, and linters referenced in config have a corresponding Homebrew install in `README.md`. Flag tools referenced in config but missing from the Homebrew install command, or tools listed in Homebrew but not referenced anywhere.
+   - Guard: tools bundled with another (e.g., ruff provides both linting and formatting) should not be flagged as missing.
 
 3. **Ftplugin helper consistency**: check that `after/ftplugin/*.lua` files use `require('config.ftplugin')` helper consistently.
    - Guard: `expandtab = false` (tabs) cannot be set via the indent helper, so files like `make.lua` that set tabs manually are correct. Only flag files that set `tabstop`/`shiftwidth`/`softtabstop` manually when the helper's `.indent(N)` would work.
@@ -187,7 +183,7 @@ Check config files against CLAUDE.md conventions:
    - Use context7 to look up the blink.cmp keymap preset and compare against insert-mode keymaps from `lua/config/keymaps.lua` and `lua/plugins/*.lua`.
 
 4. **PackChanged hook coverage**: verify that `PackChanged` autocmd in `pack.lua` covers plugins that need post-install/update build steps.
-   - Guard: only flag plugins that document a required build step (e.g., `TSUpdate` for treesitter, `MasonUpdate` for mason). Do not flag plugins that work without build steps.
+   - Guard: only flag plugins that document a required build step (e.g., `TSUpdate` for treesitter). Do not flag plugins that work without build steps.
 
 ## Output Format
 
@@ -229,7 +225,7 @@ Produce a single markdown report with this structure:
 ## Severity Definitions
 
 - **Critical**: broken functionality right now. Runtime errors. `make all` failures.
-- **Warning**: convention violations from CLAUDE.md. Toolchain mismatches (Mason vs configured tools). Duplicate keymaps in the same scope. Deprecated APIs (still functional but should be updated).
+- **Warning**: convention violations from CLAUDE.md. Toolchain mismatches (Homebrew vs configured tools). Duplicate keymaps in the same scope. Deprecated APIs (still functional but should be updated).
 - **Info**: consistency improvements, minor opportunities. Not wrong, just could be better.
 
 ## Rules
