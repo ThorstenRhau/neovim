@@ -32,7 +32,7 @@ require('mason-tool-installer').setup({
     'yamllint',
   },
   auto_update = false,
-  run_on_start = false,
+  run_on_start = true,
 })
 
 -- Lazydev (Lua development)
