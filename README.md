@@ -16,9 +16,10 @@ Feel free to steal anything useful.
 
 ## Showcase
 
-| Dark                                          | Light                                           |
-| --------------------------------------------- | ----------------------------------------------- |
-| ![token-dark](https://rhau.se/token-dark.jpg) | ![token-light](https://rhau.se/token-light.jpg) |
+| Dark                                            | Light                                            |
+| ----------------------------------------------- | ------------------------------------------------ |
+| ![Dark variant 1](https://rhau.se/token-d1.png) | ![Light variant 1](https://rhau.se/token-l1.png) |
+| ![Dark variant 2](https://rhau.se/token-d2.png) | ![Light variant 2](https://rhau.se/token-l2.png) |
 
 I use my own color theme [token](https://github.com/ThorstenRhau/token/) and the
 typeface Berkeley Mono
