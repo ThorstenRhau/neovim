@@ -32,6 +32,22 @@ require('ibl').setup({
     },
   },
   exclude = {
-    filetypes = { 'NvimTree', 'notify', 'oil' },
+    filetypes = {
+      '',
+      'DiffviewFileHistory',
+      'DiffviewFiles',
+      'NvimTree',
+      'checkhealth',
+      'fugitive',
+      'git',
+      'gitcommit',
+      'gitsigns-blame',
+      'help',
+      'lspinfo',
+      'man',
+      'notify',
+      'oil',
+      'qf',
+    },
   },
 })
