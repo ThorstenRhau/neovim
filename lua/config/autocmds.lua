@@ -70,25 +70,32 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
 end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
-local dominated_filetypes = { help = true, NvimTree = true, oil = true }
-autocmd('BufWinEnter', {
+local no_chrome_filetypes = {
+  checkhealth = true,
+  help = true,
+  NvimTree = true,
+  oil = true,
+}
+
+local function clear_chrome()
+  vim.wo.statuscolumn = ''
+  vim.wo.signcolumn = 'no'
+  vim.wo.number = false
+  vim.wo.relativenumber = false
+end
+
+autocmd('FileType', {
   group = augroup('statuscolumn_exclusions', { clear = true }),
-  callback = function(event)
-    if dominated_filetypes[vim.bo[event.buf].filetype] then
-      vim.wo.statuscolumn = ''
-      vim.wo.signcolumn = 'no'
-    end
-  end,
+  pattern = vim.tbl_keys(no_chrome_filetypes),
+  callback = clear_chrome,
 })
 
-autocmd('OptionSet', {
+autocmd('BufWinEnter', {
   group = augroup('statuscolumn_exclusions', { clear = false }),
-  pattern = 'buftype',
-  callback = function()
-    local buftype = vim.v.option_new
-    if buftype == 'nofile' or buftype == 'terminal' then
-      vim.wo.statuscolumn = ''
-      vim.wo.signcolumn = 'no'
+  callback = function(event)
+    local bt = vim.bo[event.buf].buftype
+    if bt == 'nofile' or bt == 'terminal' then
+      clear_chrome()
     end
   end,
 })
