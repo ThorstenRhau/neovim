@@ -1,9 +1,8 @@
+local fzf = require('fzf-lua')
+
 ---@module "fzf-lua"
 ---@type fzf-lua.Config|{}
 ---@diagnostic disable: missing-fields
-
-local fzf = require('fzf-lua')
-
 local opts = {
   'default-title',
   winopts = {
@@ -12,18 +11,23 @@ local opts = {
     row = 0.5,
     col = 0.5,
     border = 'single',
-    backdrop = false,
+    backdrop = 60,
     treesitter = { enabled = true },
     preview = {
       border = 'single',
-      layout = 'vertical',
+      layout = 'flex',
+      flip_columns = 120,
+      horizontal = 'right:55%',
       vertical = 'down:65%',
+      scrollbar = 'float',
+      title_pos = 'center',
       delay = 20,
       winopts = { number = false },
     },
   },
   defaults = {
     formatter = 'path.filename_first',
+    file_icons = 'mini',
   },
   -- Native previewers for special content (faster)
   manpages = { previewer = 'man_native' },
