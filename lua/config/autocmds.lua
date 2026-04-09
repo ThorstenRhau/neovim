@@ -71,9 +71,10 @@ end, { desc = 'trim trailing whitespace' })
 
 -- Disable statuscolumn for specific filetypes/buftypes
 local no_chrome_filetypes = {
+  NeogitStatus = true,
+  NvimTree = true,
   checkhealth = true,
   help = true,
-  NvimTree = true,
   oil = true,
 }
 
