@@ -94,17 +94,18 @@ autocmd('FileType', {
 autocmd('BufWinEnter', {
   group = augroup('statuscolumn_exclusions', { clear = false }),
   callback = function(event)
-    local bt = vim.bo[event.buf].buftype
-    if bt == 'nofile' or bt == 'terminal' then
+    if vim.bo[event.buf].buftype == 'nofile' then
       clear_chrome()
     end
   end,
 })
 
--- listchars render broken in terminal buffers with ANSI colors
+-- Terminal buffers: clear chrome and disable listchars (broken with ANSI colors).
+-- TermOpen is used because buftype is not yet 'terminal' at BufWinEnter.
 autocmd('TermOpen', {
-  group = augroup('terminal_list', { clear = true }),
+  group = augroup('terminal_setup', { clear = true }),
   callback = function()
+    clear_chrome()
     vim.wo.list = false
   end,
 })
