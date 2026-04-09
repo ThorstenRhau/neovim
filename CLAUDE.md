@@ -6,7 +6,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 
 ```txt
 ~/.config/nvim/
-├── init.lua                    # Entry point (sets background, leaders, loads config/)
+├── init.lua                    # Entry point (leaders, loads config/)
 ├── Makefile                    # format, lint, clean, install-hooks targets
 ├── .githooks/
 │   └── pre-commit              # Runs `make all` before each commit
@@ -17,23 +17,23 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   │   ├── ftplugin.lua        # Filetype settings: table-driven autocmd + chainable helpers
 │   │   ├── keymaps.lua         # Global keymaps (includes built-in difftool/undotree)
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (32 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (33 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
 │   └── plugins/                # Plugin setup (one file per plugin)
 │       ├── claudecode.lua      # Claude Code integration
 │       ├── completion.lua      # blink.cmp
 │       ├── diffview.lua        # diffview.nvim
 │       ├── formatter.lua       # conform.nvim
+│       ├── fzf.lua             # fzf-lua
 │       ├── gitsigns.lua        # gitsigns.nvim
-│       ├── hlchunk.lua         # hlchunk.nvim
+│       ├── ibl.lua             # indent-blankline.nvim
 │       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers
-│       ├── mini.lua            # mini.nvim modules (splitjoin, clue, sessions, etc.)
+│       ├── mini.lua            # mini modules (icons, ai, align, clue, statusline, etc.)
 │       ├── neogit.lua          # neogit (magit-style git UI)
 │       ├── neoscroll.lua       # neoscroll.nvim
 │       ├── nvim-tree.lua       # nvim-tree.lua
 │       ├── oil.lua             # oil.nvim
-│       ├── picker.lua          # fzf-lua
 │       ├── tabout.lua          # tabout.nvim
 │       └── treesitter.lua      # Treesitter + textobjects
 └── after/ftplugin/             # Complex filetype settings (5 filetypes)
@@ -45,7 +45,7 @@ Uses native `vim.pack.add()`. Plugin declarations go in `config/pack.lua`, setup
 
 ## Colorscheme
 
-Uses [token](https://github.com/ThorstenRhau/token) (external plugin, declared in `config/pack.lua`). Supports dark/light via `vim.o.background`. Background auto-detection from terminal emulator is handled in `config/autocmds.lua`.
+Uses [token](https://github.com/ThorstenRhau/token) (external plugin, declared in `config/pack.lua`). Supports dark/light via `vim.o.background`.
 
 ## Validation
 
