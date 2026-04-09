@@ -28,6 +28,9 @@ require('ibl').setup({
           'with_statement',
           'try_statement',
         },
+        xml = {
+          'element',
+        },
       },
     },
   },
