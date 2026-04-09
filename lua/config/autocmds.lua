@@ -42,7 +42,7 @@ autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
   pattern = {
     'checkhealth',
-    'fugitive',
+    'NeogitStatus',
     'git',
     'gitsigns-blame',
     'help',

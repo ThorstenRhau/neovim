@@ -38,7 +38,7 @@ require('ibl').setup({
       'DiffviewFiles',
       'NvimTree',
       'checkhealth',
-      'fugitive',
+      'NeogitStatus',
       'git',
       'gitcommit',
       'gitsigns-blame',

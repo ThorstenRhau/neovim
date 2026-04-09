@@ -29,7 +29,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers
 │       ├── mini.lua            # mini.nvim modules (splitjoin, clue, sessions, etc.)
-│       ├── fugitive.lua        # vim-fugitive
+│       ├── neogit.lua          # neogit (magit-style git UI)
 │       ├── neoscroll.lua       # neoscroll.nvim
 │       ├── nvim-tree.lua       # nvim-tree.lua
 │       ├── oil.lua             # oil.nvim
