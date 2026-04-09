@@ -1,11 +1,11 @@
+---@module "fzf-lua"
+---@type fzf-lua.Config|{}
 ---@diagnostic disable: missing-fields
+
 local fzf = require('fzf-lua')
 
----@type fzf-lua.config
 local opts = {
-  'default-title', -- Titles for picker windows
-  fzf_colors = true, -- Sync fzf colors from Neovim highlights
-  ---@type fzf-lua.config.Winopts
+  'default-title',
   winopts = {
     height = 0.90,
     width = 0.90,
@@ -13,15 +13,15 @@ local opts = {
     col = 0.5,
     border = 'single',
     backdrop = false,
+    treesitter = { enabled = true },
     preview = {
       border = 'single',
       layout = 'vertical',
       vertical = 'down:65%',
-      delay = 50,
+      delay = 20,
       winopts = { number = false },
     },
   },
-  ---@type fzf-lua.config.Defaults
   defaults = {
     formatter = 'path.filename_first',
   },
@@ -30,11 +30,13 @@ local opts = {
   helptags = { previewer = 'help_native' },
   keymap = {
     builtin = {
+      true,
       ['<Esc>'] = 'hide',
       ['<C-d>'] = 'preview-page-down',
       ['<C-u>'] = 'preview-page-up',
     },
     fzf = {
+      true,
       ['ctrl-q'] = 'select-all+accept',
     },
   },
@@ -65,7 +67,7 @@ local opts = {
       },
     },
   },
-  ---@type fzf-lua.config.Lsp
+
   lsp = {
     code_actions = { previewer = 'codeaction_native' },
     symbols = {
@@ -102,6 +104,8 @@ local opts = {
 }
 
 fzf.setup(opts)
+
+---@diagnostic enable: missing-fields
 
 -- Register as vim.ui.select handler with auto-sizing
 fzf.register_ui_select(function(_, items)
