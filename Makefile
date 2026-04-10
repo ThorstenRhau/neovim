@@ -26,7 +26,10 @@ clean:
 	@rm -rf "$(HOME)/.local/state/nvim"
 	@rm -rf "$(HOME)/.local/share/nvim"
 	@rm -f "$(HOME)/.config/nvim/nvim-pack-lock.json"
-	@echo "Cleaned Neovim cache, state, lock-file, and data directories"
+	@rm -rf "$(HOME)/.local/state/nvim-ts-repro"
+	@rm -rf "$(HOME)/.cache/nvim-ts-repro"
+	@rm -rf "$(HOME)/.local/share/nvim-ts-repro"
+	@echo "Cleaned Neovim cache, state, lock-file, tree-sitter cache and data directories"
 
 # Display available targets
 help:
