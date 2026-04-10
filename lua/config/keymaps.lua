@@ -83,6 +83,9 @@ map('n', '<leader>l', function()
   vim.pack.update()
 end, { desc = 'update plugins' })
 
+-- Session restart
+map('n', '<leader>R', '<cmd>lua MiniSessions.restart()<cr>', { desc = 'restart Neovim' })
+
 -- Toggle options
 local toggles = {
   { 'w', 'wrap', 'wrap' },
