@@ -167,7 +167,7 @@ map('n', '<leader>gD', function()
   local current = vim.api.nvim_buf_get_name(0)
   local right = vim.fn.input('Diff against: ', '', 'file')
   if right ~= '' then
-    require('difftool').open(current, right, { rename = { detect = true } })
+    require('difftool').open(current, right, { method = 'auto', ignore = {}, rename = { detect = true } })
   end
 end, { desc = 'difftool' })
 
