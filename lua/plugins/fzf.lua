@@ -4,7 +4,7 @@ local fzf = require('fzf-lua')
 ---@type fzf-lua.Config|{}
 ---@diagnostic disable: missing-fields
 local opts = {
-  'default-title',
+  'fzf-native',
   winopts = {
     height = 0.90,
     width = 0.90,
