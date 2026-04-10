@@ -21,7 +21,6 @@ local opts = {
       vertical = 'down:65%',
       scrollbar = 'float',
       title_pos = 'center',
-      delay = 20,
       winopts = { number = false },
     },
   },
