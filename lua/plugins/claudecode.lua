@@ -1,3 +1,5 @@
+local constants = require('config.constants')
+
 -- Terminal escape for Claude Code terminals
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('claudecode_terminal', { clear = true }),
@@ -8,6 +10,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 })
 
 require('claudecode').setup({
+  auto_start = not constants.is_headless,
   terminal = {
     split_side = 'right',
     split_width_percentage = 0.40,
@@ -35,7 +38,7 @@ map('n', '<leader>aR', '<cmd>ClaudeCode --continue<cr>', { desc = 'continue clau
 map('n', '<leader>am', '<cmd>ClaudeCodeSelectModel<cr>', { desc = 'select claude model' })
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('claudecode_tree_keymaps', { clear = true }),
-  pattern = { 'NvimTree', 'oil' },
+  pattern = constants.filetypes.tree_views,
   callback = function(ev)
     vim.keymap.set(
       'n',

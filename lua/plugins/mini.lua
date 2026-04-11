@@ -88,7 +88,7 @@ statusline.setup({
 local sessions = require('mini.sessions')
 sessions.setup({
   autoread = false,
-  autowrite = true,
+  autowrite = not constants.is_headless,
   directory = vim.fn.stdpath('state') .. '/sessions/',
 })
 
@@ -98,17 +98,19 @@ local function cwd_session()
 end
 
 -- Auto-create session on quit when none is active (persistence.nvim compat)
-vim.api.nvim_create_autocmd('VimLeavePre', {
-  group = vim.api.nvim_create_augroup('mini_sessions_autosave', { clear = true }),
-  callback = function()
-    if vim.g.minisessions_disable then
-      return
-    end
-    if vim.v.this_session == '' then
-      sessions.write(cwd_session())
-    end
-  end,
-})
+if not constants.is_headless then
+  vim.api.nvim_create_autocmd('VimLeavePre', {
+    group = vim.api.nvim_create_augroup('mini_sessions_autosave', { clear = true }),
+    callback = function()
+      if vim.g.minisessions_disable then
+        return
+      end
+      if vim.v.this_session == '' then
+        sessions.write(cwd_session())
+      end
+    end,
+  })
+end
 
 local map = vim.keymap.set
 map('n', '<leader>S', function()
