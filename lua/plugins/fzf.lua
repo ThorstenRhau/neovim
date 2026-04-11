@@ -1,3 +1,4 @@
+local constants = require('config.constants')
 local fzf = require('fzf-lua')
 
 ---@module "fzf-lua"
@@ -10,11 +11,11 @@ local opts = {
     width = 0.90,
     row = 0.5,
     col = 0.5,
-    border = 'single',
+    border = constants.ui.border,
     backdrop = 60,
     treesitter = { enabled = true },
     preview = {
-      border = 'single',
+      border = constants.ui.border,
       layout = 'flex',
       flip_columns = 120,
       horizontal = 'right:55%',

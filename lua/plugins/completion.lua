@@ -1,3 +1,5 @@
+local constants = require('config.constants')
+
 require('blink.cmp').setup({
   fuzzy = {
     implementation = 'prefer_rust',
@@ -31,7 +33,7 @@ require('blink.cmp').setup({
       auto_show = true,
       auto_show_delay_ms = 200,
       window = {
-        border = 'single',
+        border = constants.ui.border,
       },
     },
     menu = {
@@ -54,7 +56,7 @@ require('blink.cmp').setup({
   signature = {
     enabled = true,
     window = {
-      border = 'single',
+      border = constants.ui.border,
     },
   },
   appearance = {

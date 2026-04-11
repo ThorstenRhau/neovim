@@ -279,7 +279,7 @@ vim.api.nvim_create_autocmd('LspDetach', {
 vim.diagnostic.config({
   severity_sort = true,
   float = {
-    border = 'single',
+    border = constants.ui.border,
     source = true,
   },
   virtual_text = false,
