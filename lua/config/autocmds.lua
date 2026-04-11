@@ -41,13 +41,14 @@ autocmd('BufReadPost', {
 autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
   pattern = {
-    'checkhealth',
     'NeogitStatus',
+    'checkhealth',
     'git',
     'gitsigns-blame',
     'help',
     'lspinfo',
     'notify',
+    'nvim-pack',
     'qf',
     'startuptime',
   },
