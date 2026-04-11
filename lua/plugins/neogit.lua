@@ -21,9 +21,10 @@ neogit.setup({
   commit_editor = {
     kind = 'tab',
     show_staged_diff = true,
-    staged_diff_split_kind = 'vsplit',
+    staged_diff_split_kind = 'auto',
     spell_check = true,
   },
+  disable_insert_on_commit = true,
   commit_view = {
     kind = 'vsplit',
     verify_commit = true,
