@@ -12,6 +12,7 @@ for _, plugin in ipairs(disabled_builtins) do
   vim.g['loaded_' .. plugin] = 1
 end
 
+local constants = require('config.constants')
 local opt = vim.opt
 local o = vim.o
 
@@ -31,7 +32,7 @@ o.linebreak = true
 o.mouse = 'nv'
 o.number = true
 o.numberwidth = 2
-o.pumborder = 'single'
+o.pumborder = constants.ui.border
 o.pumheight = 15
 o.pummaxwidth = 50
 o.pumwidth = 50
@@ -61,7 +62,7 @@ o.undofile = true
 o.undolevels = 1000
 o.updatetime = 250
 o.virtualedit = 'block'
-o.winborder = 'single'
+opt.winborder = constants.ui.border
 o.wrap = false
 
 -- Diff settings (override default linematch:40, add word-level inline diffs)
@@ -78,15 +79,7 @@ o.guicursor = table.concat({
 
 -- Whitespace characters
 o.list = true
-opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣', extends = '›', precedes = '‹' }
+opt.listchars = constants.ui.listchars
 
 -- Fill chars
-opt.fillchars:append({
-  diff = '░',
-  eob = ' ',
-  fold = '─',
-  -- foldopen = '▼',
-  -- foldclose = '▶',
-  -- foldsep = '│',
-  msgsep = '━',
-})
+opt.fillchars:append(constants.ui.fillchars)

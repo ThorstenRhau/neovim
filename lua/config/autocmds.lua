@@ -1,7 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local constants = require('config.constants')
 
--- Auto-reload buffers changed externally (e.g. by Claude Code)
+-- Auto-reload buffers changed externally
 autocmd({ 'FocusGained', 'BufEnter' }, {
   group = augroup('auto_reload', { clear = true }),
   callback = function()
@@ -20,11 +21,10 @@ autocmd('TextYankPost', {
 })
 
 -- Return to last edit position
-local exclude_ft = { gitcommit = true, gitrebase = true, help = true }
 autocmd('BufReadPost', {
   group = augroup('restore_cursor', { clear = true }),
   callback = function(event)
-    if exclude_ft[vim.bo[event.buf].filetype] then
+    if vim.list_contains(constants.filetypes.restore_cursor_exclude, vim.bo[event.buf].filetype) then
       return
     end
 
@@ -40,18 +40,7 @@ autocmd('BufReadPost', {
 -- Note: 'man' is excluded because Neovim has built-in q handling for man pages
 autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
-  pattern = {
-    'NeogitStatus',
-    'checkhealth',
-    'git',
-    'gitsigns-blame',
-    'help',
-    'lspinfo',
-    'notify',
-    'nvim-pack',
-    'qf',
-    'startuptime',
-  },
+  pattern = constants.filetypes.close_with_q,
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', function()
@@ -70,15 +59,6 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
   vim.fn.setpos('.', save_cursor)
 end, { desc = 'trim trailing whitespace' })
 
--- Disable statuscolumn for specific filetypes/buftypes
-local no_chrome_filetypes = {
-  NeogitStatus = true,
-  NvimTree = true,
-  checkhealth = true,
-  help = true,
-  oil = true,
-}
-
 local function clear_chrome()
   vim.wo.statuscolumn = ''
   vim.wo.signcolumn = 'no'
@@ -88,7 +68,7 @@ end
 
 autocmd('FileType', {
   group = augroup('statuscolumn_exclusions', { clear = true }),
-  pattern = vim.tbl_keys(no_chrome_filetypes),
+  pattern = constants.filetypes.no_chrome,
   callback = clear_chrome,
 })
 
