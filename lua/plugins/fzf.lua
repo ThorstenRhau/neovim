@@ -16,18 +16,26 @@ local opts = {
     treesitter = { enabled = true },
     preview = {
       border = constants.ui.border,
-      layout = 'flex',
       flip_columns = 120,
       horizontal = 'right:55%',
-      vertical = 'down:65%',
+      layout = 'flex',
       scrollbar = 'float',
       title_pos = 'center',
+      vertical = 'down:65%',
       winopts = { number = false },
     },
+  },
+  oldfiles = {
+    include_current_session = true,
   },
   defaults = {
     formatter = 'path.filename_first',
     file_icons = 'mini',
+  },
+  previewers = {
+    builtin = {
+      syntax_limit_b = 1024 * 100, -- 100KB
+    },
   },
   -- Native previewers for special content (faster)
   manpages = { previewer = 'man_native' },
