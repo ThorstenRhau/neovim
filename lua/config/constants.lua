@@ -5,7 +5,7 @@ M.is_headless = #vim.api.nvim_list_uis() == 0
 
 -- Shared UI tokens consumed by plugins and options
 M.ui = {
-  border = 'rounded',
+  border = 'single',
 
   listchars = {
     extends = '›',
