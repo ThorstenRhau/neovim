@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 # Pre-commit hook to run make all
 
-echo "Running 'make all'..."
-if ! make all; then
-  echo "'make all' failed. Commit aborted."
+echo "Running 'make check'..."
+if ! make check; then
+  echo "'make check' failed. Run 'make format' and re-stage."
   exit 1
 fi

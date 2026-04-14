@@ -76,7 +76,14 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
 map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 
 -- Open file with system default
-map('n', '<leader>cO', '<cmd>!open %<cr>', { desc = 'open file externally' })
+map('n', '<leader>cO', function()
+  local name = vim.api.nvim_buf_get_name(0)
+  if name == '' then
+    vim.notify('Buffer has no file', vim.log.levels.WARN)
+    return
+  end
+  vim.ui.open(name)
+end, { desc = 'open file externally' })
 
 -- Plugins
 map('n', '<leader>l', function()

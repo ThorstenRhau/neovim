@@ -9,7 +9,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 ├── init.lua                    # Entry point (leaders, loads config/)
 ├── Makefile                    # format, lint, clean, install-hooks targets
 ├── .githooks/
-│   └── pre-commit              # Runs `make all` before each commit
+│   └── pre-commit              # Runs `make check` before each commit
 ├── lua/
 │   ├── config/                 # Core configuration
 │   │   ├── autocmds.lua        # Auto-commands
@@ -52,10 +52,11 @@ Uses [token](https://github.com/ThorstenRhau/token) (external plugin, declared i
 ```bash
 make lint       # Selene (primary)
 make format     # StyLua
-make all        # Both (runs on pre-commit via .githooks/pre-commit)
+make all        # Both (format + lint)
+make check      # Lint + verify formatting (runs on pre-commit via .githooks/pre-commit)
 ```
 
-No test suite. Validate with `make all` before committing.
+No test suite. Validate with `make check` before committing.
 
 ## Style
 
