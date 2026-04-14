@@ -54,7 +54,7 @@ local settings = {
   xml = { indent = 2, treesitter = true },
   yaml = { indent = 2, treesitter = true },
   yang = { indent = 2, treesitter = true },
-  zsh = { indent = 2 },
+  zsh = { indent = 2, treesitter = true },
 }
 
 vim.api.nvim_create_autocmd('FileType', {

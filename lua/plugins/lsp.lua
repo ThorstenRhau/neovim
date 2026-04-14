@@ -38,7 +38,7 @@ local js_ts_inlay_hints = {
 local servers = {
   bashls = {
     cmd = { 'bash-language-server', 'start' },
-    filetypes = { 'sh', 'bash' },
+    filetypes = { 'sh', 'bash', 'zsh' },
     root_markers = { '.git' },
   },
   basedpyright = {

@@ -6,6 +6,9 @@ require('nvim-treesitter').setup({
 -- jsonc uses the json parser
 vim.treesitter.language.register('json', { 'jsonc' })
 
+-- zsh uses the bash parser
+vim.treesitter.language.register('bash', { 'zsh' })
+
 local parsers = {
   'bash',
   'css',
