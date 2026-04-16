@@ -61,7 +61,6 @@ vim.pack.add({
 
   -- Git
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/sindrets/diffview.nvim' },
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/NeogitOrg/neogit' },
 
@@ -92,6 +91,6 @@ require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')
 require('plugins.neoscroll')
--- Deferred plugins: fzf, neogit, diffview, oil, nvim-tree, claudecode
+-- Deferred plugins: fzf, neogit, oil, nvim-tree, claudecode
 -- Loaded on first keymap press (see config/defer.lua)
 require('config.defer')

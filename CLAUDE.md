@@ -17,12 +17,11 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │   │   ├── ftplugin.lua        # Filetype settings: table-driven autocmd + chainable helpers
 │   │   ├── keymaps.lua         # Global keymaps (includes built-in difftool/undotree)
 │   │   ├── options.lua         # Vim options
-│   │   ├── pack.lua            # vim.pack plugin declarations (33 plugins)
+│   │   ├── pack.lua            # vim.pack plugin declarations (32 plugins)
 │   │   └── terminal.lua        # Built-in terminal toggle
 │   └── plugins/                # Plugin setup (one file per plugin)
 │       ├── claudecode.lua      # Claude Code integration
 │       ├── completion.lua      # blink.cmp
-│       ├── diffview.lua        # diffview.nvim
 │       ├── formatter.lua       # conform.nvim
 │       ├── fzf.lua             # fzf-lua
 │       ├── gitsigns.lua        # gitsigns.nvim

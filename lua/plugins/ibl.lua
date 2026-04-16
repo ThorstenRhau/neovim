@@ -37,8 +37,6 @@ require('ibl').setup({
   exclude = {
     filetypes = {
       '',
-      'DiffviewFileHistory',
-      'DiffviewFiles',
       'NvimTree',
       'checkhealth',
       'NeogitStatus',

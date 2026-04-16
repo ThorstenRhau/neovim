@@ -41,7 +41,7 @@ local fzf_cmds = {
   { 'v', '<leader>fv', 'FzfLua grep_visual', 'grep selection' },
   { 'n', '<leader>fw', 'FzfLua grep_cword', 'grep word' },
   { 'n', '<leader>gB', 'FzfLua git_blame', 'git blame' },
-  { 'n', '<leader>gC', 'FzfLua git_bcommits', 'git buffer commits' },
+  { 'n', '<leader>gh', 'FzfLua git_bcommits', 'file history' },
   { 'n', '<leader>gS', 'FzfLua git_stash', 'git stash' },
   { 'n', '<leader>gb', 'FzfLua git_branches', 'git branches' },
   { 'n', '<leader>gc', 'FzfLua git_commits', 'git commits' },
@@ -123,11 +123,8 @@ map('n', '<leader>gp', neogit({ 'pull' }), { desc = 'git pull' })
 map('n', '<leader>gf', neogit({ 'fetch' }), { desc = 'git fetch' })
 map('n', '<leader>gl', neogit({ 'log' }), { desc = 'git log' })
 
--- Diffview ---------------------------------------------------------------
-map('n', '<leader>gd', lazy_cmd('plugins.diffview', 'DiffviewOpen'), { desc = 'diffview' })
-map('n', '<leader>gh', lazy_cmd('plugins.diffview', 'DiffviewFileHistory %'), { desc = 'file history' })
-map('n', '<leader>gH', lazy_cmd('plugins.diffview', 'DiffviewFileHistory'), { desc = 'branch history' })
-map('n', '<leader>gq', lazy_cmd('plugins.diffview', 'DiffviewClose'), { desc = 'diffview close' })
+-- Git diff
+map('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'diff this' })
 
 -- Nvim-tree --------------------------------------------------------------
 map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc = 'file tree' })
