@@ -44,7 +44,6 @@ require('gitsigns').setup({
 map('n', '<leader>hs', '<cmd>Gitsigns stage_hunk<cr>', { desc = 'stage hunk' })
 map('n', '<leader>hr', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'reset hunk' })
 map('n', '<leader>hS', '<cmd>Gitsigns stage_buffer<cr>', { desc = 'stage buffer' })
-map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<cr>', { desc = 'unstage hunk' })
 map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', { desc = 'reset buffer' })
 map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', { desc = 'preview hunk' })
 map('n', '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', { desc = 'blame line' })

@@ -200,6 +200,6 @@ miniclue.setup({
     { mode = 'n', keys = '<Leader>s', desc = '+search' },
     { mode = 'n', keys = '<Leader>t', desc = '+toggle' },
     { mode = 'n', keys = '<Leader>w', desc = '+window' },
-    { mode = 'n', keys = '<Leader>x', desc = '+diagnostics' },
+    { mode = 'n', keys = '<Leader>x', desc = '+quickfix' },
   },
 })
