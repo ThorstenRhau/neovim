@@ -3,6 +3,7 @@ ROOT             := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC          := $(ROOT)/.stylua.toml
 SELENEC          := $(ROOT)/selene.toml
 NVIM             := nvim --headless -Es -u $(ROOT)/init.lua
+CONFIG_PATHS     := "$(ROOT)/init.lua" "$(ROOT)/lua" "$(ROOT)/after"
 
 .PHONY: all check clean format lint install-hooks help
 
@@ -10,7 +11,7 @@ all: format lint
 
 # Verify formatting and lint (used by pre-commit hook)
 check: lint
-	@stylua --check --config-path "$(STYLUAC)" "$(ROOT)"
+	@stylua --check --config-path "$(STYLUAC)" $(CONFIG_PATHS)
 
 # Install git hooks
 install-hooks:
@@ -18,11 +19,11 @@ install-hooks:
 
 # Format all Lua files according to .stylua.toml
 format:
-	@stylua --config-path "$(STYLUAC)" "$(ROOT)"
+	@stylua --config-path "$(STYLUAC)" $(CONFIG_PATHS)
 
 # Lint all Lua files
 lint:
-	@selene --config "$(SELENEC)" "$(ROOT)"
+	@selene --config "$(SELENEC)" $(CONFIG_PATHS)
 
 # Clean Neovim cache, state, and data directories
 clean:
