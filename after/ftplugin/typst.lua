@@ -5,7 +5,7 @@ require('config.ftplugin').prose().indent(2).treesitter()
 local function tinymist_cmd(command, arguments)
   local client = vim.lsp.get_clients({ bufnr = 0, name = 'tinymist' })[1]
   if client then
-    client:exec_cmd({ command = command, arguments = arguments })
+    client:exec_cmd({ title = command, command = command, arguments = arguments })
   end
 end
 
