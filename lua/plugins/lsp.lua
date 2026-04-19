@@ -19,10 +19,8 @@ end
 local js_ts_filetypes = {
   'javascript',
   'javascriptreact',
-  'javascript.jsx',
   'typescript',
   'typescriptreact',
-  'typescript.tsx',
 }
 
 -- Shared inlay hints settings for JS/TS
@@ -168,7 +166,7 @@ local servers = {
   },
   marksman = {
     cmd = { 'marksman', 'server' },
-    filetypes = { 'markdown', 'markdown.mdx' },
+    filetypes = { 'markdown' },
     root_markers = { '.marksman.toml', '.git' },
   },
   ruff = {
@@ -200,7 +198,7 @@ local servers = {
   },
   yamlls = {
     cmd = { 'yaml-language-server', '--stdio' },
-    filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab' },
+    filetypes = { 'yaml' },
     root_markers = { '.git' },
     settings = {
       yaml = {

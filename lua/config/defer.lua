@@ -132,27 +132,3 @@ map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc =
 -- Oil --------------------------------------------------------------------
 map('n', '-', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'open parent directory' })
 map('n', '<leader>e', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'file explorer' })
-
--- Claude Code ------------------------------------------------------------
-local constants = require('config.constants')
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('claudecode_tree_keymaps_defer', { clear = true }),
-  pattern = constants.filetypes.tree_views,
-  callback = function(ev)
-    map('n', '<leader>at', function()
-      require('plugins.claudecode')
-      vim.cmd('ClaudeCodeTreeAdd')
-    end, { buffer = ev.buf, desc = 'add tree file to claude' })
-  end,
-})
-
-map('n', '<leader>aa', lazy_cmd('plugins.claudecode', 'ClaudeCode'), { desc = 'toggle claude' })
-map({ 'n', 'v' }, '<leader>af', lazy_cmd('plugins.claudecode', 'ClaudeCodeFocus'), { desc = 'focus claude' })
-map('v', '<leader>as', lazy_cmd('plugins.claudecode', 'ClaudeCodeSend'), { desc = 'send to claude' })
-map('n', '<leader>ab', lazy_cmd('plugins.claudecode', 'ClaudeCodeAdd %'), { desc = 'add buffer to claude' })
-map('n', '<leader>ar', lazy_cmd('plugins.claudecode', 'ClaudeCode --resume'), { desc = 'resume claude session' })
-map('n', '<leader>aR', lazy_cmd('plugins.claudecode', 'ClaudeCode --continue'), { desc = 'continue claude session' })
-map('n', '<leader>am', lazy_cmd('plugins.claudecode', 'ClaudeCodeSelectModel'), { desc = 'select claude model' })
-map('n', '<leader>aS', lazy_cmd('plugins.claudecode', 'ClaudeCodeStatus'), { desc = 'claude status' })
-map('n', '<leader>ay', lazy_cmd('plugins.claudecode', 'ClaudeCodeDiffAccept'), { desc = 'accept claude diff' })
-map('n', '<leader>ad', lazy_cmd('plugins.claudecode', 'ClaudeCodeDiffDeny'), { desc = 'deny claude diff' })

@@ -75,9 +75,6 @@ vim.pack.add({
   -- Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
-
-  -- Claude Code
-  { src = 'https://github.com/coder/claudecode.nvim' },
 }, { load = true, confirm = false })
 
 -- Load plugin configurations (order matters for dependencies)
@@ -91,6 +88,6 @@ require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')
 require('plugins.neoscroll')
--- Deferred plugins: fzf, neogit, oil, nvim-tree, claudecode
+-- Deferred plugins: fzf, neogit, oil, nvim-tree
 -- Loaded on first keymap press (see config/defer.lua)
 require('config.defer')
