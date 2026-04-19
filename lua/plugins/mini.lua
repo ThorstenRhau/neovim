@@ -12,7 +12,13 @@ ai.setup({
   custom_textobjects = {
     f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
     a = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),
+    ['='] = ai.gen_spec.treesitter({ a = '@assignment.outer', i = '@assignment.inner' }),
+    C = ai.gen_spec.treesitter({ a = '@comment.outer', i = { '@comment.inner', '@comment.outer' } }),
+    r = ai.gen_spec.treesitter({ a = '@return.outer', i = '@return.inner' }),
+    l = ai.gen_spec.treesitter({ a = '@loop.outer', i = '@loop.inner' }),
+    B = ai.gen_spec.treesitter({ a = '@block.outer', i = '@block.inner' }),
     c = ai.gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' }),
+    o = ai.gen_spec.treesitter({ a = '@conditional.outer', i = '@conditional.inner' }),
     F = ai.gen_spec.function_call(),
   },
 })
