@@ -68,6 +68,46 @@ map('n', ']<space>', 'o<esc>k', { desc = 'add blank line below' })
 map('n', '[<space>', 'O<esc>j', { desc = 'add blank line above' })
 
 -- Quickfix
+local severity_names = {
+  [vim.diagnostic.severity.ERROR] = 'ERROR',
+  [vim.diagnostic.severity.WARN] = 'WARN',
+  [vim.diagnostic.severity.INFO] = 'INFO',
+  [vim.diagnostic.severity.HINT] = 'HINT',
+}
+
+local function format_diagnostic_list_item(diagnostic)
+  local severity = severity_names[diagnostic.severity] or 'ERROR'
+  local source = diagnostic.source
+  local code = diagnostic.code and tostring(diagnostic.code) or nil
+  local label
+
+  if source and code then
+    label = string.format('%s/%s', source, code)
+  else
+    label = source or code
+  end
+
+  if label then
+    return string.format('[%s] [%s] %s', severity, label, diagnostic.message)
+  end
+
+  return string.format('[%s] %s', severity, diagnostic.message)
+end
+
+map('n', '<leader>xd', function()
+  vim.diagnostic.setqflist({
+    open = true,
+    title = 'Buffer Diagnostics',
+    format = format_diagnostic_list_item,
+  })
+end, { desc = 'buffer diagnostics' })
+map('n', '<leader>xD', function()
+  vim.diagnostic.setqflist({
+    open = true,
+    title = 'Workspace Diagnostics',
+    format = format_diagnostic_list_item,
+  })
+end, { desc = 'workspace diagnostics' })
 map('n', '<leader>xn', '<cmd>cnext<cr>', { desc = 'next quickfix' })
 map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'previous quickfix' })
 
