@@ -51,7 +51,6 @@ vim.pack.add({
   { src = 'https://github.com/nvim-mini/mini.surround' },
   { src = 'https://github.com/nvim-mini/mini.pairs' },
   { src = 'https://github.com/nvim-mini/mini.bracketed' },
-  { src = 'https://github.com/nvim-mini/mini.move' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
   { src = 'https://github.com/nvim-mini/mini.sessions' },

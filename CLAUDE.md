@@ -28,7 +28,7 @@ Personal Neovim config (Lua, requires **Neovim 0.12+**).
 │       ├── ibl.lua             # indent-blankline.nvim
 │       ├── linter.lua          # nvim-lint
 │       ├── lsp.lua             # LSP servers
-│       ├── mini.lua            # mini modules (icons, ai, align, splitjoin, surround, pairs, bracketed, move, statusline, sessions, clue)
+│       ├── mini.lua            # mini modules (icons, ai, align, splitjoin, surround, pairs, bracketed, statusline, sessions, clue)
 │       ├── neogit.lua          # neogit (magit-style git UI)
 │       ├── neoscroll.lua       # neoscroll.nvim
 │       ├── nvim-tree.lua       # nvim-tree.lua

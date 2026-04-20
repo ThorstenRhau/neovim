@@ -42,9 +42,6 @@ require('mini.bracketed').setup({
   quickfix = { suffix = '' },
 })
 
--- Move selected text with meta+hjkl
-require('mini.move').setup()
-
 -- Statusline
 local constants = require('config.constants')
 local statusline = require('mini.statusline')
