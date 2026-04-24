@@ -170,6 +170,7 @@ miniclue.setup({
     { mode = 'n', keys = '"' },
     { mode = 'x', keys = '"' },
     { mode = 'i', keys = '<C-r>' },
+    { mode = 'i', keys = '<C-x>' },
     { mode = 'c', keys = '<C-r>' },
     { mode = 'n', keys = '<C-w>' },
     { mode = 'n', keys = 'z' },

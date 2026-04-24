@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# Pre-commit hook to run make all
+# Pre-commit hook to run make check
 
 echo "Running 'make check'..."
 if ! make check; then

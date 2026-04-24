@@ -181,6 +181,7 @@ Check config files against CLAUDE.md conventions:
 
 3. **Completion keymap conflicts**: check that blink.cmp keymaps do not conflict with other insert-mode keymaps.
    - Use context7 to look up the blink.cmp keymap preset and compare against insert-mode keymaps from `lua/config/keymaps.lua` and `lua/plugins/*.lua`.
+   - Guard: this config intentionally lets `tabout.nvim` own `<Tab>` and `<S-Tab>` in insert mode, overriding blink.cmp's `super-tab` preset bindings. Do not report this as a conflict.
 
 4. **PackChanged hook coverage**: verify that `PackChanged` autocmd in `pack.lua` covers plugins that need post-install/update build steps.
    - Guard: only flag plugins that document a required build step (e.g., `TSUpdate` for treesitter). Do not flag plugins that work without build steps.
