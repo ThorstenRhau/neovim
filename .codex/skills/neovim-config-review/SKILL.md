@@ -7,7 +7,7 @@ description: Use when asked to audit, review, check, inspect, or find issues in 
 
 ## Outcome
 
-Produce a read-only, verified markdown audit for this Neovim 0.12 configuration. Lead with concrete findings, ordered by severity, each with `file:line` evidence and the user-visible risk. If there are no findings, say so and list residual verification gaps.
+Produce a read-only, verified markdown audit for this Neovim 0.12 configuration. An unqualified invocation of this skill means a full audit. Lead with concrete findings, ordered by severity, each with `file:line` evidence and the user-visible risk. If there are no findings, say so and list residual verification gaps.
 
 ## Required Context
 
@@ -27,6 +27,8 @@ Before reporting, inspect the relevant current files instead of relying on memor
 
 Read `references/audit-checks.md` when doing a full audit, checking stale references, or deciding what evidence is sufficient.
 
+For a full audit, treat every plugin declared in `lua/config/pack.lua` as in scope. Read current plugin documentation before judging option names, value types, defaults, setup order, commands, keymap APIs, or deprecations. Use Context7 MCP when it has the plugin. Otherwise use the upstream README, help docs, release notes, or official repository documentation on the internet. Treat memory and old local assumptions as insufficient evidence for plugin API claims.
+
 ## Workflow
 
 1. Confirm scope is this repo unless the user explicitly points elsewhere.
@@ -34,9 +36,9 @@ Read `references/audit-checks.md` when doing a full audit, checking stale refere
 3. Run focused searches for startup risks, stale names, keymaps, plugin declarations, formatter/linter wiring, and validation commands.
 4. Delegate narrow read-only checks to sub-agents only when the audit is broad enough that parallel review will improve coverage without losing coherence. See "Sub-Agent Delegation".
 5. Run `make check` as the primary validation command when the environment has the required tools. Use narrower checks such as `make lint` or `stylua --check --config-path .stylua.toml init.lua lua after` only when useful.
-6. For plugin configuration findings, identify the plugin source from `lua/config/pack.lua` and verify option names, value types, defaults, and deprecations against current plugin documentation. Prefer Context7, official plugin README/help docs, or upstream internet documentation when available. Do not infer plugin parameters from memory alone.
-7. Use Context7 or official upstream docs for unstable Neovim or plugin API claims. State assumptions when external behavior cannot be verified.
-8. Report only verified findings. Do not speculate.
+6. Build a plugin documentation coverage list from `lua/config/pack.lua`. For each plugin with local setup, globals, keymaps, commands, or deferred loading, check current documentation before marking that plugin covered. Verify option names, value types, defaults, setup order, commands, keymap APIs, and deprecations against Context7 MCP, official plugin README/help docs, release notes, or upstream internet documentation. Do not infer plugin parameters from memory alone.
+7. Use Context7 or official upstream docs for unstable Neovim or plugin API claims. If documentation cannot be reached for any plugin or API area, record the attempted source and list it as a verification gap.
+8. Report only verified findings. Do not speculate. Do not claim a full audit if plugin documentation coverage is incomplete.
 
 ## Sub-Agent Delegation
 
@@ -56,13 +58,15 @@ Do not delegate when:
 - The task requires editing, staging, committing, or changing runtime state.
 - The sub-agent would need broad context or would duplicate the lead review.
 
-Sub-agent prompts should be concrete and bounded. Tell sub-agents this is a read-only audit, name the exact files or plugin docs to inspect, require `file:line` evidence, require source links or documentation names for plugin-parameter claims, and ask them to return only verified findings plus commands run. The lead reviewer must re-check any candidate finding before including it in the final report.
+Sub-agent prompts should be concrete and bounded. Tell sub-agents this is a read-only audit, name the exact files or plugin docs to inspect, require `file:line` evidence, require the current documentation source checked for each plugin-parameter claim, and ask them to return only verified findings plus commands run. Prefer giving one plugin or plugin group per sub-agent when documentation lookup is the main task. The lead reviewer must re-check any candidate finding before including it in the final report.
 
 ## Success Criteria
 
 - Findings are reproducible from current repo files or command output.
 - Each finding has severity, location, observed behavior, expected behavior, and a minimal fix direction.
-- Plugin option findings cite the checked documentation source or state why current plugin documentation could not be reached.
+- Every plugin declared in `lua/config/pack.lua` is accounted for in the final plugin documentation coverage list.
+- Plugin option findings cite the checked current documentation source, such as Context7, upstream README/help docs, release notes, or official repository documentation.
+- If any plugin documentation could not be reached, the final report lists the plugin, attempted source, and limitation; the report must not say the plugin configuration was fully audited.
 - Any delegated finding has been reviewed by the lead agent before being reported.
 - The report references `AGENTS.md`, `formatter.lua`, `linter.lua`, `vim.pack.add()`, and `make check` when those conventions matter.
 - The audit creates no files and makes no repo changes.
@@ -87,6 +91,8 @@ Use this structure:
 **Verification**
 - `make check` ... result, or why it could not run.
 - Other commands ... result.
+- Plugin docs checked: plugin/source list, or "none" only for a targeted non-plugin audit.
+- Plugin docs not checked: plugin/source/reason list, or "none".
 
 **Notes**
 - Assumptions, skipped areas, or "No findings" when applicable.
@@ -100,3 +106,4 @@ Keep the final report concise. Do not include broad summaries before findings.
 - Do not use `make all` as the review validator; this repo uses `make check`.
 - Do not flag style preferences unless they violate StyLua, Selene, `AGENTS.md`, or existing repo conventions.
 - Do not make API or configuration-parameter claims about Neovim 0.12 or plugins without local help, official docs, plugin README, Context7, or upstream internet documentation support.
+- Do not treat plugin config as audited just because it looks plausible locally; read the current plugin docs or explicitly report that external documentation was unavailable.

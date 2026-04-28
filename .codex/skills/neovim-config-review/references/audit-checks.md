@@ -38,6 +38,7 @@ Use this checklist as review guidance, not as a mandate to report unverified iss
 
 ## Plugin Health
 
+- For a full audit, every plugin declared in `lua/config/pack.lua` must be accounted for in documentation coverage.
 - Cross-check each `vim.pack.add()` entry in `lua/config/pack.lua` with setup modules in `lua/plugins/`.
 - For each plugin configuration issue, verify the option names, value types, defaults, renamed fields, and deprecations against current plugin docs.
 - Prefer Context7 MCP results, official plugin README/help docs, or upstream internet documentation. If docs are unavailable, report the verification gap instead of guessing.
@@ -45,6 +46,7 @@ Use this checklist as review guidance, not as a mandate to report unverified iss
 - Confirm deferred loading through `lua/config/defer.lua` is coherent with plugin setup timing.
 - Treat missing required setup, invalid module names, and plugin load ordering that can break startup as high priority.
 - Use plugin README docs, Context7, or upstream internet documentation before claiming current plugin API incompatibility or invalid configuration parameters.
+- Do not claim plugin configuration coverage when plugin docs were not checked. List unchecked plugin docs as verification gaps.
 
 ## Delegation Slices
 
