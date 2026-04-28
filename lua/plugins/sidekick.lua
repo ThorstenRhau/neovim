@@ -12,7 +12,7 @@ require('sidekick').setup({
     },
     tools = {
       codex = {
-        cmd = { 'codex', '--model', 'gpt-5.3-codex-spark', '-c', 'model_reasoning_effort="high"' },
+        cmd = { 'codex' },
       },
     },
   },
