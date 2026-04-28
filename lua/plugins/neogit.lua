@@ -5,7 +5,7 @@ neogit.setup({
   graph_style = 'kitty',
   integrations = {
     fzf_lua = true,
-    diffview = false,
+    diffview = true,
   },
   kind = 'tab',
   signs = {
