@@ -1,11 +1,11 @@
 -- Built-in terminal toggle
--- Simple horizontal terminal at the bottom of the window
+-- Simple vertical terminal on the right side of the window
 
 local term_buf = nil
 local term_win = nil
 
-local function get_height()
-  return math.floor(vim.o.lines * 0.3)
+local function get_width()
+  return math.floor(vim.o.columns * 0.35)
 end
 
 local function is_terminal_alive(buf)
@@ -19,17 +19,17 @@ end
 local function open_terminal()
   if is_terminal_alive(term_buf) then
     -- Reuse existing terminal buffer directly
-    vim.cmd('botright sbuffer ' .. term_buf)
+    vim.cmd('botright vertical sbuffer ' .. term_buf)
   else
     -- Clean up dead buffer if it exists
     if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
       vim.api.nvim_buf_delete(term_buf, { force = true })
     end
-    vim.cmd('botright split | terminal')
+    vim.cmd('botright vertical split | terminal')
     term_buf = vim.api.nvim_get_current_buf()
   end
 
-  vim.cmd('resize ' .. get_height())
+  vim.cmd('vertical resize ' .. get_width())
   term_win = vim.api.nvim_get_current_win()
   vim.cmd('startinsert')
 end
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
       return
     end
 
-    vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], { buffer = 0, desc = 'exit terminal mode' })
+    vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><C-w>p]], { buffer = 0, desc = 'go to previous window' })
     vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = 'go to left window' })
     vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buffer = 0, desc = 'go to lower window' })
     vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buffer = 0, desc = 'go to upper window' })

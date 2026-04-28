@@ -190,6 +190,8 @@ miniclue.setup({
     miniclue.gen_clues.registers(),
     miniclue.gen_clues.windows(),
     miniclue.gen_clues.z(),
+    { mode = 'n', keys = '<Leader>a', desc = '+ai' },
+    { mode = 'x', keys = '<Leader>a', desc = '+ai' },
     { mode = 'n', keys = '<Leader>b', desc = '+buffer' },
     { mode = 'n', keys = '<Leader>c', desc = '+code' },
     { mode = 'x', keys = '<Leader>c', desc = '+code' },

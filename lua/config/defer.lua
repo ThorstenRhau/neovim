@@ -10,6 +10,13 @@ local function lazy_cmd(mod, cmd)
   end
 end
 
+local function sidekick(action)
+  return function()
+    require('plugins.sidekick')
+    action(require('sidekick.cli'))
+  end
+end
+
 -- vim.ui.select proxy: loads fzf config on first ui.select call
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.ui.select = function(...)
@@ -132,3 +139,61 @@ map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc =
 -- Oil --------------------------------------------------------------------
 map('n', '-', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'open parent directory' })
 map('n', '<leader>e', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'file explorer' })
+
+-- Sidekick ---------------------------------------------------------------
+map(
+  'n',
+  '<leader>aa',
+  sidekick(function(cli)
+    cli.toggle({ name = 'codex', focus = true })
+  end),
+  { desc = 'toggle codex' }
+)
+map(
+  'n',
+  '<leader>as',
+  sidekick(function(cli)
+    cli.select({ filter = { installed = true }, focus = true })
+  end),
+  { desc = 'select ai cli' }
+)
+map(
+  { 'n', 'x' },
+  '<leader>ap',
+  sidekick(function(cli)
+    cli.prompt()
+  end),
+  { desc = 'prompt ai' }
+)
+map(
+  'n',
+  '<leader>af',
+  sidekick(function(cli)
+    cli.send({ msg = '{file}' })
+  end),
+  { desc = 'send file' }
+)
+map(
+  { 'n', 'x' },
+  '<leader>at',
+  sidekick(function(cli)
+    cli.send({ msg = '{this}' })
+  end),
+  { desc = 'send this' }
+)
+map(
+  'x',
+  '<leader>av',
+  sidekick(function(cli)
+    cli.send({ msg = '{selection}' })
+  end),
+  { desc = 'send selection' }
+)
+map(
+  'n',
+  '<leader>ad',
+  sidekick(function(cli)
+    cli.close()
+  end),
+  { desc = 'detach ai cli' }
+)

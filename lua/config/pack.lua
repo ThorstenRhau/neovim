@@ -71,6 +71,9 @@ vim.pack.add({
 
   { src = 'https://github.com/karb94/neoscroll.nvim' },
 
+  -- AI
+  { src = 'https://github.com/folke/sidekick.nvim' },
+
   -- Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
@@ -87,6 +90,6 @@ require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')
 require('plugins.neoscroll')
--- Deferred plugins: fzf, neogit, oil, nvim-tree
+-- Deferred plugins: fzf, neogit, oil, nvim-tree, sidekick
 -- Loaded on first keymap press (see config/defer.lua)
 require('config.defer')
