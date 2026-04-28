@@ -1,0 +1,4 @@
+interface:
+  display_name: "Neovim Config Review"
+  short_description: "Audit this Neovim 0.12 config"
+  default_prompt: "Use $neovim-config-review to audit this Neovim 0.12 configuration and report verified findings only."
