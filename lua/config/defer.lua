@@ -132,9 +132,9 @@ map('n', '<leader>gl', neogit({ 'log' }), { desc = 'git log' })
 
 -- Diffview ---------------------------------------------------------------
 map('n', '<leader>gd', lazy_cmd('plugins.diffview', 'DiffviewOpen'), { desc = 'diff view' })
-map('n', '<leader>gD', lazy_cmd('plugins.diffview', 'DiffviewClose'), { desc = 'close diff view' })
 map('n', '<leader>gh', lazy_cmd('plugins.diffview', 'DiffviewFileHistory %'), { desc = 'file history' })
 map('n', '<leader>gH', lazy_cmd('plugins.diffview', 'DiffviewFileHistory'), { desc = 'repo history' })
+map('n', '<leader>gq', lazy_cmd('plugins.diffview', 'DiffviewClose'), { desc = 'close diff view' })
 
 -- Nvim-tree --------------------------------------------------------------
 map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc = 'file tree' })
