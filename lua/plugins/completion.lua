@@ -9,6 +9,8 @@ require('blink.cmp').setup({
     keymap = {
       preset = 'cmdline',
       ['<Tab>'] = { 'show', 'accept' },
+      ['<Up>'] = { 'select_prev', 'fallback' },
+      ['<Down>'] = { 'select_next', 'fallback' },
     },
     completion = {
       menu = { auto_show = true },
