@@ -6,7 +6,7 @@ require('blink.cmp').setup({
   },
   keymap = { preset = 'super-tab' },
   cmdline = {
-    keymap = { preset = 'inherit' },
+    keymap = { preset = 'cmdline' },
     completion = {
       menu = { auto_show = true },
       ghost_text = { enabled = true },

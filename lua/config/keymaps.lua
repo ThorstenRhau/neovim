@@ -95,7 +95,7 @@ local function format_diagnostic_list_item(diagnostic)
 end
 
 map('n', '<leader>xd', function()
-  vim.diagnostic.setqflist({
+  vim.diagnostic.setloclist({
     open = true,
     title = 'Buffer Diagnostics',
     format = format_diagnostic_list_item,

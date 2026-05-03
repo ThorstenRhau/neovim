@@ -269,6 +269,13 @@ vim.api.nvim_create_autocmd('LspDetach', {
   group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
   callback = function(event)
     vim.lsp.buf.clear_references()
+
+    for _, client in ipairs(vim.lsp.get_clients({ bufnr = event.buf })) do
+      if client.id ~= event.data.client_id and client:supports_method('textDocument/documentHighlight') then
+        return
+      end
+    end
+
     vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event.buf })
   end,
 })
