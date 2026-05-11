@@ -134,11 +134,11 @@ map('n', '<leader>gl', neogit({ 'log' }), { desc = 'git log' })
 map('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'diff this' })
 
 -- Nvim-tree --------------------------------------------------------------
-map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc = 'file tree' })
+map('n', '<leader>tr', lazy_cmd('plugins.nvim-tree', 'NvimTreeToggle'), { desc = 'nvim-tree' })
 
 -- Oil --------------------------------------------------------------------
-map('n', '-', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'open parent directory' })
-map('n', '<leader>e', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'file explorer' })
+map('n', '-', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'Oil' })
+map('n', '<leader>e', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'Oil' })
 
 -- Sidekick ---------------------------------------------------------------
 map(

@@ -36,6 +36,3 @@ require('oil').setup({
     },
   },
 })
-
-map('n', '-', '<cmd>Oil --float<cr>', { desc = 'open parent directory' })
-map('n', '<leader>e', '<cmd>Oil --float<cr>', { desc = 'file explorer' })
