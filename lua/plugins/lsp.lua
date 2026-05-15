@@ -124,6 +124,11 @@ local servers = {
     filetypes = { 'fish' },
     root_markers = { '.git' },
   },
+  gopls = {
+    cmd = { 'gopls' },
+    filetypes = { 'go', 'gomod', 'gowork' },
+    root_markers = { 'go.work', 'go.mod', '.git' },
+  },
   html = {
     cmd = { 'vscode-html-language-server', '--stdio' },
     filetypes = { 'html' },
@@ -176,6 +181,12 @@ local servers = {
     cmd = { 'ruff', 'server' },
     filetypes = { 'python' },
     root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
+  },
+  rust_analyzer = {
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { 'Cargo.toml', 'rust-project.json' },
+    workspace_required = true,
   },
   taplo = {
     cmd = { 'taplo', 'lsp', 'stdio' },

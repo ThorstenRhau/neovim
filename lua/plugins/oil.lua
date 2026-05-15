@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 require('oil').setup({
   win_options = {
     statuscolumn = '',

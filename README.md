@@ -26,7 +26,7 @@ typeface Berkeley Mono
 
 ## Dependencies
 
-Neovim 0.12+, ripgrep, fd, git, node.
+Neovim 0.12+, ripgrep, fd, git, node, Go, and Rust.
 
 I manage all software, including LSP servers, formatters, and linters via
 [Homebrew](https://brew.sh/):
@@ -34,12 +34,14 @@ I manage all software, including LSP servers, formatters, and linters via
 ```sh
 brew install neovim ripgrep fd git node
 brew install basedpyright bash-language-server fish-lsp lua-language-server \
-  marksman ruff taplo tinymist vscode-langservers-extracted vtsls \
-  yaml-language-server fish prettier shfmt stylua markdownlint-cli selene \
+  gopls marksman ruff rust-analyzer taplo tinymist \
+  vscode-langservers-extracted vtsls yaml-language-server fish go gofumpt \
+  goimports prettier rust shfmt staticcheck stylua markdownlint-cli selene \
   shellcheck yamllint
 ```
 
 `vscode-langservers-extracted` provides cssls, eslint, html, and jsonls.
+The Homebrew `rust` formula provides rustc, cargo, rustfmt, and Clippy.
 
 ## Cloning the config to your machine
 

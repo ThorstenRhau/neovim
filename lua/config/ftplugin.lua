@@ -15,9 +15,15 @@ function M.indent(size)
   return M
 end
 
-function M.treesitter()
-  vim.treesitter.start()
-  vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+function M.treesitter(opts)
+  opts = opts or {}
+  local ok = pcall(vim.treesitter.start)
+  if not ok then
+    return M
+  end
+  if opts.indent ~= false then
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
   vim.wo[0][0].foldmethod = 'expr'
   vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   return M
@@ -34,6 +40,10 @@ local settings = {
   gitconfig = { indent = 4, treesitter = true },
   gitignore = { indent = 2, treesitter = true },
   gitrebase = { indent = 2, treesitter = true },
+  go = { treesitter = { indent = false } },
+  gomod = { treesitter = { indent = false } },
+  gosum = { treesitter = { indent = false } },
+  gowork = { treesitter = { indent = false } },
   hcl = { indent = 2, treesitter = true },
   html = { indent = 2, treesitter = true },
   javascript = { indent = 2, treesitter = true },
@@ -45,6 +55,7 @@ local settings = {
   markdown = { prose = true, treesitter = true },
   python = { indent = 4, treesitter = true },
   query = { indent = 2, treesitter = true },
+  rust = { treesitter = { indent = false } },
   scss = { indent = 2, treesitter = true },
   sh = { indent = 2, treesitter = true },
   toml = { indent = 2, treesitter = true },
@@ -72,7 +83,7 @@ vim.api.nvim_create_autocmd('FileType', {
       M.indent(s.indent)
     end
     if s.treesitter then
-      M.treesitter()
+      M.treesitter(type(s.treesitter) == 'table' and s.treesitter or nil)
     end
   end,
 })
