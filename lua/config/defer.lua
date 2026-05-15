@@ -141,6 +141,22 @@ map('n', '-', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'Oil' })
 map('n', '<leader>e', lazy_cmd('plugins.oil', 'Oil --float'), { desc = 'Oil' })
 
 -- Sidekick ---------------------------------------------------------------
+local function sidekick_selection_text()
+  local mode = vim.fn.mode()
+  if not (mode == 'v' or mode == 'V' or mode == '\22') then
+    return {}
+  end
+
+  local lines = vim.fn.getregion(vim.fn.getpos('v'), vim.fn.getpos('.'), {
+    type = mode,
+    exclusive = false,
+  })
+
+  return vim.tbl_map(function(line)
+    return { { line } }
+  end, lines)
+end
+
 map(
   'n',
   '<leader>aa',
@@ -181,14 +197,11 @@ map(
   end),
   { desc = 'send this' }
 )
-map(
-  'x',
-  '<leader>av',
-  sidekick(function(cli)
-    cli.send({ msg = '{selection}' })
-  end),
-  { desc = 'send selection' }
-)
+map('x', '<leader>av', function()
+  local text = sidekick_selection_text()
+  require('plugins.sidekick')
+  require('sidekick.cli').send({ text = text })
+end, { desc = 'send selection' })
 map(
   'n',
   '<leader>ad',
