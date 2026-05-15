@@ -65,6 +65,8 @@ o.virtualedit = 'block'
 opt.winborder = constants.ui.border
 o.wrap = false
 
+require('vim._core.ui2').enable({})
+
 -- Diff settings (override default linematch:40, add word-level inline diffs)
 opt.diffopt:remove('linematch:40')
 opt.diffopt:append({ 'linematch:60', 'inline:word' })
