@@ -191,6 +191,22 @@ map(
 )
 map(
   { 'n', 'x' },
+  '<leader>aD',
+  sidekick(function(cli)
+    cli.send({ prompt = 'diagnostics' })
+  end),
+  { desc = 'send diagnostics' }
+)
+map(
+  'n',
+  '<leader>aA',
+  sidekick(function(cli)
+    cli.send({ prompt = 'diagnostics_all' })
+  end),
+  { desc = 'send all diagnostics' }
+)
+map(
+  { 'n', 'x' },
   '<leader>at',
   sidekick(function(cli)
     cli.send({ msg = '{this}' })
