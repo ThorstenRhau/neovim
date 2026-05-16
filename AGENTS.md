@@ -81,7 +81,7 @@ Personal Neovim config in Lua. Requires Neovim 0.12+.
 
 ## Git
 
-- Use the `git-ops` skill for routine git workflows when available.
+- Use the `gs` git steward agent for routine git workflows when available.
 - Do not commit unless asked.
 - Stage specific files only when asked to stage.
 - Commit format:
