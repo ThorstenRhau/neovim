@@ -1,9 +1,0 @@
-#:schema https://developers.openai.com/codex/config-schema.json
-
-[mcp_servers.context7]
-command = "npx"
-args = ["-y", "@upstash/context7-mcp@latest"]
-enabled = true
-required = false
-startup_timeout_sec = 20
-tool_timeout_sec = 120
