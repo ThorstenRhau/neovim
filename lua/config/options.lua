@@ -57,7 +57,7 @@ o.splitright = true
 o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
 o.tabstop = 4
 o.termguicolors = true
-o.timeoutlen = 300
+o.timeoutlen = 1000
 o.undofile = true
 o.undolevels = 1000
 o.updatetime = 250

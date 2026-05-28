@@ -116,7 +116,7 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
 map('n', '<leader>cw', '<cmd>TrimWhitespace<cr>', { desc = 'trim whitespace' })
 
 -- Open file with system default
-map('n', '<leader>cO', function()
+map('n', '<leader>o', function()
   local name = vim.api.nvim_buf_get_name(0)
   if name == '' then
     vim.notify('Buffer has no file', vim.log.levels.WARN)
