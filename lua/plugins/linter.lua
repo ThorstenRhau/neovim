@@ -30,6 +30,7 @@ end
 
 -- Disable line-length rule
 lint.linters.markdownlint.args = {
+  '--stdin',
   '--disable',
   'MD013',
   '--',
