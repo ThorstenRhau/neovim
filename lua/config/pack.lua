@@ -15,6 +15,9 @@ vim.api.nvim_create_autocmd('PackChanged', {
     local name = ev.data.spec.name
     if name == 'nvim-treesitter' then
       pcall(function()
+        if not ev.data.active then
+          vim.cmd.packadd(name)
+        end
         vim.cmd('TSUpdate')
       end)
     end
@@ -60,7 +63,6 @@ vim.pack.add({
 
   -- Git
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/nvim-lua/plenary.nvim' },
   { src = 'https://github.com/NeogitOrg/neogit' },
 
   -- Format

@@ -32,6 +32,12 @@ local opts = {
     formatter = 'path.filename_first',
     file_icons = 'mini',
   },
+  ui_select = function(_, items)
+    local min_h, max_h = 0.15, 0.70
+    local h = (#items + 4) / vim.o.lines
+    h = math.max(min_h, math.min(max_h, h))
+    return { winopts = { height = h, width = 0.50, row = 0.40 } }
+  end,
   previewers = {
     builtin = {
       syntax_limit_b = 1024 * 100, -- 100KB
@@ -118,11 +124,3 @@ local opts = {
 fzf.setup(opts)
 
 ---@diagnostic enable: missing-fields
-
--- Register as vim.ui.select handler with auto-sizing
-fzf.register_ui_select(function(_, items)
-  local min_h, max_h = 0.15, 0.70
-  local h = (#items + 4) / vim.o.lines
-  h = math.max(min_h, math.min(max_h, h))
-  return { winopts = { height = h, width = 0.50, row = 0.40 } }
-end)

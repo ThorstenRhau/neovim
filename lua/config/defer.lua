@@ -119,6 +119,7 @@ end, { desc = 'grep (no ignore)' })
 -- Neogit ----------------------------------------------------------------
 local function neogit(args)
   return function()
+    require('plugins.fzf')
     require('plugins.neogit')
     require('neogit').open(args)
   end

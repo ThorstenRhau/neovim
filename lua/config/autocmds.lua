@@ -48,7 +48,7 @@ autocmd('FileType', {
       if not ok then
         vim.cmd.quit()
       end
-    end, { buffer = event.buf, silent = true, desc = 'Close buffer' })
+    end, { buf = event.buf, silent = true, desc = 'Close buffer' })
   end,
 })
 
@@ -60,10 +60,11 @@ vim.api.nvim_create_user_command('TrimWhitespace', function()
 end, { desc = 'trim trailing whitespace' })
 
 local function clear_chrome()
-  vim.wo.statuscolumn = ''
-  vim.wo.signcolumn = 'no'
-  vim.wo.number = false
-  vim.wo.relativenumber = false
+  local wo = vim.wo[0][0]
+  wo.statuscolumn = ''
+  wo.signcolumn = 'no'
+  wo.number = false
+  wo.relativenumber = false
 end
 
 autocmd('FileType', {
@@ -87,7 +88,7 @@ autocmd('TermOpen', {
   group = augroup('terminal_setup', { clear = true }),
   callback = function()
     clear_chrome()
-    vim.wo.list = false
+    vim.wo[0][0].list = false
   end,
 })
 

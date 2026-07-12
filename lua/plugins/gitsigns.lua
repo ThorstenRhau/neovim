@@ -6,7 +6,7 @@ require('gitsigns').setup({
     local gs = require('gitsigns')
 
     local function bmap(mode, l, r, desc)
-      vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
+      vim.keymap.set(mode, l, r, { buf = bufnr, desc = desc })
     end
 
     -- Navigation

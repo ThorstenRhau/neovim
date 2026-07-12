@@ -52,8 +52,10 @@ local servers = {
       '.git',
     },
     settings = {
-      basedpyright = { analysis = { typeCheckingMode = 'basic' } },
-      pyright = { disableOrganizeImports = true },
+      basedpyright = {
+        disableOrganizeImports = true,
+        analysis = { typeCheckingMode = 'basic' },
+      },
     },
   },
   cssls = {
@@ -167,7 +169,6 @@ local servers = {
       Lua = {
         runtime = { version = 'LuaJIT' },
         workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
         diagnostics = { globals = { 'vim', 'MiniIcons', 'MiniStatusline' } },
       },
     },
@@ -205,6 +206,7 @@ local servers = {
     cmd = { 'vtsls', '--stdio' },
     filetypes = js_ts_filetypes,
     root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+    init_options = { hostInfo = 'neovim' },
     settings = {
       typescript = { inlayHints = js_ts_inlay_hints },
       javascript = { inlayHints = js_ts_inlay_hints },
@@ -250,7 +252,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
     local map = function(mode, lhs, rhs, desc)
-      vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
+      vim.keymap.set(mode, lhs, rhs, { buf = event.buf, desc = desc })
     end
 
     map('n', '<leader>cr', vim.lsp.buf.rename, 'rename')
@@ -266,12 +268,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Document highlight on cursor hold
     if client and client:supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        buffer = event.buf,
+        buf = event.buf,
         group = highlight_group,
         callback = vim.lsp.buf.document_highlight,
       })
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-        buffer = event.buf,
+        buf = event.buf,
         group = highlight_group,
         callback = vim.lsp.buf.clear_references,
       })
@@ -290,7 +292,7 @@ vim.api.nvim_create_autocmd('LspDetach', {
       end
     end
 
-    vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event.buf })
+    vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buf = event.buf })
   end,
 })
 

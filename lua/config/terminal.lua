@@ -59,11 +59,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
       return
     end
 
-    vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><C-w>p]], { buffer = 0, desc = 'go to previous window' })
-    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buffer = 0, desc = 'go to left window' })
-    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buffer = 0, desc = 'go to lower window' })
-    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buffer = 0, desc = 'go to upper window' })
-    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { buffer = 0, desc = 'go to right window' })
+    vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n><C-w>p]], { buf = 0, desc = 'go to previous window' })
+    vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { buf = 0, desc = 'go to left window' })
+    vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { buf = 0, desc = 'go to lower window' })
+    vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { buf = 0, desc = 'go to upper window' })
+    vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { buf = 0, desc = 'go to right window' })
   end,
 })
 
