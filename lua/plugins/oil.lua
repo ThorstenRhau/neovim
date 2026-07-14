@@ -23,6 +23,7 @@ require('oil').setup({
     is_always_hidden = function(name, _)
       return name == '..' or name == '.git'
     end,
+    show_hidden = true,
   },
   float = {
     max_width = 100,
