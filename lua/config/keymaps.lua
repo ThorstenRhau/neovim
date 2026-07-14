@@ -5,15 +5,15 @@ map('i', 'jk', '<Esc>', { desc = 'escape' })
 map('i', 'jj', '<Esc>', { desc = 'escape' })
 
 -- Better movement
-map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'down' })
-map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
+map('n', 'j', [[(v:count > 1 ? 'm`' . v:count : v:count == 0 ? 'g' : '') . 'j']], { expr = true, desc = 'down' })
+map('n', 'k', [[(v:count > 1 ? 'm`' . v:count : v:count == 0 ? 'g' : '') . 'k']], { expr = true, desc = 'up' })
+map('x', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'down' })
+map('x', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
 
 -- Buffers
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<leader>,', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'delete buffer' })
-map('n', '<leader>bD', '<cmd>bdelete!<cr>', { desc = 'delete buffer (force)' })
 map('n', '<leader>bo', '<cmd>%bdelete|edit#|bdelete#<cr>', { desc = 'delete other buffers' })
 
 -- Windows
@@ -45,6 +45,7 @@ map({ 'n', 'i', 'x', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'save file' })
 
 -- Better paste
 map('x', 'p', '"_dP', { desc = 'paste without yanking' })
+map('n', 'gV', '`[v`]', { desc = 'select last changed or yanked text' })
 
 -- Incremental selection
 map({ 'n', 'x', 'o' }, '<A-o>', function()
@@ -110,6 +111,12 @@ map('n', '<leader>xD', function()
 end, { desc = 'workspace diagnostics' })
 map('n', '<leader>xn', '<cmd>cnext<cr>', { desc = 'next quickfix' })
 map('n', '<leader>xp', '<cmd>cprev<cr>', { desc = 'previous quickfix' })
+map('n', '[e', function()
+  vim.diagnostic.jump({ count = -vim.v.count1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = 'previous error' })
+map('n', ']e', function()
+  vim.diagnostic.jump({ count = vim.v.count1, severity = vim.diagnostic.severity.ERROR })
+end, { desc = 'next error' })
 
 -- Code
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'line diagnostics' })
@@ -146,6 +153,10 @@ for _, t in ipairs(toggles) do
     vim.o[t[2]] = not vim.o[t[2]]
   end, { desc = t[3] })
 end
+map('n', '<leader>ti', function()
+  local filter = { bufnr = 0 }
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+end, { desc = 'inlay hints' })
 local saved_vlines
 map('n', '<leader>tl', function()
   local current = vim.diagnostic.config().virtual_lines

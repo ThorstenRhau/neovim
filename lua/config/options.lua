@@ -64,6 +64,7 @@ o.updatetime = 250
 o.virtualedit = 'block'
 opt.winborder = constants.ui.border
 o.wrap = false
+opt.jumpoptions:append('view')
 
 require('vim._core.ui2').enable({})
 

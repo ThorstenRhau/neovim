@@ -42,6 +42,16 @@ require('mini.bracketed').setup({
   quickfix = { suffix = '' },
 })
 
+-- Remove buffers without changing the window layout
+local bufremove = require('mini.bufremove')
+bufremove.setup()
+vim.keymap.set('n', '<leader>bd', function()
+  bufremove.delete(0, false)
+end, { desc = 'delete buffer' })
+vim.keymap.set('n', '<leader>bD', function()
+  bufremove.delete(0, true)
+end, { desc = 'delete buffer (force)' })
+
 -- Statusline
 local constants = require('config.constants')
 local statusline = require('mini.statusline')
