@@ -72,7 +72,6 @@ local settings = {
   css = { indent = 2, treesitter = true },
   diff = { indent = 4, treesitter = true },
   editorconfig = { indent = 2, treesitter = true },
-  fish = { indent = 4, treesitter = true },
   gitattributes = { indent = 2, treesitter = true },
   gitconfig = { indent = 4, treesitter = true },
   gitignore = { indent = 2, treesitter = true },

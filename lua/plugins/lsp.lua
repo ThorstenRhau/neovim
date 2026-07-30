@@ -124,11 +124,6 @@ local servers = {
       validate = 'on',
     },
   },
-  fish_lsp = {
-    cmd = { 'fish-lsp', 'start' },
-    filetypes = { 'fish' },
-    root_markers = { '.git' },
-  },
   gopls = {
     cmd = { 'gopls' },
     filetypes = { 'go', 'gomod', 'gowork' },

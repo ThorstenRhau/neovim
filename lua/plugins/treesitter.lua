@@ -14,7 +14,6 @@ local parsers = {
   'css',
   'diff',
   'editorconfig',
-  'fish',
   'git_config',
   'git_rebase',
   'gitattributes',

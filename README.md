@@ -33,9 +33,9 @@ I manage all software, including LSP servers, formatters, and linters via
 
 ```sh
 brew install neovim fzf ripgrep fd git node
-brew install basedpyright bash-language-server fish-lsp lua-language-server \
+brew install basedpyright bash-language-server lua-language-server \
   gopls marksman ruff rust-analyzer taplo tinymist \
-  vscode-langservers-extracted vtsls yaml-language-server fish go gofumpt \
+  vscode-langservers-extracted vtsls yaml-language-server go gofumpt \
   goimports prettier rust shfmt staticcheck stylua markdownlint-cli selene \
   shellcheck yamllint
 ```

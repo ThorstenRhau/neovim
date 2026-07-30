@@ -4,7 +4,6 @@ require('conform').setup({
   formatters_by_ft = {
     bash = { 'shfmt' },
     css = { 'prettier' },
-    fish = { 'fish_indent' },
     go = { 'goimports', 'gofumpt' },
     html = { 'prettier' },
     javascript = { 'prettier' },
