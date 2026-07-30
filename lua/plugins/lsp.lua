@@ -112,7 +112,6 @@ local servers = {
         showDocumentation = { enable = true },
       },
       codeActionOnSave = { enable = false, mode = 'all' },
-      experimental = { useFlatConfig = false },
       format = false,
       nodePath = vim.NIL,
       packageManager = 'npm',

@@ -117,10 +117,22 @@ map('n', '<leader>sG', function()
 end, { desc = 'grep (no ignore)' })
 
 -- Neogit ----------------------------------------------------------------
+local function load_neogit()
+  require('plugins.fzf')
+  vim.cmd.packadd('neogit')
+  require('plugins.neogit')
+end
+
+vim.api.nvim_create_autocmd('CmdUndefined', {
+  group = vim.api.nvim_create_augroup('defer_neogit', { clear = true }),
+  pattern = 'Neogit*',
+  once = true,
+  callback = load_neogit,
+})
+
 local function neogit(args)
   return function()
-    require('plugins.fzf')
-    require('plugins.neogit')
+    load_neogit()
     require('neogit').open(args)
   end
 end

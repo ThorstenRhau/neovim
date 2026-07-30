@@ -64,7 +64,6 @@ vim.pack.add({
 
   -- Git
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-  { src = 'https://github.com/NeogitOrg/neogit' },
 
   -- Format
   { src = 'https://github.com/stevearc/conform.nvim' },
@@ -82,12 +81,18 @@ vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 }, { load = true, confirm = false })
 
+-- Neogit setup must run before its one-shot command setup, so load it on first use.
+vim.pack.add({
+  { src = 'https://github.com/NeogitOrg/neogit' },
+}, { load = function() end, confirm = false })
+
 -- Load plugin configurations (order matters for dependencies)
 require('plugins.mini')
 require('plugins.treesitter')
+-- Blink preserves existing insert mappings in its fallback chain.
+require('plugins.tabout')
 require('plugins.completion')
 require('plugins.lsp')
-require('plugins.tabout')
 require('plugins.ibl')
 require('plugins.gitsigns')
 require('plugins.formatter')

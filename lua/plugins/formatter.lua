@@ -31,11 +31,15 @@ require('conform').setup({
 })
 
 map('n', '<leader>cf', function()
-  require('conform').format({ async = true, lsp_format = 'fallback' }, function(err)
-    if not err then
-      vim.notify('File formatted', vim.log.levels.INFO)
-    else
-      vim.notify('No formatter available for this filetype', vim.log.levels.WARN)
+  require('conform').format({ async = true, lsp_format = 'fallback', quiet = true }, function(err)
+    if err then
+      local no_formatter = err == 'No formatters available for buffer'
+      local message = no_formatter and 'No formatter available for this filetype' or err
+      local level = no_formatter and vim.log.levels.WARN or vim.log.levels.ERROR
+      vim.notify(message, level)
+      return
     end
+
+    vim.notify('File formatted', vim.log.levels.INFO)
   end)
 end, { desc = 'format buffer' })

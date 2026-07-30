@@ -65,6 +65,7 @@ o.virtualedit = 'block'
 opt.winborder = constants.ui.border
 o.wrap = false
 opt.jumpoptions:append('view')
+opt.sessionoptions:remove('terminal')
 
 require('vim._core.ui2').enable({})
 

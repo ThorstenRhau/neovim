@@ -11,15 +11,16 @@ lint.linters_by_ft = {
 local staticcheck = lint.linters.staticcheck
 lint.linters.staticcheck = function()
   local linter = vim.deepcopy(staticcheck)
-  linter.cwd = vim.fs.root(0, { 'go.work', 'go.mod', '.git' }) or vim.fn.getcwd()
+  local root = vim.fs.root(0, { 'go.work', 'go.mod', '.git' }) or vim.fn.getcwd()
+  linter.cwd = root
   linter.append_fname = false
   linter.args = {
     '-f',
     'json',
     function()
       local dir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:h')
-      local package = vim.fn.fnamemodify(dir, ':.')
-      if package == '.' then
+      local package = vim.fs.relpath(root, dir)
+      if not package or package == '' or package == '.' then
         return '.'
       end
       return './' .. package

@@ -2,7 +2,6 @@ SHELL            := /usr/bin/env bash
 ROOT             := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC          := $(ROOT)/.stylua.toml
 SELENEC          := $(ROOT)/selene.toml
-NVIM             := nvim --headless -Es -u $(ROOT)/init.lua
 CONFIG_PATHS     := "$(ROOT)/init.lua" "$(ROOT)/lua" "$(ROOT)/after"
 
 .PHONY: all check clean format lint install-hooks help

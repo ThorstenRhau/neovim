@@ -26,13 +26,13 @@ typeface Berkeley Mono
 
 ## Dependencies
 
-Neovim 0.12+, ripgrep, fd, git, node, Go, and Rust.
+Neovim 0.12+, fzf, ripgrep, fd, git, node, Go, and Rust.
 
 I manage all software, including LSP servers, formatters, and linters via
 [Homebrew](https://brew.sh/):
 
 ```sh
-brew install neovim ripgrep fd git node
+brew install neovim fzf ripgrep fd git node
 brew install basedpyright bash-language-server fish-lsp lua-language-server \
   gopls marksman ruff rust-analyzer taplo tinymist \
   vscode-langservers-extracted vtsls yaml-language-server fish go gofumpt \
