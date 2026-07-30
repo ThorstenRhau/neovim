@@ -6,7 +6,7 @@ local constants = require('config.constants')
 autocmd({ 'FocusGained', 'BufEnter' }, {
   group = augroup('auto_reload', { clear = true }),
   callback = function()
-    if vim.o.buftype ~= 'nofile' then
+    if vim.fn.getcmdwintype() == '' and vim.o.buftype ~= 'nofile' then
       vim.cmd.checktime()
     end
   end,

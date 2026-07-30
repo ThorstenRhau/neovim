@@ -14,12 +14,15 @@ vim.api.nvim_create_autocmd('PackChanged', {
     end
     local name = ev.data.spec.name
     if name == 'nvim-treesitter' then
-      pcall(function()
+      local ok, err = pcall(function()
         if not ev.data.active then
           vim.cmd.packadd(name)
         end
         vim.cmd('TSUpdate')
       end)
+      if not ok then
+        vim.notify('Failed to update Treesitter parsers: ' .. tostring(err), vim.log.levels.ERROR)
+      end
     end
   end,
 })
@@ -45,7 +48,6 @@ vim.pack.add({
   { src = 'https://github.com/abecodes/tabout.nvim' },
   { src = 'https://github.com/andymass/vim-matchup' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
-  { src = 'https://github.com/lukas-reineke/indent-blankline.nvim' },
 
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
@@ -70,7 +72,6 @@ vim.pack.add({
   { src = 'https://github.com/mfussenegger/nvim-lint' },
 
   -- UI
-
   { src = 'https://github.com/karb94/neoscroll.nvim' },
 
   -- AI
@@ -93,7 +94,6 @@ require('plugins.treesitter')
 require('plugins.tabout')
 require('plugins.completion')
 require('plugins.lsp')
-require('plugins.ibl')
 require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')

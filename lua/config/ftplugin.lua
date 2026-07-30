@@ -1,5 +1,42 @@
 local M = {}
 
+local indent_guide_exclude = {
+  [''] = true,
+  NeogitStatus = true,
+  NvimTree = true,
+  checkhealth = true,
+  git = true,
+  gitcommit = true,
+  ['gitsigns-blame'] = true,
+  help = true,
+  lspinfo = true,
+  man = true,
+  notify = true,
+  oil = true,
+  qf = true,
+}
+
+-- ponytail: native guides omit scope and empty-line inference; revisit if Neovim exposes both without per-buffer timers
+local function set_indent_guides(buf)
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    if vim.api.nvim_win_get_buf(win) == buf then
+      vim.api.nvim_win_call(win, function()
+        local listchars = vim.opt_local.listchars:get()
+        local enabled = vim.bo.buftype == '' and not indent_guide_exclude[vim.bo.filetype]
+
+        if enabled then
+          local width = vim.bo.shiftwidth > 0 and vim.bo.shiftwidth or vim.bo.tabstop
+          listchars.leadmultispace = '│' .. string.rep(' ', width - 1)
+        else
+          listchars.leadmultispace = nil
+        end
+
+        vim.opt_local.listchars = listchars
+      end)
+    end
+  end
+end
+
 function M.prose()
   vim.opt_local.wrap = true
   if vim.bo.buftype == '' then
@@ -68,12 +105,15 @@ local settings = {
   zsh = { indent = 2, treesitter = true },
 }
 
+local ftplugin_group = vim.api.nvim_create_augroup('ftplugin_settings', { clear = true })
+
 vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('ftplugin_settings', { clear = true }),
-  pattern = vim.tbl_keys(settings),
+  group = ftplugin_group,
+  pattern = '*',
   callback = function(ev)
     local s = settings[ev.match]
     if not s then
+      set_indent_guides(ev.buf)
       return
     end
     if s.prose then
@@ -85,6 +125,22 @@ vim.api.nvim_create_autocmd('FileType', {
     if s.treesitter then
       M.treesitter(type(s.treesitter) == 'table' and s.treesitter or nil)
     end
+    set_indent_guides(ev.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  group = ftplugin_group,
+  callback = function(ev)
+    set_indent_guides(ev.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd('OptionSet', {
+  group = ftplugin_group,
+  pattern = { 'buftype', 'shiftwidth', 'tabstop' },
+  callback = function()
+    set_indent_guides(vim.api.nvim_get_current_buf())
   end,
 })
 
