@@ -52,6 +52,7 @@ vim.pack.add({
   -- Mini
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.align' },
+  { src = 'https://github.com/nvim-mini/mini.animate' },
   { src = 'https://github.com/nvim-mini/mini.ai' },
   { src = 'https://github.com/nvim-mini/mini.surround' },
   { src = 'https://github.com/nvim-mini/mini.pairs' },
@@ -70,9 +71,6 @@ vim.pack.add({
   -- Format
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://github.com/mfussenegger/nvim-lint' },
-
-  -- UI
-  { src = 'https://github.com/karb94/neoscroll.nvim' },
 
   -- AI
   { src = 'https://github.com/folke/sidekick.nvim' },
@@ -97,7 +95,6 @@ require('plugins.lsp')
 require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')
-require('plugins.neoscroll')
 -- Deferred plugins: fzf, neogit, oil, nvim-tree, sidekick
 -- Loaded on first keymap press (see config/defer.lua)
 require('config.defer')

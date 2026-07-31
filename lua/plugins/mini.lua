@@ -6,9 +6,27 @@ icons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
+-- Smooth scrolling without replacing native scroll mappings
+local animate = require('mini.animate')
+animate.setup({
+  cursor = { enable = false },
+  scroll = {
+    timing = animate.gen_timing.quadratic({ easing = 'in-out', duration = 250, unit = 'total' }),
+  },
+  resize = { enable = false },
+  open = { enable = false },
+  close = { enable = false },
+})
+
 -- Extended a/i textobjects (treesitter selection, built-in function call under F)
 local ai = require('mini.ai')
 ai.setup({
+  mappings = {
+    around_next = 'aN',
+    inside_next = 'iN',
+    around_last = 'aL',
+    inside_last = 'iL',
+  },
   custom_textobjects = {
     f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
     a = ai.gen_spec.treesitter({ a = '@parameter.outer', i = '@parameter.inner' }),

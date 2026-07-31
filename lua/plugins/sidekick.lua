@@ -10,11 +10,6 @@ require('sidekick').setup({
         esc = { '<esc><esc>', 'blur', mode = 't', desc = 'go back to the previous window' },
       },
     },
-    tools = {
-      codex = {
-        cmd = { 'codex' },
-      },
-    },
   },
   copilot = {
     status = {
