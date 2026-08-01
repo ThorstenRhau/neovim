@@ -11,7 +11,8 @@ local animate = require('mini.animate')
 animate.setup({
   cursor = { enable = false },
   scroll = {
-    timing = animate.gen_timing.quadratic({ easing = 'in-out', duration = 250, unit = 'total' }),
+    timing = animate.gen_timing.linear({ duration = 1000 / 60, unit = 'step' }),
+    subscroll = animate.gen_subscroll.equal({ max_output_steps = 15 }),
   },
   resize = { enable = false },
   open = { enable = false },
