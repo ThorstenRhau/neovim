@@ -78,19 +78,3 @@ Personal Neovim config in Lua. Requires Neovim 0.12+.
   names, and avoid duplicate mappings unless the overlap is intentional.
 - Do not flag style-only preferences unless they violate StyLua, Selene, this
   file, or existing repo conventions.
-
-## Git
-
-- Use the `gs` git steward agent for routine git workflows when available.
-- Do not commit unless asked.
-- Stage specific files only when asked to stage.
-- Commit format:
-
-```txt
-type(scope): description
-
-Body text that explains the change
-```
-
-- Types: `feat`, `fix`, `chore`, `refactor`, `style`, `docs`.
-- Scope should be a filename or feature area without extension.
