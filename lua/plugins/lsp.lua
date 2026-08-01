@@ -165,6 +165,7 @@ local servers = {
     },
     settings = {
       Lua = {
+        hover = { previewFields = 30 },
         runtime = { version = 'LuaJIT' },
         workspace = { checkThirdParty = false },
         diagnostics = { globals = { 'vim', 'MiniIcons', 'MiniStatusline' } },
