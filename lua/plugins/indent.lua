@@ -1,5 +1,4 @@
 require('blink.indent').setup({
-  dedent_scoped_filetypes = { include_defaults = true },
   blocked = {
     buftypes = { include_defaults = true },
     filetypes = {
@@ -29,11 +28,15 @@ require('blink.indent').setup({
   },
   static = {
     char = '│',
-    highlights = { 'IblIndent' },
+    highlights = { 'BlinkIndent' },
   },
   scope = {
     char = '│',
-    highlights = { 'IblScope' },
+    highlights = { 'BlinkIndentScope' },
+    underline = {
+      enabled = true,
+      highlights = { 'BlinkIndentUnderline' },
+    },
   },
 })
 
