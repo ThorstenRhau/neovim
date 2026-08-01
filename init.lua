@@ -12,6 +12,20 @@ vim.g.loaded_ruby_provider = 0
 require('config.options')
 require('config.ftplugin')
 require('config.pack')
+require('token').setup({
+  plugins = {
+    blink = true,
+    blink_indent = true,
+    fzf = true,
+    gitsigns = true,
+    matchup = true,
+    mini = true,
+    neogit = true,
+    nvimtree = true,
+    oil = true,
+    treesitter_context = true,
+  },
+})
 vim.cmd.colorscheme('token')
 require('config.terminal')
 require('config.keymaps')
