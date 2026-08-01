@@ -80,6 +80,11 @@ vim.pack.add({
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 }, { load = true, confirm = false })
 
+-- Configure Blink Indent before loading its plugin scripts so its default mappings are never registered.
+vim.pack.add({
+  { src = 'https://github.com/saghen/blink.indent', version = vim.version.range('2.x') },
+}, { load = false, confirm = false })
+
 -- Neogit setup must run before its one-shot command setup, so load it on first use.
 vim.pack.add({
   { src = 'https://github.com/NeogitOrg/neogit' },
@@ -87,6 +92,7 @@ vim.pack.add({
 
 -- Load plugin configurations (order matters for dependencies)
 require('plugins.mini')
+require('plugins.indent')
 require('plugins.treesitter')
 -- Blink preserves existing insert mappings in its fallback chain.
 require('plugins.tabout')
