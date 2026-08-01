@@ -153,6 +153,11 @@ for _, t in ipairs(toggles) do
     vim.o[t[2]] = not vim.o[t[2]]
   end, { desc = t[3] })
 end
+map('n', '<leader>tN', function()
+  local enabled = not vim.o.number
+  vim.o.number = enabled
+  vim.o.relativenumber = enabled
+end, { desc = 'line numbers' })
 map('n', '<leader>ti', function()
   local filter = { bufnr = 0 }
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)

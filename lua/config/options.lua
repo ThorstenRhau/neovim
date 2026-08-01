@@ -54,7 +54,7 @@ o.spellsuggest = 'best,20'
 o.splitbelow = true
 o.splitkeep = 'screen'
 o.splitright = true
-o.statuscolumn = '%s%=%{v:relnum?v:relnum:v:lnum} '
+o.statuscolumn = '%s%=%{&nu?(&rnu&&v:relnum?v:relnum:v:lnum):""} '
 o.tabstop = 4
 o.termguicolors = true
 o.timeoutlen = 1000
