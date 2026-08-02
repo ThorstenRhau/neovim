@@ -6,17 +6,33 @@ icons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
--- Smooth scrolling without replacing native scroll mappings
+-- Animate common editor actions with a shared 60 FPS timing
 local animate = require('mini.animate')
+local timing = animate.gen_timing.linear({ duration = 1000 / 60, unit = 'step' })
+local fast_timing = animate.gen_timing.linear({ duration = 200, unit = 'total' })
+-- local fast_window_timing = animate.gen_timing.linear({ duration = 200, unit = 'total' })
 animate.setup({
-  cursor = { enable = false },
+  cursor = {
+    enable = false,
+    timing = fast_timing,
+  },
   scroll = {
-    timing = animate.gen_timing.linear({ duration = 1000 / 60, unit = 'step' }),
+    enable = true,
+    timing = timing,
     subscroll = animate.gen_subscroll.equal({ max_output_steps = 15 }),
   },
-  resize = { enable = false },
-  open = { enable = false },
-  close = { enable = false },
+  resize = {
+    enable = false,
+    timing = timing,
+  },
+  open = {
+    enable = false,
+    timing = timing,
+  },
+  close = {
+    enable = false,
+    timing = timing,
+  },
 })
 
 -- Extended a/i textobjects (treesitter selection, built-in function call under F)
