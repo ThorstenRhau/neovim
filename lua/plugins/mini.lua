@@ -8,30 +8,12 @@ require('mini.align').setup()
 
 -- Animate common editor actions with a shared 60 FPS timing
 local animate = require('mini.animate')
-local timing = animate.gen_timing.linear({ duration = 1000 / 60, unit = 'step' })
-local fast_timing = animate.gen_timing.linear({ duration = 200, unit = 'total' })
--- local fast_window_timing = animate.gen_timing.linear({ duration = 200, unit = 'total' })
+local timing = animate.gen_timing.linear({ duration = 300 / 60, unit = 'step' })
 animate.setup({
-  cursor = {
-    enable = false,
-    timing = fast_timing,
-  },
   scroll = {
     enable = true,
     timing = timing,
-    subscroll = animate.gen_subscroll.equal({ max_output_steps = 15 }),
-  },
-  resize = {
-    enable = false,
-    timing = timing,
-  },
-  open = {
-    enable = false,
-    timing = timing,
-  },
-  close = {
-    enable = false,
-    timing = timing,
+    subscroll = animate.gen_subscroll.equal({ max_output_steps = 20 }),
   },
 })
 
