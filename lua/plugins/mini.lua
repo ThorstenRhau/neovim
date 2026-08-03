@@ -72,6 +72,21 @@ end, { desc = 'delete buffer (force)' })
 -- Statusline
 local constants = require('config.constants')
 local statusline = require('mini.statusline')
+
+local function statusline_filename()
+  if vim.bo.buftype == 'terminal' then
+    return '%t'
+  end
+
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then
+    return '%t%m%r'
+  end
+
+  local parent = vim.fn.fnamemodify(path, ':h:t'):gsub('%%', '%%%%')
+  return parent .. '/%t%m%r'
+end
+
 statusline.setup({
   use_icons = true,
   content = {
@@ -89,7 +104,7 @@ statusline.setup({
         },
       })
       local lsp = statusline.section_lsp({ trunc_width = 75 })
-      local filename = statusline.section_filename({ trunc_width = 140 })
+      local filename = statusline_filename()
       local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
       local search = statusline.section_searchcount({ trunc_width = 75 })
 
