@@ -28,10 +28,10 @@ map('n', '<leader>wv', '<C-w>v', { desc = 'split window right' })
 map('n', '<leader>w=', '<C-w>=', { desc = 'equalize windows' })
 
 -- Resize windows
-map('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'increase window height' })
-map('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'decrease window height' })
-map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'decrease window width' })
-map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'increase window width' })
+map('n', '<leader>wk', '<cmd>resize +2<cr>', { desc = 'increase window height' })
+map('n', '<leader>wj', '<cmd>resize -2<cr>', { desc = 'decrease window height' })
+map('n', '<leader>wh', '<cmd>vertical resize -2<cr>', { desc = 'decrease window width' })
+map('n', '<leader>wl', '<cmd>vertical resize +2<cr>', { desc = 'increase window width' })
 
 -- Clear search highlight
 map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'clear search highlight' })

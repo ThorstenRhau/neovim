@@ -8,12 +8,7 @@ require('lazydev').setup({
 -- LSP configuration
 local constants = require('config.constants')
 
--- Get blink.cmp capabilities
-local has_blink, blink = pcall(require, 'blink.cmp')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-if has_blink then
-  capabilities = blink.get_lsp_capabilities(capabilities)
-end
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 -- Shared filetypes for JS/TS ecosystem
 local js_ts_filetypes = {

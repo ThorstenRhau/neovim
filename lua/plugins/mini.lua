@@ -6,15 +6,19 @@ icons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
--- Animate common editor actions with a shared 60 FPS timing
+-- Fast smooth scrolling capped at 20 animation steps
 local animate = require('mini.animate')
 local timing = animate.gen_timing.linear({ duration = 300 / 60, unit = 'step' })
 animate.setup({
+  cursor = { enable = false },
   scroll = {
     enable = true,
     timing = timing,
     subscroll = animate.gen_subscroll.equal({ max_output_steps = 20 }),
   },
+  resize = { enable = false },
+  open = { enable = false },
+  close = { enable = false },
 })
 
 -- Extended a/i textobjects (treesitter selection, built-in function call under F)
