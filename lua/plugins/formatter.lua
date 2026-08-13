@@ -3,13 +3,13 @@ local map = vim.keymap.set
 require('conform').setup({
   formatters_by_ft = {
     bash = { 'shfmt' },
-    css = { 'prettier' },
+    css = { 'biome' },
     go = { 'goimports', 'gofumpt' },
-    html = { 'prettier' },
-    javascript = { 'prettier' },
-    javascriptreact = { 'prettier' },
-    json = { 'prettier' },
-    jsonc = { 'prettier' },
+    html = { 'biome' },
+    javascript = { 'biome' },
+    javascriptreact = { 'biome' },
+    json = { 'biome' },
+    jsonc = { 'biome' },
     less = { 'prettier' },
     lua = { 'stylua' },
     markdown = { 'prettier' },
@@ -18,11 +18,14 @@ require('conform').setup({
     scss = { 'prettier' },
     sh = { 'shfmt' },
     toml = { 'taplo' },
-    typescript = { 'prettier' },
-    typescriptreact = { 'prettier' },
+    typescript = { 'biome' },
+    typescriptreact = { 'biome' },
     yaml = { 'prettier' },
   },
   formatters = {
+    biome = {
+      append_args = { '--html-formatter-enabled=true' },
+    },
     shfmt = {
       prepend_args = { '-i', '2', '-ci' },
     },
