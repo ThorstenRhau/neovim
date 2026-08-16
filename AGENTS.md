@@ -67,6 +67,20 @@ Personal Neovim config in Lua. Requires Neovim 0.12+.
 - Do not add references to obsolete plugin managers, non-Codex assistant files,
   or obsolete plugin paths.
 
+## Durable Project Knowledge
+
+- Use the global `$project-knowledge` workflow when explicitly asked to capture,
+  audit, or promote durable knowledge for this repository.
+- Keep always-applicable operating rules and the current configuration map in
+  `AGENTS.md`. Keep user-facing setup in `README.md`, and keep the repeatable
+  review procedure in `.codex/skills/neovim-config-review/`.
+- Record accepted, non-obvious rationale under `docs/decisions/` only when it
+  meets the workflow's capture threshold. Add `docs/index.md` only when the
+  repository has multiple durable knowledge sources that need routing.
+- Update the owning current-state document in the same scoped change that
+  invalidates it. Keep session summaries, branch state, speculative notes, and
+  active work out of durable project documentation.
+
 ## Review Guidelines
 
 - Treat startup errors, malformed Lua, missing plugin setup, invalid keymaps, and
