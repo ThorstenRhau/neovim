@@ -26,7 +26,7 @@ require('token').setup({
     treesitter_context = true,
   },
 })
-vim.cmd.colorscheme('token-flint')
+vim.cmd.colorscheme('token-ultra')
 require('config.terminal')
 require('config.keymaps')
 require('config.autocmds')
