@@ -1,11 +1,11 @@
 -- Built-in terminal toggle
--- Simple vertical terminal on the right side of the window
+-- Simple horizontal terminal at the bottom of the window
 
 local term_buf = nil
 local term_win = nil
 
-local function get_width()
-  return math.floor(vim.o.columns * 0.35)
+local function get_height()
+  return math.floor(vim.o.lines / 3)
 end
 
 local function is_terminal_alive(buf)
@@ -19,17 +19,17 @@ end
 local function open_terminal()
   if is_terminal_alive(term_buf) then
     -- Reuse existing terminal buffer directly
-    vim.cmd('botright vertical sbuffer ' .. term_buf)
+    vim.cmd('botright sbuffer ' .. term_buf)
   else
     -- Clean up dead buffer if it exists
     if term_buf and vim.api.nvim_buf_is_valid(term_buf) then
       vim.api.nvim_buf_delete(term_buf, { force = true })
     end
-    vim.cmd('botright vertical split | terminal')
+    vim.cmd('botright split | terminal')
     term_buf = vim.api.nvim_get_current_buf()
   end
 
-  vim.cmd('vertical resize ' .. get_width())
+  vim.cmd('resize ' .. get_height())
   term_win = vim.api.nvim_get_current_win()
   vim.cmd('startinsert')
 end
