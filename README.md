@@ -14,16 +14,6 @@ The `main` branch is my daily driver. Well-tested but occasionally in flux.
 
 Feel free to steal anything useful.
 
-## Showcase
-
-| Dark                                            | Light                                            |
-| ----------------------------------------------- | ------------------------------------------------ |
-| ![Dark variant 1](https://rhau.se/token-d1.png) | ![Light variant 1](https://rhau.se/token-l1.png) |
-| ![Dark variant 2](https://rhau.se/token-d2.png) | ![Light variant 2](https://rhau.se/token-l2.png) |
-
-I use my own color theme [token](https://github.com/ThorstenRhau/token/) and the
-typeface Berkeley Mono
-
 ## Dependencies
 
 Neovim 0.12+, fzf, ripgrep, fd, git, node, Go, and Rust.
@@ -40,8 +30,8 @@ brew install basedpyright bash-language-server biome lua-language-server \
   shellcheck yamllint
 ```
 
-`vscode-langservers-extracted` provides cssls, eslint, html, and jsonls.
-The Homebrew `rust` formula provides rustc, cargo, rustfmt, and Clippy.
+`vscode-langservers-extracted` provides cssls, eslint, html, and jsonls. The
+Homebrew `rust` formula provides rustc, cargo, rustfmt, and Clippy.
 
 ## Cloning the config to your machine
 
