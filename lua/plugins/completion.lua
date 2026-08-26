@@ -53,7 +53,9 @@ require('blink.cmp').setup({
     },
     list = {
       selection = {
-        preselect = true,
+        preselect = function()
+          return not require('blink.cmp').snippet_active({ direction = 1 })
+        end,
         auto_insert = false,
       },
     },
