@@ -61,10 +61,6 @@ map({ 'n', 'x', 'o' }, '<A-i>', function()
   end
 end, { desc = 'select child node' })
 
--- Add blank lines
-map('n', ']<space>', 'o<esc>k', { desc = 'add blank line below' })
-map('n', '[<space>', 'O<esc>j', { desc = 'add blank line above' })
-
 -- Quickfix
 local severity_names = {
   [vim.diagnostic.severity.ERROR] = 'ERROR',
