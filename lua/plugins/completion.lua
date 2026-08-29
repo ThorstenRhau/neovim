@@ -1,5 +1,9 @@
 local constants = require('config.constants')
 
+local function is_colon_cmdline()
+  return vim.fn.getcmdtype() == ':' or vim.fn.getcmdwintype() == ':'
+end
+
 require('blink.cmp').setup({
   fuzzy = {
     implementation = 'prefer_rust',
@@ -8,13 +12,43 @@ require('blink.cmp').setup({
   cmdline = {
     keymap = {
       preset = 'cmdline',
-      ['<Tab>'] = { 'show', 'accept' },
+      ['<Tab>'] = {
+        function(cmp)
+          if not is_colon_cmdline() then
+            return
+          end
+          if cmp.is_menu_visible() then
+            return cmp.accept()
+          end
+          return cmp.show()
+        end,
+        'fallback',
+      },
+      ['<S-Tab>'] = {
+        function(cmp)
+          if is_colon_cmdline() then
+            return cmp.show_and_insert_or_accept_single({ initial_selected_item_idx = -1 })
+          end
+        end,
+        function(cmp)
+          if is_colon_cmdline() then
+            return cmp.select_prev()
+          end
+        end,
+        'fallback',
+      },
       ['<Up>'] = { 'select_prev', 'fallback' },
       ['<Down>'] = { 'select_next', 'fallback' },
     },
+    sources = function()
+      if is_colon_cmdline() then
+        return { 'buffer', 'cmdline' }
+      end
+      return {}
+    end,
     completion = {
-      menu = { auto_show = true },
-      ghost_text = { enabled = true },
+      menu = { auto_show = is_colon_cmdline },
+      ghost_text = { enabled = is_colon_cmdline },
     },
   },
   sources = {
