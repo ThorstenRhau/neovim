@@ -40,9 +40,6 @@ map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'clear search highlight' })
 map('v', '<', '<gv', { desc = 'indent left' })
 map('v', '>', '>gv', { desc = 'indent right' })
 
--- Save
-map({ 'n', 'i', 'x', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'save file' })
-
 -- Better paste
 map('x', 'p', '"_dP', { desc = 'paste without yanking' })
 map('n', 'gV', '`[v`]', { desc = 'select last changed or yanked text' })
