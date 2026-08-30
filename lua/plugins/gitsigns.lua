@@ -48,6 +48,7 @@ map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<cr>', { desc = 'reset buffer'
 map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk_inline<cr>', { desc = 'preview hunk' })
 map('n', '<leader>hb', '<cmd>Gitsigns blame_line full=true<cr>', { desc = 'blame line' })
 map('n', '<leader>hB', '<cmd>Gitsigns blame<cr>', { desc = 'blame buffer' })
+map('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'diff this' })
 map('n', '<leader>hd', '<cmd>Gitsigns diffthis<cr>', { desc = 'diff this' })
 map('n', '<leader>hD', '<cmd>Gitsigns diffthis ~<cr>', { desc = 'diff this ~' })
 map('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<cr>', { desc = 'line blame' })

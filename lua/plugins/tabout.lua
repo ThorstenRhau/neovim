@@ -15,5 +15,5 @@ require('tabout').setup({
     { open = '<', close = '>' },
   },
   ignore_beginning = true,
-  exclude = {},
+  exclude = { 'less' },
 })

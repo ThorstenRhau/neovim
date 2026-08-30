@@ -33,7 +33,7 @@ vim.pack.add({
 
   -- Treesitter
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
 
   -- Completion
@@ -67,6 +67,7 @@ vim.pack.add({
 
   -- Git
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+  { src = 'https://github.com/NeogitOrg/neogit' },
 
   -- Format
   { src = 'https://github.com/stevearc/conform.nvim' },
@@ -82,13 +83,8 @@ vim.pack.add({
 
 -- Configure Blink Indent before loading its plugin scripts so its default mappings are never registered.
 vim.pack.add({
-  { src = 'https://github.com/saghen/blink.indent', version = vim.version.range('2.x') },
+  { src = 'https://github.com/saghen/blink.indent' },
 }, { load = false, confirm = false })
-
--- Neogit setup must run before its one-shot command setup, so load it on first use.
-vim.pack.add({
-  { src = 'https://github.com/NeogitOrg/neogit' },
-}, { load = function() end, confirm = false })
 
 -- Load plugin configurations (order matters for dependencies)
 require('plugins.mini')
@@ -101,6 +97,8 @@ require('plugins.lsp')
 require('plugins.gitsigns')
 require('plugins.formatter')
 require('plugins.linter')
--- Deferred plugins: fzf, neogit, oil, nvim-tree, sidekick
--- Loaded on first keymap press (see config/defer.lua)
-require('config.defer')
+require('plugins.fzf')
+require('plugins.neogit')
+require('plugins.oil')
+require('plugins.nvim-tree')
+require('plugins.sidekick')

@@ -24,14 +24,23 @@ I manage all software, including LSP servers, formatters, and linters via
 ```sh
 brew install neovim fzf ripgrep fd git node
 brew install basedpyright bash-language-server biome lua-language-server \
-  gopls marksman ruff rust-analyzer taplo tinymist \
+  gopls marksman ruff rust-analyzer tombi tinymist \
   vscode-langservers-extracted vtsls yaml-language-server go gofumpt \
-  goimports prettier rust shfmt staticcheck stylua markdownlint-cli selene \
+  goimports prettier rust shfmt stylua markdownlint-cli selene \
   shellcheck yamllint
 ```
 
 `vscode-langservers-extracted` provides cssls, eslint, html, and jsonls. The
 Homebrew `rust` formula provides rustc, cargo, rustfmt, and Clippy.
+Xcode supplies SourceKit-LSP and Swift 6's `swift format` command for Swift
+editing and formatting.
+
+## Plugin updates
+
+`nvim-pack-lock.json` is tracked to make native `vim.pack` installs reproducible.
+Use `<leader>l` to run `vim.pack.update()`, then review the lockfile changes and
+commit intended plugin revisions together with any related configuration updates.
+Do not remove the lockfile with `make clean`.
 
 ## Cloning the config to your machine
 

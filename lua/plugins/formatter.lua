@@ -17,7 +17,8 @@ require('conform').setup({
     rust = { 'rustfmt' },
     scss = { 'prettier' },
     sh = { 'shfmt' },
-    toml = { 'taplo' },
+    swift = { 'swift' },
+    toml = { 'tombi' },
     typescript = { 'biome' },
     typescriptreact = { 'biome' },
     yaml = { 'prettier' },
@@ -26,13 +27,10 @@ require('conform').setup({
     biome = {
       append_args = { '--html-formatter-enabled=true' },
     },
-    shfmt = {
-      prepend_args = { '-i', '2', '-ci' },
-    },
   },
 })
 
-map('n', '<leader>cf', function()
+local function format()
   require('conform').format({ async = true, lsp_format = 'fallback', quiet = true }, function(err)
     if err then
       local no_formatter = err == 'No formatters available for buffer'
@@ -44,4 +42,12 @@ map('n', '<leader>cf', function()
 
     vim.notify('File formatted', vim.log.levels.INFO)
   end)
+end
+
+map('n', '<leader>cf', function()
+  format()
 end, { desc = 'format buffer' })
+
+map('v', '<leader>cf', function()
+  format()
+end, { desc = 'format selection' })

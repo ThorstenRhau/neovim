@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 require('oil').setup({
   win_options = {
     statuscolumn = '',
@@ -35,3 +37,6 @@ require('oil').setup({
     },
   },
 })
+
+map('n', '-', '<cmd>Oil --float<cr>', { desc = 'Oil' })
+map('n', '<leader>e', '<cmd>Oil --float<cr>', { desc = 'Oil' })

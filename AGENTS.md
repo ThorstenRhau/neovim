@@ -6,8 +6,7 @@ Personal Neovim config in Lua. Requires Neovim 0.12+.
 
 - `init.lua` is the entry point. It sets leaders and loads `lua/config/`.
 - `lua/config/` contains core configuration: options, keymaps, autocmds,
-  plugin declarations, deferred loading, terminal helpers, and filetype
-  helpers.
+  plugin declarations, terminal helpers, and filetype helpers.
 - `lua/plugins/` contains plugin setup and plugin-specific keymaps, one module
   per plugin area.
 - `after/ftplugin/` contains heavier filetype-specific configuration.
@@ -28,9 +27,13 @@ Personal Neovim config in Lua. Requires Neovim 0.12+.
 - Use native `vim.pack.add()` in `lua/config/pack.lua`.
 - Put plugin declarations in `lua/config/pack.lua`.
 - Put setup code and keymaps in `lua/plugins/*.lua`.
-- Use `lua/config/defer.lua` for deferred plugin loading.
+- Configure user-authored plugins eagerly during startup. Do not add first-use
+  wrappers, proxy functions, or command hooks for plugin setup.
 - Keep `PackChanged` build/update hooks near the pack declarations.
 - Do not introduce another plugin manager.
+- Keep `nvim-pack-lock.json` tracked. `vim.pack.update()` updates it; review and
+  commit intentional revision changes with the corresponding plugin update.
+  `make clean` must preserve the lockfile so isolated installs remain reproducible.
 
 ## Style
 

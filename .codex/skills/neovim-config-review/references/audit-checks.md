@@ -43,7 +43,7 @@ Use this checklist as review guidance, not as a mandate to report unverified iss
 - For each plugin configuration issue, verify the option names, value types, defaults, renamed fields, and deprecations against current plugin docs.
 - Prefer Context7 MCP results, official plugin README/help docs, or upstream internet documentation. If docs are unavailable, report the verification gap instead of guessing.
 - Check `PackChanged` hooks near plugin declarations when plugins require build/update steps.
-- Confirm deferred loading through `lua/config/defer.lua` is coherent with plugin setup timing.
+- Confirm eager plugin setup and any required setup-before-load sequencing are coherent with plugin declaration order.
 - Treat missing required setup, invalid module names, and plugin load ordering that can break startup as high priority.
 - Use plugin README docs, Context7, or upstream internet documentation before claiming current plugin API incompatibility or invalid configuration parameters.
 - Do not claim plugin configuration coverage when plugin docs were not checked. List unchecked plugin docs as verification gaps.

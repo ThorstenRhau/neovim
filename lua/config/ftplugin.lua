@@ -1,4 +1,11 @@
 local M = {}
+local settings
+
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+})
 
 function M.prose()
   vim.opt_local.wrap = true
@@ -16,13 +23,20 @@ function M.indent(size)
 end
 
 function M.treesitter(opts)
+  local filetype_settings = settings and settings[vim.bo.filetype]
+  if opts == nil and filetype_settings and type(filetype_settings.treesitter) == 'table' then
+    opts = filetype_settings.treesitter
+  end
   opts = opts or {}
   local ok = pcall(vim.treesitter.start)
   if not ok then
     return M
   end
   if opts.indent ~= false then
-    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+    if lang and vim.treesitter.query.get(lang, 'indents') then
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
   end
   vim.wo[0][0].foldmethod = 'expr'
   vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -30,18 +44,19 @@ function M.treesitter(opts)
 end
 
 -- Table-driven filetype settings
-local settings = {
+settings = {
   bash = { indent = 2, treesitter = true },
   css = { indent = 2, treesitter = true },
   diff = { indent = 4, treesitter = true },
   editorconfig = { indent = 2, treesitter = true },
   gitattributes = { indent = 2, treesitter = true },
-  gitconfig = { indent = 4, treesitter = true },
+  gitconfig = { indent = 4, treesitter = { indent = false } },
   gitignore = { indent = 2, treesitter = true },
   gitrebase = { indent = 2, treesitter = true },
   go = { treesitter = { indent = false } },
   gomod = { treesitter = { indent = false } },
   gosum = { treesitter = { indent = false } },
+  gotmpl = { indent = 2, treesitter = true },
   gowork = { treesitter = { indent = false } },
   hcl = { indent = 2, treesitter = true },
   html = { indent = 2, treesitter = true },
@@ -57,10 +72,11 @@ local settings = {
   rust = { treesitter = { indent = false } },
   scss = { indent = 2, treesitter = true },
   sh = { indent = 2, treesitter = true },
+  swift = { indent = 2, treesitter = true },
   toml = { indent = 2, treesitter = true },
   typescript = { indent = 2, treesitter = true },
   typescriptreact = { indent = 2, treesitter = true },
-  vim = { indent = 2, treesitter = true },
+  vim = { indent = 2, treesitter = { indent = false } },
   xml = { indent = 2, treesitter = true },
   yaml = { indent = 2, treesitter = true },
   yang = { indent = 2, treesitter = true },

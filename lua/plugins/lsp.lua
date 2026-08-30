@@ -10,6 +10,123 @@ local constants = require('config.constants')
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+local function buffer_path(bufnr)
+  local name = vim.api.nvim_buf_get_name(bufnr)
+  if name == '' then
+    return nil
+  end
+  return name
+end
+
+local function root_dir(markers, predicate)
+  return function(bufnr, on_dir)
+    local name = buffer_path(bufnr)
+    if not name or (predicate and not predicate(name)) then
+      return
+    end
+
+    local root = vim.fs.root(name, markers)
+    if root then
+      on_dir(root)
+    end
+  end
+end
+
+local function has_deno_config(path)
+  return #vim.fs.find({ 'deno.json', 'deno.jsonc' }, { path = vim.fs.dirname(path), upward = true }) > 0
+end
+
+local js_workspace_markers = {
+  { 'pnpm-workspace.yaml', 'lerna.json', 'turbo.json' },
+  { 'yarn.lock', 'package-lock.json', 'npm-shrinkwrap.json', 'bun.lock', 'bun.lockb' },
+  { 'tsconfig.json', 'jsconfig.json', 'package.json' },
+  '.git',
+}
+
+local eslint_config_markers = {
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.yaml',
+  '.eslintrc.yml',
+  '.eslintrc.json',
+  'eslint.config.js',
+  'eslint.config.mjs',
+  'eslint.config.cjs',
+  'eslint.config.ts',
+  'eslint.config.mts',
+  'eslint.config.cts',
+}
+
+local function eslint_root_dir(bufnr, on_dir)
+  local name = buffer_path(bufnr)
+  if not name or has_deno_config(name) then
+    return
+  end
+
+  local config = vim.fs.find(eslint_config_markers, { path = vim.fs.dirname(name), upward = true })[1]
+  if not config then
+    return
+  end
+
+  on_dir(vim.fs.root(config, js_workspace_markers) or vim.fs.dirname(config))
+end
+
+local function rust_root_dir(bufnr, on_dir)
+  local name = buffer_path(bufnr)
+  if not name then
+    return
+  end
+
+  local cargo_toml = vim.fs.find('Cargo.toml', { path = vim.fs.dirname(name), upward = true })[1]
+  if cargo_toml then
+    local ok, result = pcall(function()
+      return vim
+        .system({ 'cargo', 'metadata', '--format-version=1', '--no-deps', '--manifest-path', cargo_toml }, {
+          text = true,
+          timeout = 1000,
+        })
+        :wait()
+    end)
+    if ok and result.code == 0 then
+      local decoded_ok, metadata = pcall(vim.json.decode, result.stdout)
+      if decoded_ok and metadata.workspace_root and vim.uv.fs_stat(metadata.workspace_root) then
+        on_dir(metadata.workspace_root)
+        return
+      end
+    end
+
+    on_dir(vim.fs.dirname(cargo_toml))
+    return
+  end
+
+  local root = vim.fs.root(name, { 'rust-project.json', '.git' })
+  if root then
+    on_dir(root)
+  end
+end
+
+local function is_xcode_workspace(name)
+  return name:match('%.xcodeproj$') ~= nil or name:match('%.xcworkspace$') ~= nil
+end
+
+local function sourcekit_root_dir(bufnr, on_dir)
+  local name = buffer_path(bufnr)
+  if not name then
+    return
+  end
+
+  local root = vim.fs.root(name, {
+    'buildServer.json',
+    is_xcode_workspace,
+    { 'Package.swift', 'compile_commands.json' },
+    '.git',
+  })
+  if root then
+    on_dir(root)
+  end
+end
+
 -- Shared filetypes for JS/TS ecosystem
 local js_ts_filetypes = {
   'javascript',
@@ -31,25 +148,24 @@ local js_ts_inlay_hints = {
 local servers = {
   bashls = {
     cmd = { 'bash-language-server', 'start' },
-    filetypes = { 'sh', 'bash', 'zsh' },
+    filetypes = { 'bash', 'sh' },
     root_markers = { '.git' },
+    settings = {
+      bashIde = {
+        globPattern = '**/*@(.sh|.bash|.inc|.command)',
+      },
+    },
   },
   basedpyright = {
     cmd = { 'basedpyright-langserver', '--stdio' },
     filetypes = { 'python' },
     root_markers = {
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'Pipfile',
-      'pyrightconfig.json',
+      { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json' },
       '.git',
     },
     settings = {
       basedpyright = {
         disableOrganizeImports = true,
-        analysis = { typeCheckingMode = 'basic' },
       },
     },
   },
@@ -66,18 +182,7 @@ local servers = {
   eslint = {
     cmd = { 'vscode-eslint-language-server', '--stdio' },
     filetypes = js_ts_filetypes,
-    root_markers = {
-      '.eslintrc',
-      '.eslintrc.js',
-      '.eslintrc.cjs',
-      '.eslintrc.yaml',
-      '.eslintrc.yml',
-      '.eslintrc.json',
-      'eslint.config.js',
-      'eslint.config.mjs',
-      'eslint.config.cjs',
-      'package.json',
-    },
+    root_dir = eslint_root_dir,
     handlers = {
       ['eslint/openDoc'] = function(_, result)
         if result then
@@ -121,8 +226,20 @@ local servers = {
   },
   gopls = {
     cmd = { 'gopls' },
-    filetypes = { 'go', 'gomod', 'gowork' },
-    root_markers = { 'go.work', 'go.mod', '.git' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+    root_markers = { { 'go.work', 'go.mod' }, '.git' },
+    settings = {
+      gopls = {
+        analyses = {
+          nilness = true,
+          shadow = true,
+          unusedparams = true,
+          unusedwrite = true,
+          useany = true,
+        },
+        semanticTokens = true,
+      },
+    },
   },
   html = {
     cmd = { 'vscode-html-language-server', '--stdio' },
@@ -149,13 +266,7 @@ local servers = {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
     root_markers = {
-      '.luarc.json',
-      '.luarc.jsonc',
-      '.luacheckrc',
-      '.stylua.toml',
-      'stylua.toml',
-      'selene.toml',
-      'selene.yml',
+      { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml' },
       '.git',
     },
     settings = {
@@ -180,13 +291,25 @@ local servers = {
   rust_analyzer = {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
-    root_markers = { 'Cargo.toml', 'rust-project.json' },
+    root_dir = rust_root_dir,
     workspace_required = true,
+    settings = {
+      ['rust-analyzer'] = {
+        check = {
+          command = 'check',
+        },
+      },
+    },
   },
-  taplo = {
-    cmd = { 'taplo', 'lsp', 'stdio' },
+  sourcekit = {
+    cmd = { 'sourcekit-lsp' },
+    filetypes = { 'swift' },
+    root_dir = sourcekit_root_dir,
+  },
+  tombi = {
+    cmd = { 'tombi', 'lsp' },
     filetypes = { 'toml' },
-    root_markers = { '.taplo.toml', 'taplo.toml', '.git' },
+    root_markers = { { '.tombi.toml', 'tombi.toml' }, '.git' },
   },
   tinymist = {
     cmd = { 'tinymist' },
@@ -199,7 +322,9 @@ local servers = {
   vtsls = {
     cmd = { 'vtsls', '--stdio' },
     filetypes = js_ts_filetypes,
-    root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+    root_dir = root_dir(js_workspace_markers, function(path)
+      return not has_deno_config(path)
+    end),
     init_options = { hostInfo = 'neovim' },
     settings = {
       typescript = { inlayHints = js_ts_inlay_hints },

@@ -22,6 +22,7 @@ local parsers = {
   'go',
   'gomod',
   'gosum',
+  'gotmpl',
   'gowork',
   'hcl',
   'html',
@@ -38,6 +39,7 @@ local parsers = {
   'regex',
   'rust',
   'scss',
+  'swift',
   'toml',
   'tsx',
   'typescript',
@@ -49,9 +51,21 @@ local parsers = {
   'yang',
 }
 
--- Install parsers after startup
+local function start_treesitter_for_loaded_buffers()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buftype == '' and vim.bo[bufnr].filetype ~= '' then
+      vim.api.nvim_buf_call(bufnr, function()
+        require('config.ftplugin').treesitter()
+      end)
+    end
+  end
+end
+
+-- Install parsers after startup, then retry activation for buffers that opened before their parser was available.
 vim.schedule(function()
-  require('nvim-treesitter').install(parsers)
+  require('nvim-treesitter').install(parsers):await(function()
+    vim.schedule(start_treesitter_for_loaded_buffers)
+  end)
 end)
 
 -- Textobjects (selection handled by mini.ai, movement by treesitter-textobjects)
@@ -97,5 +111,5 @@ require('treesitter-context').setup({
 })
 
 map('n', 'gC', function()
-  require('treesitter-context').go_to_context()
+  require('treesitter-context').go_to_context(vim.v.count1)
 end, { desc = 'go to context' })

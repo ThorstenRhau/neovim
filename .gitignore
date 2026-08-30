@@ -7,9 +7,6 @@ tasks/
 # spell files
 spell/
 
-# vim.pack lock file
-nvim-pack-lock.json
-
 # Generated Lua LSP cache
 .codex-lsp-cache/
 
