@@ -14,7 +14,7 @@ animate.setup({
   scroll = {
     enable = true,
     timing = timing,
-    subscroll = animate.gen_subscroll.equal({ max_output_steps = 60 }),
+    subscroll = animate.gen_subscroll.equal({ max_output_steps = 120 }),
   },
   resize = { enable = false },
   open = { enable = false },
