@@ -42,6 +42,11 @@ Use `<leader>l` to run `vim.pack.update()`, then review the lockfile changes and
 commit intended plugin revisions together with any related configuration updates.
 Do not remove the lockfile with `make clean`.
 
+Token normally loads the latest tagged GitHub release through `vim.pack`. For
+local Token development, start Neovim with `TOKEN_DEV=1 nvim`; this prepends
+`/Users/thorre/github/token` to `runtimepath` without changing the managed
+package or `nvim-pack-lock.json`.
+
 ## Cloning the config to your machine
 
 ```sh

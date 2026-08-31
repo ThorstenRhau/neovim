@@ -27,9 +27,12 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
-vim.pack.add({
-  -- Colorscheme
-  { src = 'https://github.com/ThorstenRhau/token', version = vim.version.range('*') },
+local token_dev = vim.env.TOKEN_DEV == '1'
+if token_dev then
+  vim.opt.runtimepath:prepend('/Users/thorre/github/token')
+end
+
+local packages = {
 
   -- Treesitter
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
@@ -79,7 +82,13 @@ vim.pack.add({
   -- Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
-}, { load = true, confirm = false })
+}
+
+if not token_dev then
+  table.insert(packages, 1, { src = 'https://github.com/ThorstenRhau/token', version = vim.version.range('*') })
+end
+
+vim.pack.add(packages, { load = true, confirm = false })
 
 -- Configure Blink Indent before loading its plugin scripts so its default mappings are never registered.
 vim.pack.add({
