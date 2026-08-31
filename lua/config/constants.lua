@@ -23,12 +23,12 @@ M.ui = {
   },
 }
 
--- Nerd Font icons for vim.diagnostic
+-- MonoLisa geometric symbols for vim.diagnostic
 M.diagnostic_symbols = {
-  error = '󰅚 ',
-  hint = '󰌶 ',
-  info = '󰋽 ',
-  warn = '󰀪 ',
+  error = '✕ ',
+  hint = '◆ ',
+  info = '● ',
+  warn = '▲ ',
 }
 
 -- Filetype groups used by autocmds
