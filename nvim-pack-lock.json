@@ -69,6 +69,10 @@
       "rev": "9301717c7612ccb72e89629df89416585dd54c9b",
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
+    "mini.statuscolumn": {
+      "rev": "a7e533119f2cb5e4dcbaa584c308089d94c51f99",
+      "src": "https://github.com/nvim-mini/mini.statuscolumn"
+    },
     "mini.statusline": {
       "rev": "127997ebef7ef632161203b960c5ef9d158f4810",
       "src": "https://github.com/nvim-mini/mini.statusline"

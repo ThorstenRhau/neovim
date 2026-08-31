@@ -416,6 +416,10 @@ vim.api.nvim_create_autocmd('LspDetach', {
 })
 
 -- Diagnostic configuration
+local function centered_sign(symbol)
+  return ' ' .. vim.trim(symbol)
+end
+
 vim.diagnostic.config({
   severity_sort = true,
   float = {
@@ -434,10 +438,10 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = constants.diagnostic_symbols.error,
-      [vim.diagnostic.severity.WARN] = constants.diagnostic_symbols.warn,
-      [vim.diagnostic.severity.INFO] = constants.diagnostic_symbols.info,
-      [vim.diagnostic.severity.HINT] = constants.diagnostic_symbols.hint,
+      [vim.diagnostic.severity.ERROR] = centered_sign(constants.diagnostic_symbols.error),
+      [vim.diagnostic.severity.WARN] = centered_sign(constants.diagnostic_symbols.warn),
+      [vim.diagnostic.severity.INFO] = centered_sign(constants.diagnostic_symbols.info),
+      [vim.diagnostic.severity.HINT] = centered_sign(constants.diagnostic_symbols.hint),
     },
   },
 })

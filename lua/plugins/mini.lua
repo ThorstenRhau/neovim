@@ -116,6 +116,16 @@ vim.keymap.set('n', '<leader>bD', function()
   bufremove.delete(0, true)
 end, { desc = 'delete buffer (force)' })
 
+-- Status column
+local statuscolumn = require('mini.statuscolumn')
+statuscolumn.setup({
+  content = statuscolumn.gen_content.main({
+    { format = '=lfs', sep = ' ' },
+    { ltype = 'virt', lnum = '•' },
+    { ltype = 'wrap', lnum = '↳' },
+  }),
+})
+
 -- Statusline
 local constants = require('config.constants')
 local statusline = require('mini.statusline')

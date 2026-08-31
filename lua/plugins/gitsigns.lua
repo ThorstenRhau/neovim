@@ -2,6 +2,21 @@ local map = vim.keymap.set
 
 require('gitsigns').setup({
   attach_to_untracked = false,
+  signs = {
+    add = { text = ' ┃' },
+    change = { text = ' ┃' },
+    delete = { text = ' ▁' },
+    topdelete = { text = ' ▔' },
+    changedelete = { text = ' ~' },
+    untracked = { text = ' ┆' },
+  },
+  signs_staged = {
+    add = { text = ' ┃' },
+    change = { text = ' ┃' },
+    delete = { text = ' ▁' },
+    topdelete = { text = ' ▔' },
+    changedelete = { text = ' ~' },
+  },
   on_attach = function(bufnr)
     local gs = require('gitsigns')
 
