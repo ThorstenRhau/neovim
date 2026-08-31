@@ -111,7 +111,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "schemastore.nvim": {
-      "rev": "2940d5e12f8797620cd47dca984d46119e1fa4b8",
+      "rev": "d34c58439271f5e73ed79c2b8d1a09731c4525f1",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "sidekick.nvim": {
@@ -123,7 +123,7 @@
       "src": "https://github.com/abecodes/tabout.nvim"
     },
     "token": {
-      "rev": "aee0fd3acb482259a3f81127c27d1f9cb547b4f0",
+      "rev": "eea70e4e22fd83759f7a09d1b9e5dcc0b5cad7b4",
       "src": "https://github.com/ThorstenRhau/token",
       "version": ">=0.0.0"
     },
