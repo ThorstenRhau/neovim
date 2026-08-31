@@ -23,7 +23,6 @@ o.completeopt = 'fuzzy,noselect,popup'
 o.confirm = true
 o.cursorline = true
 o.expandtab = true
-o.foldcolumn = 'auto:1'
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.ignorecase = true
