@@ -6,15 +6,15 @@ icons.mock_nvim_web_devicons()
 -- Align text interactively
 require('mini.align').setup()
 
--- Fast smooth scrolling capped at 20 animation steps
+-- Responsive 60 Hz scrolling capped at 12 animation steps
 local animate = require('mini.animate')
-local timing = animate.gen_timing.linear({ duration = 300 / 60, unit = 'step' })
+local timing = animate.gen_timing.linear({ duration = 1000 / 60, unit = 'step' })
 animate.setup({
   cursor = { enable = false },
   scroll = {
     enable = true,
     timing = timing,
-    subscroll = animate.gen_subscroll.equal({ max_output_steps = 120 }),
+    subscroll = animate.gen_subscroll.equal({ max_output_steps = 12 }),
   },
   resize = { enable = false },
   open = { enable = false },
