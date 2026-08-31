@@ -90,7 +90,7 @@
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "857651fce37eba032ebe28f3a206283cdc65c45a",
+      "rev": "19071296d3d643b48615ee574a20e8a03ac40872",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -119,7 +119,7 @@
       "src": "https://github.com/abecodes/tabout.nvim"
     },
     "token": {
-      "rev": "0fa1c0d4f8243cd7148a9f357c7bca20ed293f7a",
+      "rev": "aee0fd3acb482259a3f81127c27d1f9cb547b4f0",
       "src": "https://github.com/ThorstenRhau/token",
       "version": ">=0.0.0"
     },
