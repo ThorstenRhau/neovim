@@ -130,6 +130,13 @@ statuscolumn.setup({
 local constants = require('config.constants')
 local statusline = require('mini.statusline')
 
+local diagnostic_signs = {
+  ERROR = '%$DiagnosticError$' .. vim.trim(constants.diagnostic_symbols.error),
+  WARN = '%$DiagnosticWarn$' .. vim.trim(constants.diagnostic_symbols.warn),
+  INFO = '%$DiagnosticInfo$' .. vim.trim(constants.diagnostic_symbols.info),
+  HINT = '%$DiagnosticHint$' .. vim.trim(constants.diagnostic_symbols.hint),
+}
+
 local function statusline_filename()
   if vim.bo.buftype == 'terminal' then
     return '%t'
@@ -149,18 +156,23 @@ statusline.setup({
   content = {
     active = function()
       local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-      local git = statusline.section_git({ trunc_width = 40 })
-      local diff = statusline.section_diff({ trunc_width = 75 })
-      local diagnostics = statusline.section_diagnostics({
+      local git = statusline.section_git({ icon = '', trunc_width = 40 })
+      local diff = statusline.is_truncated(75) and '' or vim.b.gitsigns_status or ''
+      local diagnostics = vim.trim(statusline.section_diagnostics({
+        icon = '',
         trunc_width = 75,
-        signs = {
-          ERROR = constants.diagnostic_symbols.error,
-          WARN = constants.diagnostic_symbols.warn,
-          INFO = constants.diagnostic_symbols.info,
-          HINT = constants.diagnostic_symbols.hint,
-        },
-      })
-      local lsp = statusline.section_lsp({ trunc_width = 75 })
+        signs = diagnostic_signs,
+      }))
+      if diagnostics ~= '' then
+        diagnostics = diagnostics .. '%$MiniStatuslineDevinfo$'
+      end
+      local lsp = statusline.section_lsp({ icon = 'lsp', trunc_width = 75 })
+      local devinfo = table.concat(
+        vim.tbl_filter(function(section)
+          return section ~= ''
+        end, { git, diff, diagnostics, lsp }),
+        ' · '
+      )
       local filename = statusline_filename()
       local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
       local search = statusline.section_searchcount({ trunc_width = 75 })
@@ -175,7 +187,7 @@ statusline.setup({
 
       return statusline.combine_groups({
         { hl = mode_hl, strings = { mode } },
-        { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+        { hl = 'MiniStatuslineDevinfo', strings = { devinfo } },
         '%<',
         { hl = 'MiniStatuslineFilename', strings = { filename } },
         '%=',
