@@ -190,9 +190,6 @@ local servers = {
         end
         return {}
       end,
-      ['eslint/confirmESLintExecution'] = function()
-        return 4 -- approved
-      end,
       ['eslint/probeFailed'] = function()
         vim.notify('ESLint probe failed.', vim.log.levels.WARN)
         return {}

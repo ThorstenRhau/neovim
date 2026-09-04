@@ -33,8 +33,6 @@ M.diagnostic_symbols = {
 
 -- Filetype groups used by autocmds
 M.filetypes = {
-  -- Sidebar-style buffers that need special width handling
-  tree_views = { 'NvimTree', 'oil' },
   -- Skip "restore last cursor position" for these
   restore_cursor_exclude = {
     'gitcommit',

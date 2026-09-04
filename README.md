@@ -22,7 +22,7 @@ I manage all software, including LSP servers, formatters, and linters via
 [Homebrew](https://brew.sh/):
 
 ```sh
-brew install neovim fzf ripgrep fd git node
+brew install neovim fzf ripgrep fd git node tree-sitter-cli
 brew install basedpyright bash-language-server biome lua-language-server \
   gopls marksman ruff rust-analyzer tombi tinymist \
   vscode-langservers-extracted vtsls yaml-language-server go gofumpt \
