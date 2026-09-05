@@ -123,7 +123,7 @@
       "src": "https://github.com/abecodes/tabout.nvim"
     },
     "token": {
-      "rev": "eea70e4e22fd83759f7a09d1b9e5dcc0b5cad7b4",
+      "rev": "86614caace8f8ec239f1c63d6257e936e3d29a56",
       "src": "https://github.com/ThorstenRhau/token",
       "version": ">=0.0.0"
     },
