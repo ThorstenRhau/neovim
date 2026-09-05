@@ -235,7 +235,6 @@ local servers = {
           shadow = true,
           unusedparams = true,
           unusedwrite = true,
-          useany = true,
         },
         semanticTokens = true,
       },

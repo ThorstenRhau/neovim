@@ -36,7 +36,14 @@ end
 
 local function close_terminal()
   if term_win and vim.api.nvim_win_is_valid(term_win) then
-    vim.api.nvim_win_close(term_win, true)
+    vim.api.nvim_win_call(term_win, function()
+      if vim.fn.winlayout()[1] == 'leaf' then
+        -- Keep the last window and terminal process alive by showing another buffer.
+        require('mini.bufremove').unshow_in_window()
+      else
+        vim.api.nvim_win_close(term_win, true)
+      end
+    end)
   end
   term_win = nil
 end
