@@ -62,7 +62,7 @@
       "src": "https://github.com/nvim-mini/mini.pairs"
     },
     "mini.sessions": {
-      "rev": "87d068a84abf6d687f7c68de2b496a9bd88bc533",
+      "rev": "59b682b3208eefb5053a80dd3bc93ced69f363af",
       "src": "https://github.com/nvim-mini/mini.sessions"
     },
     "mini.splitjoin": {
@@ -70,7 +70,7 @@
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
     "mini.statuscolumn": {
-      "rev": "a7e533119f2cb5e4dcbaa584c308089d94c51f99",
+      "rev": "8d3560f5d0e4dd75490acf14fd60ea82e676b86c",
       "src": "https://github.com/nvim-mini/mini.statuscolumn"
     },
     "mini.statusline": {
@@ -94,7 +94,7 @@
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "19071296d3d643b48615ee574a20e8a03ac40872",
+      "rev": "427e9222363d07c32d6db6169e4049c28d58d141",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
+      "rev": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -111,7 +111,7 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "schemastore.nvim": {
-      "rev": "d34c58439271f5e73ed79c2b8d1a09731c4525f1",
+      "rev": "4a0e1b74096937d366031bc1e2b244546af39f8e",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "sidekick.nvim": {
