@@ -5,7 +5,6 @@ require('blink.indent').setup({
       include_defaults = true,
       '',
       'NeogitStatus',
-      'NvimTree',
       'checkhealth',
       'git',
       'gitcommit',

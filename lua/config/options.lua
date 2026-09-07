@@ -65,8 +65,6 @@ o.wrap = false
 opt.jumpoptions:append('view')
 opt.sessionoptions:remove('terminal')
 
-require('vim._core.ui2').enable({})
-
 -- Diff settings (override default linematch:40, add word-level inline diffs)
 opt.diffopt:remove('linematch:40')
 opt.diffopt:append({ 'linematch:60', 'inline:word' })

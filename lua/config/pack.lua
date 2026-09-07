@@ -44,6 +44,7 @@ local packages = {
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
 
   -- LSP
+  { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/b0o/schemastore.nvim' },
   { src = 'https://github.com/folke/lazydev.nvim' },
 
@@ -82,7 +83,6 @@ local packages = {
 
   -- Explorer
   { src = 'https://github.com/stevearc/oil.nvim' },
-  { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
 }
 
 if not token_dev then
@@ -110,5 +110,4 @@ require('plugins.linter')
 require('plugins.fzf')
 require('plugins.neogit')
 require('plugins.oil')
-require('plugins.nvim-tree')
 require('plugins.sidekick')

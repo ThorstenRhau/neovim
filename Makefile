@@ -2,15 +2,18 @@ SHELL            := /usr/bin/env bash
 ROOT             := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 STYLUAC          := $(ROOT)/.stylua.toml
 SELENEC          := $(ROOT)/selene.toml
-CONFIG_PATHS     := "$(ROOT)/init.lua" "$(ROOT)/lua" "$(ROOT)/after"
+CONFIG_PATHS     := "$(ROOT)/init.lua" "$(ROOT)/lua" "$(ROOT)/after" "$(ROOT)/scripts"
 
-.PHONY: all check clean format lint install-hooks help
+.PHONY: all check smoke clean format lint install-hooks help
 
 all: format lint
 
 # Verify formatting and lint (used by pre-commit hook)
 check: lint
 	@stylua --check --config-path "$(STYLUAC)" $(CONFIG_PATHS)
+
+smoke:
+	@bash "$(ROOT)/scripts/smoke.sh"
 
 # Install git hooks
 install-hooks:
@@ -36,6 +39,7 @@ help:
 	@echo "Available targets:"
 	@echo "  all           - Format and lint"
 	@echo "  check         - Verify formatting and lint (pre-commit)"
+	@echo "  smoke         - Offline startup check in disposable directories (macOS)"
 	@echo "  format        - Format Lua files with stylua"
 	@echo "  lint          - Lint Lua files with selene"
 	@echo "  clean         - Remove Neovim cache/state/data"

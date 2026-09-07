@@ -306,7 +306,7 @@ miniclue.setup({
     { mode = { 'n', 'x' }, keys = '<Leader>a', desc = '+ai' },
     { mode = 'n', keys = '<Leader>b', desc = '+buffer' },
     { mode = { 'n', 'x' }, keys = '<Leader>c', desc = '+code' },
-    { mode = { 'n', 'x' }, keys = '<Leader>f', desc = '+file/find' },
+    { mode = 'n', keys = '<Leader>f', desc = '+files' },
     { mode = 'n', keys = '<Leader>g', desc = '+git' },
     { mode = { 'n', 'x' }, keys = '<Leader>h', desc = '+hunk' },
     { mode = 'n', keys = '<Leader>q', desc = '+session' },

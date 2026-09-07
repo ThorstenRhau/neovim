@@ -57,7 +57,6 @@ M.filetypes = {
   -- Hide line numbers, sign column, etc.
   no_chrome = {
     'NeogitStatus',
-    'NvimTree',
     'checkhealth',
     'help',
     'oil',

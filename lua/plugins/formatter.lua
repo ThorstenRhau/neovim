@@ -4,7 +4,6 @@ require('conform').setup({
   formatters_by_ft = {
     bash = { 'shfmt' },
     css = { 'biome' },
-    go = { 'goimports', 'gofumpt' },
     html = { 'biome' },
     javascript = { 'biome' },
     javascriptreact = { 'biome' },
@@ -14,10 +13,8 @@ require('conform').setup({
     lua = { 'stylua' },
     markdown = { 'prettier' },
     python = { 'ruff_format' },
-    rust = { 'rustfmt' },
     scss = { 'prettier' },
     sh = { 'shfmt' },
-    swift = { 'swift' },
     toml = { 'tombi' },
     typescript = { 'biome' },
     typescriptreact = { 'biome' },

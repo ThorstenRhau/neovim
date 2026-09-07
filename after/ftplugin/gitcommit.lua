@@ -7,8 +7,9 @@ local guides = vim.api.nvim_create_autocmd('BufWinEnter', {
     vim.opt_local.colorcolumn = '50,73'
   end,
 })
-require('config.ftplugin').prose().indent(2).treesitter()
+vim.opt_local.wrap = true
+vim.opt_local.spell = vim.bo.buftype == ''
 
 vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '')
-  .. '|setlocal colorcolumn< wrap< spell< shiftwidth< softtabstop< foldmethod< foldexpr<'
-  .. string.format('|lua vim.api.nvim_del_autocmd(%d)', guides)
+  .. '|setlocal textwidth< colorcolumn< wrap< spell<'
+  .. string.format('|call v:lua.vim.api.nvim_del_autocmd(%d)', guides)

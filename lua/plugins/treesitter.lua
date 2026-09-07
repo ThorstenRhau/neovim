@@ -9,64 +9,23 @@ vim.treesitter.language.register('json', { 'jsonc' })
 -- zsh uses the bash parser
 vim.treesitter.language.register('bash', { 'zsh' })
 
-local parsers = {
-  'bash',
-  'css',
-  'diff',
-  'editorconfig',
-  'git_config',
-  'git_rebase',
-  'gitattributes',
-  'gitcommit',
-  'gitignore',
-  'go',
-  'gomod',
-  'gosum',
-  'gotmpl',
-  'gowork',
-  'hcl',
-  'html',
-  'javascript',
-  'jsdoc',
-  'json',
-  'latex',
-  'lua',
-  'make',
-  'markdown',
-  'markdown_inline',
-  'python',
-  'query',
-  'regex',
-  'rust',
-  'scss',
-  'swift',
-  'toml',
-  'tsx',
-  'typescript',
-  'typst',
-  'vim',
-  'vimdoc',
-  'xml',
-  'yaml',
-  'yang',
-}
-
-local function start_treesitter_for_loaded_buffers()
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buftype == '' and vim.bo[bufnr].filetype ~= '' then
-      vim.api.nvim_buf_call(bufnr, function()
-        require('config.ftplugin').treesitter()
-      end)
+-- Use native filetype indentation; Treesitter only supplies highlighting and folds.
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('treesitter_start', { clear = true }),
+  callback = function(ev)
+    if vim.bo[ev.buf].buftype ~= '' or vim.bo[ev.buf].filetype == '' then
+      return
     end
-  end
-end
-
--- Install parsers after startup, then retry activation for buffers that opened before their parser was available.
-vim.schedule(function()
-  require('nvim-treesitter').install(parsers):await(function()
-    vim.schedule(start_treesitter_for_loaded_buffers)
-  end)
-end)
+    if not pcall(vim.treesitter.start, ev.buf) then
+      return
+    end
+    vim.wo[0][0].foldmethod = 'expr'
+    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.b[ev.buf].undo_ftplugin = (vim.b[ev.buf].undo_ftplugin or '')
+      .. '|call v:lua.vim.treesitter.stop()'
+      .. '|setlocal foldmethod< foldexpr<'
+  end,
+})
 
 -- Textobjects (selection handled by mini.ai, movement by treesitter-textobjects)
 require('nvim-treesitter-textobjects').setup({
