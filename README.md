@@ -48,7 +48,7 @@ Startup uses installed parsers without downloading them. Install the current set
 explicitly with this command, then reopen buffers to activate newly installed parsers:
 
 ```vim
-:TSInstall bash css diff editorconfig git_config git_rebase gitattributes gitcommit gitignore go gomod gosum gowork hcl html javascript jsdoc json latex lua make markdown markdown_inline python query regex rust scss swift toml tsx typescript typst vim vimdoc xml yaml yang
+:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua make markdown markdown_inline python query regex toml vim vimdoc yaml
 ```
 
 The `PackChanged` hook retains `:TSUpdate` when nvim-treesitter changes, as
