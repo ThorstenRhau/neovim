@@ -9,16 +9,11 @@ local constants = require('config.constants')
 local server_names = {
   'bashls',
   'basedpyright',
-  'cssls',
-  'eslint',
-  'html',
   'jsonls',
   'lua_ls',
   'marksman',
   'ruff',
   'tombi',
-  'tinymist',
-  'vtsls',
   'yamlls',
 }
 
@@ -36,27 +31,6 @@ vim.lsp.config('basedpyright', {
   },
 })
 
--- Keep Homebrew/PATH selection even when node_modules contains a server.
-vim.lsp.config('cssls', { cmd = { 'vscode-css-language-server', '--stdio' } })
-vim.lsp.config('html', { cmd = { 'vscode-html-language-server', '--stdio' } })
-local eslint_before_init = vim.lsp.config.eslint.before_init
-vim.lsp.config('eslint', {
-  cmd = { 'vscode-eslint-language-server', '--stdio' },
-  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-  before_init = function(params, config)
-    -- Upstream adds `yarn exec` for PnP; preserve PATH selection there too.
-    local cmd = config.cmd
-    eslint_before_init(params, config)
-    config.cmd = cmd
-  end,
-  handlers = {
-    ['eslint/noConfig'] = function()
-      vim.notify('Unable to find ESLint configuration.', vim.log.levels.WARN)
-      return {}
-    end,
-  },
-  settings = { format = false, nodePath = vim.NIL, packageManager = 'npm' },
-})
 vim.lsp.config('jsonls', {
   cmd = { 'vscode-json-language-server', '--stdio' },
   settings = {
@@ -76,33 +50,6 @@ vim.lsp.config('lua_ls', {
 vim.lsp.config('marksman', { filetypes = { 'markdown' } })
 -- Retain the existing project marker coverage.
 vim.lsp.config('tombi', { root_markers = { { '.tombi.toml', 'tombi.toml' }, '.git' } })
-vim.lsp.config('tinymist', {
-  root_markers = { 'typst.toml', '.git' },
-  settings = { formatterMode = 'typstyle' },
-})
-local inlay_hints = {
-  parameterNames = { enabled = 'all' },
-  parameterTypes = { enabled = true },
-  variableTypes = { enabled = true },
-  propertyDeclarationTypes = { enabled = true },
-  functionLikeReturnTypes = { enabled = true },
-}
-local vtsls_root_dir = vim.lsp.config.vtsls.root_dir
-vim.lsp.config('vtsls', {
-  root_dir = function(bufnr, on_dir)
-    vtsls_root_dir(bufnr, function(root)
-      -- Give both Deno config names equal priority when checking the selected root.
-      local deno_root = vim.fs.root(bufnr, { { 'deno.json', 'deno.jsonc' } })
-      if not deno_root or #deno_root < #root then
-        on_dir(root)
-      end
-    end)
-  end,
-  settings = {
-    typescript = { inlayHints = inlay_hints },
-    javascript = { inlayHints = inlay_hints },
-  },
-})
 vim.lsp.config('yamlls', {
   cmd = { 'yaml-language-server', '--stdio' },
   filetypes = { 'yaml' },

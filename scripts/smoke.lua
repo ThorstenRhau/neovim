@@ -52,51 +52,37 @@ function M.check()
       local servers = {
         'bashls',
         'basedpyright',
-        'cssls',
-        'eslint',
-        'html',
         'jsonls',
         'lua_ls',
         'marksman',
         'ruff',
         'tombi',
-        'tinymist',
-        'vtsls',
         'yamlls',
       }
       for _, name in ipairs(servers) do
         assert(vim.lsp.is_enabled(name), name .. ' is not enabled')
         assert(vim.lsp.config[name].cmd, name .. ' has no command')
       end
+      for _, name in ipairs({ 'cssls', 'eslint', 'html', 'tinymist', 'vtsls' }) do
+        assert(not vim.lsp.is_enabled(name), name .. ' is unexpectedly enabled')
+      end
       vim.lsp.enable(servers, false)
       vim.g.disable_auto_lsp = true
       vim.g.disable_auto_lint = true
-      for _, config in ipairs({ 'deno.json', 'deno.jsonc' }) do
-        local ancestor_config = config == 'deno.json' and 'deno.jsonc' or 'deno.json'
-        local repo = vim.fn.getcwd() .. '/vtsls-' .. config
-        local node_root = repo .. '/node'
-        local deno_root = node_root .. '/deno'
-        vim.fn.mkdir(deno_root, 'p')
-        vim.fn.writefile({ '{}' }, node_root .. '/package-lock.json')
+      for _, ft in ipairs({
+        'css',
+        'html',
+        'javascript',
+        'javascriptreact',
+        'json',
+        'jsonc',
+        'typescript',
+        'typescriptreact',
+      }) do
         local bufnr = vim.api.nvim_create_buf(true, false)
-        vim.api.nvim_buf_set_name(bufnr, deno_root .. '/main.ts')
-        local function check_root(expected, label)
-          local actual = false
-          vim.lsp.config.vtsls.root_dir(bufnr, function(root)
-            actual = root
-          end)
-          assert(actual == expected, 'vtsls ' .. config .. ': ' .. label .. ' (got ' .. tostring(actual) .. ')')
-        end
-        check_root(node_root, 'Node project root')
-        vim.fn.writefile({ '{}' }, repo .. '/' .. ancestor_config)
-        check_root(node_root, 'nearer Node lockfile below ancestor Deno config')
-        vim.fn.writefile({ '{}' }, deno_root .. '/' .. config)
-        check_root(false, 'nearest Deno config must exclude the buffer')
-        vim.fn.delete(deno_root .. '/' .. config)
-        vim.fn.writefile({ '{}' }, node_root .. '/' .. config)
-        check_root(false, 'Deno config at Node root must exclude the buffer')
+        vim.bo[bufnr].filetype = ft
+        assert(#require('conform').list_formatters_for_buffer(bufnr) == 0, ft .. ': unexpected formatter configured')
         vim.api.nvim_buf_delete(bufnr, { force = true })
-        vim.fn.delete(repo, 'rf')
       end
       for _, filename in ipairs({
         'sample.lua',
@@ -127,7 +113,6 @@ function M.check()
         assert(vim.wo.colorcolumn == '' and vim.bo.textwidth == 0, ft .. ': commit guides leaked')
         assert(not vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()], 'Treesitter state leaked')
         assert(vim.wo.foldmethod == 'manual', 'Treesitter folds leaked')
-        assert(vim.fn.maparg('<leader>tp', 'n') == '', 'Typst preview mapping leaked')
       end
       assert(vim.fn.maparg('gr', 'n') == '', 'bare gr shadows native LSP mappings')
       for _, key in ipairs({ 'gra', 'gri', 'grn', 'grr', 'grt' }) do

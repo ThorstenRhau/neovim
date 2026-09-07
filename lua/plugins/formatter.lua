@@ -3,12 +3,6 @@ local map = vim.keymap.set
 require('conform').setup({
   formatters_by_ft = {
     bash = { 'shfmt' },
-    css = { 'biome' },
-    html = { 'biome' },
-    javascript = { 'biome' },
-    javascriptreact = { 'biome' },
-    json = { 'biome' },
-    jsonc = { 'biome' },
     less = { 'prettier' },
     lua = { 'stylua' },
     markdown = { 'prettier' },
@@ -16,14 +10,9 @@ require('conform').setup({
     scss = { 'prettier' },
     sh = { 'shfmt' },
     toml = { 'tombi' },
-    typescript = { 'biome' },
-    typescriptreact = { 'biome' },
     yaml = { 'prettier' },
   },
   formatters = {
-    biome = {
-      append_args = { '--html-formatter-enabled=true' },
-    },
     stylua = {
       range_args = function(self, ctx)
         -- Include the complete final statement at the selection's byte boundary.

@@ -2,23 +2,4 @@ vim.opt_local.conceallevel = 2
 vim.opt_local.wrap = true
 vim.opt_local.spell = vim.bo.buftype == ''
 
--- Tinymist preview keymaps
-local function tinymist_cmd(command, arguments)
-  local client = vim.lsp.get_clients({ bufnr = 0, name = 'tinymist' })[1]
-  if client then
-    client:exec_cmd({ title = command, command = command, arguments = arguments })
-  end
-end
-
-vim.keymap.set('n', '<leader>tp', function()
-  tinymist_cmd('tinymist.startDefaultPreview', { vim.api.nvim_buf_get_name(0) })
-end, { buf = 0, desc = 'typst preview' })
-
-vim.keymap.set('n', '<leader>tq', function()
-  tinymist_cmd('tinymist.doKillPreview', { 'default_preview' })
-end, { buf = 0, desc = 'stop typst preview' })
-
-vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '')
-  .. '|setlocal conceallevel< wrap< spell<'
-  .. '|silent! nunmap <buffer> <leader>tp'
-  .. '|silent! nunmap <buffer> <leader>tq'
+vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '') .. '|setlocal conceallevel< wrap< spell<'

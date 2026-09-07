@@ -22,13 +22,13 @@ I manage all software, including LSP servers, formatters, and linters via
 [Homebrew](https://brew.sh/):
 
 ```sh
-brew install basedpyright bash-language-server biome fd fzf git \
+brew install basedpyright bash-language-server fd fzf git \
   lua-language-server markdownlint-cli marksman neovim node prettier ripgrep \
-  ruff selene shellcheck shfmt stylua tinymist tombi tree-sitter-cli \
-  vscode-langservers-extracted vtsls yaml-language-server yamllint
+  ruff selene shellcheck shfmt stylua tombi tree-sitter-cli \
+  vscode-langservers-extracted yaml-language-server yamllint
 ```
 
-`vscode-langservers-extracted` provides cssls, eslint, html, and jsonls.
+`vscode-langservers-extracted` provides jsonls.
 
 ## Plugin updates
 
@@ -89,34 +89,23 @@ available. Other pickers are accessible through `<leader>sp` or `:FzfLua`.
 Messages and the command line use Neovim's default UI, with native LSP progress.
 Use `:messages` for message history.
 
-## LSP migration
+## LSP configuration
 
-The 13 enabled servers inherit native configurations from
+The eight enabled servers inherit native configurations from
 [nvim-lspconfig at `456f8cc`](https://github.com/neovim/nvim-lspconfig/tree/456f8cc94438de35ff2294454019e7b780b73514/lsp).
-Local overrides retain PATH-based commands (including ESLint under Yarn PnP),
-filetype restrictions, Blink capabilities, schemas, and language preferences.
+Local overrides retain PATH-based commands, filetype restrictions, Blink
+capabilities, schemas, and language preferences.
 `<leader>tL` still toggles LSP and automatic linting together.
 
 Accepted upstream differences:
 
-- vtsls selects package-manager lockfiles before `.git`. A Deno config at that
-  root or closer, or a closer `deno.lock`, prevents attachment. A nearer Node
-  lockfile below an ancestor Deno project permits it. Loose files use Neovim's
-  working directory. Workspace-only markers such as `pnpm-workspace.yaml`,
-  `turbo.json`, `tsconfig.json`, and `package.json` no longer establish roots.
-- ESLint needs a discoverable config within its workspace search boundary
-  (including legacy `eslintConfig` in package.json) and excludes every ancestor
-  Deno marker, including `deno.lock`. Its workspace uses the same lockfile/`.git`
-  selection, falling back to the working directory. Upstream supplies working
-  directory/workspace settings, fix-all commands, and handlers; formatting stays
-  disabled and the local `eslint/noConfig` notification remains.
 - Basedpyright prefers `pyrightconfig.json`, supplies open-file diagnostics,
   automatic search paths, and disables tagged hints. Lua prefers Lua/Emmy config
   markers over formatter/linter markers and enables hints and code lenses.
-- Upstream adds CSS/JSON formatter capabilities, YAML formatting and disabled
-  Red Hat telemetry, and server helper commands. Existing explicit settings remain,
-  including basedpyright standard checking and Ruff import ownership, Ruff hover
-  suppression, and Tombi/Tinymist marker coverage.
+- Upstream adds JSON and YAML formatting, disabled Red Hat telemetry, and server
+  helper commands. Existing explicit settings remain, including basedpyright
+  standard checking, Ruff import ownership and hover suppression, and Tombi
+  marker coverage.
 
 ## Validation
 
@@ -128,10 +117,11 @@ locked plugin's local revision and tracked files, failing with installation
 instructions rather than repairing dependencies. It copies configuration,
 plugins, and installed parsers into disposable XDG directories. Internet access
 is blocked for Neovim and its children; local Unix sockets support fzf-lua.
-It checks eager setup, the colorscheme, 13 enabled LSP configurations, filetypes,
-cleanup, native mappings, and Makefile tab insertion, with a 45-second startup
-timeout. It disables servers and linters before opening buffers. Missing parsers
-are skipped gracefully; install them explicitly using the command above.
+It checks eager setup, the colorscheme, eight enabled LSP configurations, removed
+web and Typst tooling, filetypes, cleanup, native mappings, and Makefile tab
+insertion, with a 45-second startup timeout. It disables servers and linters
+before opening buffers. Missing parsers are skipped gracefully; install them
+explicitly using the command above.
 
 Smoke does not prove live server behavior or visual appearance. For LSP changes,
 check roots, actual attachment, capabilities, hover ownership, and both toggle
