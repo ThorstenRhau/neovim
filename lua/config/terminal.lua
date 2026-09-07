@@ -49,7 +49,7 @@ local function close_terminal()
 end
 
 local function toggle_terminal()
-  if term_win and vim.api.nvim_win_is_valid(term_win) then
+  if term_win and vim.api.nvim_win_is_valid(term_win) and vim.api.nvim_win_get_buf(term_win) == term_buf then
     close_terminal()
   else
     open_terminal()

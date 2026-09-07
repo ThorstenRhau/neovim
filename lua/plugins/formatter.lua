@@ -27,6 +27,14 @@ require('conform').setup({
     biome = {
       append_args = { '--html-formatter-enabled=true' },
     },
+    stylua = {
+      range_args = function(self, ctx)
+        -- Include the complete final statement at the selection's byte boundary.
+        ctx = vim.deepcopy(ctx)
+        ctx.range['end'][2] = ctx.range['end'][2] + 1
+        return require('conform.formatters.stylua').range_args(self, ctx)
+      end,
+    },
   },
 })
 
