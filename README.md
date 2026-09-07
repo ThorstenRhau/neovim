@@ -22,12 +22,11 @@ I manage all software, including LSP servers, formatters, and linters via
 [Homebrew](https://brew.sh/):
 
 ```sh
-brew install neovim fzf ripgrep fd git node tree-sitter-cli
-brew install basedpyright bash-language-server biome lua-language-server \
-  gopls marksman ruff rust-analyzer tombi tinymist \
-  vscode-langservers-extracted vtsls yaml-language-server go gofumpt \
-  goimports prettier rust shfmt stylua markdownlint-cli selene \
-  shellcheck yamllint
+brew install basedpyright bash-language-server biome fd fzf git go gofumpt \
+  goimports gopls lua-language-server markdownlint-cli marksman neovim node \
+  prettier ripgrep ruff rust rust-analyzer selene shellcheck shfmt stylua \
+  tinymist tombi tree-sitter-cli vscode-langservers-extracted vtsls \
+  yaml-language-server yamllint
 ```
 
 `vscode-langservers-extracted` provides cssls, eslint, html, and jsonls. The
