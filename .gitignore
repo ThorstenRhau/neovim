@@ -12,3 +12,6 @@ spell/
 
 # Neovim log file
 nvim.log
+
+# Nvim pack lock file
+nvim-pack-lock.json
