@@ -134,6 +134,7 @@ local fzf_cmds = {
   { 'n', '<leader>sD', 'FzfLua diagnostics_workspace', 'workspace diagnostics' },
   { 'n', '<leader>sd', 'FzfLua diagnostics_document', 'document diagnostics' },
   { 'n', '<leader>sg', 'FzfLua live_grep', 'grep' },
+  { 'n', '<leader>sh', 'FzfLua helptags', 'help pages' },
   { 'n', '<leader>sp', 'FzfLua builtin', 'builtin pickers' },
 }
 
