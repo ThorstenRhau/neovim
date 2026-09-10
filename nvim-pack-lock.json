@@ -6,7 +6,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "blink.indent": {
-      "rev": "8b69b9262891fe81fe728fe6a52fa2a84dd5d5e0",
+      "rev": "2e9c9768affeaf3a48b2dc329eb59763012f79f6",
       "src": "https://github.com/saghen/blink.indent"
     },
     "conform.nvim": {
@@ -14,7 +14,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
-      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "rev": "a5a73e586521fe5c12d751ad81a0db67649a94ed",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
@@ -22,7 +22,7 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
+      "rev": "f2421c550618d257048afa650413d9e542ddbe67",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lazydev.nvim": {
@@ -70,7 +70,7 @@
       "src": "https://github.com/nvim-mini/mini.splitjoin"
     },
     "mini.statuscolumn": {
-      "rev": "8d3560f5d0e4dd75490acf14fd60ea82e676b86c",
+      "rev": "bc7896bb314f11169ea5f82b312fa67340f736a4",
       "src": "https://github.com/nvim-mini/mini.statuscolumn"
     },
     "mini.statusline": {
@@ -90,11 +90,11 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "456f8cc94438de35ff2294454019e7b780b73514",
+      "rev": "ac9d2f7c4757db6320cab6697fe73e5e8adb2457",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "5cb0114e6242625db56dd6440e945ed1ece10bc7",
+      "rev": "d4d59cb369da46b95699bd2200efbcffc6dadb3b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-context": {
@@ -111,11 +111,11 @@
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "schemastore.nvim": {
-      "rev": "4a0e1b74096937d366031bc1e2b244546af39f8e",
+      "rev": "890d8f5cfca338a1f3e59c686569e461f6182f80",
       "src": "https://github.com/b0o/schemastore.nvim"
     },
     "sidekick.nvim": {
-      "rev": "208e1c5b8170c01fd1d07df0139322a76479b235",
+      "rev": "3d80a47e6375f6d647c9695d3afea6fa1b3275df",
       "src": "https://github.com/folke/sidekick.nvim"
     },
     "tabout.nvim": {
