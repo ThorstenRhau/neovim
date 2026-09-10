@@ -156,7 +156,7 @@ statusline.setup({
   content = {
     active = function()
       local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-      local logo = ''
+      local logo = ''
       local git = statusline.section_git({ icon = '', trunc_width = 40 })
       local diff = statusline.is_truncated(75) and '' or vim.b.gitsigns_status or ''
       local diagnostics = vim.trim(statusline.section_diagnostics({
