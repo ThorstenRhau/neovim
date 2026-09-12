@@ -77,8 +77,9 @@ autocmd('FileType', {
   pattern = constants.filetypes.no_chrome,
   callback = function(event)
     clear_chrome()
-    vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
-      .. '|call map(win_findbuf(bufnr()), {_, win -> win_execute(win,'
+    local undo = vim.b[event.buf].undo_ftplugin or ''
+    vim.b[event.buf].undo_ftplugin = (undo ~= '' and undo .. '|' or '')
+      .. 'call map(win_findbuf(bufnr()), {_, win -> win_execute(win,'
       .. ' "setlocal statuscolumn< signcolumn< number< relativenumber<")})'
   end,
 })

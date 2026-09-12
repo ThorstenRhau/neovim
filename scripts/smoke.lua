@@ -69,6 +69,19 @@ function M.check()
       vim.lsp.enable(servers, false)
       vim.g.disable_auto_lsp = true
       vim.g.disable_auto_lint = true
+      -- Opening Oil from the initial empty buffer must survive repeated FileType events.
+      local oil_ready = false
+      require('oil').open_float(nil, nil, function()
+        oil_ready = true
+      end)
+      assert(
+        vim.wait(5000, function()
+          return oil_ready
+        end),
+        'Oil did not finish loading from an empty buffer'
+      )
+      assert(vim.v.errmsg == '', vim.v.errmsg)
+      require('oil').close()
       for _, ft in ipairs({
         'css',
         'html',
