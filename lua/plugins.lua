@@ -48,6 +48,7 @@ require('token').setup({
     mini = true,
     neogit = true,
     oil = true,
+    sidekick = true,
   },
 })
 vim.cmd.colorscheme('token-ultra')
