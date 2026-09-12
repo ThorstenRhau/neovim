@@ -1,7 +1,7 @@
 # My Neovim Configuration
 
 [![Neovim](https://img.shields.io/badge/Neovim-0.12.5+-57A143?logo=neovim&logoColor=white)](https://neovim.io)
-[![Version](https://img.shields.io/badge/config-v2.0.0-blue)](https://github.com/ThorstenRhau/neovim)
+[![Version](https://img.shields.io/badge/config-v2.0.1-blue)](https://github.com/ThorstenRhau/neovim)
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-blue)](LICENSE)
 [![Last Rewrite](https://img.shields.io/badge/last%20rewrite-2026--09--12-blue)](https://github.com/ThorstenRhau/neovim)
 
