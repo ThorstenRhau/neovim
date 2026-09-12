@@ -34,7 +34,5 @@ Tree-sitter CLI 0.26.1 or newer. Sidekick expects an authenticated Codex CLI on
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 
 ```vim
-:TSInstall bash diff editorconfig git_config git_rebase gitattributes
-:TSInstall gitcommit gitignore json lua luadoc luap make markdown
-:TSInstall markdown_inline python query regex toml vim vimdoc yaml
+:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua luadoc luap make markdown markdown_inline python query regex toml vim vimdoc yaml
 ```
