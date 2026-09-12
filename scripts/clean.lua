@@ -1,5 +1,6 @@
 local config = vim.fs.normalize(vim.fn.stdpath('config'))
-local home = assert(vim.uv.fs_realpath(vim.uv.os_homedir()))
+local home_path = assert(vim.uv.os_homedir(), 'Unable to determine home directory')
+local home = assert(vim.uv.fs_realpath(home_path))
 local config_real = vim.uv.fs_realpath(config) or config
 
 local function contains(parent, path)
