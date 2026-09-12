@@ -100,7 +100,6 @@ gitsigns.setup({
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
-  integrations = { fzf_lua = true },
 })
 
 require('conform').setup({
