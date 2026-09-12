@@ -134,6 +134,7 @@ bracket, and window commands.
 | `gd` / `grr` / `gO` | Definitions / references / document symbols, buffer-local |
 | `<leader>ca` / `<leader>cf` / `<leader>cd` | Code action / format whole buffer / diagnostic float |
 | `<leader>gg` / `<leader>gl` | Neogit status / log |
+| `<leader>o` | Open the current file with the system default application |
 | `[h` / `]h` | Previous / next staged or unstaged hunk, buffer-local |
 | `<leader>gp` / `<leader>gb` | Preview hunk / blame line, buffer-local |
 | `<leader>aa` | Toggle or focus Codex |

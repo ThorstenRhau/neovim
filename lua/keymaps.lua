@@ -22,6 +22,7 @@ end, { desc = 'Neogit status' })
 map('n', '<leader>gl', function()
   require('neogit').open({ 'log' })
 end, { desc = 'Neogit log' })
+map('n', '<leader>o', '<cmd>silent !open %<cr>', { desc = 'Open file externally' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
 map('n', '<leader>ts', function()
   vim.wo[0][0].spell = not vim.wo.spell
