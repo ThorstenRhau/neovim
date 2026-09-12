@@ -126,7 +126,6 @@ require('blink.indent').setup({
   blocked = { filetypes = { include_defaults = true, 'oil' } },
   static = {
     char = '│',
-    highlights = { 'BlinkIndent' },
   },
   scope = {
     char = '│',
@@ -169,7 +168,6 @@ local function statusline_filename()
 end
 
 statusline.setup({
-  use_icons = true,
   content = {
     active = function()
       local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
