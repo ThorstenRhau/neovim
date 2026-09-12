@@ -1,0 +1,3 @@
+interface:
+  display_name: "Neovim Config Review"
+  short_description: "Review simplicity, plugin settings, and Neovim APIs"
