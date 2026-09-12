@@ -97,7 +97,11 @@ gitsigns.setup({
     vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buffer = buf, desc = 'Blame line' })
   end,
 })
-require('neogit').setup({ integrations = { fzf_lua = true } })
+require('neogit').setup({
+  disable_insert_on_commit = true,
+  graph_style = 'kitty',
+  integrations = { fzf_lua = true },
+})
 
 require('conform').setup({
   formatters_by_ft = {
