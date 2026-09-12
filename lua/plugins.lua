@@ -86,9 +86,11 @@ local gitsigns = require('gitsigns')
 gitsigns.setup({
   on_attach = function(buf)
     vim.keymap.set('n', '[h', function()
+      --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('prev', { target = 'all' })
     end, { buffer = buf, desc = 'Previous hunk' })
     vim.keymap.set('n', ']h', function()
+      --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('next', { target = 'all' })
     end, { buffer = buf, desc = 'Next hunk' })
     vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buffer = buf, desc = 'Preview hunk' })
