@@ -117,8 +117,6 @@ require('conform').setup({
   },
 })
 require('lint').linters_by_ft = {
-  bash = { 'shellcheck' },
-  sh = { 'shellcheck' },
   lua = { 'selene' },
   markdown = { 'markdownlint' },
   yaml = { 'yamllint' },

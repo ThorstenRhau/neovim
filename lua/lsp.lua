@@ -1,7 +1,6 @@
 require('lazydev').setup()
 
 vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() })
-vim.lsp.config('bashls', { settings = { bashIde = { shellcheckPath = '' } } })
 vim.lsp.config('basedpyright', {
   settings = {
     basedpyright = {
@@ -47,6 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Definitions')
     map('grr', '<cmd>FzfLua lsp_references<cr>', 'References')
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
+    map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
     map('<leader>fs', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
   end,
 })

@@ -90,9 +90,9 @@ For local Token development, use `TOKEN_DEV=1 nvim`. This loads
 
 ## Language tools
 
-| Filetype | LSP | Manual formatter | External lint after save |
+| Filetype | LSP | Manual formatter | Linting |
 | --- | --- | --- | --- |
-| Bash/sh | bashls | shfmt | ShellCheck |
+| Bash/sh | bashls | shfmt | ShellCheck via bashls |
 | Python | basedpyright, ruff | ruff_format | None |
 | Lua | lua_ls with lazydev | stylua | Selene |
 | Markdown | marksman | prettier | markdownlint |
@@ -132,7 +132,7 @@ bracket, and window commands.
 | `<leader>sg` / `<leader>sh` | Live grep / help |
 | `<leader>sd` / `<leader>sD` | Document / workspace diagnostics |
 | `gd` / `grr` / `gO` | Definitions / references / document symbols, buffer-local |
-| `<leader>cf` / `<leader>cd` | Format whole buffer / diagnostic float |
+| `<leader>ca` / `<leader>cf` / `<leader>cd` | Code action / format whole buffer / diagnostic float |
 | `<leader>gg` / `<leader>gl` | Neogit status / log |
 | `[h` / `]h` | Previous / next staged or unstaged hunk, buffer-local |
 | `<leader>gp` / `<leader>gb` | Preview hunk / blame line, buffer-local |
