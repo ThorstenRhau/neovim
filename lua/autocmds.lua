@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 local session = vim.fn.stdpath('state') .. '/last-session.vim'
 vim.keymap.set('n', '<leader>S', function()
   vim.cmd('source ' .. vim.fn.fnameescape(session))
-end, { desc = 'Restore last session' })
+end, { desc = 'Restore session' })
 
 vim.api.nvim_create_autocmd('VimLeavePre', {
   group = group,

@@ -6,12 +6,15 @@
 [![Last Rewrite](https://img.shields.io/badge/last%20rewrite-2026--09--12-blue)](https://github.com/ThorstenRhau/neovim)
 
 A small personal macOS configuration, maintained since December 2023.
-Version **v2.0.0** uses six main Lua files, two prose ftplugins, and 17 plugins.
+Version **v2.0.0** uses six main Lua files, two prose ftplugins, and 19 plugins.
 **Last Complete Rewrite: 2026-09-12.**
 
 Neovim 0.12.5 is the tested baseline; subsequent compatible stable releases are
-supported. Token Ultra supplies the colors, while Neovim supplies the statusline,
-gutter, ordinary editing, and sessions.
+supported. Token Ultra supplies the colors and mini.statusline supplies the
+statusline. Neovim supplies the gutter, ordinary editing, and sessions.
+The gutter shows line numbers and signs, with no fold column.
+The statusline shows the mode, Git changes, diagnostics, LSP status, parent
+directory and filename, file details, search count, and cursor position.
 
 ## Installation
 
@@ -24,7 +27,7 @@ git clone --depth=1 https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 Install tools with [Homebrew](https://brew.sh/):
 
 ```sh
-brew install neovim git fzf fd ripgrep node tree-sitter-cli \
+brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
   basedpyright bash-language-server lua-language-server marksman \
   vscode-langservers-extracted yaml-language-server \
   prettier ruff shfmt stylua tombi \
@@ -61,10 +64,13 @@ handling sets a 72-column text width.
 | `lua/lsp.lua` | Language servers, diagnostics, and LSP mappings |
 | `lua/autocmds.lua` | Editor events, Tree-sitter, linting, and sessions |
 
-The 17 plugins are Token, blink.cmp, friendly-snippets, nvim-lspconfig,
+The 19 plugins are Token, blink.cmp, friendly-snippets, nvim-lspconfig,
 SchemaStore, lazydev, nvim-treesitter, fzf-lua, Oil, Gitsigns, Neogit, Conform,
-nvim-lint, blink.indent, mini.splitjoin, mini.clue, and Sidekick.
+nvim-lint, blink.indent, mini.icons, mini.statusline, mini.splitjoin, mini.clue,
+and Sidekick.
 All are configured during startup.
+FzfLua uses the `fzf-native` profile with native `bat` file previews.
+Indent guides use thin `│` lines, with a single scope color and scope underlining.
 
 Token follows tagged releases, Blink follows stable 1.x, and Tree-sitter follows
 `main`. Other plugins follow their default branches. To review and apply updates:
@@ -73,7 +79,8 @@ Token follows tagged releases, Blink follows stable 1.x, and Tree-sitter follows
 :lua vim.pack.update()
 ```
 
-Write the native confirmation buffer to apply updates, then restart Neovim.
+Press `<leader>l` to open the same update workflow. Write the native confirmation
+buffer to apply updates, then restart Neovim.
 The Tree-sitter package update hook runs `:TSUpdate`; parser installation remains
 explicit. `nvim-pack-lock.json` records local revisions and stays untracked.
 Removed package declarations do not uninstall local packages or parsers.
@@ -119,6 +126,7 @@ bracket, and window commands.
 
 | Mapping | Action |
 | --- | --- |
+| `<leader>l` | Review and update installed plugins |
 | `<leader>ff` / `<leader>fb` / `<leader>fo` | Files / buffers / recent files |
 | `<leader>fs` | Live workspace symbols, buffer-local on LSP attach |
 | `<leader>sg` / `<leader>sh` | Live grep / help |

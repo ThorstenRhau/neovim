@@ -1,5 +1,10 @@
 local map = vim.keymap.set
 
+map('n', '<leader>l', function()
+  vim.pack.update()
+end, { desc = 'Update plugins' })
+
+map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Files' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Files' })
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Buffers' })
 map('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>', { desc = 'Recent files' })

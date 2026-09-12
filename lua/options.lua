@@ -5,9 +5,10 @@ vim.opt.softtabstop = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.ruler = false
+vim.opt.showmode = false
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = 'auto:2'
-vim.opt.foldcolumn = 'auto:1'
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

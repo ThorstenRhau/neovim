@@ -24,6 +24,8 @@ local packages = {
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://github.com/mfussenegger/nvim-lint' },
   { src = 'https://github.com/saghen/blink.indent' },
+  { src = 'https://github.com/nvim-mini/mini.icons' },
+  { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
   { src = 'https://github.com/folke/sidekick.nvim' },
@@ -66,12 +68,12 @@ require('blink.cmp').setup({
 })
 
 require('fzf-lua').setup({
+  'fzf-native',
   defaults = { file_icons = false },
   files = { hidden = true, follow = true },
   grep = { hidden = true, follow = true },
   oldfiles = { include_current_session = true },
 })
-require('fzf-lua').register_ui_select()
 
 require('oil').setup({
   columns = {},
@@ -117,6 +119,18 @@ require('lint').linters_by_ft = {
 
 require('blink.indent').setup({
   blocked = { filetypes = { include_defaults = true, 'oil' } },
+  static = {
+    char = '│',
+    highlights = { 'BlinkIndent' },
+  },
+  scope = {
+    char = '│',
+    highlights = { 'BlinkIndentScope' },
+    underline = {
+      enabled = true,
+      highlights = { 'BlinkIndentUnderline' },
+    },
+  },
   mappings = {
     object_scope = '',
     object_scope_with_border = '',
@@ -124,6 +138,80 @@ require('blink.indent').setup({
     goto_bottom = '',
   },
 })
+require('mini.icons').setup()
+
+local statusline = require('mini.statusline')
+
+local diagnostic_signs = {
+  ERROR = '%$DiagnosticError$✕',
+  WARN = '%$DiagnosticWarn$▲',
+  INFO = '%$DiagnosticInfo$●',
+  HINT = '%$DiagnosticHint$◆',
+}
+
+local function statusline_filename()
+  if vim.bo.buftype == 'terminal' then
+    return '%t'
+  end
+
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then
+    return '%t%m%r'
+  end
+
+  local parent = vim.fn.fnamemodify(path, ':h:t'):gsub('%%', '%%%%')
+  return parent .. '/%t%m%r'
+end
+
+statusline.setup({
+  use_icons = true,
+  content = {
+    active = function()
+      local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+      local logo = ''
+      local git = statusline.section_git({ icon = '', trunc_width = 40 })
+      local diff = statusline.is_truncated(75) and '' or vim.b.gitsigns_status or ''
+      local diagnostics = vim.trim(statusline.section_diagnostics({
+        icon = '',
+        trunc_width = 75,
+        signs = diagnostic_signs,
+      }))
+      if diagnostics ~= '' then
+        diagnostics = diagnostics .. '%$MiniStatuslineDevinfo$'
+      end
+      local lsp = statusline.section_lsp({ icon = 'lsp', trunc_width = 75 })
+      local devinfo = table.concat(
+        vim.tbl_filter(function(section)
+          return section ~= ''
+        end, { git, diff, diagnostics, lsp }),
+        ' · '
+      )
+      local filename = statusline_filename()
+      local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+      local search = statusline.section_searchcount({ trunc_width = 75 })
+
+      -- Custom location section with lualine-style formatting
+      local location = (function()
+        if statusline.is_truncated(75) then
+          return '%l│%2v'
+        end
+        return '%P %l│%2v'
+      end)()
+
+      return statusline.combine_groups({
+        { hl = 'MiniIconsGreen', strings = { logo } },
+        { hl = mode_hl, strings = { mode } },
+        { hl = 'MiniStatuslineDevinfo', strings = { devinfo } },
+        '%<',
+        { hl = 'MiniStatuslineFilename', strings = { filename } },
+        '%=',
+        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+        { hl = mode_hl, strings = { search, location } },
+      })
+    end,
+  },
+})
+
 require('mini.splitjoin').setup()
 require('sidekick').setup({
   nes = { enabled = false },
