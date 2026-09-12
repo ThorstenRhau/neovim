@@ -19,6 +19,12 @@ if arg and arg[1] == 'preflight' then
 end
 
 function M.guard()
+  local native_brackets = {}
+  for _, key in ipairs({ '[b', ']b', '[B', ']B', '[d', ']d', '[D', ']D' }) do
+    local mapping = vim.fn.maparg(key, 'n', false, true)
+    native_brackets[key] = { rhs = mapping.rhs, desc = mapping.desc }
+  end
+  vim.g.smoke_native_brackets = native_brackets
   vim.ui_attach(vim.api.nvim_create_namespace('smoke_errors'), { ext_messages = true }, function(event, kind)
     if event == 'msg_show' and (kind == 'emsg' or kind == 'echoerr' or kind == 'lua_error') then
       vim.schedule(function()
@@ -39,6 +45,202 @@ function M.guard()
       error('smoke forbids parser maintenance')
     end,
   })
+end
+
+local function check_delete_others()
+  vim.cmd('enew!')
+  local current = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+  vim.api.nvim_buf_set_lines(current, 0, -1, false, { 'keep unsaved content' })
+  vim.cmd.vsplit()
+  local windows = vim.fn.win_findbuf(current)
+  local unloaded = false
+  local watch = vim.api.nvim_create_autocmd('BufUnload', {
+    buffer = current,
+    callback = function()
+      unloaded = true
+    end,
+  })
+  local clean = vim.api.nvim_create_buf(true, false)
+  local unlisted = vim.api.nvim_create_buf(false, false)
+  local delete_others = vim.fn.maparg('<leader>bo', 'n', false, true).callback
+  delete_others()
+  assert(not vim.bo[clean].buflisted, 'other clean buffer was not deleted')
+  assert(vim.api.nvim_buf_is_loaded(unlisted), 'unlisted buffer was unloaded')
+  assert(not unloaded and vim.api.nvim_buf_is_loaded(current), 'retained buffer was unloaded')
+  assert(vim.api.nvim_get_current_buf() == current, 'current buffer changed')
+  assert(vim.bo[current].modified and vim.api.nvim_get_current_line() == 'keep unsaved content', 'unsaved edits lost')
+  assert(vim.deep_equal(windows, vim.fn.win_findbuf(current)), 'retained buffer windows changed')
+
+  local before = vim.api.nvim_create_buf(true, false)
+  local modified = vim.api.nvim_create_buf(true, false)
+  vim.api.nvim_buf_set_lines(modified, 0, -1, false, { 'decline deletion' })
+  local after = vim.api.nvim_create_buf(true, false)
+  local confirm = vim.fn.confirm
+  local prompts = 0
+  vim.fn.confirm = function()
+    prompts = prompts + 1
+    return 1 -- MiniBufremove's default No response.
+  end
+  local ok, err = xpcall(delete_others, debug.traceback)
+  vim.fn.confirm = confirm
+  assert(ok, err)
+  assert(prompts == 1, 'deletion should prompt only for the modified target')
+  assert(not vim.bo[before].buflisted, 'deletion stopped before the declined target')
+  assert(vim.bo[modified].buflisted and vim.bo[modified].modified, 'declined target was deleted')
+  assert(vim.api.nvim_buf_get_lines(modified, 0, -1, false)[1] == 'decline deletion', 'declined edits lost')
+  assert(vim.bo[after].buflisted, 'deletions continued after decline')
+  vim.api.nvim_del_autocmd(watch)
+  vim.api.nvim_win_close(windows[2], true)
+  for _, buf in ipairs({ unlisted, before, modified, after }) do
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
+  vim.cmd('enew!')
+end
+
+local function check_lsp_highlights()
+  local buffers = { vim.api.nvim_create_buf(true, false), vim.api.nvim_create_buf(true, false) }
+  local clients = {}
+  local get_clients, highlight = vim.lsp.get_clients, vim.lsp.buf.document_highlight
+  local calls = 0
+  vim.lsp.get_clients = function(filter)
+    return vim.tbl_filter(function(client)
+      return (not filter.id or client.id == filter.id) and (not filter.bufnr or client.buf == filter.bufnr)
+    end, clients)
+  end
+  vim.lsp.buf.document_highlight = function()
+    calls = calls + 1
+  end
+  local function attach(id, buf, supported)
+    table.insert(clients, {
+      id = id,
+      buf = buf,
+      name = 'smoke',
+      supports_method = function()
+        return supported
+      end,
+    })
+    vim.api.nvim_exec_autocmds('LspAttach', { buffer = buf, data = { client_id = id }, group = 'lsp-attach' })
+  end
+  local function detach(id, buf)
+    -- LspDetach runs before the departing client disappears from get_clients().
+    vim.api.nvim_exec_autocmds('LspDetach', { buffer = buf, data = { client_id = id }, group = 'lsp-detach' })
+    clients = vim.tbl_filter(function(client)
+      return client.id ~= id
+    end, clients)
+  end
+  local function expect(buf, count)
+    for _, event in ipairs({ 'CursorHold', 'CursorHoldI', 'CursorMoved', 'CursorMovedI' }) do
+      local handlers = vim.api.nvim_get_autocmds({ group = 'lsp-highlight', buffer = buf, event = event })
+      assert(#handlers == count, event .. ': incorrect highlight handler count')
+    end
+  end
+  local ok, err = xpcall(function()
+    attach(1, buffers[1], true)
+    attach(2, buffers[1], true)
+    attach(3, buffers[1], false)
+    attach(4, buffers[2], true)
+    expect(buffers[1], 1)
+    expect(buffers[2], 1)
+    vim.api.nvim_exec_autocmds('CursorHold', { buffer = buffers[1], group = 'lsp-highlight' })
+    assert(calls == 1, 'one CursorHold dispatched multiple highlight calls')
+    detach(1, buffers[1])
+    expect(buffers[1], 1)
+    detach(2, buffers[1])
+    expect(buffers[1], 0)
+    expect(buffers[2], 1)
+    attach(5, buffers[1], true)
+    expect(buffers[1], 1)
+    detach(3, buffers[1])
+    expect(buffers[1], 1)
+    detach(5, buffers[1])
+    detach(4, buffers[2])
+    expect(buffers[1], 0)
+    expect(buffers[2], 0)
+  end, debug.traceback)
+  vim.lsp.get_clients, vim.lsp.buf.document_highlight = get_clients, highlight
+  for _, buf in ipairs(buffers) do
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
+  assert(ok, err)
+end
+
+local function check_native_editing()
+  -- Test native motions directly; exercise MiniClue submodes interactively.
+  require('mini.clue').disable_all_triggers()
+  for key, native in pairs(vim.g.smoke_native_brackets) do
+    local mapping = vim.fn.maparg(key, 'n', false, true)
+    assert(mapping.desc == native.desc and mapping.rhs == native.rhs, key .. ': native mapping replaced')
+  end
+  vim.cmd('enew!')
+  vim.b.miniclue_disable = true
+  vim.b.completion = false
+  vim.api.nvim_feedkeys(vim.keycode('ijk jj<Esc>'), 'mxt', false)
+  assert(vim.api.nvim_get_current_line() == 'jk jj', 'escape chords still intercept literal text')
+  vim.cmd('enew!')
+  vim.b.miniclue_disable = true
+  local first = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= first then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+  local middle = vim.api.nvim_create_buf(true, false)
+  local last = vim.api.nvim_create_buf(true, false)
+  vim.b[middle].miniclue_disable = true
+  vim.b[last].miniclue_disable = true
+  for _, case in ipairs({ { '2]b', last }, { '[b', middle }, { '[B', first }, { ']B', last } }) do
+    vim.api.nvim_feedkeys(vim.keycode(case[1]), 'mxt', false)
+    assert(
+      vim.api.nvim_get_current_buf() == case[2],
+      string.format('%s: expected buffer %d, got %d', case[1], case[2], vim.api.nvim_get_current_buf())
+    )
+    vim.b.miniclue_disable = true
+  end
+  vim.api.nvim_buf_set_lines(last, 0, -1, false, { 'one', 'two', 'three', 'four', 'five' })
+  local ns = vim.api.nvim_create_namespace('smoke_navigation')
+  vim.diagnostic.set(ns, last, {
+    { lnum = 0, col = 0, message = 'first' },
+    { lnum = 2, col = 0, message = 'middle' },
+    { lnum = 4, col = 0, message = 'last' },
+  })
+  vim.api.nvim_win_set_cursor(0, { 1, 0 })
+  for _, case in ipairs({ { '2]d', 5 }, { '[d', 3 }, { '[D', 1 }, { ']D', 5 } }) do
+    vim.api.nvim_feedkeys(vim.keycode(case[1]), 'mxt', false)
+    assert(vim.api.nvim_win_get_cursor(0)[1] == case[2], case[1] .. ': diagnostic navigation failed')
+  end
+  vim.diagnostic.reset(ns)
+  vim.api.nvim_buf_delete(last, { force = true })
+  vim.api.nvim_buf_delete(middle, { force = true })
+  vim.cmd('enew!')
+end
+
+local function check_archives()
+  vim.fn.writefile({ 'smoke archive content' }, 'archive.txt')
+  for _, cmd in ipairs({
+    { 'gzip', '-k', 'archive.txt' },
+    { 'tar', '-cf', 'archive.tar', 'archive.txt' },
+    { 'zip', '-q', 'archive.zip', 'archive.txt' },
+  }) do
+    local result = vim.system(cmd, { text = true }):wait()
+    assert(result.code == 0, result.stderr)
+  end
+  vim.cmd.edit('archive.txt.gz')
+  assert(vim.api.nvim_get_current_line() == 'smoke archive content', 'gzip read failed')
+  for _, extension in ipairs({ 'tar', 'zip' }) do
+    vim.cmd.edit('archive.' .. extension)
+    assert(vim.bo.filetype == extension, extension .. ': archive browser did not load')
+    local row = vim.fn.search('^archive.txt$', 'w')
+    assert(row > 0, extension .. ': archive member missing')
+    vim.api.nvim_feedkeys(vim.keycode('<CR>'), 'mxt', false)
+    assert(vim.api.nvim_get_current_line() == 'smoke archive content', extension .. ': member read failed')
+  end
+  assert(vim.fn.exists(':Tutor') == 2, 'Tutor command missing')
+  vim.cmd('enew!')
 end
 
 function M.check()
@@ -69,6 +271,11 @@ function M.check()
       vim.lsp.enable(servers, false)
       vim.g.disable_auto_lsp = true
       vim.g.disable_auto_lint = true
+      local upstream_bashls = dofile(vim.api.nvim_get_runtime_file('lsp/bashls.lua', false)[1])
+      assert(
+        vim.lsp.config.bashls.settings.bashIde.globPattern == upstream_bashls.settings.bashIde.globPattern,
+        'Bash scan default was overridden'
+      )
       -- Opening Oil from the initial empty buffer must survive repeated FileType events.
       local oil_ready = false
       require('oil').open_float(nil, nil, function()
@@ -168,6 +375,10 @@ function M.check()
       for _, key in ipairs({ 'gra', 'gri', 'grn', 'grr', 'grt' }) do
         assert(vim.fn.maparg(key, 'n') ~= '', key .. ': native mapping missing')
       end
+      check_delete_others()
+      check_lsp_highlights()
+      check_native_editing()
+      check_archives()
       vim.wait(100)
       -- Native ftplugin undo uses silent! unmap, which can leave a harmless E31 in v:errmsg.
       assert(not vim.g.smoke_error, 'an error message occurred during startup or buffer checks')

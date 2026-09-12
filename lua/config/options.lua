@@ -1,12 +1,8 @@
 -- Disable built-in plugins
 local disabled_builtins = {
-  'gzip',
   'matchit',
   'matchparen',
   'netrwPlugin',
-  'tarPlugin',
-  'tutor',
-  'zipPlugin',
 }
 for _, plugin in ipairs(disabled_builtins) do
   vim.g['loaded_' .. plugin] = 1

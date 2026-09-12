@@ -1,9 +1,5 @@
 local map = vim.keymap.set
 
--- Better escape
-map('i', 'jk', '<Esc>', { desc = 'escape' })
-map('i', 'jj', '<Esc>', { desc = 'escape' })
-
 -- Better movement
 map('n', 'j', [[(v:count > 1 ? 'm`' . v:count : v:count == 0 ? 'g' : '') . 'j']], { expr = true, desc = 'down' })
 map('n', 'k', [[(v:count > 1 ? 'm`' . v:count : v:count == 0 ? 'g' : '') . 'k']], { expr = true, desc = 'up' })
@@ -14,7 +10,18 @@ map('x', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'up' })
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<leader>,', '<cmd>bprevious<cr>', { desc = 'previous buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'next buffer' })
-map('n', '<leader>bo', '<cmd>%bdelete|edit#|bdelete#<cr>', { desc = 'delete other buffers' })
+map('n', '<leader>bo', function()
+  local current = vim.api.nvim_get_current_buf()
+  local targets = vim.tbl_filter(function(buf)
+    return buf ~= current and vim.bo[buf].buflisted
+  end, vim.api.nvim_list_bufs())
+  table.sort(targets)
+  for _, buf in ipairs(targets) do
+    if vim.api.nvim_buf_is_valid(buf) and not require('mini.bufremove').delete(buf, false) then
+      break
+    end
+  end
+end, { desc = 'delete other buffers' })
 
 -- Windows
 map('n', '<C-h>', '<C-w>h', { desc = 'go to left window' })

@@ -100,8 +100,10 @@ require('mini.surround').setup()
 -- Auto-pairs
 require('mini.pairs').setup()
 
--- Bracket navigation ([b/]b=buffer, [c/]c=comment, [d/]d=diagnostic, etc.)
+-- Extra bracket navigation; keep native buffer, diagnostic, and quickfix mappings.
 require('mini.bracketed').setup({
+  buffer = { suffix = '' },
+  diagnostic = { suffix = '' },
   file = { suffix = '' },
   quickfix = { suffix = '' },
 })

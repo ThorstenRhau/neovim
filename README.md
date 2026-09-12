@@ -64,6 +64,17 @@ is unchanged in the checked examples. Makefile recipes use tabs. Prose settings
 live in `after/ftplugin/` and are undone in every window displaying the buffer
 when the filetype changes.
 
+Use Escape or Ctrl-[ to leave Insert mode; `jk` and `jj` are literal text.
+Tab retains Blink completion acceptance, snippet navigation, and Tabout fallback.
+Buffer and diagnostic bracket navigation (`[b`/`]b`, `[d`/`]d`, and their
+uppercase variants) uses Neovim defaults. MiniBracketed supplies additional
+targets, and MiniClue retains its bracket navigation submodes.
+
+`<leader>bo` deletes other listed buffers while preserving the current buffer,
+its unsaved edits, and window layout. Modified targets use MiniBufremove's
+confirmation; declining stops the remaining deletions. Earlier deletions are
+not rolled back. Bundled gzip, tar, and zip support and `:Tutor` are available.
+
 Go, Rust, and Swift retain native filetype detection and syntax highlighting for
 occasional code review. Their Tree-sitter parsers, language servers, and external
 formatters are not configured; file search and Git tools remain available.
@@ -98,6 +109,9 @@ The local `nvim-pack-lock.json` records the installed revision.
 Local overrides retain PATH-based commands, filetype restrictions, Blink
 capabilities, schemas, and language preferences.
 `<leader>tL` still toggles LSP and automatic linting together.
+Document highlighting has one set of handlers per buffer, retained until its
+last supporting client detaches. Bash workspace scanning inherits nvim-lspconfig's
+nonrecursive default, or its `GLOB_PATTERN` environment override.
 
 Accepted upstream differences:
 
@@ -126,11 +140,21 @@ Makefile tab insertion with and without this repository's EditorConfig, with a
 before opening buffers. Missing parsers are skipped gracefully; install them
 explicitly using the command above.
 
+Additional smoke cases cover deleting other buffers without unloading the
+current buffer, declining a modified target, simulated multi-client highlight
+attachment/detachment, literal escape chords, native bracket navigation, inherited
+Bash scanning, and reading synthetic gzip/tar/zip fixtures. All fixtures and
+runtime writes stay inside the disposable directories.
+
 Smoke does not prove live server behavior or visual appearance. For LSP changes,
 check roots, actual attachment, capabilities, hover ownership, and both toggle
 directions separately. For indentation changes, compare newline insertion, `o`,
 and `==` with and without EditorConfig. Check picker/Oil navigation and native
 message/progress rendering interactively.
+Check Tab and Shift-Tab with a completion menu, active snippets, closing
+delimiters, and absent parsers, plus MiniClue's bracket submodes, in a disposable
+interactive session. Simulated LSP lifecycle checks do not establish live server
+behavior.
 
 ## Cloning the config to your machine
 

@@ -19,9 +19,6 @@ local server_names = {
 
 vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() })
 
-vim.lsp.config('bashls', {
-  settings = { bashIde = { globPattern = '**/*@(.sh|.bash|.inc|.command)' } },
-})
 vim.lsp.config('basedpyright', {
   settings = {
     basedpyright = {
@@ -93,6 +90,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Document highlight on cursor hold
     if client and client:supports_method('textDocument/documentHighlight') then
+      vim.api.nvim_clear_autocmds({ group = highlight_group, buf = event.buf })
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buf = event.buf,
         group = highlight_group,
