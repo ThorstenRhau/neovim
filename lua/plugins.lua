@@ -196,12 +196,7 @@ statusline.setup({
       local search = statusline.section_searchcount({ trunc_width = 75 })
 
       -- Custom location section with lualine-style formatting
-      local location = (function()
-        if statusline.is_truncated(75) then
-          return '%l│%2v'
-        end
-        return '%P %l│%2v'
-      end)()
+      local location = statusline.is_truncated(75) and '%l│%2v' or '%P %l│%2v'
 
       return statusline.combine_groups({
         { hl = 'MiniIconsGreen', strings = { logo } },

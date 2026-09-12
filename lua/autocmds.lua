@@ -10,10 +10,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = group,
   callback = function(event)
-    if
-      vim.bo[event.buf].buftype ~= ''
-      or vim.list_contains({ 'gitcommit', 'gitrebase', 'help' }, vim.bo[event.buf].filetype)
-    then
+    local filetype = vim.bo[event.buf].filetype
+    if filetype == '' then
+      filetype = vim.filetype.match({ buf = event.buf })
+    end
+    if vim.bo[event.buf].buftype ~= '' or vim.list_contains({ 'gitcommit', 'gitrebase', 'help' }, filetype) then
       return
     end
     local line = vim.api.nvim_buf_get_mark(event.buf, '"')[1]
@@ -56,7 +57,7 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.wo[0][0].foldmethod = 'expr'
     vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
-      .. '|call v:lua.vim.treesitter.stop()'
+      .. '\ncall v:lua.vim.treesitter.stop()'
       .. '|call map(win_findbuf(bufnr()), {_, win -> win_execute(win, "setlocal foldmethod< foldexpr<")})'
   end,
 })

@@ -8,6 +8,9 @@
 A small personal macOS configuration for Neovim 0.12.5 and compatible stable
 releases.
 
+Files reopen at their last cursor position, except commit messages, rebase
+instructions, and help buffers.
+
 ## Installation
 
 ```sh
