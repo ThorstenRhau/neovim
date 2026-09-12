@@ -163,6 +163,31 @@ interactive instance to exit wins. Headless startup does not overwrite it.
 Terminal processes and unsaved buffer contents are not restored. Old named
 sessions remain on disk and are not imported.
 
+## Full reset
+
+Close all Neovim instances, then run this from the configuration directory:
+
+```sh
+make clean
+```
+
+This immediately removes Neovim's data, state, and cache directories, including
+plugins, downloaded parsers, sessions, persistent undo, swap files, history, and
+logs. It also removes `nvim-pack-lock.json`, `.codex-lsp-cache/`, and `nvim.log`
+from the configuration directory when present. Configuration files, Git metadata,
+personal spelling files, and Homebrew tools remain intact.
+
+Paths follow Neovim's `stdpath()` values, including XDG environment settings and
+`NVIM_APPNAME`. The command prints each removal, tolerates missing paths, and
+refuses symlinked cleanup roots or runtime paths overlapping the configuration.
+Deletion errors stop the command; earlier removals are not rolled back.
+
+On the next startup, accept the native plugin installation prompt. Removing the
+lockfile means plugin versions are resolved afresh and may be newer. Run the
+`:TSInstall` command in Installation again, wait for completion, and reopen
+buffers. Parser installation remains manual. An instance left open during cleanup
+could write state back when it exits.
+
 ## Validation
 
 ```sh
