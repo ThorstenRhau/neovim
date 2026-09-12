@@ -1,27 +1,27 @@
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
+vim.o.expandtab = true
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.ruler = false
-vim.opt.showmode = false
-vim.opt.scrolloff = 10
-vim.opt.signcolumn = 'auto:2'
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.ruler = false
+vim.o.showmode = false
+vim.o.scrolloff = 10
+vim.o.signcolumn = 'auto:2'
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.undofile = true
-vim.opt.confirm = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.undofile = true
+vim.o.confirm = true
 
-vim.opt.wrap = false
-vim.opt.linebreak = true
-vim.opt.breakindent = true
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.winborder = 'single'
-vim.opt.spelllang = 'en_us'
+vim.o.wrap = false
+vim.o.linebreak = true
+vim.o.breakindent = true
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.winborder = 'single'
+vim.o.spelllang = 'en_us'
 vim.opt.sessionoptions:remove('terminal')
