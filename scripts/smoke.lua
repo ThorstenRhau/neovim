@@ -98,21 +98,58 @@ function M.check()
         assert(vim.bo.filetype ~= '', filename .. ': no filetype')
         assert(#vim.lsp.get_clients({ bufnr = 0 }) == 0, 'smoke started an LSP client')
       end
-      vim.api.nvim_buf_set_lines(0, 0, -1, false, { 'all:' })
-      vim.api.nvim_feedkeys(vim.keycode('oecho ok<Esc>'), 'nxt', false)
-      assert(vim.api.nvim_buf_get_lines(0, 1, 2, false)[1] == '\techo ok', 'Makefile recipe needs a tab')
+      vim.fn.mkdir('editorconfig', 'p')
+      vim.fn.writefile(vim.fn.readfile(vim.fn.stdpath('config') .. '/.editorconfig'), 'editorconfig/.editorconfig')
+      for _, filename in ipairs({ 'Makefile', 'editorconfig/Makefile' }) do
+        vim.cmd.edit(filename)
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, { 'all:' })
+        vim.api.nvim_win_set_cursor(0, { 1, 0 })
+        vim.api.nvim_feedkeys(vim.keycode('oecho ok<Esc>'), 'nxt', false)
+        assert(vim.api.nvim_buf_get_lines(0, 1, 2, false)[1] == '\techo ok', filename .. ': recipe needs a tab')
+        vim.cmd('enew!')
+      end
+
+      for _, buflisted in ipairs({ true, false }) do
+        vim.bo.buflisted = buflisted
+        vim.bo.filetype = 'help'
+        assert(vim.fn.maparg('q', 'n', false, true).desc == 'Close buffer', 'help close mapping missing')
+        assert(not vim.bo.buflisted and not vim.wo.number, 'help buffer setup missing')
+        vim.cmd.vsplit()
+        local split = vim.api.nvim_get_current_win()
+        local bufnr = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { 'unsaved buffer content' })
+        vim.bo.filetype = 'lua'
+        assert(vim.fn.maparg('q', 'n') == '', 'help close mapping leaked into Lua')
+        assert(vim.bo.buflisted == buflisted, 'original buffer listing was not restored')
+        assert(vim.bo.modified and vim.api.nvim_get_current_line() == 'unsaved buffer content', 'buffer edits lost')
+        for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+          for _, option in ipairs({ 'number', 'relativenumber', 'signcolumn', 'statuscolumn' }) do
+            assert(vim.wo[win][option] == vim.go[option], option .. ': help chrome leaked')
+          end
+        end
+        vim.api.nvim_win_close(split, true)
+        vim.cmd('enew!')
+      end
+
       vim.cmd('enew!')
       for _, ft in ipairs({ 'markdown', 'gitcommit', 'typst', 'markdown' }) do
         vim.bo.filetype = ft
         assert(vim.wo.wrap and vim.wo.spell, ft .. ': prose settings missing')
+        vim.cmd.vsplit()
+        local split = vim.api.nvim_get_current_win()
         vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '') .. '|let b:smoke_cleanup = 1'
         vim.bo.filetype = 'smoke_unavailable'
         assert(vim.b.smoke_cleanup == 1, 'earlier ftplugin cleanup was lost')
         vim.b.smoke_cleanup = nil
-        assert(not vim.wo.wrap and not vim.wo.spell, ft .. ': prose settings leaked')
-        assert(vim.wo.colorcolumn == '' and vim.bo.textwidth == 0, ft .. ': commit guides leaked')
+        for _, win in ipairs(vim.fn.win_findbuf(vim.api.nvim_get_current_buf())) do
+          local wo = vim.wo[win]
+          assert(not wo.wrap and not wo.spell, ft .. ': prose settings leaked')
+          assert(wo.colorcolumn == '' and vim.bo.textwidth == 0, ft .. ': commit guides leaked')
+          assert(wo.conceallevel == vim.go.conceallevel, ft .. ': conceal level leaked')
+          assert(wo.foldmethod == 'manual', 'Treesitter folds leaked')
+        end
         assert(not vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()], 'Treesitter state leaked')
-        assert(vim.wo.foldmethod == 'manual', 'Treesitter folds leaked')
+        vim.api.nvim_win_close(split, true)
       end
       assert(vim.fn.maparg('gr', 'n') == '', 'bare gr shadows native LSP mappings')
       for _, key in ipairs({ 'gra', 'gri', 'grn', 'grr', 'grt' }) do

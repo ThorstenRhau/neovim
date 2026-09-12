@@ -32,10 +32,10 @@ brew install basedpyright bash-language-server fd fzf git \
 
 ## Plugin updates
 
-`nvim-pack-lock.json` is tracked to make native `vim.pack` installs reproducible.
-Use `<leader>l` to run `vim.pack.update()`, then review the lockfile changes and
-commit intended plugin revisions together with any related configuration updates.
-Do not remove the lockfile with `make clean`.
+`nvim-pack-lock.json` is generated locally by native `vim.pack` and intentionally
+untracked. Use `<leader>l` to run `vim.pack.update()`. Each installation keeps its
+own revisions in the local lockfile, which `make smoke` uses as its dependency
+baseline. `make clean` preserves the lockfile.
 
 Token normally loads the latest tagged GitHub release through `vim.pack`. For
 local Token development, start Neovim with `TOKEN_DEV=1 nvim`; this prepends
@@ -61,11 +61,12 @@ floating view. Native filetype indentation replaces the language matrix and
 Treesitter indentation. Loose TypeScript, TSX, and Lua files now use the global
 four-space fallback; EditorConfig still takes precedence. Markdown list editing
 is unchanged in the checked examples. Makefile recipes use tabs. Prose settings
-live in `after/ftplugin/` and are undone when the filetype changes.
+live in `after/ftplugin/` and are undone in every window displaying the buffer
+when the filetype changes.
 
-Go, Rust, and Swift retain native filetype detection, Tree-sitter highlighting,
-folding, and textobjects for occasional code review. Their language servers and
-external formatters are not configured; file search and Git tools remain available.
+Go, Rust, and Swift retain native filetype detection and syntax highlighting for
+occasional code review. Their Tree-sitter parsers, language servers, and external
+formatters are not configured; file search and Git tools remain available.
 
 | Binding | Picker |
 | --- | --- |
@@ -92,7 +93,8 @@ Use `:messages` for message history.
 ## LSP configuration
 
 The eight enabled servers inherit native configurations from
-[nvim-lspconfig at `456f8cc`](https://github.com/neovim/nvim-lspconfig/tree/456f8cc94438de35ff2294454019e7b780b73514/lsp).
+[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
+The local `nvim-pack-lock.json` records the installed revision.
 Local overrides retain PATH-based commands, filetype restrictions, Blink
 capabilities, schemas, and language preferences.
 `<leader>tL` still toggles LSP and automatic linting together.
@@ -118,8 +120,9 @@ instructions rather than repairing dependencies. It copies configuration,
 plugins, and installed parsers into disposable XDG directories. Internet access
 is blocked for Neovim and its children; local Unix sockets support fzf-lua.
 It checks eager setup, the colorscheme, eight enabled LSP configurations, removed
-web and Typst tooling, filetypes, cleanup, native mappings, and Makefile tab
-insertion, with a 45-second startup timeout. It disables servers and linters
+web and Typst tooling, filetypes, cleanup across windows, native mappings, and
+Makefile tab insertion with and without this repository's EditorConfig, with a
+45-second startup timeout. It disables servers and linters
 before opening buffers. Missing parsers are skipped gracefully; install them
 explicitly using the command above.
 

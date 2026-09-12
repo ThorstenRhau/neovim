@@ -42,6 +42,7 @@ autocmd('FileType', {
   group = augroup('close_with_q', { clear = true }),
   pattern = constants.filetypes.close_with_q,
   callback = function(event)
+    local buflisted = vim.bo[event.buf].buflisted
     vim.bo[event.buf].buflisted = false
     vim.keymap.set('n', 'q', function()
       local ok = pcall(vim.cmd.bdelete, { bang = true })
@@ -49,6 +50,10 @@ autocmd('FileType', {
         vim.cmd.quit()
       end
     end, { buf = event.buf, silent = true, desc = 'Close buffer' })
+    vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
+      .. '|silent! nunmap <buffer> q'
+      .. '|setlocal '
+      .. (buflisted and 'buflisted' or 'nobuflisted')
   end,
 })
 
@@ -70,7 +75,12 @@ end
 autocmd('FileType', {
   group = augroup('statuscolumn_exclusions', { clear = true }),
   pattern = constants.filetypes.no_chrome,
-  callback = clear_chrome,
+  callback = function(event)
+    clear_chrome()
+    vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
+      .. '|call map(win_findbuf(bufnr()), {_, win -> win_execute(win,'
+      .. ' "setlocal statuscolumn< signcolumn< number< relativenumber<")})'
+  end,
 })
 
 autocmd('BufWinEnter', {

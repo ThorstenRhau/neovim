@@ -33,7 +33,7 @@ export XDG_RUNTIME_DIR="$smoke_tmp/runtime"
 export XDG_CONFIG_DIRS="$smoke_tmp/empty" XDG_DATA_DIRS="$smoke_tmp/empty"
 mkdir -p "$XDG_CONFIG_HOME/nvim" "$XDG_DATA_HOME/nvim" "$XDG_STATE_HOME" "$XDG_CACHE_HOME" "$XDG_RUNTIME_DIR" "$smoke_tmp/work"
 chmod 700 "$XDG_RUNTIME_DIR"
-cp -RL "$NVIM_SMOKE_SOURCE/"{init.lua,lua,after,scripts,nvim-pack-lock.json} "$XDG_CONFIG_HOME/nvim/"
+cp -RL "$NVIM_SMOKE_SOURCE/"{init.lua,lua,after,scripts,.editorconfig,nvim-pack-lock.json} "$XDG_CONFIG_HOME/nvim/"
 cp -RL "$NVIM_SMOKE_DATA/site" "$XDG_DATA_HOME/nvim/site"
 cd -- "$smoke_tmp/work"
 
