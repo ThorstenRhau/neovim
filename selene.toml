@@ -1,6 +1,4 @@
-std = "neovim+selene_mini"
+std = "neovim"
 
 [rules]
-global_usage     = "allow"
-lowercase_global = "allow"
-mixed_table      = "allow"
+mixed_table = "allow"

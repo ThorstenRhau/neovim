@@ -1,8 +1,2 @@
 #!/usr/bin/env sh
-# Pre-commit hook to run make check
-
-echo "Running 'make check'..."
-if ! make check; then
-  echo "'make check' failed. Run 'make format' and re-stage."
-  exit 1
-fi
+exec make check

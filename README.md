@@ -1,169 +1,172 @@
 # My Neovim Configuration
 
-[![Neovim](https://img.shields.io/badge/Neovim-0.12+-57A143?logo=neovim&logoColor=white)](https://neovim.io)
-[![Lua](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=white)](https://www.lua.org)
+[![Neovim](https://img.shields.io/badge/Neovim-0.12.5+-57A143?logo=neovim&logoColor=white)](https://neovim.io)
+[![Version](https://img.shields.io/badge/config-v2.0.0-blue)](https://github.com/ThorstenRhau/neovim)
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-blue)](LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/ThorstenRhau/neovim)](https://github.com/ThorstenRhau/neovim/commits/main)
-[![Last Rewrite](https://img.shields.io/badge/last%20rewrite-Jan%202026-blue)](https://github.com/ThorstenRhau/neovim)
-[![First Commit](https://img.shields.io/badge/first%20commit-Dec%202023-gray)](https://github.com/ThorstenRhau/neovim)
+[![Last Rewrite](https://img.shields.io/badge/last%20rewrite-2026--09--12-blue)](https://github.com/ThorstenRhau/neovim)
 
-Personal config, maintained since December 2023. After 1000+ commits it was time
-for a full rewrite in January 2026.
+A small personal macOS configuration, maintained since December 2023.
+Version **v2.0.0** uses six main Lua files, two prose ftplugins, and 17 plugins.
+**Last Complete Rewrite: 2026-09-12.**
 
-The `main` branch is my daily driver. Well-tested but occasionally in flux.
+Neovim 0.12.5 is the tested baseline; subsequent compatible stable releases are
+supported. Token Ultra supplies the colors, while Neovim supplies the statusline,
+gutter, ordinary editing, and sessions.
 
-Feel free to steal anything useful.
+## Installation
 
-## Dependencies
-
-Neovim 0.12+, fzf, ripgrep, fd, git, and node.
-
-I manage all software, including LSP servers, formatters, and linters via
-[Homebrew](https://brew.sh/):
-
-```sh
-brew install basedpyright bash-language-server fd fzf git \
-  lua-language-server markdownlint-cli marksman neovim node prettier ripgrep \
-  ruff selene shellcheck shfmt stylua tombi tree-sitter-cli \
-  vscode-langservers-extracted yaml-language-server yamllint
-```
-
-`vscode-langservers-extracted` provides jsonls.
-
-## Plugin updates
-
-`nvim-pack-lock.json` is generated locally by native `vim.pack` and intentionally
-untracked. Use `<leader>l` to run `vim.pack.update()`. Each installation keeps its
-own revisions in the local lockfile, which `make smoke` uses as its dependency
-baseline. `make clean` preserves the lockfile.
-
-Token normally loads the latest tagged GitHub release through `vim.pack`. For
-local Token development, start Neovim with `TOKEN_DEV=1 nvim`; this prepends
-`/Users/thorre/github/token` to `runtimepath` without changing the managed
-package or `nvim-pack-lock.json`.
-
-## Parser maintenance
-
-Startup uses installed parsers without downloading them. Install the current set
-explicitly with this command, then reopen buffers to activate newly installed parsers:
-
-```vim
-:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua make markdown markdown_inline python query regex toml vim vimdoc yaml
-```
-
-The `PackChanged` hook retains `:TSUpdate` when nvim-treesitter changes, as
-[upstream recommends](https://github.com/nvim-treesitter/nvim-treesitter#installation).
-
-## Editing and pickers
-
-Oil is the file explorer: `-` and `<leader>e` open the parent directory in a
-floating view. Native filetype indentation replaces the language matrix and
-Treesitter indentation. Loose TypeScript, TSX, and Lua files now use the global
-four-space fallback; EditorConfig still takes precedence. Markdown list editing
-is unchanged in the checked examples. Makefile recipes use tabs. Prose settings
-live in `after/ftplugin/` and are undone in every window displaying the buffer
-when the filetype changes.
-
-Use Escape or Ctrl-[ to leave Insert mode; `jk` and `jj` are literal text.
-Tab retains Blink completion acceptance, snippet navigation, and Tabout fallback.
-Buffer and diagnostic bracket navigation (`[b`/`]b`, `[d`/`]d`, and their
-uppercase variants) uses Neovim defaults. MiniBracketed supplies additional
-targets, and MiniClue retains its bracket navigation submodes.
-
-`<leader>bo` deletes other listed buffers while preserving the current buffer,
-its unsaved edits, and window layout. Modified targets use MiniBufremove's
-confirmation; declining stops the remaining deletions. Earlier deletions are
-not rolled back. Bundled gzip, tar, and zip support and `:Tutor` are available.
-
-Go, Rust, and Swift retain native filetype detection and syntax highlighting for
-occasional code review. Their Tree-sitter parsers, language servers, and external
-formatters are not configured; file search and Git tools remain available.
-
-| Binding | Picker |
-| --- | --- |
-| `<leader><space>` | Files |
-| `<leader>ff` | Find files (alias) |
-| `<leader>sg` | Live grep |
-| `<leader>fb` | Buffers |
-| `<leader>fo` | Recent files |
-| `<leader>sp` | Builtin picker |
-| `<leader>sd` | Document diagnostics |
-| `<leader>sD` | Workspace diagnostics |
-| `gd` | Definitions |
-| `<leader>cR` | References |
-| `<leader>ca` | Code actions (normal and visual) |
-| `<leader>ss` | Document symbols |
-| `<leader>gs` | Git status |
-
-The four LSP pickers are buffer-local on attach. There is no bare `gr` mapping;
-the [native `gr…` mappings](https://neovim.io/doc/user/lsp/#lsp-defaults) remain
-available. Other pickers are accessible through `<leader>sp` or `:FzfLua`.
-Messages and the command line use Neovim's default UI, with native LSP progress.
-Use `:messages` for message history.
-
-## LSP configuration
-
-The eight enabled servers inherit native configurations from
-[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
-The local `nvim-pack-lock.json` records the installed revision.
-Local overrides retain PATH-based commands, filetype restrictions, Blink
-capabilities, schemas, and language preferences.
-`<leader>tL` still toggles LSP and automatic linting together.
-Document highlighting has one set of handlers per buffer, retained until its
-last supporting client detaches. Bash workspace scanning inherits nvim-lspconfig's
-nonrecursive default, or its `GLOB_PATTERN` environment override.
-
-Accepted upstream differences:
-
-- Basedpyright prefers `pyrightconfig.json`, supplies open-file diagnostics,
-  automatic search paths, and disables tagged hints. Lua prefers Lua/Emmy config
-  markers over formatter/linter markers and enables hints and code lenses.
-- Upstream adds JSON and YAML formatting, disabled Red Hat telemetry, and server
-  helper commands. Existing explicit settings remain, including basedpyright
-  standard checking, Ruff import ownership and hover suppression, and Tombi
-  marker coverage.
-
-## Validation
-
-Run `make check` for Lua lint and formatting, `make smoke` for offline startup,
-and `git diff --check` for whitespace. Pre-commit remains unchanged.
-
-`make smoke` requires macOS `sandbox-exec`. Before startup it verifies every
-locked plugin's local revision and tracked files, failing with installation
-instructions rather than repairing dependencies. It copies configuration,
-plugins, and installed parsers into disposable XDG directories. Internet access
-is blocked for Neovim and its children; local Unix sockets support fzf-lua.
-It checks eager setup, the colorscheme, eight enabled LSP configurations, removed
-web and Typst tooling, filetypes, cleanup across windows, native mappings, and
-Makefile tab insertion with and without this repository's EditorConfig, with a
-45-second startup timeout. It disables servers and linters
-before opening buffers. Missing parsers are skipped gracefully; install them
-explicitly using the command above.
-
-Additional smoke cases cover deleting other buffers without unloading the
-current buffer, declining a modified target, simulated multi-client highlight
-attachment/detachment, literal escape chords, native bracket navigation, inherited
-Bash scanning, and reading synthetic gzip/tar/zip fixtures. All fixtures and
-runtime writes stay inside the disposable directories.
-
-Smoke does not prove live server behavior or visual appearance. For LSP changes,
-check roots, actual attachment, capabilities, hover ownership, and both toggle
-directions separately. For indentation changes, compare newline insertion, `o`,
-and `==` with and without EditorConfig. Check picker/Oil navigation and native
-message/progress rendering interactively.
-Check Tab and Shift-Tab with a completion menu, active snippets, closing
-delimiters, and absent parsers, plus MiniClue's bracket submodes, in a disposable
-interactive session. Simulated LSP lifecycle checks do not establish live server
-behavior.
-
-## Cloning the config to your machine
+Clone into an unused configuration directory:
 
 ```sh
 git clone --depth=1 https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 ```
 
-## Thanks
+Install tools with [Homebrew](https://brew.sh/):
 
-Big thanks to the Neovim community. Plugin authors, core contributors, and
-everyone sharing information and ideas. The ecosystem is what makes Neovim fun
-to use for me.
+```sh
+brew install neovim git fzf fd ripgrep node tree-sitter-cli \
+  basedpyright bash-language-server lua-language-server marksman \
+  vscode-langservers-extracted yaml-language-server \
+  prettier ruff shfmt stylua tombi \
+  shellcheck selene markdownlint-cli yamllint
+```
+
+Parser compilation needs Xcode Command Line Tools (`xcode-select --install`) and
+Tree-sitter CLI 0.26.1 or newer. Sidekick expects the existing authenticated
+Codex CLI on PATH. No tmux, icon plugin, or Rust toolchain is required.
+
+Start `nvim` to install packages with native `vim.pack`. Then install parsers
+explicitly, wait for completion, and reopen buffers:
+
+```vim
+:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua luadoc luap make markdown markdown_inline python query regex toml vim vimdoc yaml
+```
+
+Supported filetypes use Tree-sitter highlighting and folds. Missing required
+parsers produce errors; other filetypes retain native syntax behavior.
+Indentation follows native filetype rules, with a two-space fallback and
+EditorConfig taking precedence. Makefile recipes use literal tabs.
+Markdown and commit messages wrap and enable English spelling; native commit
+handling sets a 72-column text width.
+
+## Configuration and packages
+
+`init.lua` loads five modules in order:
+
+| Module | Responsibility |
+| --- | --- |
+| `lua/options.lua` | Meaningful native option overrides |
+| `lua/plugins.lua` | Package declarations, update hook, and short setups |
+| `lua/keymaps.lua` | Global mappings and MiniClue |
+| `lua/lsp.lua` | Language servers, diagnostics, and LSP mappings |
+| `lua/autocmds.lua` | Editor events, Tree-sitter, linting, and sessions |
+
+The 17 plugins are Token, blink.cmp, friendly-snippets, nvim-lspconfig,
+SchemaStore, lazydev, nvim-treesitter, fzf-lua, Oil, Gitsigns, Neogit, Conform,
+nvim-lint, blink.indent, mini.splitjoin, mini.clue, and Sidekick.
+All are configured during startup.
+
+Token follows tagged releases, Blink follows stable 1.x, and Tree-sitter follows
+`main`. Other plugins follow their default branches. To review and apply updates:
+
+```vim
+:lua vim.pack.update()
+```
+
+Write the native confirmation buffer to apply updates, then restart Neovim.
+The Tree-sitter package update hook runs `:TSUpdate`; parser installation remains
+explicit. `nvim-pack-lock.json` records local revisions and stays untracked.
+Removed package declarations do not uninstall local packages or parsers.
+
+For local Token development, use `TOKEN_DEV=1 nvim`. This loads
+`/Users/thorre/github/token` instead of declaring the managed Token package.
+
+## Language tools
+
+| Filetype | LSP | Manual formatter | External lint after save |
+| --- | --- | --- | --- |
+| Bash/sh | bashls | shfmt | ShellCheck |
+| Python | basedpyright, ruff | ruff_format | None |
+| Lua | lua_ls with lazydev | stylua | Selene |
+| Markdown | marksman | prettier | markdownlint |
+| JSON/JSONC | jsonls with SchemaStore | prettier | None |
+| YAML and native YAML variants | yamlls with SchemaStore | prettier | yamllint |
+| TOML | tombi | tombi | None |
+| Git commit | None | Native text wrapping | None |
+| Makefile | None | Native indentation | None |
+
+Servers inherit commands, roots, and filetypes from nvim-lspconfig.
+BasedPyright retains standard type checking and owns Python hover. Ruff supplies
+lint diagnostics, fixes, imports, and formatting. BashLS's embedded ShellCheck
+is disabled so ShellCheck runs only after saves. Linters use their default rules
+or project configuration.
+
+`<leader>cf` formats the whole buffer asynchronously, with LSP fallback when no
+external formatter is configured. Saving never triggers formatting. Diagnostics
+use native signs and underlines, with virtual lines on the current line.
+Workspace diagnostic pickers show results already known to Neovim.
+
+Blink uses its standard Super-Tab preset and native snippets with
+friendly-snippets. Tab accepts completion and advances snippet placeholders;
+Shift-Tab moves backward. Completion stays hidden inside snippets. Command-line
+completion is Tab-triggered, with Tab and Shift-Tab cycling candidates. Closing
+delimiters are ordinary input; no pair-navigation mapping is configured.
+
+## Important mappings
+
+Space is the leader. MiniClue describes the leader groups and native `g`, `z`,
+bracket, and window commands.
+
+| Mapping | Action |
+| --- | --- |
+| `<leader>ff` / `<leader>fb` / `<leader>fo` | Files / buffers / recent files |
+| `<leader>fs` | Live workspace symbols, buffer-local on LSP attach |
+| `<leader>sg` / `<leader>sh` | Live grep / help |
+| `<leader>sd` / `<leader>sD` | Document / workspace diagnostics |
+| `gd` / `grr` / `gO` | Definitions / references / document symbols, buffer-local |
+| `<leader>cf` / `<leader>cd` | Format whole buffer / diagnostic float |
+| `<leader>gg` / `<leader>gl` | Neogit status / log |
+| `[h` / `]h` | Previous / next staged or unstaged hunk, buffer-local |
+| `<leader>gp` / `<leader>gb` | Preview hunk / blame line, buffer-local |
+| `<leader>aa` | Toggle or focus Codex |
+| `<leader>af` | Send current file reference to Codex |
+| `<leader>at` | Send position to Codex; visual mode sends selected text |
+| `<leader>ad` | Send current-buffer diagnostics to Codex |
+| `<leader>ts` | Toggle spelling in the current window |
+| `<leader>S` | Restore last session |
+| `-` | Open Oil in the current window |
+| `gS` | Split/join arguments |
+
+Files and grep include hidden files and follow symlinks while retaining ordinary
+ignore rules. Oil shows hidden files, uses default confirmation, and sends deleted
+files to trash. Neogit is the primary interface for Git actions.
+
+Use native `K`, `gra`, `grn`, `gri`, `grt`, insert-mode `<C-s>`, buffer/diagnostic/
+quickfix brackets, `<C-w>`, `%`, and text objects. Native `[c`/`]c` navigate diffs;
+`gj`/`gk` move through screen lines; `<C-l>` clears search highlighting.
+
+## Last session
+
+Interactive exit saves one global `last-session.vim` in Neovim's state directory.
+`<leader>S` restores files, splits, tabs, and working directory. Restoration is
+manual; a missing session produces the native source-file error. The last
+interactive instance to exit wins. Headless startup does not overwrite it.
+
+Terminal processes and unsaved buffer contents are not restored. Old named
+sessions remain on disk and are not imported.
+
+## Validation
+
+```sh
+make check
+make startup
+```
+
+`make check` is the default target and runs Selene plus StyLua's formatting check.
+`make startup` checks the installed configuration and dependencies; it is neither
+isolated nor guaranteed offline. Neither command establishes interactive behavior.
+Check completion, live language servers, pickers, Git/Oil, Codex, and session
+restoration in an interactive instance after relevant changes.
+
+`make lint` runs Selene only; `make format` explicitly rewrites Lua. Optionally
+run `make install-hooks` to enable the pre-commit hook, which invokes `make check`.

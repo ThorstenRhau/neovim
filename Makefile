@@ -1,46 +1,19 @@
-SHELL            := /usr/bin/env bash
-ROOT             := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-STYLUAC          := $(ROOT)/.stylua.toml
-SELENEC          := $(ROOT)/selene.toml
-CONFIG_PATHS     := "$(ROOT)/init.lua" "$(ROOT)/lua" "$(ROOT)/after" "$(ROOT)/scripts"
+.DEFAULT_GOAL := check
+CONFIG_PATHS := init.lua lua after
 
-.PHONY: all check smoke clean format lint install-hooks help
+.PHONY: check lint format startup install-hooks
 
-all: format lint
-
-# Verify formatting and lint (used by pre-commit hook)
 check: lint
-	@stylua --check --config-path "$(STYLUAC)" $(CONFIG_PATHS)
+	stylua --check $(CONFIG_PATHS)
 
-smoke:
-	@bash "$(ROOT)/scripts/smoke.sh"
-
-# Install git hooks
-install-hooks:
-	@git config core.hooksPath .githooks
-
-# Format all Lua files according to .stylua.toml
-format:
-	@stylua --config-path "$(STYLUAC)" $(CONFIG_PATHS)
-
-# Lint all Lua files
 lint:
-	@selene --config "$(SELENEC)" $(CONFIG_PATHS)
+	selene $(CONFIG_PATHS)
 
-# Clean Neovim cache, state, and data directories
-clean:
-	@rm -rf "$(HOME)/.cache/nvim"
-	@rm -rf "$(HOME)/.local/state/nvim"
-	@rm -rf "$(HOME)/.local/share/nvim"
-	@echo "Cleaned Neovim cache, state, and data directories"
+format:
+	stylua $(CONFIG_PATHS)
 
-# Display available targets
-help:
-	@echo "Available targets:"
-	@echo "  all           - Format and lint"
-	@echo "  check         - Verify formatting and lint (pre-commit)"
-	@echo "  smoke         - Offline startup check in disposable directories (macOS)"
-	@echo "  format        - Format Lua files with stylua"
-	@echo "  lint          - Lint Lua files with selene"
-	@echo "  clean         - Remove Neovim cache/state/data"
-	@echo "  install-hooks - Enable git pre-commit hook"
+startup:
+	nvim --headless -i NONE -n '+lua if vim.v.errmsg ~= "" then vim.cmd.cquit() end' +qa
+
+install-hooks:
+	git config core.hooksPath .githooks
