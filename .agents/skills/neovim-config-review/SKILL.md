@@ -19,25 +19,35 @@ limits the review to that area and its relevant dependencies.
 
 - Inspect Git status first and preserve unrelated worktree changes.
 - For a full audit, inspect `AGENTS.md`, `init.lua`, `lua/config/`,
-  `lua/plugins/`, `after/ftplugin/`, `Makefile`, `README.md`,
-  `nvim-pack-lock.json`, and the StyLua and Selene configuration.
-- Account for every plugin declared in `lua/config/pack.lua`. For each plugin
-  with local options, globals, mappings, commands, or load-order requirements,
-  verify the configured API against current documentation. Mark declared-only
-  plugins and unavailable documentation explicitly in the coverage list.
-- Prefer current Neovim `:help`, official plugin documentation, and Context7.
-  Do not use memory alone for version-sensitive claims.
+  `lua/plugins/`, `after/ftplugin/`, `Makefile`, `scripts/smoke.sh`,
+  `scripts/smoke.lua`, `README.md`, `nvim-pack-lock.json`, `.editorconfig`,
+  and the StyLua and Selene configuration.
+- Record `nvim --version` and use `nvim-pack-lock.json` as the plugin revision
+  baseline. Note local installation drift that affects runtime verification.
+- Account for every in-scope plugin declared in `lua/config/pack.lua`. For each
+  plugin with local options, globals, mappings, commands, or load-order
+  requirements, verify the configured API against documentation for the
+  reviewed revision. Mark declared-only plugins and unavailable documentation
+  explicitly in the coverage list.
+- Prefer Neovim `:help` for the installed version and official plugin
+  documentation at the locked revision. When consulting current upstream docs
+  or Context7, confirm they apply to the reviewed versions. Distinguish newer
+  upstream changes from defects in the locked configuration.
 
 ## Checks
 
 - Run `make check` when its tools are available. Separate tool-availability
   failures from repository findings.
 - Check startup and load order, plugin declarations and setup, keymap
-  descriptions and scope, formatter/linter wiring, stale references, and
+  descriptions and scope, LSP and formatter/linter wiring, stale references, and
   Neovim 0.12 API usage.
-- When practical, run a headless startup smoke test without installing or
-  updating plugins or touching normal Neovim cache, state, or data. Otherwise
-  report the gap.
+- Check buffer/window and filetype transitions for leaked options, mappings,
+  autocmds, and parser state, including chainable `b:undo_ftplugin` cleanup.
+  Verify native indentation with EditorConfig precedence.
+- Use `make smoke` for offline startup and filetype checks in disposable XDG
+  directories. Inspect its scripts to understand the coverage. If the required
+  macOS tooling or locally installed locked dependencies are unavailable,
+  report the verification gap without installing, updating, or repairing them.
 - Report only reproducible findings. Do not infer a defect from an undocumented
   assumption.
 
@@ -52,7 +62,9 @@ limits the review to that area and its relevant dependencies.
 
 - Order findings by severity. Give each finding a `path:line`, observed and
   expected behavior, impact, and minimal fix direction.
-- List validation commands and results, plugin documentation checked, unchecked
-  coverage, and other verification gaps.
+- List the Neovim version, validation commands and results, plugin documentation
+  sources and revisions checked, unchecked coverage, and other verification
+  gaps. Distinguish smoke coverage from live LSP and interactive editing checks;
+  report the latter as unverified unless separately exercised.
 - If there are no verified findings, say so directly. Do not claim a full audit
   when required coverage is incomplete.
