@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp_attach', { clear = true }),
   callback = function(event)
     local map = function(lhs, rhs, desc)
-      vim.keymap.set('n', lhs, rhs, { buffer = event.buf, desc = desc })
+      vim.keymap.set('n', lhs, rhs, { buf = event.buf, desc = desc })
     end
     map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Definitions')
     map('grr', '<cmd>FzfLua lsp_references<cr>', 'References')

@@ -71,7 +71,7 @@ require('blink.cmp').setup({
 require('fzf-lua').setup({
   'fzf-native',
   defaults = { file_icons = false },
-  files = { hidden = true, follow = true },
+  files = { follow = true },
   grep = { hidden = true, follow = true },
   oldfiles = { include_current_session = true },
 })
@@ -88,13 +88,13 @@ gitsigns.setup({
     vim.keymap.set('n', '[h', function()
       --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('prev', { target = 'all' })
-    end, { buffer = buf, desc = 'Previous hunk' })
+    end, { buf = buf, desc = 'Previous hunk' })
     vim.keymap.set('n', ']h', function()
       --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('next', { target = 'all' })
-    end, { buffer = buf, desc = 'Next hunk' })
-    vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buffer = buf, desc = 'Preview hunk' })
-    vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buffer = buf, desc = 'Blame line' })
+    end, { buf = buf, desc = 'Next hunk' })
+    vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buf = buf, desc = 'Preview hunk' })
+    vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buf = buf, desc = 'Blame line' })
   end,
 })
 require('neogit').setup({

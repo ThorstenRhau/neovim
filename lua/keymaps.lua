@@ -1,8 +1,6 @@
 local map = vim.keymap.set
 
-map('n', '<leader>l', function()
-  vim.pack.update()
-end, { desc = 'Update plugins' })
+map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 
 map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Files' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Files' })
@@ -18,7 +16,7 @@ end, { desc = 'Format buffer' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Diagnostic float' })
 map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Neogit status' })
 map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Neogit log' })
-map('n', '<leader>o', '<cmd>silent !open %:S<cr>', { desc = 'Open file externally' })
+map('n', '<leader>o', '<cmd>silent !open %:p:S<cr>', { desc = 'Open file externally' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
 map('n', '<leader>ts', function()
   vim.wo[0][0].spell = not vim.wo.spell

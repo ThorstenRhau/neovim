@@ -12,7 +12,7 @@ Files reopen at their last cursor position, except commit messages, rebase
 instructions, and help buffers.
 
 `<leader>o` opens the current file in its default macOS application, including
-filenames containing spaces or quotes.
+filenames containing spaces or quotes, or beginning with a hyphen.
 
 ## Installation
 
