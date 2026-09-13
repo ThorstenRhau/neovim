@@ -144,71 +144,7 @@ require('blink.indent').setup({
 require('mini.icons').setup()
 require('mini.icons').mock_nvim_web_devicons()
 
-local statusline = require('mini.statusline')
-
-local diagnostic_signs = {
-  ERROR = '%$DiagnosticError$✕',
-  WARN = '%$DiagnosticWarn$▲',
-  INFO = '%$DiagnosticInfo$●',
-  HINT = '%$DiagnosticHint$◆',
-}
-
-local function statusline_filename()
-  if vim.bo.buftype == 'terminal' then
-    return '%t'
-  end
-
-  local path = vim.api.nvim_buf_get_name(0)
-  if path == '' then
-    return '%t%m%r'
-  end
-
-  local parent = vim.fn.fnamemodify(path, ':h:t'):gsub('%%', '%%%%')
-  return parent .. '/%t%m%r'
-end
-
-statusline.setup({
-  content = {
-    active = function()
-      local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-      local logo = ''
-      local git = statusline.section_git({ icon = '', trunc_width = 40 })
-      local diff = statusline.is_truncated(75) and '' or vim.b.gitsigns_status or ''
-      local diagnostics = vim.trim(statusline.section_diagnostics({
-        icon = '',
-        trunc_width = 75,
-        signs = diagnostic_signs,
-      }))
-      if diagnostics ~= '' then
-        diagnostics = diagnostics .. '%$MiniStatuslineDevinfo$'
-      end
-      local lsp = statusline.section_lsp({ icon = 'lsp', trunc_width = 75 })
-      local devinfo = table.concat(
-        vim.tbl_filter(function(section)
-          return section ~= ''
-        end, { git, diff, diagnostics, lsp }),
-        ' · '
-      )
-      local filename = statusline_filename()
-      local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
-      local search = statusline.section_searchcount({ trunc_width = 75 })
-
-      -- Custom location section with lualine-style formatting
-      local location = statusline.is_truncated(75) and '%l│%2v' or '%P %l│%2v'
-
-      return statusline.combine_groups({
-        { hl = 'MiniIconsGreen', strings = { logo } },
-        { hl = mode_hl, strings = { mode } },
-        { hl = 'MiniStatuslineDevinfo', strings = { devinfo } },
-        '%<',
-        { hl = 'MiniStatuslineFilename', strings = { filename } },
-        '%=',
-        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-        { hl = mode_hl, strings = { search, location } },
-      })
-    end,
-  },
-})
+require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
 require('sidekick').setup({
