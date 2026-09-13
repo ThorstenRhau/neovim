@@ -54,11 +54,6 @@ require('token').setup({
 })
 vim.cmd.colorscheme('token-ultra')
 
-require('nvim-treesitter-textobjects').setup({
-  select = { lookahead = false },
-  move = { set_jumps = true },
-})
-
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
   completion = { trigger = { show_in_snippet = false } },
