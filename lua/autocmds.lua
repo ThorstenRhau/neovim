@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function(event)
     local filetype = vim.bo[event.buf].filetype
     if filetype == '' then
-      filetype = vim.filetype.match({ buf = event.buf })
+      filetype = vim.filetype.match({ buf = event.buf }) or ''
     end
     if vim.bo[event.buf].buftype ~= '' or vim.list_contains({ 'gitcommit', 'gitrebase', 'help' }, filetype) then
       return
