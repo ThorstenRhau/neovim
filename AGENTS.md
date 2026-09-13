@@ -33,7 +33,8 @@ Small personal Lua configuration for Neovim 0.12.5 and compatible stable release
   mapping scope, filetype cleanup, and native indentation when relevant.
 - Reviews are read-only and findings-first. Report reproducible problems and
   distinguish configuration defects from missing tools or installation drift.
-- Keep changes small and update the README when user-facing behavior changes.
-  Do not introduce automatic tool installation or runtime cleanup.
+- Keep changes small. Do not add information to `README.md` unless the user
+  specifically asks for it. Do not introduce automatic tool installation or
+  runtime cleanup.
 - `make clean` is explicitly destructive. Test it only with disposable
   configuration and XDG directories, never against the live installation.
