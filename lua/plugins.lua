@@ -125,6 +125,12 @@ require('lint').linters_by_ft = {
 }
 
 require('blink.indent').setup({
+  dedent_scoped_filetypes = {
+    include_defaults = true,
+    'yaml.docker-compose',
+    'yaml.gitlab',
+    'yaml.helm-values',
+  },
   blocked = { filetypes = { include_defaults = true, 'oil' } },
   static = {
     char = '│',
