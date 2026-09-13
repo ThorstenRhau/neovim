@@ -98,6 +98,7 @@ gitsigns.setup({
     vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buf = buf, desc = 'Blame line' })
   end,
 })
+
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
@@ -116,6 +117,7 @@ require('conform').setup({
     toml = { 'tombi' },
   },
 })
+
 require('lint').linters_by_ft = {
   lua = { 'selene' },
   markdown = { 'markdownlint' },
@@ -142,12 +144,14 @@ require('blink.indent').setup({
     goto_bottom = '',
   },
 })
+
 require('mini.icons').setup()
 require('mini.icons').mock_nvim_web_devicons()
 
 require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
+
 require('sidekick').setup({
   nes = { enabled = false },
   cli = { picker = 'fzf-lua' },
