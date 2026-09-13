@@ -17,6 +17,7 @@ local packages = {
   { src = 'https://github.com/b0o/schemastore.nvim' },
   { src = 'https://github.com/folke/lazydev.nvim' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   { src = 'https://github.com/ibhagwan/fzf-lua' },
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
@@ -52,6 +53,11 @@ require('token').setup({
   },
 })
 vim.cmd.colorscheme('token-ultra')
+
+require('nvim-treesitter-textobjects').setup({
+  select = { lookahead = false },
+  move = { set_jumps = true },
+})
 
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },

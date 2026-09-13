@@ -6,6 +6,66 @@ map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down by display line' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Up by display line' })
 
+local ts_select = require('nvim-treesitter-textobjects.select')
+-- Select around a function.
+map({ 'x', 'o' }, 'af', function()
+  ts_select.select_textobject('@function.outer', 'textobjects')
+end, { desc = 'Around function' })
+-- Select inside a function.
+map({ 'x', 'o' }, 'if', function()
+  ts_select.select_textobject('@function.inner', 'textobjects')
+end, { desc = 'Inside function' })
+-- Select around a class.
+map({ 'x', 'o' }, 'ac', function()
+  ts_select.select_textobject('@class.outer', 'textobjects')
+end, { desc = 'Around class' })
+-- Select inside a class.
+map({ 'x', 'o' }, 'ic', function()
+  ts_select.select_textobject('@class.inner', 'textobjects')
+end, { desc = 'Inside class' })
+-- Select around a parameter.
+map({ 'x', 'o' }, 'aa', function()
+  ts_select.select_textobject('@parameter.outer', 'textobjects')
+end, { desc = 'Around parameter' })
+-- Select inside a parameter.
+map({ 'x', 'o' }, 'ia', function()
+  ts_select.select_textobject('@parameter.inner', 'textobjects')
+end, { desc = 'Inside parameter' })
+
+local ts_move = require('nvim-treesitter-textobjects.move')
+-- Jump to the next function start.
+map({ 'n', 'x', 'o' }, '<LocalLeader>fj', function()
+  ts_move.goto_next_start('@function.outer', 'textobjects')
+end, { desc = 'Next function start' })
+-- Jump to the previous function start.
+map({ 'n', 'x', 'o' }, '<LocalLeader>fk', function()
+  ts_move.goto_previous_start('@function.outer', 'textobjects')
+end, { desc = 'Previous function start' })
+-- Jump to the next function end.
+map({ 'n', 'x', 'o' }, '<LocalLeader>fJ', function()
+  ts_move.goto_next_end('@function.outer', 'textobjects')
+end, { desc = 'Next function end' })
+-- Jump to the previous function end.
+map({ 'n', 'x', 'o' }, '<LocalLeader>fK', function()
+  ts_move.goto_previous_end('@function.outer', 'textobjects')
+end, { desc = 'Previous function end' })
+-- Jump to the next class start.
+map({ 'n', 'x', 'o' }, '<LocalLeader>cj', function()
+  ts_move.goto_next_start('@class.outer', 'textobjects')
+end, { desc = 'Next class start' })
+-- Jump to the previous class start.
+map({ 'n', 'x', 'o' }, '<LocalLeader>ck', function()
+  ts_move.goto_previous_start('@class.outer', 'textobjects')
+end, { desc = 'Previous class start' })
+-- Jump to the next class end.
+map({ 'n', 'x', 'o' }, '<LocalLeader>cJ', function()
+  ts_move.goto_next_end('@class.outer', 'textobjects')
+end, { desc = 'Next class end' })
+-- Jump to the previous class end.
+map({ 'n', 'x', 'o' }, '<LocalLeader>cK', function()
+  ts_move.goto_previous_end('@class.outer', 'textobjects')
+end, { desc = 'Previous class end' })
+
 map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Files' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Files' })
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Buffers' })
@@ -47,6 +107,7 @@ local clue = require('mini.clue')
 clue.setup({
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },
+    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>' },
     { mode = { 'n', 'x' }, keys = 'g' },
     { mode = { 'n', 'x' }, keys = 'z' },
     { mode = 'n', keys = '[' },
@@ -55,6 +116,8 @@ clue.setup({
   },
   clues = {
     { mode = { 'n', 'x' }, keys = '<leader>a', desc = 'AI' },
+    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>c', desc = 'Classes' },
+    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>f', desc = 'Functions' },
     { mode = 'n', keys = '<leader>c', desc = 'Code' },
     { mode = 'n', keys = '<leader>f', desc = 'Files' },
     { mode = 'n', keys = '<leader>g', desc = 'Git' },
