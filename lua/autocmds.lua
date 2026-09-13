@@ -73,6 +73,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   end,
 })
 
+-- Manual restore previous session
 local session = vim.fn.stdpath('state') .. '/last-session.vim'
 vim.keymap.set('n', '<leader>S', function()
   vim.cmd('source ' .. vim.fn.fnameescape(session))
