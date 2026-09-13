@@ -10,6 +10,13 @@ vim.o.showmode = false
 vim.o.scrolloff = 10
 vim.o.signcolumn = 'auto:2'
 
+vim.o.guicursor = table.concat({
+  'n-v-c-sm:block-Cursor',
+  'i-ci-ve:ver25-Cursor',
+  'r-cr-o:hor20-Cursor',
+  'a:blinkwait500-blinkoff500-blinkon500',
+}, ',')
+
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.splitbelow = true
