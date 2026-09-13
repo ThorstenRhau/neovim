@@ -8,16 +8,19 @@ vim.lsp.config('basedpyright', {
     },
   },
 })
+
 vim.lsp.config('ruff', {
   on_attach = function(client)
     client.server_capabilities.hoverProvider = false
   end,
 })
+
 vim.lsp.config('jsonls', {
   settings = {
     json = { schemas = require('schemastore').json.schemas(), validate = { enable = true } },
   },
 })
+
 vim.lsp.config('yamlls', {
   settings = {
     yaml = {
@@ -26,6 +29,7 @@ vim.lsp.config('yamlls', {
     },
   },
 })
+
 vim.lsp.enable({
   'bashls',
   'basedpyright',
