@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 
+map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlights' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 
 map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Files' })
