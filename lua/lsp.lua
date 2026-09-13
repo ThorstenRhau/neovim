@@ -50,7 +50,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', lhs, rhs, { buf = event.buf, desc = desc })
     end
     map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Definitions')
+    map('gri', '<cmd>FzfLua lsp_implementations<cr>', 'Implementations')
     map('grr', '<cmd>FzfLua lsp_references<cr>', 'References')
+    map('grt', '<cmd>FzfLua lsp_typedefs<cr>', 'Type definitions')
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
     map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
     map('<leader>fs', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
