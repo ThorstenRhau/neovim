@@ -8,6 +8,8 @@
 A small personal macOS configuration for Neovim 0.12.5 and compatible stable
 releases.
 
+MiniIcons also provides nvim-web-devicons compatibility for Gitsigns' diff file panel.
+
 ## Installation
 
 ```sh

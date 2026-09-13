@@ -142,6 +142,7 @@ require('blink.indent').setup({
   },
 })
 require('mini.icons').setup()
+require('mini.icons').mock_nvim_web_devicons()
 
 local statusline = require('mini.statusline')
 
