@@ -1,14 +1,13 @@
 # My Neovim Configuration
 
 [![Neovim](https://img.shields.io/badge/Neovim-0.12.5+-57A143?logo=neovim&logoColor=white)](https://neovim.io)
-[![Version](https://img.shields.io/badge/config-v2.0.1-blue)](https://github.com/ThorstenRhau/neovim)
+[![Lua](https://img.shields.io/badge/Lua-2C2D72?logo=lua&logoColor=white)](https://www.lua.org)
 [![License](https://img.shields.io/badge/License-BSD--3--Clause-blue)](LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/ThorstenRhau/neovim)](https://github.com/ThorstenRhau/neovim/commits/main)
 [![Last Rewrite](https://img.shields.io/badge/last%20rewrite-2026--09--12-blue)](https://github.com/ThorstenRhau/neovim)
+[![First Commit](https://img.shields.io/badge/first%20commit-Dec%202023-gray)](https://github.com/ThorstenRhau/neovim)
 
-A small personal macOS configuration for Neovim 0.12.5 and compatible stable
-releases.
-
-MiniIcons also provides nvim-web-devicons compatibility for Gitsigns' diff file panel.
+My personal macOS configuration for Neovim 0.12.5.
 
 ## Installation
 
@@ -26,9 +25,9 @@ brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
   shellcheck selene markdownlint-cli yamllint
 ```
 
-Parser compilation needs Xcode Command Line Tools (`xcode-select --install`) and
-Tree-sitter CLI 0.26.1 or newer. Sidekick expects an authenticated Codex CLI on
-`PATH`.
+Tree-sitter parser compilation needs Xcode Command Line Tools
+(`xcode-select --install`) and Tree-sitter CLI 0.26.1 or newer. Sidekick expects
+an authenticated Codex CLI on `PATH`.
 
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 
