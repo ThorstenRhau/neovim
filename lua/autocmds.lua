@@ -1,5 +1,6 @@
 local group = vim.api.nvim_create_augroup('editor', { clear = true })
 
+-- Highlight yanked text briefly.
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
   callback = function()
@@ -7,6 +8,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Restore the cursor to its last position in regular buffers.
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = group,
   callback = function(event)
@@ -24,6 +26,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- Enable Tree-sitter and expression folding for supported filetypes.
 vim.api.nvim_create_autocmd('FileType', {
   group = group,
   pattern = {
@@ -62,6 +65,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- Run configured linters after writing a buffer.
 vim.api.nvim_create_autocmd('BufWritePost', {
   group = group,
   callback = function()
@@ -74,6 +78,7 @@ vim.keymap.set('n', '<leader>S', function()
   vim.cmd('source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restore session' })
 
+-- Save the interactive session before exiting Neovim.
 vim.api.nvim_create_autocmd('VimLeavePre', {
   group = group,
   callback = function()
