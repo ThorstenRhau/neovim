@@ -70,7 +70,7 @@ require('blink.cmp').setup({
 
 require('fzf-lua').setup({
   'fzf-native',
-  defaults = { file_icons = false },
+  defaults = { git_icons = true },
   files = { follow = true },
   grep = { hidden = true, follow = true },
   oldfiles = { include_current_session = true },
