@@ -26,7 +26,16 @@ vim.lsp.config('yamlls', {
     },
   },
 })
-vim.lsp.enable({ 'bashls', 'basedpyright', 'ruff', 'lua_ls', 'marksman', 'jsonls', 'yamlls', 'tombi' })
+vim.lsp.enable({
+  'bashls',
+  'basedpyright',
+  'ruff',
+  'lua_ls',
+  'marksman',
+  'jsonls',
+  'yamlls',
+  'tombi',
+})
 
 vim.diagnostic.config({
   severity_sort = true,
