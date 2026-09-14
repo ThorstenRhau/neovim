@@ -9,6 +9,8 @@ vim.o.ruler = false
 vim.o.showmode = false
 vim.o.scrolloff = 10
 vim.o.signcolumn = 'auto:2'
+vim.o.list = true
+vim.o.listchars = 'tab:→ ,trail:•,nbsp:+,extends:›,precedes:‹'
 
 vim.o.guicursor = table.concat({
   'n-v-c-sm:block-Cursor',
