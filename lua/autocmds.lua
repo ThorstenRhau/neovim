@@ -57,8 +57,10 @@ vim.api.nvim_create_autocmd('FileType', {
   },
   callback = function(event)
     vim.treesitter.start(event.buf)
-    vim.wo[0][0].foldmethod = 'expr'
-    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    for _, win in ipairs(vim.fn.win_findbuf(event.buf)) do
+      vim.wo[win][0].foldmethod = 'expr'
+      vim.wo[win][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end
     vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
       .. '\ncall v:lua.vim.treesitter.stop()'
       .. '|call map(win_findbuf(bufnr()), {_, win -> win_execute(win, "setlocal foldmethod< foldexpr<")})'
