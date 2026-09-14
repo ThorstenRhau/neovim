@@ -85,6 +85,9 @@ map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
 map('n', '<leader>ts', function()
   vim.wo[0][0].spell = not vim.wo.spell
 end, { desc = 'Toggle spelling' })
+map('n', '<leader>tw', function()
+  vim.wo[0][0].wrap = not vim.wo.wrap
+end, { desc = 'Toggle line wrap' })
 
 local cli = require('sidekick.cli')
 map('n', '<leader>aa', function()
