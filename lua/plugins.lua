@@ -23,7 +23,7 @@ local packages = {
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/NeogitOrg/neogit' },
   { src = 'https://github.com/stevearc/conform.nvim' },
-  { src = 'https://github.com/mfussenegger/nvim-lint' },
+  { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
   { src = 'https://github.com/saghen/blink.indent' },
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
@@ -152,7 +152,6 @@ require('blink.indent').setup({
 })
 
 require('mini.icons').setup()
-require('mini.icons').mock_nvim_web_devicons()
 
 require('mini.statusline').setup()
 
