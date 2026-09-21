@@ -24,7 +24,7 @@ local packages = {
   { src = 'https://github.com/NeogitOrg/neogit' },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
-  { src = 'https://github.com/saghen/blink.indent' },
+  { src = 'https://github.com/lukas-reineke/indent-blankline.nvim', version = vim.version.range('3.x') },
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
@@ -43,9 +43,9 @@ vim.pack.add(packages)
 require('token').setup({
   plugins = {
     blink = true,
-    blink_indent = true,
     fzf = true,
     gitsigns = true,
+    ibl = true,
     mini = true,
     neogit = true,
     oil = true,
@@ -124,30 +124,16 @@ require('lint').linters_by_ft = {
   yaml = { 'yamllint' },
 }
 
-require('blink.indent').setup({
-  dedent_scoped_filetypes = {
-    include_defaults = true,
-    'yaml.docker-compose',
-    'yaml.gitlab',
-    'yaml.helm-values',
-  },
-  blocked = { filetypes = { include_defaults = true, 'oil' } },
-  static = {
+require('ibl').setup({
+  indent = {
     char = '│',
+    tab_char = '│',
   },
   scope = {
-    char = '│',
-    highlights = { 'BlinkIndentScope' },
-    underline = {
-      enabled = true,
-      highlights = { 'BlinkIndentUnderline' },
-    },
+    show_exact_scope = true,
   },
-  mappings = {
-    object_scope = '',
-    object_scope_with_border = '',
-    goto_top = '',
-    goto_bottom = '',
+  exclude = {
+    filetypes = { 'dashboard', 'oil' },
   },
 })
 
