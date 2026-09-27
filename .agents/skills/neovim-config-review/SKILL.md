@@ -35,8 +35,8 @@ and the configuration before judging it.
    specification at <https://neovim.io/doc/user/>. Check options, mappings,
    autocmds, package loading, LSP, and Tree-sitter usage against those contracts.
    Confirm applicability with `nvim --version` and matching installed `:help` or
-   release documentation. Check option and mapping scope, filetype cleanup, and
-   native defaults. Separate current configuration defects from upgrade advice.
+   release documentation. Check option and mapping scope and native defaults.
+   Separate current configuration defects from upgrade advice.
 
 ## Evidence and report
 

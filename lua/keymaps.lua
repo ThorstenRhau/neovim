@@ -82,12 +82,8 @@ map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Neogit status' })
 map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Neogit log' })
 map('n', '<leader>o', '<cmd>silent !open %:p:S<cr>', { desc = 'Open file externally' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
-map('n', '<leader>ts', function()
-  vim.wo[0][0].spell = not vim.wo.spell
-end, { desc = 'Toggle spelling' })
-map('n', '<leader>tw', function()
-  vim.wo[0][0].wrap = not vim.wo.wrap
-end, { desc = 'Toggle line wrap' })
+map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Toggle spelling' })
+map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
 
 local cli = require('sidekick.cli')
 map('n', '<leader>aa', function()

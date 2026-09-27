@@ -35,7 +35,7 @@ releases.
   affected interactive workflows separately; report anything unverified.
 - Verify Neovim and plugin APIs against installed help/source or official
   documentation matching the local revisions. Check package load order, mapping
-  scope, filetype cleanup, and native indentation when relevant.
+  scope, and native indentation when relevant.
 - Reviews are read-only and findings-first. Report reproducible problems and
   distinguish configuration defects from missing tools or installation drift.
 - Keep changes small. Do not modify `README.md` unless the user explicitly
