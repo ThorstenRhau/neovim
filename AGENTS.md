@@ -12,7 +12,7 @@ releases.
   workflows.
 - `init.lua` sets leaders and loads `lua/options.lua`, `plugins.lua`,
   `keymaps.lua`, `lsp.lua`, and `autocmds.lua`. Keep these modules direct and
-  self-contained, without exported helpers or compatibility aliases.
+  self-contained.
 - Declare packages and the Tree-sitter update hook in `lua/plugins.lua` using
   native `vim.pack.add()`. Configure plugins eagerly during startup.
 - External language servers, formatters, and linters are Homebrew-managed; see
@@ -33,8 +33,9 @@ releases.
 - Run `make startup` against installed dependencies after changes affecting
   configuration behavior. It is neither isolated nor guaranteed offline. Verify
   affected interactive workflows separately; report anything unverified.
-- Verify Neovim and plugin APIs against installed help/source or official
-  documentation matching the local revisions. Check package load order, mapping
+- Verify Neovim and plugin APIs against installed help/source, falling back to
+  official online documentation when local information is missing or insufficient.
+  Match documentation to the local revisions. Check package load order, mapping
   scope, and native indentation when relevant.
 - Reviews are read-only and findings-first. Report reproducible problems and
   distinguish configuration defects from missing tools or installation drift.

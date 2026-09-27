@@ -18,24 +18,27 @@ and the configuration before judging it.
 1. **Simplicity first.** Prefer native behavior, direct commands, plugin defaults,
    and short configuration tables. Flag unnecessary helpers, wrappers, state,
    fallbacks, duplicate settings, and custom code that repeats built-in behavior.
-   For example, keep `<leader>o` as a direct `!open` command mapping instead of
-   a Lua function. Use Lua callbacks where the documented API or required behavior
+   Use Lua callbacks where the documented API or required behavior
    needs them. Recommend the smallest clear change that preserves the intended
    workflow and correctness; do not invent features or abstractions.
 2. **Check every in-scope plugin against its documentation.** Derive the plugin
-   list from `lua/plugins.lua`, including configuration elsewhere. Use Context7
-   when available or read official upstream documentation online. Check options,
+   list from `lua/plugins.lua`, including configuration elsewhere. Use installed
+   documentation and source first. Fall back to official upstream documentation
+   online, directly or through Context7, when local information is missing or
+   insufficient. Check options,
    functions, commands, dependencies, and setup order for deprecated, removed,
    ignored, or incorrectly used settings. Establish the reviewed revisions from
-   the local lockfile and installed sources, noting any mismatch. Compare current
-   guidance with those revisions so newer documentation does not create false
+   the local lockfile and installed sources, noting any mismatch. Match
+   guidance to those revisions so newer documentation does not create false
    findings. Do not skip plugins that use defaults; verify their setup and
    requirements too.
-3. **Check Neovim itself.** Read the current official Neovim documentation and API
-   specification at <https://neovim.io/doc/user/>. Check options, mappings,
+3. **Check Neovim itself.** Establish the installed version with `nvim --version`
+   and use matching installed `:help` and source first. Fall back to official
+   documentation at <https://neovim.io/doc/user/> or matching release documentation
+   when local information is missing or insufficient. Check options, mappings,
    autocmds, package loading, LSP, and Tree-sitter usage against those contracts.
-   Confirm applicability with `nvim --version` and matching installed `:help` or
-   release documentation. Check option and mapping scope and native defaults.
+   Confirm online guidance applies to the installed version. Check option and
+   mapping scope and native defaults.
    Separate current configuration defects from upgrade advice.
 
 ## Evidence and report
