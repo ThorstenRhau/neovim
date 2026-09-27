@@ -5,11 +5,11 @@ releases.
 
 ## Layout and conventions
 
+- Keep the configuration simple.
+- Prefer direct Neovim settings and plugin setup. Add fault handling only for
+  demonstrated problems in normal workflows.
 - Avoid defensive configuration for hypothetical scenarios outside normal
-  workflows. Add guards, fallbacks, or cleanup only for a realistic workflow or
-  demonstrated problem, not merely to follow a convention. For example, a
-  dedicated checkhealth report buffer does not need `undo_ftplugin` cleanup for
-  an artificial filetype change.
+  workflows.
 - `init.lua` sets leaders and loads `lua/options.lua`, `plugins.lua`,
   `keymaps.lua`, `lsp.lua`, and `autocmds.lua`. Keep these modules direct and
   self-contained, without exported helpers or compatibility aliases.
@@ -21,7 +21,7 @@ releases.
   `vim.pack` operations. Preserve installed packages, parsers, and user data
   except when the user explicitly invokes `make clean` for a full reset.
 - Use native filetype indentation with a two-space fallback and EditorConfig
-  precedence. Prose settings live in `after/ftplugin/`.
+  precedence.
 - Every custom keymap needs `desc`. Keep LSP and Git inspection mappings
   buffer-local and preserve native mappings outside the documented overrides.
 - Let `.stylua.toml` and `selene.toml` define style and lint policy.
@@ -30,9 +30,9 @@ releases.
 
 - Run `make check` after Lua changes and `git diff --check` before handoff.
   `make lint` checks Selene only; `make format` explicitly rewrites Lua.
-- Run `make startup` against installed dependencies. It is neither isolated nor
-  guaranteed offline. Verify live LSP, completion, pickers, and interactive
-  editing separately; report any unverified workflows.
+- Run `make startup` against installed dependencies after changes affecting
+  configuration behavior. It is neither isolated nor guaranteed offline. Verify
+  affected interactive workflows separately; report anything unverified.
 - Verify Neovim and plugin APIs against installed help/source or official
   documentation matching the local revisions. Check package load order, mapping
   scope, filetype cleanup, and native indentation when relevant.
