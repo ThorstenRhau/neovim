@@ -21,8 +21,7 @@ releases.
   `vim.pack` operations. Preserve installed packages, parsers, and user data
   except when the user explicitly invokes `make clean` for a full reset.
 - Use native filetype indentation with a two-space fallback and EditorConfig
-  precedence. Prose settings live in `after/ftplugin/` with chainable
-  `b:undo_ftplugin` cleanup.
+  precedence. Prose settings live in `after/ftplugin/`.
 - Every custom keymap needs `desc`. Keep LSP and Git inspection mappings
   buffer-local and preserve native mappings outside the documented overrides.
 - Let `.stylua.toml` and `selene.toml` define style and lint policy.
