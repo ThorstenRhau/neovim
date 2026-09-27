@@ -5,6 +5,11 @@ releases.
 
 ## Layout and conventions
 
+- Avoid defensive configuration for hypothetical scenarios outside normal
+  workflows. Add guards, fallbacks, or cleanup only for a realistic workflow or
+  demonstrated problem, not merely to follow a convention. For example, a
+  dedicated checkhealth report buffer does not need `undo_ftplugin` cleanup for
+  an artificial filetype change.
 - `init.lua` sets leaders and loads `lua/options.lua`, `plugins.lua`,
   `keymaps.lua`, `lsp.lua`, and `autocmds.lua`. Keep these modules direct and
   self-contained, without exported helpers or compatibility aliases.
