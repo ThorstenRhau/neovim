@@ -1,17 +1,19 @@
 ---
 name: neovim-config-review
 description: >-
-  Review this repository's Neovim configuration for simplicity, correct plugin
+  Reviews this repository's Neovim configuration for simplicity, correct plugin
   settings, and current Neovim API usage. Use for configuration reviews and
-  audits, not implementation requests or general Neovim advice.
+  audits, such as checking plugin options, deprecated APIs, or whether custom
+  code repeats built-in behavior. Not for implementation requests or general
+  Neovim advice.
 ---
 
 # Neovim Config Review
 
 Review without editing configuration or changing installed packages or user
 data. An unqualified request covers the whole configuration; a scoped request
-covers that area and its relevant dependencies. Read `AGENTS.md`, Git status,
-and the configuration before judging it.
+covers that area and its relevant dependencies. Follow `AGENTS.md`, then read
+Git status and the configuration before judging it.
 
 ## Priorities
 
@@ -25,13 +27,12 @@ and the configuration before judging it.
    list from `lua/plugins.lua`, including configuration elsewhere. Use installed
    documentation and source first. Fall back to official upstream documentation
    online, directly or through Context7, when local information is missing or
-   insufficient. Check options,
-   functions, commands, dependencies, and setup order for deprecated, removed,
-   ignored, or incorrectly used settings. Establish the reviewed revisions from
-   the local lockfile and installed sources, noting any mismatch. Match
-   guidance to those revisions so newer documentation does not create false
-   findings. Do not skip plugins that use defaults; verify their setup and
-   requirements too.
+   insufficient. Check options, functions, commands, dependencies, and setup
+   order for deprecated, removed, ignored, or incorrectly used settings.
+   Establish the reviewed revisions from the local lockfile and installed
+   sources, noting any mismatch. Match guidance to those revisions so newer
+   documentation does not create false findings. Do not skip plugins that use
+   defaults; verify their setup and requirements too.
 3. **Check Neovim itself.** Establish the installed version with `nvim --version`
    and use matching installed `:help` and source first. Fall back to official
    documentation at <https://neovim.io/doc/user/> or matching release documentation
