@@ -27,7 +27,7 @@ brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
 
 Tree-sitter parser compilation needs Xcode Command Line Tools
 (`xcode-select --install`) and Tree-sitter CLI 0.26.1 or newer. Sidekick expects
-an authenticated Codex CLI on `PATH`.
+an authenticated Claude Code CLI (`claude`) on `PATH`.
 
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 

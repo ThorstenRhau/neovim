@@ -33,7 +33,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'bash',
     'sh',
     'diff',
-    'gitdiff',
     'editorconfig',
     'gitconfig',
     'gitrebase',
@@ -51,9 +50,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'vim',
     'help',
     'yaml',
-    'yaml.docker-compose',
-    'yaml.gitlab',
-    'yaml.helm-values',
   },
   callback = function(event)
     vim.treesitter.start(event.buf)
