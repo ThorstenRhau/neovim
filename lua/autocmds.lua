@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('FileType', {
   group = group,
   pattern = {
-    'bash',
     'sh',
     'diff',
     'editorconfig',
@@ -48,7 +47,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'query',
     'toml',
     'vim',
-    'help',
     'yaml',
   },
   callback = function(event)
@@ -67,7 +65,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('BufWritePost', {
   group = group,
   callback = function()
-    require('lint').try_lint()
+    require('lint').try_lint(nil, { cwd = vim.fs.root(0, { 'selene.toml', '.git' }) })
   end,
 })
 
@@ -84,7 +82,6 @@ vim.api.nvim_create_autocmd('VimLeavePre', {
     if #vim.api.nvim_list_uis() == 0 then
       return
     end
-    vim.fn.mkdir(vim.fn.stdpath('state'), 'p')
     vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
   end,
 })

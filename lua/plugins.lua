@@ -96,6 +96,8 @@ gitsigns.setup({
     end, { buf = buf, desc = 'Next hunk' })
     vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buf = buf, desc = 'Preview hunk' })
     vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buf = buf, desc = 'Blame line' })
+    -- Keep mini.clue triggers ahead of these buffer-local mappings.
+    require('mini.clue').ensure_buf_triggers(buf)
   end,
 })
 
@@ -106,7 +108,6 @@ require('neogit').setup({
 
 require('conform').setup({
   formatters_by_ft = {
-    bash = { 'shfmt' },
     sh = { 'shfmt' },
     python = { 'ruff_format' },
     lua = { 'stylua' },
@@ -131,9 +132,6 @@ require('ibl').setup({
   },
   scope = {
     show_exact_scope = true,
-  },
-  exclude = {
-    filetypes = { 'dashboard', 'oil' },
   },
 })
 
