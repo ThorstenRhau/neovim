@@ -30,6 +30,7 @@ local packages = {
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
   { src = 'https://github.com/folke/sidekick.nvim' },
+  { src = 'https://github.com/coder/claudecode.nvim' },
 }
 
 if vim.env.TOKEN_DEV == '1' then
@@ -143,6 +144,12 @@ require('mini.splitjoin').setup()
 
 require('sidekick').setup({
   nes = { enabled = false },
-  cli = { picker = 'fzf-lua' },
+  cli = {
+    picker = 'fzf-lua',
+    tools = { claude = { cmd = { 'claude', '--ide' } } },
+  },
   copilot = { status = { enabled = false } },
 })
+
+-- Serves Claude Code's /ide protocol; sidekick owns the terminal.
+require('claudecode').setup({ terminal = { provider = 'none' } })
