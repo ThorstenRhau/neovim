@@ -152,4 +152,5 @@ require('sidekick').setup({
 })
 
 -- Serves Claude Code's /ide protocol; sidekick owns the terminal.
+--- @diagnostic disable-next-line: missing-fields
 require('claudecode').setup({ terminal = { provider = 'none' } })
