@@ -53,7 +53,7 @@ require('token').setup({
     sidekick = true,
   },
 })
-vim.cmd.colorscheme('token-flint')
+vim.cmd.colorscheme('token-ultra')
 
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
