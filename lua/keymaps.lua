@@ -100,7 +100,7 @@ map('x', '<leader>at', function()
   cli.send({ name = tool })
 end, { desc = 'Send selection to Claude' })
 map('n', '<leader>ad', function()
-  cli.send({ name = tool, msg = '{file}\n{diagnostics}' })
+  cli.send({ name = tool, prompt = 'diagnostics' })
 end, { desc = 'Send diagnostics to Claude' })
 
 local clue = require('mini.clue')

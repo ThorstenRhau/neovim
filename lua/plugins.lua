@@ -74,7 +74,12 @@ require('fzf-lua').setup({
   'fzf-native',
   defaults = { git_icons = true },
   files = { follow = true },
-  grep = { hidden = true, follow = true },
+  grep = {
+    hidden = true,
+    follow = true,
+    -- fzf-lua clears RIPGREP_CONFIG_PATH, so exclude .git here.
+    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
+  },
   oldfiles = { include_current_session = true },
 })
 
@@ -153,4 +158,4 @@ require('sidekick').setup({
 
 -- Serves Claude Code's /ide protocol; sidekick owns the terminal.
 --- @diagnostic disable-next-line: missing-fields
-require('claudecode').setup({ terminal = { provider = 'none' } })
+require('claudecode').setup({ log_level = 'warn', terminal = { provider = 'none' } })

@@ -1,0 +1,9 @@
+---
+# Match prettier's YAML output: one space before inline comments and no
+# document start marker.
+extends: default
+
+rules:
+  comments:
+    min-spaces-from-content: 1
+  document-start: disable
