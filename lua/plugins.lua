@@ -29,7 +29,7 @@ local packages = {
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
-  { src = 'https://github.com/ThorstenRhau/brygga.nvim' },
+  { src = 'https://github.com/ThorstenRhau/brygga.nvim', version = vim.version.range('*') },
 }
 
 if vim.env.TOKEN_DEV == '1' then
