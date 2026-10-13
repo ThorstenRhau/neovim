@@ -132,8 +132,7 @@ has changed since, review it normally.
   cleanup or repeated buffer-local autocmds. That is not a workflow here.
 - Leader keymaps that alias a native mapping, such as `<leader>ca` for `gra`:
   they are deliberate muscle memory. Mention one only if it changes behavior.
-- `{ clear = true }` in `nvim_create_augroup()`; sidekick's
-  `picker = 'fzf-lua'` and its `nes` and `copilot` opt-outs; the `active`
+- `{ clear = true }` in `nvim_create_augroup()`; the `active`
   guard in the PackChanged hook, which mirrors the `vim.pack` help example;
   and the `'textobjects'` query group argument.
 - The design in `AGENTS.md`: eager setup, Homebrew-managed tools without

@@ -29,8 +29,7 @@ local packages = {
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
-  { src = 'https://github.com/folke/sidekick.nvim' },
-  { src = 'https://github.com/coder/claudecode.nvim' },
+  { src = 'https://github.com/ThorstenRhau/brygga.nvim' },
 }
 
 if vim.env.TOKEN_DEV == '1' then
@@ -50,7 +49,6 @@ require('token').setup({
     mini = true,
     neogit = true,
     oil = true,
-    sidekick = true,
   },
 })
 vim.cmd.colorscheme('token-ultra')
@@ -147,15 +145,4 @@ require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
 
-require('sidekick').setup({
-  nes = { enabled = false },
-  cli = {
-    picker = 'fzf-lua',
-    tools = { claude = { cmd = { 'claude', '--ide' } } },
-  },
-  copilot = { status = { enabled = false } },
-})
-
--- Serves Claude Code's /ide protocol; sidekick owns the terminal.
---- @diagnostic disable-next-line: missing-fields
-require('claudecode').setup({ log_level = 'warn', terminal = { provider = 'none' } })
+require('brygga').setup()

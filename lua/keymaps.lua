@@ -85,24 +85,6 @@ map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
 map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Toggle spelling' })
 map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
 
-local cli = require('sidekick.cli')
-local tool = 'claude'
-map('n', '<leader>aa', function()
-  cli.toggle({ name = tool })
-end, { desc = 'Toggle Claude' })
-map('n', '<leader>af', function()
-  cli.send({ name = tool, msg = '{file}' })
-end, { desc = 'Send file to Claude' })
-map('n', '<leader>at', function()
-  cli.send({ name = tool, msg = '{this}' })
-end, { desc = 'Send position to Claude' })
-map('x', '<leader>at', function()
-  cli.send({ name = tool })
-end, { desc = 'Send selection to Claude' })
-map('n', '<leader>ad', function()
-  cli.send({ name = tool, prompt = 'diagnostics' })
-end, { desc = 'Send diagnostics to Claude' })
-
 local clue = require('mini.clue')
 clue.setup({
   triggers = {
@@ -115,7 +97,6 @@ clue.setup({
     { mode = 'n', keys = '<C-w>' },
   },
   clues = {
-    { mode = { 'n', 'x' }, keys = '<leader>a', desc = 'AI' },
     { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>c', desc = 'Classes' },
     { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>f', desc = 'Functions' },
     { mode = 'n', keys = '<leader>c', desc = 'Code' },
