@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlights' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
+map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down by display line' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Up by display line' })
