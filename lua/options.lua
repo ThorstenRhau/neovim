@@ -30,7 +30,6 @@ vim.o.confirm = true
 vim.o.wrap = false
 vim.o.linebreak = true
 vim.o.breakindent = true
-vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.winborder = 'single'
 vim.o.spelllang = 'en_us'

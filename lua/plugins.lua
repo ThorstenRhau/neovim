@@ -71,6 +71,7 @@ require('blink.cmp').setup({
 require('fzf-lua').setup({
   'fzf-native',
   defaults = { git_icons = true },
+  winopts = { border = 'single' },
   files = { follow = true },
   grep = {
     hidden = true,

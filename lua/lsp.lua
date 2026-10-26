@@ -59,6 +59,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grt', '<cmd>FzfLua lsp_typedefs<cr>', 'Type definitions')
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
     map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
-    map('<leader>fs', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
+    map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
   end,
 })
