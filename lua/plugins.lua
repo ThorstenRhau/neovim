@@ -34,6 +34,12 @@ local packages = {
 
 if vim.env.TOKEN_DEV == '1' then
   vim.opt.runtimepath:prepend('/Users/thorre/github/token')
+  vim.api.nvim_create_autocmd('VimEnter', {
+    once = true,
+    callback = function()
+      vim.notify('token: DEV mode, loading from /Users/thorre/github/token')
+    end,
+  })
 else
   table.insert(packages, 1, { src = 'https://github.com/ThorstenRhau/token', version = vim.version.range('*') })
 end
