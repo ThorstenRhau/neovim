@@ -57,7 +57,7 @@ require('token').setup({
     oil = true,
   },
 })
-vim.cmd.colorscheme('token-ultra')
+vim.cmd.colorscheme('token-meridian')
 
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
