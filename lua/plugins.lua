@@ -28,6 +28,7 @@ local packages = {
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
+  { src = 'https://github.com/nvim-mini/mini.align' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
   { src = 'https://github.com/ThorstenRhau/brygga.nvim', version = vim.version.range('*') },
 }
@@ -151,5 +152,9 @@ require('mini.icons').setup()
 require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
+
+require('mini.align').setup({
+  mappings = { start = '<leader>cl', start_with_preview = '<leader>cL' },
+})
 
 require('brygga').setup()
