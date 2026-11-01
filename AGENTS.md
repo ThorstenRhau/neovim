@@ -7,9 +7,7 @@ releases.
 
 - Keep the configuration simple.
 - Prefer direct Neovim settings and plugin setup. Add fault handling only for
-  demonstrated problems in normal workflows.
-- Avoid defensive configuration for hypothetical scenarios outside normal
-  workflows.
+  problems demonstrated in normal workflows, not for hypothetical scenarios.
 - `init.lua` enables `vim.loader`, sets leaders, and loads `lua/options.lua`,
   `plugins.lua`, `keymaps.lua`, `lsp.lua`, and `autocmds.lua`. Keep these
   modules direct and self-contained.
