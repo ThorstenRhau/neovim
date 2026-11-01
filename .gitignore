@@ -15,6 +15,3 @@ nvim.log
 
 # Nvim pack lock file
 nvim-pack-lock.json
-
-# Local Claude Code settings
-.claude/settings.json
