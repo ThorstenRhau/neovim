@@ -63,6 +63,7 @@ vim.cmd.colorscheme('token-meridian')
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
   completion = { trigger = { show_in_snippet = false } },
+  signature = { enabled = true },
   sources = {
     default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
     providers = {
