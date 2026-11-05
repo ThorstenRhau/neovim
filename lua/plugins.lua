@@ -34,11 +34,12 @@ local packages = {
 }
 
 if vim.env.TOKEN_DEV == '1' then
-  vim.opt.runtimepath:prepend('/Users/thorre/github/token')
+  local token_dev = vim.fn.expand('~/github/token')
+  vim.opt.runtimepath:prepend(token_dev)
   vim.api.nvim_create_autocmd('VimEnter', {
     once = true,
     callback = function()
-      vim.notify('token: DEV mode, loading from /Users/thorre/github/token')
+      vim.notify('token: DEV mode, loading from ' .. token_dev)
     end,
   })
 else
