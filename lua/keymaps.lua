@@ -90,6 +90,19 @@ map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
 
 local clue = require('mini.clue')
 clue.setup({
+  -- Full-width panel at the bottom, like Emacs which-key. A function so the
+  -- width follows window resizes.
+  window = {
+    config = function()
+      return {
+        anchor = 'SW',
+        row = 'auto',
+        col = 0,
+        width = vim.o.columns,
+        border = { '', '─', '', '', '', '', '', '' },
+      }
+    end,
+  },
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },
     { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>' },
@@ -100,13 +113,13 @@ clue.setup({
     { mode = 'n', keys = '<C-w>' },
   },
   clues = {
-    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>c', desc = 'Classes' },
-    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>f', desc = 'Functions' },
-    { mode = 'n', keys = '<leader>c', desc = 'Code' },
-    { mode = 'n', keys = '<leader>f', desc = 'Files' },
-    { mode = 'n', keys = '<leader>g', desc = 'Git' },
-    { mode = 'n', keys = '<leader>s', desc = 'Search' },
-    { mode = 'n', keys = '<leader>t', desc = 'Toggle' },
+    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>c', desc = '+Classes' },
+    { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>f', desc = '+Functions' },
+    { mode = 'n', keys = '<leader>c', desc = '+Code' },
+    { mode = 'n', keys = '<leader>f', desc = '+Files' },
+    { mode = 'n', keys = '<leader>g', desc = '+Git' },
+    { mode = 'n', keys = '<leader>s', desc = '+Search' },
+    { mode = 'n', keys = '<leader>t', desc = '+Toggle' },
     clue.gen_clues.g(),
     clue.gen_clues.z(),
     clue.gen_clues.square_brackets(),
