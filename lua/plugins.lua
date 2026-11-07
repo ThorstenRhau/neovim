@@ -118,6 +118,9 @@ gitsigns.setup({
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
+  kind = 'auto',
+  commit_view = { kind = 'auto' },
+  log_view = { kind = 'auto' },
 })
 
 require('conform').setup({
