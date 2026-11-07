@@ -67,7 +67,10 @@ vim.cmd.colorscheme('token-ultra')
 -- Completion.
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
-  completion = { trigger = { show_in_snippet = false } },
+  completion = {
+    trigger = { show_in_snippet = false },
+    documentation = { auto_show = true, auto_show_delay_ms = 500 },
+  },
   signature = { enabled = true },
   sources = {
     default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
@@ -98,7 +101,7 @@ require('fzf-lua').setup({
 
 -- File explorer.
 require('oil').setup({
-  columns = {},
+  columns = { 'icon' },
   view_options = { show_hidden = true },
   delete_to_trash = true,
 })

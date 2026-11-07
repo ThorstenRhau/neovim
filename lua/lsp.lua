@@ -41,10 +41,30 @@ vim.lsp.enable({
   'tombi',
 })
 
+local severity = vim.diagnostic.severity
 vim.diagnostic.config({
   severity_sort = true,
-  virtual_lines = { current_line = true },
+  -- Color the line number instead of using a sign, so the single sign
+  -- column stays free for Git markers.
+  signs = {
+    text = { [severity.ERROR] = '', [severity.WARN] = '', [severity.INFO] = '', [severity.HINT] = '' },
+    numhl = {
+      [severity.ERROR] = 'DiagnosticSignError',
+      [severity.WARN] = 'DiagnosticSignWarn',
+      [severity.INFO] = 'DiagnosticSignInfo',
+      [severity.HINT] = 'DiagnosticSignHint',
+    },
+  },
   float = { source = true },
+})
+
+-- Show the cursor line's diagnostics in a float when the cursor rests.
+-- Virtual lines start at the diagnostic's column and get clipped on long lines.
+vim.api.nvim_create_autocmd('CursorHold', {
+  group = vim.api.nvim_create_augroup('diagnostic_float', { clear = true }),
+  callback = function()
+    vim.diagnostic.open_float({ focus = false })
+  end,
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -60,5 +80,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
     map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
     map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
+  end,
+})
+
+-- Show server progress, such as indexing, as native progress messages.
+vim.api.nvim_create_autocmd('LspProgress', {
+  group = vim.api.nvim_create_augroup('lsp_progress', { clear = true }),
+  callback = function(event)
+    local value = event.data.params.value
+    vim.api.nvim_echo({ { value.message or 'done' } }, false, {
+      id = 'lsp.' .. event.data.params.token,
+      kind = 'progress',
+      source = 'vim.lsp',
+      title = value.title,
+      status = value.kind ~= 'end' and 'running' or 'success',
+      percent = value.percentage,
+    })
   end,
 })

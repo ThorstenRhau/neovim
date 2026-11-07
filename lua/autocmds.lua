@@ -61,8 +61,22 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Run configured linters after writing a buffer.
-vim.api.nvim_create_autocmd('BufWritePost', {
+-- Hide trailing-space markers while typing.
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = group,
+  callback = function()
+    vim.opt_local.listchars:remove('trail')
+  end,
+})
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = group,
+  callback = function()
+    vim.cmd.setlocal('listchars<')
+  end,
+})
+
+-- Run configured linters when opening, leaving insert mode, and writing.
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'InsertLeave', 'BufWritePost' }, {
   group = group,
   callback = function()
     require('lint').try_lint(nil, { cwd = vim.fs.root(0, { 'selene.toml', '.git' }) })
@@ -75,11 +89,13 @@ vim.keymap.set('n', '<leader>S', function()
   vim.cmd('source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restore session' })
 
--- Save the interactive session before exiting Neovim.
+-- Save the interactive session before exiting Neovim. Only when started
+-- without file arguments, so `git commit` and quick edits keep the session.
+local started_without_files = vim.fn.argc(-1) == 0
 vim.api.nvim_create_autocmd('VimLeavePre', {
   group = group,
   callback = function()
-    if #vim.api.nvim_list_uis() == 0 then
+    if not started_without_files or #vim.api.nvim_list_uis() == 0 then
       return
     end
     vim.cmd('mksession! ' .. vim.fn.fnameescape(session))

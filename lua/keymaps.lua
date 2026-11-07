@@ -87,6 +87,16 @@ end, { desc = 'Open file externally' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
 map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Toggle spelling' })
 map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
+map('n', '<leader>tl', function()
+  local on = not vim.wo.number
+  vim.opt_local.number = on
+  vim.opt_local.relativenumber = on
+  -- The custom statuscolumn keeps drawing numbers, so clear it too.
+  vim.opt_local.statuscolumn = on and vim.go.statuscolumn or ''
+end, { desc = 'Toggle line numbers' })
+map('n', '<leader>td', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'Toggle diagnostics' })
 
 local clue = require('mini.clue')
 clue.setup({
@@ -102,6 +112,7 @@ clue.setup({
         border = { '', '─', '', '', '', '', '', '' },
       }
     end,
+    delay = 500,
   },
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },
@@ -111,6 +122,11 @@ clue.setup({
     { mode = 'n', keys = '[' },
     { mode = 'n', keys = ']' },
     { mode = 'n', keys = '<C-w>' },
+    { mode = { 'n', 'x' }, keys = "'" },
+    { mode = { 'n', 'x' }, keys = '`' },
+    { mode = { 'n', 'x' }, keys = '"' },
+    { mode = { 'i', 'c' }, keys = '<C-r>' },
+    { mode = 'i', keys = '<C-x>' },
   },
   clues = {
     { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>c', desc = '+Classes' },
@@ -120,9 +136,13 @@ clue.setup({
     { mode = 'n', keys = '<leader>g', desc = '+Git' },
     { mode = 'n', keys = '<leader>s', desc = '+Search' },
     { mode = 'n', keys = '<leader>t', desc = '+Toggle' },
+    { mode = 'n', keys = 'gr', desc = '+LSP' },
     clue.gen_clues.g(),
     clue.gen_clues.z(),
     clue.gen_clues.square_brackets(),
     clue.gen_clues.windows(),
+    clue.gen_clues.marks(),
+    clue.gen_clues.registers(),
+    clue.gen_clues.builtin_completion(),
   },
 })
