@@ -26,7 +26,6 @@ local packages = {
   { src = 'https://github.com/NeogitOrg/neogit' },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
-  -- { src = 'https://github.com/lukas-reineke/indent-blankline.nvim', version = vim.version.range('3.x') },
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
@@ -58,13 +57,12 @@ require('token').setup({
     blink = true,
     fzf = true,
     gitsigns = true,
-    ibl = false,
     mini = true,
     neogit = true,
     oil = true,
   },
 })
-vim.cmd.colorscheme('token-meridian')
+vim.cmd.colorscheme('token-ultra')
 
 -- Completion.
 require('blink.cmp').setup({
@@ -151,17 +149,6 @@ require('lint').linters_by_ft = {
   markdown = { 'markdownlint' },
   yaml = { 'yamllint' },
 }
-
--- Indent guides.
--- require('ibl').setup({
---   indent = {
---     char = '│',
---     tab_char = '│',
---   },
---   scope = {
---     show_exact_scope = true,
---   },
--- })
 
 -- mini.nvim modules.
 require('mini.icons').setup()
