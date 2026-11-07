@@ -106,6 +106,23 @@ require('oil').setup({
 -- Git signs and hunk mappings.
 local gitsigns = require('gitsigns')
 gitsigns.setup({
+  -- Same markers as Emacs diff-hl.
+  signs = {
+    add = { text = '+' },
+    change = { text = '!' },
+    delete = { text = '-' },
+    topdelete = { text = '-' },
+    changedelete = { text = '!' },
+    untracked = { text = '+' },
+  },
+  signs_staged = {
+    add = { text = '+' },
+    change = { text = '!' },
+    delete = { text = '-' },
+    topdelete = { text = '-' },
+    changedelete = { text = '!' },
+    untracked = { text = '+' },
+  },
   on_attach = function(buf)
     vim.keymap.set('n', '[h', function()
       --- @diagnostic disable-next-line: missing-fields
