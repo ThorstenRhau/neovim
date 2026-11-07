@@ -85,9 +85,8 @@ require('blink.cmp').setup({
 
 -- Fuzzy finder.
 require('fzf-lua').setup({
-  'fzf-native',
+  'ivy',
   defaults = { git_icons = true },
-  winopts = { border = 'single' },
   files = { follow = true },
   grep = {
     hidden = true,
@@ -96,6 +95,7 @@ require('fzf-lua').setup({
     rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
   },
   oldfiles = { include_current_session = true },
+  winopts = { border = 'single' },
 })
 
 -- File explorer.
