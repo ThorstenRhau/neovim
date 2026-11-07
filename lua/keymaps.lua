@@ -91,8 +91,6 @@ map('n', '<leader>tl', function()
   local on = not vim.wo.number
   vim.opt_local.number = on
   vim.opt_local.relativenumber = on
-  -- The custom statuscolumn keeps drawing numbers, so clear it too.
-  vim.opt_local.statuscolumn = on and vim.go.statuscolumn or ''
 end, { desc = 'Toggle line numbers' })
 map('n', '<leader>td', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())

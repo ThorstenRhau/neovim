@@ -12,7 +12,7 @@ vim.o.ruler = false
 vim.o.showmode = false
 vim.o.scrolloff = 10
 vim.o.signcolumn = 'auto'
-vim.o.statuscolumn = '%s%=%{v:virtnum ? "" : v:relnum ? v:relnum : v:lnum} '
+vim.o.statuscolumn = '%s%=%{(&nu||&rnu)&&!v:virtnum ? (&rnu&&v:relnum ? v:relnum : v:lnum) . " " : ""}'
 vim.o.list = true
 vim.o.listchars = 'tab:→ ,trail:•,nbsp:+,extends:›,precedes:‹'
 vim.o.fillchars = 'eob: ,fold: '
