@@ -1,3 +1,4 @@
+-- Rebuild Tree-sitter parsers after the plugin updates.
 vim.api.nvim_create_autocmd('PackChanged', {
   group = vim.api.nvim_create_augroup('pack_changed', { clear = true }),
   callback = function(event)
@@ -10,6 +11,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+-- Plugins installed by vim.pack.
 local packages = {
   { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
@@ -24,7 +26,7 @@ local packages = {
   { src = 'https://github.com/NeogitOrg/neogit' },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
-  { src = 'https://github.com/lukas-reineke/indent-blankline.nvim', version = vim.version.range('3.x') },
+  -- { src = 'https://github.com/lukas-reineke/indent-blankline.nvim', version = vim.version.range('3.x') },
   { src = 'https://github.com/nvim-mini/mini.icons' },
   { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
@@ -33,6 +35,7 @@ local packages = {
   { src = 'https://github.com/ThorstenRhau/brygga.nvim', version = vim.version.range('*') },
 }
 
+-- With TOKEN_DEV=1, load the colorscheme from a local checkout instead of the package.
 if vim.env.TOKEN_DEV == '1' then
   local token_dev = vim.fn.expand('~/github/token')
   vim.opt.runtimepath:prepend(token_dev)
@@ -46,14 +49,16 @@ else
   table.insert(packages, 1, { src = 'https://github.com/ThorstenRhau/token', version = vim.version.range('*') })
 end
 
+-- Install and load all packages.
 vim.pack.add(packages)
 
+-- Colorscheme and its plugin integrations.
 require('token').setup({
   plugins = {
     blink = true,
     fzf = true,
     gitsigns = true,
-    ibl = true,
+    ibl = false,
     mini = true,
     neogit = true,
     oil = true,
@@ -61,6 +66,7 @@ require('token').setup({
 })
 vim.cmd.colorscheme('token-meridian')
 
+-- Completion.
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
   completion = { trigger = { show_in_snippet = false } },
@@ -77,6 +83,7 @@ require('blink.cmp').setup({
   },
 })
 
+-- Fuzzy finder.
 require('fzf-lua').setup({
   'fzf-native',
   defaults = { git_icons = true },
@@ -91,12 +98,14 @@ require('fzf-lua').setup({
   oldfiles = { include_current_session = true },
 })
 
+-- File explorer.
 require('oil').setup({
   columns = {},
   view_options = { show_hidden = true },
   delete_to_trash = true,
 })
 
+-- Git signs and hunk mappings.
 local gitsigns = require('gitsigns')
 gitsigns.setup({
   on_attach = function(buf)
@@ -115,14 +124,14 @@ gitsigns.setup({
   end,
 })
 
+-- Git client.
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
   kind = 'auto',
-  commit_view = { kind = 'auto' },
-  log_view = { kind = 'auto' },
 })
 
+-- Formatters per filetype.
 require('conform').setup({
   formatters_by_ft = {
     sh = { 'shfmt' },
@@ -136,22 +145,25 @@ require('conform').setup({
   },
 })
 
+-- Linters per filetype.
 require('lint').linters_by_ft = {
   lua = { 'selene' },
   markdown = { 'markdownlint' },
   yaml = { 'yamllint' },
 }
 
-require('ibl').setup({
-  indent = {
-    char = '│',
-    tab_char = '│',
-  },
-  scope = {
-    show_exact_scope = true,
-  },
-})
+-- Indent guides.
+-- require('ibl').setup({
+--   indent = {
+--     char = '│',
+--     tab_char = '│',
+--   },
+--   scope = {
+--     show_exact_scope = true,
+--   },
+-- })
 
+-- mini.nvim modules.
 require('mini.icons').setup()
 
 require('mini.statusline').setup()
@@ -162,4 +174,5 @@ require('mini.align').setup({
   mappings = { start = '<leader>cl', start_with_preview = '<leader>cL' },
 })
 
+-- Bridge that lets Claude Code use Neovim as its IDE.
 require('brygga').setup()
