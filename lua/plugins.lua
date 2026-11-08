@@ -27,7 +27,6 @@ local packages = {
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
   { src = 'https://github.com/nvim-mini/mini.icons' },
-  -- { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.align' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
@@ -187,8 +186,6 @@ require('lint').linters_by_ft = {
 
 -- mini.nvim modules.
 require('mini.icons').setup()
-
--- require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
 

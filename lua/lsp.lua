@@ -56,6 +56,19 @@ vim.diagnostic.config({
     },
   },
   float = { source = true },
+  -- The default status format uses the sign text, which is empty here.
+  status = {
+    format = function(counts)
+      local parts = {}
+      for level, label in ipairs({ 'E', 'W', 'I', 'H' }) do
+        if counts[level] then
+          local hl = 'Diagnostic' .. ({ 'Error', 'Warn', 'Info', 'Hint' })[level]
+          table.insert(parts, ('%%#%s#%s:%d%%*'):format(hl, label, counts[level]))
+        end
+      end
+      return table.concat(parts, ' ')
+    end,
+  },
 })
 
 -- Show the cursor line's diagnostics in a float when the cursor rests.

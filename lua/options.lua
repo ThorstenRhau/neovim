@@ -9,6 +9,7 @@ vim.o.softtabstop = 2
 -- Interface
 vim.o.cursorline = true
 vim.o.fillchars = 'eob: ,fold: '
+vim.o.laststatus = 3
 vim.o.list = true
 vim.o.listchars = 'tab:→ ,trail:•,nbsp:+,extends:›,precedes:‹'
 vim.o.number = true
@@ -18,6 +19,7 @@ vim.o.scrolloff = 10
 vim.o.showmode = false
 vim.o.signcolumn = 'auto'
 vim.o.statuscolumn = '%s%=%{(&nu||&rnu)&&!v:virtnum ? (&rnu&&v:relnum ? v:relnum : v:lnum) . " " : ""}'
+vim.o.statusline = "%!v:lua.require'statusline'.render()"
 vim.o.winborder = 'single'
 
 -- Cursor shape per mode
