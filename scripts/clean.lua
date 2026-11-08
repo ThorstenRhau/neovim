@@ -1,3 +1,18 @@
+-- Full reset of this Neovim installation. Run by `make clean`; destructive.
+--
+-- Removes:
+--   * the data, state and cache directories (installed plugins, parsers, logs,
+--     swap, shada and other user data)
+--   * in the config directory: nvim-pack-lock.json, .codex-lsp-cache and nvim.log
+--
+-- Safety: every target is validated before anything is deleted, and the script
+-- aborts without removing anything if a check fails. A target must be an
+-- absolute path, must not be a symlink, and must not resolve to the home
+-- directory or one of its ancestors. The data, state and cache directories
+-- must also not overlap the configuration directory.
+--
+-- Test only with disposable XDG directories, never the live installation.
+
 local config = vim.fs.normalize(vim.fn.stdpath('config'))
 local home_path = assert(vim.uv.os_homedir(), 'Unable to determine home directory')
 local home = assert(vim.uv.fs_realpath(home_path))
