@@ -134,10 +134,14 @@ clue.setup({
     { mode = 'n', keys = '<leader>s', desc = '+Search' },
     { mode = 'n', keys = '<leader>t', desc = '+Toggle' },
     { mode = 'n', keys = 'gr', desc = '+LSP' },
+    -- Submode: keep pressing h to step through Git hunks, <Esc> to stop.
+    { mode = 'n', keys = ']h', postkeys = ']' },
+    { mode = 'n', keys = '[h', postkeys = '[' },
     clue.gen_clues.g(),
     clue.gen_clues.z(),
     clue.gen_clues.square_brackets(),
-    clue.gen_clues.windows(),
+    -- Submode: repeat <C-w> resize keys such as > and +, <Esc> to stop.
+    clue.gen_clues.windows({ submode_resize = true }),
     clue.gen_clues.marks(),
     clue.gen_clues.registers(),
     clue.gen_clues.builtin_completion(),
