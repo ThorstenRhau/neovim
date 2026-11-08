@@ -110,7 +110,15 @@ end, { desc = 'Diagnostics' })
 local clue = require('mini.clue')
 clue.setup({
   window = {
-    config = { width = 'auto' },
+    -- Fit the content like width = 'auto', but cap it so register and mark
+    -- previews don't stretch across the screen.
+    config = function(buf_id)
+      local width = 0
+      for _, line in ipairs(vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)) do
+        width = math.max(width, vim.fn.strdisplaywidth(line))
+      end
+      return { width = math.min(width + 1, 40) }
+    end,
   },
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },
