@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlights' })
+map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
@@ -67,39 +67,39 @@ map({ 'n', 'x', 'o' }, '<LocalLeader>cK', function()
   ts_move.goto_previous_end('@class.outer', 'textobjects')
 end, { desc = 'Previous class end' })
 
-map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Files' })
-map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Files' })
-map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Buffers' })
+map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
+map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
+map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Open buffers' })
 map('n', '<leader>fo', '<cmd>FzfLua oldfiles<cr>', { desc = 'Recent files' })
-map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'Live grep' })
-map('n', '<leader>sh', '<cmd>FzfLua helptags<cr>', { desc = 'Help' })
+map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep text' })
+map('n', '<leader>sh', '<cmd>FzfLua helptags<cr>', { desc = 'Help pages' })
 map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'Document diagnostics' })
 map('n', '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', { desc = 'Workspace diagnostics' })
 map('n', '<leader>cf', function()
   require('conform').format({ async = true, lsp_format = 'fallback' })
 end, { desc = 'Format buffer' })
-map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Diagnostic float' })
-map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Neogit status' })
-map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Neogit log' })
+map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Git status' })
+map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Git log' })
 map('n', '<leader>o', function()
   vim.ui.open(vim.fn.expand('%:p'))
-end, { desc = 'Open file externally' })
-map('n', '-', '<cmd>Oil<cr>', { desc = 'Open directory' })
-map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Toggle spelling' })
-map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Toggle line wrap' })
+end, { desc = 'Open in default app' })
+map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
+map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Spell check' })
+map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Line wrap' })
 map('n', '<leader>tl', function()
   local on = not vim.wo.number
   vim.opt_local.number = on
   vim.opt_local.relativenumber = on
-end, { desc = 'Toggle line numbers' })
+end, { desc = 'Line numbers' })
 map('n', '<leader>td', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = 'Toggle diagnostics' })
+end, { desc = 'Diagnostics' })
 
 local clue = require('mini.clue')
 clue.setup({
   window = {
-    delay = 1000,
+    config = { width = 'auto' },
   },
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },

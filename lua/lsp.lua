@@ -92,10 +92,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grt', '<cmd>FzfLua lsp_typedefs<cr>', 'Type definitions')
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
     map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
-    map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Live workspace symbols')
+    map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Workspace symbols')
     map('<leader>th', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }), { bufnr = event.buf })
-    end, 'Toggle inlay hints')
+    end, 'Inlay hints')
   end,
 })
 
