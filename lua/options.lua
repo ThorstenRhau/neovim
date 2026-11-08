@@ -19,7 +19,6 @@ vim.o.scrolloff = 10
 vim.o.showmode = false
 vim.o.signcolumn = 'auto'
 vim.o.statuscolumn = '%s%=%{(&nu||&rnu)&&!v:virtnum ? (&rnu&&v:relnum ? v:relnum : v:lnum) . " " : ""}'
-vim.o.statusline = "%!v:lua.require'statusline'.render()"
 vim.o.winborder = 'single'
 
 -- Cursor shape per mode

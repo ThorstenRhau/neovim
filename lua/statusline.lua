@@ -130,4 +130,8 @@ vim.api.nvim_create_autocmd({ 'RecordingEnter', 'RecordingLeave', 'LspAttach', '
 })
 vim.api.nvim_create_autocmd('User', { group = group, pattern = 'GitSignsUpdate', callback = redraw })
 
+-- Set here, after plugins.lua, because render() requires plugin modules and
+-- vim.pack redraws while it asks to install missing plugins.
+vim.o.statusline = "%!v:lua.require'statusline'.render()"
+
 return M
