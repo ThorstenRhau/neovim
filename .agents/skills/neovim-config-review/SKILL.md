@@ -192,7 +192,7 @@ Lead with findings, most important first, in this shape:
 | --- | --- | --- |
 | `lua/options.lua` | Checked | `:h options`, Neovim 0.12.6 |
 | blink.cmp `78336bc8` | Checked | `doc/blink-cmp.txt`, `lua/` config source |
-| basedpyright settings | Unverified | no local docs for the installed version |
+| Pyrefly settings | Unverified | no local docs for the installed version |
 
 Checks: commands run and their results.
 ```
