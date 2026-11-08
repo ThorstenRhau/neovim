@@ -19,10 +19,10 @@ Install tools with [Homebrew](https://brew.sh/):
 
 ```sh
 brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
-  basedpyright bash-language-server emmylua_ls marksman \
+  bash-language-server emmylua_ls pyrefly rumdl \
   vscode-langservers-extracted yaml-language-server \
   prettier ruff shfmt stylua tombi \
-  shellcheck selene markdownlint-cli yamllint
+  actionlint shellcheck selene yamllint
 ```
 
 Tree-sitter parser compilation needs Xcode Command Line Tools

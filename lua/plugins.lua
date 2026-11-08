@@ -178,7 +178,6 @@ require('conform').setup({
 -- Linters per filetype.
 require('lint').linters_by_ft = {
   lua = { 'selene' },
-  markdown = { 'markdownlint' },
   yaml = { 'yamllint' },
 }
 

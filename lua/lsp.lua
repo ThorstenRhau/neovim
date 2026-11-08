@@ -11,13 +11,19 @@ vim.lsp.config('emmylua_ls', {
   },
 })
 
-vim.lsp.config('basedpyright', {
-  settings = {
-    basedpyright = {
-      disableOrganizeImports = true,
-      analysis = { typeCheckingMode = 'standard' },
-    },
-  },
+-- Without a project config, Pyrefly falls back to a preset that hides most
+-- type errors. A pyrefly.toml or [tool.pyrefly] still takes precedence.
+vim.lsp.config('pyrefly', {
+  settings = { python = { pyrefly = { typeCheckingMode = 'default' } } },
+})
+
+-- Let gq reflow Markdown paragraphs through rumdl's line-length rule instead
+-- of the built-in formatter that options.lua sets.
+vim.lsp.config('rumdl', {
+  init_options = { settings = { MD013 = { reflow = true, ['reflow-mode'] = 'normalize' } } },
+  on_attach = function(_, buf)
+    vim.bo[buf].formatexpr = 'v:lua.vim.lsp.formatexpr()'
+  end,
 })
 
 vim.lsp.config('ruff', {
@@ -43,10 +49,10 @@ vim.lsp.config('yamlls', {
 
 vim.lsp.enable({
   'bashls',
-  'basedpyright',
+  'pyrefly',
   'ruff',
   'emmylua_ls',
-  'marksman',
+  'rumdl',
   'jsonls',
   'yamlls',
   'tombi',
