@@ -32,5 +32,5 @@ the Claude Code CLI (`claude`) on `PATH`.
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 
 ```vim
-:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua luadoc luap make markdown markdown_inline python query regex toml vim vimdoc yaml
+:TSInstall bash diff editorconfig git_config git_rebase gitattributes gitcommit gitignore json lua luadoc luap make markdown markdown_inline python query regex ruby toml vim vimdoc yaml
 ```
