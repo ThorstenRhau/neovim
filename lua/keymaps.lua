@@ -98,18 +98,8 @@ end, { desc = 'Toggle diagnostics' })
 
 local clue = require('mini.clue')
 clue.setup({
-  -- Full-width panel at the bottom, like Emacs which-key. A function so the
-  -- width follows window resizes.
   window = {
-    config = function()
-      return {
-        anchor = 'SW',
-        row = 'auto',
-        col = 0,
-        width = vim.o.columns,
-      }
-    end,
-    delay = 500,
+    delay = 1000,
   },
   triggers = {
     { mode = { 'n', 'x' }, keys = '<leader>' },
