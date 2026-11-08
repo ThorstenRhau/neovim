@@ -1,71 +1,67 @@
 local map = vim.keymap.set
 
+-- General
+
 map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
+-- Movement by display line
+
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down by display line' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Up by display line' })
 
+-- Tree-sitter text objects: select
+
 local ts_select = require('nvim-treesitter-textobjects.select')
--- Select around a function.
 map({ 'x', 'o' }, 'af', function()
   ts_select.select_textobject('@function.outer', 'textobjects')
 end, { desc = 'Around function' })
--- Select inside a function.
 map({ 'x', 'o' }, 'if', function()
   ts_select.select_textobject('@function.inner', 'textobjects')
 end, { desc = 'Inside function' })
--- Select around a class.
 map({ 'x', 'o' }, 'ac', function()
   ts_select.select_textobject('@class.outer', 'textobjects')
 end, { desc = 'Around class' })
--- Select inside a class.
 map({ 'x', 'o' }, 'ic', function()
   ts_select.select_textobject('@class.inner', 'textobjects')
 end, { desc = 'Inside class' })
--- Select around a parameter.
 map({ 'x', 'o' }, 'aa', function()
   ts_select.select_textobject('@parameter.outer', 'textobjects')
 end, { desc = 'Around parameter' })
--- Select inside a parameter.
 map({ 'x', 'o' }, 'ia', function()
   ts_select.select_textobject('@parameter.inner', 'textobjects')
 end, { desc = 'Inside parameter' })
 
+-- Tree-sitter text objects: move
+
 local ts_move = require('nvim-treesitter-textobjects.move')
--- Jump to the next function start.
 map({ 'n', 'x', 'o' }, '<LocalLeader>fj', function()
   ts_move.goto_next_start('@function.outer', 'textobjects')
 end, { desc = 'Next function start' })
--- Jump to the previous function start.
 map({ 'n', 'x', 'o' }, '<LocalLeader>fk', function()
   ts_move.goto_previous_start('@function.outer', 'textobjects')
 end, { desc = 'Previous function start' })
--- Jump to the next function end.
 map({ 'n', 'x', 'o' }, '<LocalLeader>fJ', function()
   ts_move.goto_next_end('@function.outer', 'textobjects')
 end, { desc = 'Next function end' })
--- Jump to the previous function end.
 map({ 'n', 'x', 'o' }, '<LocalLeader>fK', function()
   ts_move.goto_previous_end('@function.outer', 'textobjects')
 end, { desc = 'Previous function end' })
--- Jump to the next class start.
 map({ 'n', 'x', 'o' }, '<LocalLeader>cj', function()
   ts_move.goto_next_start('@class.outer', 'textobjects')
 end, { desc = 'Next class start' })
--- Jump to the previous class start.
 map({ 'n', 'x', 'o' }, '<LocalLeader>ck', function()
   ts_move.goto_previous_start('@class.outer', 'textobjects')
 end, { desc = 'Previous class start' })
--- Jump to the next class end.
 map({ 'n', 'x', 'o' }, '<LocalLeader>cJ', function()
   ts_move.goto_next_end('@class.outer', 'textobjects')
 end, { desc = 'Next class end' })
--- Jump to the previous class end.
 map({ 'n', 'x', 'o' }, '<LocalLeader>cK', function()
   ts_move.goto_previous_end('@class.outer', 'textobjects')
 end, { desc = 'Previous class end' })
+
+-- Files and search (fzf-lua, Oil)
 
 map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
@@ -75,16 +71,25 @@ map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep text' })
 map('n', '<leader>sh', '<cmd>FzfLua helptags<cr>', { desc = 'Help pages' })
 map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'Document diagnostics' })
 map('n', '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', { desc = 'Workspace diagnostics' })
+map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
+map('n', '<leader>o', function()
+  vim.ui.open(vim.fn.expand('%:p'))
+end, { desc = 'Open in default app' })
+
+-- Code
+
 map('n', '<leader>cf', function()
   require('conform').format({ async = true, lsp_format = 'fallback' })
 end, { desc = 'Format buffer' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
+
+-- Git
+
 map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Git status' })
 map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Git log' })
-map('n', '<leader>o', function()
-  vim.ui.open(vim.fn.expand('%:p'))
-end, { desc = 'Open in default app' })
-map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
+
+-- Toggles
+
 map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Spell check' })
 map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Line wrap' })
 map('n', '<leader>tl', function()
@@ -95,6 +100,8 @@ end, { desc = 'Line numbers' })
 map('n', '<leader>td', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Diagnostics' })
+
+-- Key hints (mini.clue)
 
 local clue = require('mini.clue')
 clue.setup({
