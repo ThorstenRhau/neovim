@@ -107,7 +107,6 @@ clue.setup({
         row = 'auto',
         col = 0,
         width = vim.o.columns,
-        border = { '', '─', '', '', '', '', '', '' },
       }
     end,
     delay = 500,
