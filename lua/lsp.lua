@@ -111,6 +111,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grt', '<cmd>FzfLua lsp_typedefs<cr>', 'Type definitions')
     map('gO', '<cmd>FzfLua lsp_document_symbols<cr>', 'Document symbols')
     map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
+    map('<leader>co', '<cmd>FzfLua lsp_document_symbols<cr>', 'Code outline')
     map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Workspace symbols')
     map('<leader>th', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }), { bufnr = event.buf })
