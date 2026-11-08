@@ -142,12 +142,26 @@ gitsigns.setup({
   end,
 })
 
--- Git client.
+-- Git client. Neogit's annotations mark fields such as `show_title` as required,
+-- but setup() deep-merges with its defaults, so omitted fields are fine.
+---@diagnostic disable: missing-fields
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
+  -- Magit-like layout (magit-display-buffer-traditional): status and commit
+  -- details open in a split, list views and Git's editors reuse the window.
   kind = 'auto',
+  commit_editor = { kind = 'replace' },
+  commit_select_view = { kind = 'replace' },
+  commit_view = { kind = 'auto' },
+  log_view = { kind = 'replace' },
+  merge_editor = { kind = 'replace' },
+  rebase_editor = { kind = 'replace' },
+  reflog_view = { kind = 'replace' },
+  refs_view = { kind = 'replace' },
+  stash = { kind = 'replace' },
 })
+---@diagnostic enable: missing-fields
 
 -- Formatters per filetype.
 require('conform').setup({
