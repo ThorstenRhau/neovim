@@ -27,7 +27,7 @@ local packages = {
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
   { src = 'https://github.com/nvim-mini/mini.icons' },
-  { src = 'https://github.com/nvim-mini/mini.statusline' },
+  -- { src = 'https://github.com/nvim-mini/mini.statusline' },
   { src = 'https://github.com/nvim-mini/mini.splitjoin' },
   { src = 'https://github.com/nvim-mini/mini.align' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
@@ -135,6 +135,7 @@ gitsigns.setup({
       --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('next', { target = 'all' })
     end, { buf = buf, desc = 'Next hunk' })
+    vim.keymap.set('n', '<leader>gh', ']h', { buf = buf, remap = true, desc = 'Next hunk' })
     vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buf = buf, desc = 'Preview hunk' })
     vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buf = buf, desc = 'Blame line' })
     -- Keep mini.clue triggers ahead of these buffer-local mappings.
@@ -187,7 +188,7 @@ require('lint').linters_by_ft = {
 -- mini.nvim modules.
 require('mini.icons').setup()
 
-require('mini.statusline').setup()
+-- require('mini.statusline').setup()
 
 require('mini.splitjoin').setup()
 
