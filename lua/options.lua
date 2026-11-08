@@ -40,6 +40,11 @@ vim.o.splitright = true
 
 -- Text layout and folding
 vim.o.breakindent = true
+-- gq wraps text with Vim's built-in formatter; conform formats code. Neovim
+-- points an empty formatexpr at language servers with range formatting, but
+-- ruff, emmylua_ls and jsonls leave comments unwrapped. A non-zero formatexpr
+-- falls back to the built-in formatter. lsp.lua hands Markdown to rumdl.
+vim.o.formatexpr = '1'
 vim.o.foldlevelstart = 99
 vim.o.foldtext = ''
 vim.o.linebreak = true
