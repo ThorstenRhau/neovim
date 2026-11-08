@@ -62,7 +62,7 @@ require('token').setup({
     oil = true,
   },
 })
-vim.cmd.colorscheme('token-ultra')
+vim.cmd.colorscheme('token')
 
 -- Completion.
 require('blink.cmp').setup({
