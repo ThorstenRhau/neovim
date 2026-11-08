@@ -22,6 +22,21 @@ local function escape(text)
   return (text:gsub('%%', '%%%%'))
 end
 
+-- Path as repo/relative/path in a Git repository, otherwise relative to the
+-- current directory or home.
+local function path()
+  local name = vim.api.nvim_buf_get_name(0)
+  if name == '' then
+    return '%f'
+  end
+  local root = (vim.b.gitsigns_status_dict or {}).root
+  local rel = root and vim.fs.relpath(root, name)
+  if rel then
+    return escape(vim.fs.basename(root) .. '/' .. rel)
+  end
+  return escape(vim.fn.fnamemodify(name, ':~:.'))
+end
+
 local function file()
   local ft = vim.bo.filetype
   local icon = ''
@@ -30,7 +45,7 @@ local function file()
     icon = ('%%#%s#%s%%* '):format(hl, glyph)
   end
   -- The %( %) group drops the space when no flag is set.
-  return icon .. '%<%f%( %h%w%m%r%)'
+  return icon .. '%<' .. path() .. '%( %h%w%m%r%)'
 end
 
 local function git()
@@ -77,18 +92,6 @@ local function encoding()
   return ('%s[%s]'):format(fenc, ff)
 end
 
-local function search()
-  if vim.v.hlsearch == 0 then
-    return ''
-  end
-  local count = vim.fn.searchcount({ maxcount = 999, timeout = 20 })
-  if (count.total or 0) == 0 then
-    return ''
-  end
-  local total = count.incomplete == 2 and '>' .. count.maxcount or count.total
-  return ('[%s/%s]'):format(count.current, total)
-end
-
 -- Join the non-empty items of a section.
 local function section(items)
   return vim
@@ -112,7 +115,6 @@ function M.render()
       names(require('conform').list_formatters(0)),
       vim.bo.filetype,
       encoding(),
-      search(),
       '%l:%c %P ',
     }),
   })
