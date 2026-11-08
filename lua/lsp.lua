@@ -1,4 +1,15 @@
-require('lazydev').setup()
+-- Give emmylua_ls the Neovim runtime and every installed plugin. Disable
+-- missing-fields: blink.cmp marks optional fields with a LuaLS-only idiom and
+-- Neogit marks optional setup() fields as required.
+vim.lsp.config('emmylua_ls', {
+  settings = {
+    emmylua = {
+      runtime = { version = 'LuaJIT', requirePattern = { 'lua/?.lua', 'lua/?/init.lua' } },
+      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+      diagnostics = { disable = { 'missing-fields' } },
+    },
+  },
+})
 
 vim.lsp.config('basedpyright', {
   settings = {
@@ -34,7 +45,7 @@ vim.lsp.enable({
   'bashls',
   'basedpyright',
   'ruff',
-  'lua_ls',
+  'emmylua_ls',
   'marksman',
   'jsonls',
   'yamlls',
@@ -58,6 +69,8 @@ vim.diagnostic.config({
   float = { source = true },
   -- The default status format uses the sign text, which is empty here.
   status = {
+    -- vim.diagnostic.count() leaves out severities without diagnostics.
+    ---@param counts table<vim.diagnostic.Severity, integer?>
     format = function(counts)
       local parts = {}
       for level, label in ipairs({ 'E', 'W', 'I', 'H' }) do

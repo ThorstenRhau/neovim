@@ -3,7 +3,8 @@
 --   nvim --headless -V1 -i NONE -n -S <path to this file>
 -- -V1 makes Neovim record the file and line that set each option and keymap.
 
-local config = vim.fn.resolve(vim.fn.stdpath('config'))
+-- emmylua_ls picks stdpath()'s generic overload, which may return a list.
+local config = vim.fn.resolve(vim.fn.stdpath('config') --[[@as string]])
 local runtime = vim.fn.resolve(vim.env.VIMRUNTIME)
 local modes = { 'n', 'x', 's', 'o', 'i', 'c', 't' }
 local lines = {}
@@ -31,6 +32,7 @@ local function from_neovim(file)
   return vim.startswith(file, runtime) or vim.fn.filereadable(file) == 0
 end
 
+---@return table<integer, string>
 local function script_names()
   local names = {}
   for _, script in ipairs(vim.fn.getscriptinfo()) do
@@ -40,12 +42,14 @@ local function script_names()
 end
 
 local function function_location(fn)
-  local info = debug.getinfo(fn, 'S')
+  local info = assert(debug.getinfo(fn, 'S'))
   return short(info.source:sub(2)) .. ':' .. info.linedefined
 end
 
 local function neovim()
   section('Neovim')
+  -- vim.version is callable through a metatable that emmylua_ls does not see.
+  ---@diagnostic disable-next-line: call-non-callable
   add('version: %s', tostring(vim.version()))
   add('$VIMRUNTIME: %s', runtime)
   add('config: %s', config)
@@ -117,7 +121,8 @@ local function lsp()
     local cmd = client.cmd
     local command
     if type(cmd) == 'table' then
-      command = ('%s executable=%d'):format(cmd[1], vim.fn.executable(cmd[1]))
+      local executable = cmd[1] --[[@as string]]
+      command = ('%s executable=%d'):format(executable, vim.fn.executable(executable))
     else
       command = 'function at ' .. function_location(cmd)
     end
@@ -129,6 +134,8 @@ local function formatters()
   section('conform.nvim formatters_by_ft')
   local conform = require('conform')
   for filetype, names in vim.spairs(conform.formatters_by_ft) do
+    -- plugins.lua lists formatters as tables, not as functions of the buffer.
+    ---@diagnostic disable-next-line: param-type-mismatch
     for _, name in ipairs(names) do
       local info = conform.get_formatter_info(name, 0)
       add('%s %s available=%s %s', filetype, name, tostring(info.available), info.available_msg or '')
@@ -145,7 +152,8 @@ local function linters()
       if type(linter) == 'function' then
         linter = linter()
       end
-      local cmd = type(linter.cmd) == 'function' and linter.cmd() or linter.cmd
+      -- nvim-lint accepts a function for cmd, though its annotation says string.
+      local cmd = (type(linter.cmd) == 'function' and linter.cmd() or linter.cmd) --[[@as string]]
       add('%s %s cmd=%s executable=%d', filetype, name, cmd, vim.fn.executable(cmd))
     end
   end
@@ -157,9 +165,11 @@ local function treesitter()
     if type(autocmd.callback) == 'function' then
       local location = function_location(autocmd.callback)
       if not location:match('^[~/]') then
-        local lang = vim.treesitter.language.get_lang(autocmd.pattern) or autocmd.pattern
+        -- Every FileType autocmd has a pattern, even a buffer-local one.
+        local pattern = autocmd.pattern --[[@as string]]
+        local lang = vim.treesitter.language.get_lang(pattern) or pattern
         local loads = pcall(vim.treesitter.language.add, lang)
-        add('%s lang=%s parser=%s  %s', autocmd.pattern, lang, loads and 'loads' or 'MISSING', location)
+        add('%s lang=%s parser=%s  %s', pattern, lang, loads and 'loads' or 'MISSING', location)
       end
     end
   end
@@ -219,7 +229,7 @@ local function health()
     if line:match('^=+$') then
       name = ''
     elseif name == '' and line:match('^%S.*:') then
-      name = line:match('^(%S+):')
+      name = line:match('^(%S+):') or ''
     elseif line:match(' ~$') then
       part = line:sub(1, -3)
     elseif line:match('^%- .*WARNING') or line:match('^%- .*ERROR') then

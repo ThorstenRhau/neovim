@@ -17,7 +17,6 @@ local packages = {
   { src = 'https://github.com/rafamadriz/friendly-snippets' },
   { src = 'https://github.com/neovim/nvim-lspconfig' },
   { src = 'https://github.com/b0o/schemastore.nvim' },
-  { src = 'https://github.com/folke/lazydev.nvim' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
   { src = 'https://github.com/ibhagwan/fzf-lua' },
@@ -63,7 +62,9 @@ require('token').setup({
 })
 vim.cmd.colorscheme('token')
 
--- Completion.
+-- Completion. emmylua_ls rejects valid partial configs because blink.cmp marks
+-- optional fields with a LuaLS-only idiom.
+---@diagnostic disable-next-line: param-type-mismatch
 require('blink.cmp').setup({
   keymap = { preset = 'super-tab' },
   completion = {
@@ -72,16 +73,6 @@ require('blink.cmp').setup({
   },
   signature = { enabled = true },
   cmdline = { completion = { list = { selection = { preselect = false } } } },
-  sources = {
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-    providers = {
-      lazydev = {
-        name = 'LazyDev',
-        module = 'lazydev.integrations.blink',
-        score_offset = 100,
-      },
-    },
-  },
 })
 
 -- Fuzzy finder.
@@ -128,11 +119,9 @@ gitsigns.setup({
   },
   on_attach = function(buf)
     vim.keymap.set('n', '[h', function()
-      --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('prev', { target = 'all' })
     end, { buf = buf, desc = 'Previous hunk' })
     vim.keymap.set('n', ']h', function()
-      --- @diagnostic disable-next-line: missing-fields
       gitsigns.nav_hunk('next', { target = 'all' })
     end, { buf = buf, desc = 'Next hunk' })
     vim.keymap.set('n', '<leader>gh', ']h', { buf = buf, remap = true, desc = 'Next hunk' })
@@ -144,8 +133,9 @@ gitsigns.setup({
 })
 
 -- Git client. Neogit's annotations mark fields such as `show_title` as required,
--- but setup() deep-merges with its defaults, so omitted fields are fine.
----@diagnostic disable: missing-fields
+-- which emmylua_ls reports as type mismatches, but setup() deep-merges with its
+-- defaults, so omitted fields are fine. emmylua_ls has no working block-scoped
+-- disable, so each affected field is suppressed.
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
@@ -153,16 +143,23 @@ require('neogit').setup({
   -- details open in a split, list views and Git's editors reuse the window.
   kind = 'auto',
   commit_editor = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   commit_select_view = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   commit_view = { kind = 'auto' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   log_view = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   merge_editor = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   rebase_editor = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   reflog_view = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   refs_view = { kind = 'replace' },
+  ---@diagnostic disable-next-line: assign-type-mismatch
   stash = { kind = 'replace' },
 })
----@diagnostic enable: missing-fields
 
 -- Formatters per filetype.
 require('conform').setup({

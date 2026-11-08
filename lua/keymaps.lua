@@ -73,12 +73,15 @@ map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'Documen
 map('n', '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', { desc = 'Workspace diagnostics' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
 map('n', '<leader>o', function()
-  vim.ui.open(vim.fn.expand('%:p'))
+  vim.ui.open(vim.api.nvim_buf_get_name(0))
 end, { desc = 'Open in default app' })
 
 -- Code
 
 map('n', '<leader>cf', function()
+  -- conform.nvim writes its string literal types as '"fallback"', which
+  -- emmylua_ls reads as a string that includes the double quotes.
+  ---@diagnostic disable-next-line: param-type-mismatch
   require('conform').format({ async = true, lsp_format = 'fallback' })
 end, { desc = 'Format buffer' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })

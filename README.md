@@ -19,7 +19,7 @@ Install tools with [Homebrew](https://brew.sh/):
 
 ```sh
 brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
-  basedpyright bash-language-server lua-language-server marksman \
+  basedpyright bash-language-server emmylua_ls marksman \
   vscode-langservers-extracted yaml-language-server \
   prettier ruff shfmt stylua tombi \
   shellcheck selene markdownlint-cli yamllint

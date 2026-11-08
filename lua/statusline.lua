@@ -76,6 +76,8 @@ end
 
 local function names(list)
   local joined = vim
+    -- Neovim annotates vim.iter() as taking no arguments.
+    ---@diagnostic disable-next-line: redundant-parameter
     .iter(list)
     :map(function(item)
       return item.name
@@ -95,6 +97,8 @@ end
 -- Join the non-empty items of a section.
 local function section(items)
   return vim
+    -- Neovim annotates vim.iter() as taking no arguments.
+    ---@diagnostic disable-next-line: redundant-parameter
     .iter(items)
     :filter(function(item)
       return item ~= ''
