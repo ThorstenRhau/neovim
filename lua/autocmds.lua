@@ -76,11 +76,18 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
--- Run configured linters when opening, leaving insert mode, and writing.
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'InsertLeave', 'BufWritePost' }, {
+-- Run configured linters when leaving insert mode and writing, not when
+-- opening, so reading other people's code stays quiet.
+-- actionlint reads any YAML as a workflow, so run it only on workflow files.
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {
   group = group,
   callback = function()
-    require('lint').try_lint(nil, { cwd = vim.fs.root(0, { 'selene.toml', '.git' }) })
+    local lint = require('lint')
+    local opts = { cwd = vim.fs.root(0, { 'selene.toml', '.git' }) }
+    lint.try_lint(nil, opts)
+    if vim.api.nvim_buf_get_name(0):match('/%.github/workflows/[^/]+%.ya?ml$') then
+      lint.try_lint('actionlint', opts)
+    end
   end,
 })
 
