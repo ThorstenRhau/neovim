@@ -62,7 +62,8 @@ local severity = vim.diagnostic.severity
 vim.diagnostic.config({
   severity_sort = true,
   -- Color the line number instead of using a sign, so the single sign
-  -- column stays free for Git markers.
+  -- column stays free for Git markers. The glyph comes from the statuscolumn
+  -- in options.lua.
   signs = {
     text = { [severity.ERROR] = '', [severity.WARN] = '', [severity.INFO] = '', [severity.HINT] = '' },
     numhl = {

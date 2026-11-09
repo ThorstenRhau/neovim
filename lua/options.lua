@@ -18,7 +18,27 @@ vim.o.ruler = false
 vim.o.scrolloff = 10
 vim.o.showmode = false
 vim.o.signcolumn = 'auto'
-vim.o.statuscolumn = '%s%=%{(&nu||&rnu)&&!v:virtnum ? (&rnu&&v:relnum ? v:relnum : v:lnum) . " " : ""}'
+-- The line number, replaced by a glyph for the line's most severe diagnostic.
+local diagnostic_marks = { '✘', '▲', '●', '○' }
+local diagnostic_groups = { 'Error', 'Warn', 'Info', 'Hint' }
+
+function vim.statuscolumn_number()
+  if vim.v.virtnum ~= 0 then
+    return ''
+  end
+  local counts = vim.diagnostic.count(0, { lnum = vim.v.lnum - 1 })
+  for level = 1, 4 do
+    if counts[level] then
+      return ('%%#Diagnostic%s#%s%%*'):format(diagnostic_groups[level], diagnostic_marks[level])
+    end
+  end
+  if not (vim.wo.number or vim.wo.relativenumber) then
+    return ''
+  end
+  return tostring(vim.wo.relativenumber and vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum)
+end
+
+vim.o.statuscolumn = '%s%=%{%v:lua.vim.statuscolumn_number()%} '
 vim.o.winborder = 'single'
 
 -- Cursor shape per mode
