@@ -23,6 +23,7 @@ local packages = {
   { src = 'https://github.com/stevearc/oil.nvim' },
   { src = 'https://github.com/lewis6991/gitsigns.nvim' },
   { src = 'https://github.com/NeogitOrg/neogit' },
+  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
   { src = 'https://github.com/stevearc/conform.nvim' },
   { src = 'https://codeberg.org/mfussenegger/nvim-lint' },
   { src = 'https://github.com/nvim-mini/mini.icons' },
@@ -59,6 +60,7 @@ require('token').setup({
     mini = true,
     neogit = true,
     oil = true,
+    render_markdown = true,
   },
 })
 vim.cmd.colorscheme('token')
@@ -135,6 +137,14 @@ gitsigns.setup({
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
+})
+
+-- Markdown renders in normal, command-line and terminal mode, and shows raw
+-- text in the other modes.
+require('render-markdown').setup({
+  -- Its signs outrank gitsigns, and 'signcolumn' auto has room for one sign,
+  -- so they would hide Git changes on headings and code blocks.
+  sign = { enabled = false },
 })
 
 -- Formatters per filetype.
