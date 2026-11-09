@@ -4,20 +4,26 @@ require('vim._core.ui2').enable()
 -- Indentation (filetype plugins and EditorConfig override these)
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
+vim.o.softtabstop = -1
 
 -- Interface
 vim.o.cursorline = true
-vim.o.fillchars = 'eob: ,fold: '
 vim.o.laststatus = 2
 vim.o.list = true
-vim.o.listchars = 'tab:→ ,trail:•,nbsp:+,extends:›,precedes:‹'
+vim.o.listchars = 'tab:→ ,trail:⣿,nbsp:+,extends:›,precedes:‹'
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.ruler = false
 vim.o.scrolloff = 10
+vim.o.showbreak = '↪ '
 vim.o.showmode = false
+vim.o.sidescrolloff = 6
 vim.o.signcolumn = 'auto'
+vim.o.smoothscroll = true
+vim.o.title = true
+-- File name, modified flag and the project directory name.
+vim.o.titlestring = (vim.env.SSH_TTY ~= nil and 'SSH ' or '') .. 'nvim %t%( %M%) (%{fnamemodify(getcwd(), ":t")})'
+vim.opt.fillchars:append({ eob = ' ', foldinner = ' ', msgsep = '‾' })
 
 -- The line number, replaced by a glyph for the line's most severe diagnostic.
 local diagnostic_marks = { '✘', '▲', '●', '○' }
@@ -53,10 +59,12 @@ vim.o.guicursor = table.concat({
 
 -- Search
 vim.o.ignorecase = true
+vim.o.inccommand = 'split'
 vim.o.smartcase = true
 
 -- Windows
 vim.o.splitbelow = true
+vim.o.splitkeep = 'screen'
 vim.o.splitright = true
 
 -- Text layout and folding
@@ -73,7 +81,21 @@ vim.o.wrap = false
 
 -- Behaviour
 vim.o.confirm = true
+-- Project-local config: Neovim runs .nvim.lua, .nvimrc or .exrc from the
+-- startup directory and its parents only after you approve the file. An
+-- unknown or changed file prompts; [v]iew it, then :trust or :trust ++deny.
+vim.o.exrc = true
+vim.o.jumpoptions = 'clean,view'
 vim.o.spelllang = 'en_us'
+vim.o.startofline = true
+vim.o.synmaxcol = 200
+vim.o.timeoutlen = 3000
 vim.o.undofile = true
+vim.o.undolevels = 10000
+vim.o.updatecount = 0
 vim.o.updatetime = 300
+vim.o.virtualedit = 'block'
+vim.opt.diffopt:append({ 'algorithm:histogram', 'hiddenoff' })
+-- Keep plugin, help and LSP temp buffers out of :oldfiles.
+vim.opt.shada:append({ 'rgitsigns:', 'rhealth:', 'rman:', 'rfile:///var/folders/' })
 vim.opt.sessionoptions:remove({ 'blank', 'help', 'terminal' })
