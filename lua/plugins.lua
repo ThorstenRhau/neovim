@@ -30,6 +30,7 @@ local packages = {
   { src = 'https://github.com/nvim-mini/mini.align' },
   { src = 'https://github.com/nvim-mini/mini.clue' },
   { src = 'https://github.com/ThorstenRhau/brygga.nvim', version = vim.version.range('*') },
+  { src = 'https://github.com/nvim-lualine/lualine.nvim' },
 }
 
 -- With TOKEN_DEV=1, load the colorscheme from a local checkout instead of the package.
@@ -169,3 +170,93 @@ require('mini.align').setup({
 
 -- Bridge that lets Claude Code use Neovim as its IDE.
 require('brygga').setup()
+
+-- Minimal global statusline. Optional components render only when they have
+-- something to say, and the secondary ones also need a wide enough window.
+local function wide(columns)
+  return function()
+    return vim.o.columns >= columns
+  end
+end
+
+local function recording()
+  local reg = vim.fn.reg_recording()
+  return reg ~= '' and '@' .. reg or ''
+end
+
+-- Only show encoding and format when they differ from utf-8 and unix.
+local function encoding()
+  local fenc, ff = vim.bo.fileencoding, vim.bo.fileformat
+  if (fenc == '' or fenc == 'utf-8') and ff == 'unix' then
+    return ''
+  end
+  return ('%s[%s]'):format(fenc, ff)
+end
+
+-- Use gitsigns' counts instead of running another git diff.
+local function gitsigns_diff()
+  local status = vim.b.gitsigns_status_dict
+  if status then
+    return { added = status.added, modified = status.changed, removed = status.removed }
+  end
+end
+
+---@diagnostic disable-next-line: undefined-field
+require('lualine').setup({
+  options = {
+    component_separators = '',
+    section_separators = '',
+    globalstatus = true,
+    refresh = {
+      events = {
+        'WinEnter',
+        'BufEnter',
+        'BufWritePost',
+        'FileChangedShellPost',
+        'VimResized',
+        'Filetype',
+        'CursorMoved',
+        'CursorMovedI',
+        'ModeChanged',
+        'RecordingEnter',
+        'RecordingLeave',
+        'LspAttach',
+        'LspDetach',
+      },
+    },
+  },
+  sections = {
+    lualine_a = {
+      -- One letter, colored by the theme per mode.
+      {
+        'mode',
+        fmt = function(mode)
+          return mode:sub(1, 1)
+        end,
+      },
+    },
+    lualine_b = {
+      { 'filename', path = 1, symbols = { modified = '●', readonly = '' } },
+    },
+    lualine_c = {
+      { 'branch', icon = '', cond = wide(80) },
+      { 'diff', source = gitsigns_diff, cond = wide(80) },
+      { 'diagnostics', sources = { 'nvim_diagnostic' } },
+    },
+    lualine_x = {
+      { recording, color = 'DiagnosticError' },
+      { 'searchcount' },
+      { 'selectioncount' },
+      -- Names with a spinner while a server works, no check mark when idle.
+      { 'lsp_status', icon = '', symbols = { done = '' }, cond = wide(100) },
+    },
+    lualine_y = {
+      { encoding },
+      { 'filetype', icons_enabled = false, cond = wide(60) },
+    },
+    lualine_z = {
+      { 'location', cond = wide(40) },
+    },
+  },
+  inactive_sections = {},
+})
