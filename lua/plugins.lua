@@ -132,33 +132,10 @@ gitsigns.setup({
   end,
 })
 
--- Git client. Neogit's annotations mark fields such as `show_title` as required,
--- which emmylua_ls reports as type mismatches, but setup() deep-merges with its
--- defaults, so omitted fields are fine. emmylua_ls has no working block-scoped
--- disable, so each affected field is suppressed.
+-- Git client.
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
-  -- Magit-like layout (magit-display-buffer-traditional): status and commit
-  -- details open in a split, list views and Git's editors reuse the window.
-  kind = 'auto',
-  commit_editor = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  commit_select_view = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  commit_view = { kind = 'auto' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  log_view = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  merge_editor = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  rebase_editor = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  reflog_view = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  refs_view = { kind = 'replace' },
-  ---@diagnostic disable-next-line: assign-type-mismatch
-  stash = { kind = 'replace' },
 })
 
 -- Formatters per filetype.
