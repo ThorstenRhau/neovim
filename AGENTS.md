@@ -39,6 +39,11 @@ releases.
   official online documentation when local information is missing or
   insufficient. Match documentation to the local revisions. Check package load
   order, mapping scope, and native indentation when relevant.
+- Neovim's help and Lua source live in `/opt/homebrew/share/nvim/runtime`
+  (`doc/`, `lua/vim/`); installed plugins live in
+  `~/.local/share/nvim/site/pack/core/opt/`. `$VIMRUNTIME` is unset in agent
+  shells; if needed, resolve it with
+  `nvim --headless --clean '+lua io.write(vim.env.VIMRUNTIME)' +qa`.
 - Reviews are read-only and findings-first. Report reproducible problems and
   distinguish configuration defects from missing tools or installation drift.
 - Keep changes small. Do not modify `README.md` unless the user explicitly
