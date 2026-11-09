@@ -143,6 +143,10 @@ has changed since, review it normally.
   lockfile. Do not suggest lazy loading, Mason, or another plugin manager.
 - Missing defensive code, such as `pcall`, executable checks, or fallbacks,
   for situations outside normal workflows.
+- Neogit's `graph_style = 'kitty'`: its private-use glyphs are in no
+  installed font file, but Ghostty's built-in fallback renders them.
+- Empty lualine icons and `icons_enabled = false`: the plain look is
+  deliberate.
 
 ## Evidence rule
 

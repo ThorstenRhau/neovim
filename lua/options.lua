@@ -8,7 +8,6 @@ vim.o.softtabstop = -1
 
 -- Interface
 vim.o.cursorline = true
-vim.o.laststatus = 2
 vim.o.list = true
 vim.o.listchars = 'tab:→ ,trail:⣿,nbsp:+,extends:›,precedes:‹'
 vim.o.number = true
@@ -18,7 +17,6 @@ vim.o.scrolloff = 10
 vim.o.showbreak = '↪ '
 vim.o.showmode = false
 vim.o.sidescrolloff = 6
-vim.o.signcolumn = 'auto'
 vim.o.smoothscroll = true
 vim.o.title = true
 -- File name, modified flag and the project directory name.

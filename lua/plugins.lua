@@ -90,12 +90,10 @@ require('fzf-lua').setup({
     rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
   },
   oldfiles = { include_current_session = true },
-  winopts = { border = 'single' },
 })
 
 -- File explorer.
 require('oil').setup({
-  columns = { 'icon' },
   view_options = { show_hidden = true },
   delete_to_trash = true,
 })
@@ -201,6 +199,9 @@ local function encoding()
   return ('%s[%s]'):format(fenc, ff)
 end
 
+-- Nerd Font lock, shown after the name of a readonly or unmodifiable buffer.
+local readonly = vim.fn.nr2char(0xF023)
+
 -- Use gitsigns' counts instead of running another git diff.
 local function gitsigns_diff()
   local status = vim.b.gitsigns_status_dict
@@ -216,7 +217,6 @@ require('lualine').setup({
   options = {
     component_separators = '',
     section_separators = '',
-    globalstatus = false,
     refresh = {
       -- Lualine's defaults plus recording and LSP client changes, which would
       -- otherwise wait for the one-second refresh timer. The list replaces the
@@ -250,10 +250,10 @@ require('lualine').setup({
       },
     },
     lualine_b = {
-      { 'filename', path = 1, symbols = { modified = '●', readonly = '' } },
+      { 'filename', path = 1, symbols = { modified = '●', readonly = readonly } },
     },
     lualine_c = {
-      { 'branch', icon = '', cond = wide(80) },
+      { 'branch', icons_enabled = false, cond = wide(80) },
       { 'diff', source = gitsigns_diff, cond = wide(80) },
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
@@ -262,7 +262,7 @@ require('lualine').setup({
       { 'searchcount' },
       { 'selectioncount' },
       -- Names with a spinner while a server works, no check mark when idle.
-      { 'lsp_status', icon = '', symbols = { done = '' }, cond = wide(100) },
+      { 'lsp_status', icons_enabled = false, symbols = { done = '' }, cond = wide(100) },
     },
     lualine_y = {
       { encoding },
@@ -274,7 +274,7 @@ require('lualine').setup({
   },
   inactive_sections = {
     lualine_c = {
-      { 'filename', path = 1, symbols = { modified = '●', readonly = '' } },
+      { 'filename', path = 1, symbols = { modified = '●', readonly = readonly } },
     },
   },
 })

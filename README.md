@@ -18,7 +18,7 @@ git clone --depth=1 https://github.com/ThorstenRhau/neovim.git ~/.config/nvim
 Install tools with [Homebrew](https://brew.sh/):
 
 ```sh
-brew install neovim git fzf bat fd ripgrep node tree-sitter-cli \
+brew install neovim git fzf fd ripgrep node tree-sitter-cli \
   bash-language-server emmylua_ls pyrefly rumdl \
   vscode-langservers-extracted yaml-language-server \
   prettier ruff shfmt stylua tombi \
