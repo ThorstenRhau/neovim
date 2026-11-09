@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-Small personal Lua configuration for Neovim 0.12.5 and compatible stable
+Small personal Lua configuration for Neovim 0.12.x and compatible stable
 releases.
 
 ## Layout and conventions
@@ -9,8 +9,8 @@ releases.
 - Prefer direct Neovim settings and plugin setup. Add fault handling only for
   problems demonstrated in normal workflows, not for hypothetical scenarios.
 - `init.lua` enables `vim.loader`, sets leaders, and loads `lua/options.lua`,
-  `plugins.lua`, `keymaps.lua`, `lsp.lua`, `autocmds.lua`, and
-  `statusline.lua`. Keep these modules direct and self-contained.
+  `plugins.lua`, `keymaps.lua`, `lsp.lua`, `autocmds.lua`, and `statusline.lua`.
+  Keep these modules direct and self-contained.
 - Declare packages and the Tree-sitter update hook in `lua/plugins.lua` using
   native `vim.pack.add()`. Configure plugins eagerly during startup.
 - External language servers, formatters, and linters are Homebrew-managed; see
@@ -32,9 +32,9 @@ releases.
   configuration behavior. It is neither isolated nor guaranteed offline. Verify
   affected interactive workflows separately; report anything unverified.
 - Verify Neovim and plugin APIs against installed help/source, falling back to
-  official online documentation when local information is missing or insufficient.
-  Match documentation to the local revisions. Check package load order, mapping
-  scope, and native indentation when relevant.
+  official online documentation when local information is missing or
+  insufficient. Match documentation to the local revisions. Check package load
+  order, mapping scope, and native indentation when relevant.
 - Reviews are read-only and findings-first. Report reproducible problems and
   distinguish configuration defects from missing tools or installation drift.
 - Keep changes small. Do not modify `README.md` unless the user explicitly
