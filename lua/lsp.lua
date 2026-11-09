@@ -17,10 +17,28 @@ vim.lsp.config('pyrefly', {
   settings = { python = { pyrefly = { typeCheckingMode = 'default' } } },
 })
 
+---@param d lsp.Diagnostic
+local function not_line_length(d)
+  return d.code ~= 'MD013'
+end
+
 -- Let gq reflow Markdown paragraphs through rumdl's line-length rule instead
--- of the built-in formatter that options.lua sets.
+-- of the built-in formatter that options.lua sets. Disabling MD013 would also
+-- disable the reflow, so drop only its diagnostics.
 vim.lsp.config('rumdl', {
   init_options = { settings = { MD013 = { reflow = true, ['reflow-mode'] = 'normalize' } } },
+  handlers = {
+    ['textDocument/publishDiagnostics'] = function(err, result, ctx)
+      result.diagnostics = vim.tbl_filter(not_line_length, result.diagnostics)
+      vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx)
+    end,
+    ['textDocument/diagnostic'] = function(err, result, ctx)
+      if result and result.items then
+        result.items = vim.tbl_filter(not_line_length, result.items)
+      end
+      vim.lsp.diagnostic.on_diagnostic(err, result, ctx)
+    end,
+  },
   on_attach = function(_, buf)
     vim.bo[buf].formatexpr = 'v:lua.vim.lsp.formatexpr()'
   end,
