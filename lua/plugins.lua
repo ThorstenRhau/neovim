@@ -206,7 +206,7 @@ require('lualine').setup({
   options = {
     component_separators = '',
     section_separators = '',
-    globalstatus = true,
+    globalstatus = false,
     refresh = {
       events = {
         'WinEnter',
@@ -258,5 +258,9 @@ require('lualine').setup({
       { 'location', cond = wide(40) },
     },
   },
-  inactive_sections = {},
+  inactive_sections = {
+    lualine_c = {
+      { 'filename', path = 1, symbols = { modified = '●', readonly = '' } },
+    },
+  },
 })

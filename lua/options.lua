@@ -9,7 +9,7 @@ vim.o.softtabstop = 2
 -- Interface
 vim.o.cursorline = true
 vim.o.fillchars = 'eob: ,fold: '
-vim.o.laststatus = 3
+vim.o.laststatus = 2
 vim.o.list = true
 vim.o.listchars = 'tab:→ ,trail:•,nbsp:+,extends:›,precedes:‹'
 vim.o.number = true
