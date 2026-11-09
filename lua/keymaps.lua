@@ -100,9 +100,6 @@ end, { desc = 'Open in default app' })
 -- Code
 
 map('n', '<leader>cf', function()
-  -- conform.nvim writes its string literal types as '"fallback"', which
-  -- emmylua_ls reads as a string that includes the double quotes.
-  ---@diagnostic disable-next-line: param-type-mismatch
   require('conform').format({ async = true, lsp_format = 'fallback' })
 end, { desc = 'Format buffer' })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })

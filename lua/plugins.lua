@@ -63,9 +63,7 @@ require('token').setup({
 })
 vim.cmd.colorscheme('token')
 
--- Completion. emmylua_ls rejects valid partial configs because blink.cmp marks
--- optional fields with a LuaLS-only idiom.
----@diagnostic disable-next-line: param-type-mismatch
+-- Completion
 require('blink.cmp').setup({
   -- <C-c> cancels like it does in fzf-lua and Oil, and leaves insert mode
   -- when the menu is closed.
@@ -197,6 +195,8 @@ local function gitsigns_diff()
   end
 end
 
+-- lualine reassigns its module table after `local M = {}`, and emmylua_ls only
+-- sees the empty first table.
 ---@diagnostic disable-next-line: undefined-field
 require('lualine').setup({
   options = {

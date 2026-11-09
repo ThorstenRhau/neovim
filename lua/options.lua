@@ -18,6 +18,7 @@ vim.o.ruler = false
 vim.o.scrolloff = 10
 vim.o.showmode = false
 vim.o.signcolumn = 'auto'
+
 -- The line number, replaced by a glyph for the line's most severe diagnostic.
 local diagnostic_marks = { '✘', '▲', '●', '○' }
 local diagnostic_groups = { 'Error', 'Warn', 'Info', 'Hint' }

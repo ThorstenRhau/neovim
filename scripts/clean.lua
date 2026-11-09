@@ -13,7 +13,7 @@
 --
 -- Test only with disposable XDG directories, never the live installation.
 
-local config = vim.fs.normalize(vim.fn.stdpath('config') --[[@as string]])
+local config = vim.fs.normalize(vim.fn.stdpath('config'))
 local home_path = assert(vim.uv.os_homedir(), 'Unable to determine home directory')
 local home = assert(vim.uv.fs_realpath(home_path))
 local config_real = vim.uv.fs_realpath(config) or config

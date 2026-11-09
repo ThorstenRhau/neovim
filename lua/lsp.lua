@@ -1,16 +1,3 @@
--- Give emmylua_ls the Neovim runtime and every installed plugin. Disable
--- missing-fields: blink.cmp marks optional fields with a LuaLS-only idiom and
--- Neogit marks optional setup() fields as required.
-vim.lsp.config('emmylua_ls', {
-  settings = {
-    emmylua = {
-      runtime = { version = 'LuaJIT', requirePattern = { 'lua/?.lua', 'lua/?/init.lua' } },
-      workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-      diagnostics = { disable = { 'missing-fields' } },
-    },
-  },
-})
-
 -- Without a project config, Pyrefly falls back to a preset that hides most
 -- type errors. A pyrefly.toml or [tool.pyrefly] still takes precedence.
 vim.lsp.config('pyrefly', {

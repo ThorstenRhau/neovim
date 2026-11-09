@@ -23,6 +23,10 @@ releases.
 - Every custom keymap needs `desc`. Keep LSP and Git inspection mappings
   buffer-local and preserve native mappings outside the documented overrides.
 - Let `.stylua.toml` and `selene.toml` define style and lint policy.
+- `.emmyrc.json` holds the Neovim-specific emmylua_ls settings, so other Lua
+  projects get emmylua_ls defaults. It disables the type checks that mostly
+  report false positives here: plugins annotate their types for LuaLS, and
+  emmylua_ls treats indexing a `table<K, V>` as never nil.
 
 ## Validation and review
 

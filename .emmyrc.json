@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/EmmyLuaLs/emmylua-analyzer-rust/refs/heads/main/crates/emmylua_code_analysis/resources/schema.json",
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "library": ["$VIMRUNTIME", "~/.local/share/nvim/site/pack/core/opt"]
+  },
+  "diagnostics": {
+    "disable": [
+      "missing-fields",
+      "param-type-mismatch",
+      "assign-type-mismatch",
+      "unnecessary-if"
+    ]
+  }
+}
