@@ -6,6 +6,15 @@ map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 
+-- Emacs-style line editing in insert mode and on the command line. The
+-- command line already has <C-e> for end and <C-b> for start.
+
+map('i', '<C-a>', '<Cmd>normal! ^<CR>', { desc = 'First non-blank character' })
+map('i', '<C-e>', '<End>', { desc = 'End of line' })
+map('c', '<C-a>', '<Home>', { desc = 'Start of line' })
+-- remap keeps the default <C-w> mapping, which starts a new undo step.
+map({ 'i', 'c' }, '<M-BS>', '<C-w>', { remap = true, desc = 'Delete word before cursor' })
+
 -- Movement by display line
 
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down by display line' })

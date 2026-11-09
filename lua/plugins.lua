@@ -67,7 +67,9 @@ vim.cmd.colorscheme('token')
 -- optional fields with a LuaLS-only idiom.
 ---@diagnostic disable-next-line: param-type-mismatch
 require('blink.cmp').setup({
-  keymap = { preset = 'super-tab' },
+  -- <C-c> cancels like it does in fzf-lua and Oil, and leaves insert mode
+  -- when the menu is closed.
+  keymap = { preset = 'super-tab', ['<C-c>'] = { 'cancel', 'fallback' } },
   completion = {
     trigger = { show_in_snippet = false },
     documentation = { auto_show = true, auto_show_delay_ms = 500 },
