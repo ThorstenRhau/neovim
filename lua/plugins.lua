@@ -100,18 +100,22 @@ require('oil').setup({
 
 -- Git signs and hunk mappings.
 local gitsigns = require('gitsigns')
--- Same markers as Emacs diff-hl, for staged and unstaged hunks.
-local git_signs = {
-  add = { text = '+' },
-  change = { text = '!' },
-  delete = { text = '-' },
-  topdelete = { text = '-' },
-  changedelete = { text = '!' },
-  untracked = { text = '+' },
-}
 gitsigns.setup({
-  signs = git_signs,
-  signs_staged = git_signs,
+  signs = {
+    add = { text = '┃' },
+    change = { text = '┃' },
+    delete = { text = '▁' },
+    topdelete = { text = '▔' },
+    changedelete = { text = '┃' },
+    untracked = { text = '┃' },
+  },
+  signs_staged = {
+    add = { text = '┇' },
+    change = { text = '┇' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
+    changedelete = { text = '┇' },
+  },
   on_attach = function(buf)
     vim.keymap.set('n', '[h', function()
       gitsigns.nav_hunk('prev', { target = 'all' })
