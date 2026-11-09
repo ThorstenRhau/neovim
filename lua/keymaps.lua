@@ -17,10 +17,10 @@ local function third()
 end
 map({ 'n', 'x' }, '<C-d>', function()
   return third() .. '<C-d>zz'
-end, { expr = true })
+end, { expr = true, desc = 'Scroll down a third' })
 map({ 'n', 'x' }, '<C-u>', function()
   return third() .. '<C-u>zz'
-end, { expr = true })
+end, { expr = true, desc = 'Scroll up a third' })
 
 -- Tree-sitter text objects: select
 

@@ -100,24 +100,18 @@ require('oil').setup({
 
 -- Git signs and hunk mappings.
 local gitsigns = require('gitsigns')
+-- Same markers as Emacs diff-hl, for staged and unstaged hunks.
+local git_signs = {
+  add = { text = '+' },
+  change = { text = '!' },
+  delete = { text = '-' },
+  topdelete = { text = '-' },
+  changedelete = { text = '!' },
+  untracked = { text = '+' },
+}
 gitsigns.setup({
-  -- Same markers as Emacs diff-hl.
-  signs = {
-    add = { text = '+' },
-    change = { text = '!' },
-    delete = { text = '-' },
-    topdelete = { text = '-' },
-    changedelete = { text = '!' },
-    untracked = { text = '+' },
-  },
-  signs_staged = {
-    add = { text = '+' },
-    change = { text = '!' },
-    delete = { text = '-' },
-    topdelete = { text = '-' },
-    changedelete = { text = '!' },
-    untracked = { text = '+' },
-  },
+  signs = git_signs,
+  signs_staged = git_signs,
   on_attach = function(buf)
     vim.keymap.set('n', '[h', function()
       gitsigns.nav_hunk('prev', { target = 'all' })
@@ -171,7 +165,7 @@ require('mini.align').setup({
 -- Bridge that lets Claude Code use Neovim as its IDE.
 require('brygga').setup()
 
--- Minimal global statusline. Optional components render only when they have
+-- Minimal statusline per window. Optional components render only when they have
 -- something to say, and the secondary ones also need a wide enough window.
 local function wide(columns)
   return function()
@@ -208,10 +202,14 @@ require('lualine').setup({
     section_separators = '',
     globalstatus = false,
     refresh = {
+      -- Lualine's defaults plus recording and LSP client changes, which would
+      -- otherwise wait for the one-second refresh timer. The list replaces the
+      -- defaults instead of extending them.
       events = {
         'WinEnter',
         'BufEnter',
         'BufWritePost',
+        'SessionLoadPost',
         'FileChangedShellPost',
         'VimResized',
         'Filetype',

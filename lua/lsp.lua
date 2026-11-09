@@ -76,37 +76,12 @@ vim.lsp.enable({
   'tombi',
 })
 
-local severity = vim.diagnostic.severity
 vim.diagnostic.config({
   severity_sort = true,
-  -- Color the line number instead of using a sign, so the single sign
-  -- column stays free for Git markers. The glyph comes from the statuscolumn
-  -- in options.lua.
-  signs = {
-    text = { [severity.ERROR] = '', [severity.WARN] = '', [severity.INFO] = '', [severity.HINT] = '' },
-    numhl = {
-      [severity.ERROR] = 'DiagnosticSignError',
-      [severity.WARN] = 'DiagnosticSignWarn',
-      [severity.INFO] = 'DiagnosticSignInfo',
-      [severity.HINT] = 'DiagnosticSignHint',
-    },
-  },
+  -- No signs, so the single sign column stays free for Git markers. The
+  -- statuscolumn in options.lua replaces the line number with a glyph.
+  signs = false,
   float = { source = true },
-  -- The default status format uses the sign text, which is empty here.
-  status = {
-    -- vim.diagnostic.count() leaves out severities without diagnostics.
-    ---@param counts table<vim.diagnostic.Severity, integer?>
-    format = function(counts)
-      local parts = {}
-      for level, label in ipairs({ 'E', 'W', 'I', 'H' }) do
-        if counts[level] then
-          local hl = 'Diagnostic' .. ({ 'Error', 'Warn', 'Info', 'Hint' })[level]
-          table.insert(parts, ('%%#%s#%s:%d%%*'):format(hl, label, counts[level]))
-        end
-      end
-      return table.concat(parts, ' ')
-    end,
-  },
 })
 
 -- Show the cursor line's diagnostics in a float when the cursor rests.
