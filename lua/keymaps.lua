@@ -11,6 +11,17 @@ map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, desc = 'Down by display line' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, desc = 'Up by display line' })
 
+-- Scroll a third of the window and keep the cursor line in the middle
+local function third()
+  return math.max(1, math.floor(vim.api.nvim_win_get_height(0) / 3))
+end
+map({ 'n', 'x' }, '<C-d>', function()
+  return third() .. '<C-d>zz'
+end, { expr = true })
+map({ 'n', 'x' }, '<C-u>', function()
+  return third() .. '<C-u>zz'
+end, { expr = true })
+
 -- Tree-sitter text objects: select
 
 local ts_select = require('nvim-treesitter-textobjects.select')
