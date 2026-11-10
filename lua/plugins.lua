@@ -150,6 +150,10 @@ gitsigns.setup({
 require('neogit').setup({
   disable_insert_on_commit = true,
   graph_style = 'kitty',
+  -- Syntax colors on the tinted diff lines, like delta in the terminal.
+  treesitter_diff_highlight = true,
+  -- Git's commit.verbose already puts the diff in the message buffer.
+  commit_editor = { show_staged_diff = false },
 })
 
 -- Markdown renders in normal, command-line and terminal mode, and shows raw

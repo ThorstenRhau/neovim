@@ -21,7 +21,7 @@ vim.o.smoothscroll = true
 vim.o.title = true
 -- File name, modified flag and the project directory name.
 vim.o.titlestring = (vim.env.SSH_TTY ~= nil and 'SSH ' or '') .. 'nvim %t%( %M%) (%{fnamemodify(getcwd(), ":t")})'
-vim.opt.fillchars:append({ eob = ' ', foldinner = ' ', msgsep = '‾' })
+vim.opt.fillchars:append({ diff = ' ', eob = ' ', foldinner = ' ', msgsep = '‾' })
 
 -- The line number, replaced by a glyph for the line's most severe diagnostic.
 local diagnostic_marks = { '✘', '▲', '●', '○' }
