@@ -4,7 +4,28 @@
     "version": "LuaJIT"
   },
   "workspace": {
-    "library": ["$VIMRUNTIME", "~/.local/share/nvim/site/pack/core/opt"]
+    "library": [
+      "$VIMRUNTIME",
+      "~/.local/share/nvim/site/pack/core/opt/blink.cmp/lua",
+      "~/.local/share/nvim/site/pack/core/opt/brygga.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/conform.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/fzf-lua/lua",
+      "~/.local/share/nvim/site/pack/core/opt/gitsigns.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/lualine.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/mini.align/lua",
+      "~/.local/share/nvim/site/pack/core/opt/mini.clue/lua",
+      "~/.local/share/nvim/site/pack/core/opt/mini.icons/lua",
+      "~/.local/share/nvim/site/pack/core/opt/mini.splitjoin/lua",
+      "~/.local/share/nvim/site/pack/core/opt/neogit/lua",
+      "~/.local/share/nvim/site/pack/core/opt/nvim-lint/lua",
+      "~/.local/share/nvim/site/pack/core/opt/nvim-lspconfig/lua",
+      "~/.local/share/nvim/site/pack/core/opt/nvim-treesitter/lua",
+      "~/.local/share/nvim/site/pack/core/opt/nvim-treesitter-textobjects/lua",
+      "~/.local/share/nvim/site/pack/core/opt/oil.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/render-markdown.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/schemastore.nvim/lua",
+      "~/.local/share/nvim/site/pack/core/opt/token/lua"
+    ]
   },
   "diagnostics": {
     "disable": [
