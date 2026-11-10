@@ -126,6 +126,21 @@ gitsigns.setup({
     vim.keymap.set('n', '<leader>gh', ']h', { buf = buf, remap = true, desc = 'Next hunk' })
     vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { buf = buf, desc = 'Preview hunk' })
     vim.keymap.set('n', '<leader>gb', gitsigns.blame_line, { buf = buf, desc = 'Blame line' })
+    -- On a staged hunk, stage_hunk unstages it.
+    vim.keymap.set('n', '<leader>gs', gitsigns.stage_hunk, { buf = buf, desc = 'Stage or unstage hunk' })
+    vim.keymap.set('x', '<leader>gs', function()
+      gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end, { buf = buf, desc = 'Stage selected lines' })
+    vim.keymap.set('n', '<leader>gS', gitsigns.stage_buffer, { buf = buf, desc = 'Stage buffer' })
+    vim.keymap.set('n', '<leader>gr', gitsigns.reset_hunk, { buf = buf, desc = 'Reset hunk' })
+    vim.keymap.set('x', '<leader>gr', function()
+      gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end, { buf = buf, desc = 'Reset selected lines' })
+    vim.keymap.set('n', '<leader>gd', gitsigns.diffthis, { buf = buf, desc = 'Diff against index' })
+    vim.keymap.set('n', '<leader>gq', function()
+      gitsigns.setqflist('all')
+    end, { buf = buf, desc = 'All hunks to quickfix' })
+    vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk, { buf = buf, desc = 'Hunk' })
     -- Keep mini.clue triggers ahead of these buffer-local mappings.
     require('mini.clue').ensure_buf_triggers(buf)
   end,

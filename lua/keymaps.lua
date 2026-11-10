@@ -156,7 +156,7 @@ clue.setup({
     { mode = { 'n', 'x', 'o' }, keys = '<LocalLeader>f', desc = '+Functions' },
     { mode = 'n', keys = '<leader>c', desc = '+Code' },
     { mode = 'n', keys = '<leader>f', desc = '+Files' },
-    { mode = 'n', keys = '<leader>g', desc = '+Git' },
+    { mode = { 'n', 'x' }, keys = '<leader>g', desc = '+Git' },
     { mode = 'n', keys = '<leader>s', desc = '+Search' },
     { mode = 'n', keys = '<leader>t', desc = '+Toggle' },
     { mode = 'n', keys = 'gr', desc = '+LSP' },
