@@ -11,7 +11,8 @@ end
 
 -- Let gq reflow Markdown paragraphs through rumdl's line-length rule instead
 -- of the built-in formatter that options.lua sets. Disabling MD013 would also
--- disable the reflow, so drop only its diagnostics.
+-- disable the reflow, so drop only its diagnostics. rumdl also formats
+-- Markdown for the format key.
 vim.lsp.config('rumdl', {
   init_options = { settings = { MD013 = { reflow = true, ['reflow-mode'] = 'normalize' } } },
   handlers = {
@@ -52,8 +53,32 @@ vim.lsp.config('yamlls', {
   },
 })
 
+-- sourcekit-lsp also offers C and C++, where clangd already attaches. Two
+-- servers on one buffer would send duplicate diagnostics and semantic tokens.
+vim.lsp.config('sourcekit', {
+  filetypes = { 'swift' },
+})
+
+-- Biome also attaches to JSON, YAML and Markdown, which prettier and rumdl
+-- own here. Limit it to JavaScript and TypeScript to avoid duplicate
+-- diagnostics and a second formatter on Markdown.
+vim.lsp.config('biome', {
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+})
+
+-- Check with clippy on save instead of plain `cargo check`.
+vim.lsp.config('rust_analyzer', {
+  settings = { ['rust-analyzer'] = { check = { command = 'clippy' } } },
+})
+
 vim.lsp.enable({
   'bashls',
+  'biome',
+  'clangd',
+  'gopls',
+  'rust_analyzer',
+  'sourcekit',
+  'tsc',
   'pyrefly',
   'ruff',
   'emmylua_ls',
