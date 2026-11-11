@@ -90,6 +90,11 @@ require('fzf-lua').setup({
     rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
   },
   oldfiles = { include_current_session = true },
+  -- man -k rebuilds its index on each call on macOS, and fzf-lua runs it
+  -- twice. ~/github/macOS/scripts/update-system.sh writes this cache.
+  manpages = {
+    cmd = 'cat ' .. vim.fn.shellescape(vim.fn.stdpath('cache') .. '/manpages.txt') .. ' 2>/dev/null || man -k .',
+  },
 })
 
 -- File explorer.
