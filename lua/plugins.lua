@@ -161,6 +161,7 @@ require('neogit').setup({
   commit_editor = { show_staged_diff = false },
 })
 
+---@diagnostic disable-next-line: undefined-field
 -- Markdown renders in normal, command-line and terminal mode, and shows raw
 -- text in the other modes.
 require('render-markdown').setup({
