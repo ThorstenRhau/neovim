@@ -72,6 +72,12 @@ require('blink.cmp').setup({
   keymap = { preset = 'super-tab', ['<C-c>'] = { 'cancel', 'fallback' } },
   completion = {
     trigger = { show_in_snippet = false },
+    -- <leader>tc flips vim.b.completion_auto; <C-Space> still opens the menu.
+    menu = {
+      auto_show = function()
+        return vim.b.completion_auto ~= false
+      end,
+    },
     documentation = { auto_show = true, auto_show_delay_ms = 500 },
   },
   signature = { enabled = true },

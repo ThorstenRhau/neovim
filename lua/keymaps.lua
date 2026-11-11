@@ -118,6 +118,10 @@ map('n', '<leader>tl', function()
   vim.opt_local.number = on
   vim.opt_local.relativenumber = on
 end, { desc = 'Line numbers' })
+map('n', '<leader>tc', function()
+  vim.b.completion_auto = vim.b.completion_auto == false
+  vim.notify('Auto completion ' .. (vim.b.completion_auto and 'on' or 'off'))
+end, { desc = 'Auto completion' })
 map('n', '<leader>td', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = 'Diagnostics' })
