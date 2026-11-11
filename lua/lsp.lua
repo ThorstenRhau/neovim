@@ -81,6 +81,7 @@ vim.lsp.enable({
   'tsc',
   'pyrefly',
   'ruff',
+  'ruby_lsp',
   'emmylua_ls',
   'rumdl',
   'jsonls',

@@ -15,6 +15,8 @@ not explain by itself.
   and TypeScript through the Biome language server, not nvim-lint.
 - [ADR-0003](decisions/0003-format-through-language-servers.md): format C, Go,
   Rust and Swift through their language servers, without conform entries.
+- [ADR-0004](decisions/0004-ruby-through-ruby-lsp.md): lint and format Ruby
+  through Ruby LSP and the project's bundled RuboCop, not nvim-lint or conform.
 
 ## Maintenance
 

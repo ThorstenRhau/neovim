@@ -21,7 +21,7 @@ Install tools with [Homebrew](https://brew.sh/):
 brew install neovim git fzf fd ripgrep node tree-sitter-cli \
   bash-language-server emmylua_ls pyrefly rumdl \
   vscode-langservers-extracted yaml-language-server \
-  rust rust-analyzer go gopls typescript \
+  rust rust-analyzer go gopls typescript ruby ruby-lsp \
   prettier ruff shfmt stylua tombi \
   actionlint biome shellcheck selene swiftlint yamllint
 ```
@@ -30,6 +30,9 @@ Tree-sitter parser compilation needs Xcode Command Line Tools
 (`xcode-select --install`) and Tree-sitter CLI 0.26.1 or newer. The Command
 Line Tools also provide `clangd` and `sourcekit-lsp` for C and Swift. brygga
 needs the Claude Code CLI (`claude`) on `PATH`.
+
+Ruby lints and formats with RuboCop only in projects whose Gemfile includes
+`rubocop`: Ruby LSP runs the project's bundled version and plugins.
 
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 

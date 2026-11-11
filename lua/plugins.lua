@@ -170,9 +170,10 @@ require('render-markdown').setup({
   sign = { enabled = false },
 })
 
--- Formatters per filetype. C, Go, Rust, Swift and Markdown have no entry: the
--- format key falls back to their language servers, which run clang-format,
--- gofmt, rustfmt, swift-format and rumdl.
+-- Formatters per filetype. C, Go, Rust, Swift, Markdown and Ruby have no
+-- entry: the format key falls back to their language servers, which run
+-- clang-format, gofmt, rustfmt, swift-format, rumdl and the project's bundled
+-- RuboCop.
 -- JavaScript and TypeScript use Biome in projects with a Biome config, so the
 -- result agrees with `biome check`, and prettier everywhere else.
 local web = { 'biome', 'prettier', stop_after_first = true }
@@ -196,7 +197,8 @@ require('conform').setup({
 -- Linters per filetype. Rust, Go and C lint through their language servers:
 -- clippy in lsp.lua, and the staticcheck and clang-tidy checks that gopls and
 -- clangd run by default. JavaScript and TypeScript lint through the biome
--- server, which attaches only in projects with a Biome config.
+-- server, which attaches only in projects with a Biome config. Ruby lints
+-- through ruby_lsp, which runs RuboCop when the project's Gemfile has it.
 require('lint').linters_by_ft = {
   lua = { 'selene' },
   yaml = { 'yamllint' },
