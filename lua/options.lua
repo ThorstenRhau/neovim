@@ -44,7 +44,7 @@ function vim.statuscolumn_number()
 end
 
 vim.o.statuscolumn = '%s%=%{%v:lua.vim.statuscolumn_number()%} '
-vim.o.winborder = 'single'
+vim.o.winborder = 'rounded'
 
 -- Cursor shape per mode
 vim.o.guicursor = table.concat({

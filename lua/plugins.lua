@@ -88,6 +88,7 @@ require('blink.cmp').setup({
 require('fzf-lua').setup({
   'ivy',
   defaults = { git_icons = true },
+  winopts = { border = 'rounded' },
   files = { follow = true },
   grep = {
     hidden = true,
