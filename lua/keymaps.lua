@@ -92,6 +92,8 @@ map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep text' })
 map('n', '<leader>sh', '<cmd>FzfLua helptags<cr>', { desc = 'Help pages' })
 map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'Document diagnostics' })
 map('n', '<leader>sD', '<cmd>FzfLua diagnostics_workspace<cr>', { desc = 'Workspace diagnostics' })
+-- z= uses an inputlist() prompt, not vim.ui.select, so it needs its own mapping.
+map('n', 'z=', '<cmd>FzfLua spell_suggest<cr>', { desc = 'Spelling suggestions' })
 map('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
 map('n', '<leader>o', function()
   vim.ui.open(vim.api.nvim_buf_get_name(0))

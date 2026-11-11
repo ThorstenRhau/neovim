@@ -88,6 +88,8 @@ require('blink.cmp').setup({
 require('fzf-lua').setup({
   'ivy',
   defaults = { git_icons = true },
+  -- Replaces the vim.ui.select prompt, for example in code actions.
+  ui_select = {},
   winopts = { border = 'rounded' },
   files = { follow = true },
   grep = {
