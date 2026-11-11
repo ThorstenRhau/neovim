@@ -52,7 +52,7 @@ vim.o.guicursor = table.concat({
   'i-ci-ve:ver25-Cursor',
   'r-cr-o:hor20-Cursor',
   't:block-TermCursor',
-  'a:blinkwait500-blinkoff500-blinkon500',
+  -- 'a:blinkwait500-blinkoff500-blinkon500',
 }, ',')
 
 -- Search
