@@ -280,27 +280,6 @@ require('lualine').setup({
   options = {
     component_separators = '',
     section_separators = '',
-    refresh = {
-      -- Lualine's defaults plus recording and LSP client changes, which would
-      -- otherwise wait for the one-second refresh timer. The list replaces the
-      -- defaults instead of extending them.
-      events = {
-        'WinEnter',
-        'BufEnter',
-        'BufWritePost',
-        'SessionLoadPost',
-        'FileChangedShellPost',
-        'VimResized',
-        'Filetype',
-        'CursorMoved',
-        'CursorMovedI',
-        'ModeChanged',
-        'RecordingEnter',
-        'RecordingLeave',
-        'LspAttach',
-        'LspDetach',
-      },
-    },
   },
   sections = {
     lualine_a = {
