@@ -90,10 +90,14 @@ require('fzf-lua').setup({
   defaults = { git_icons = true },
   -- Replaces the vim.ui.select prompt, for example in code actions.
   ui_select = {},
+  -- Color fzf from the colorscheme's FzfLuaFzf* groups.
+  fzf_colors = true,
   winopts = {
     width = 0.95,
     height = 0.95,
     preview = { layout = 'flex', flip_columns = 120, horizontal = 'right:55%' },
+    -- Keep themed match colors instead of reversed blocks in treesitter pickers.
+    treesitter = { fzf_colors = false },
   },
   files = { follow = true },
   grep = {
