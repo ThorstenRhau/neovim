@@ -84,7 +84,7 @@ end, { desc = 'Previous class end' })
 
 -- Files and search (fzf-lua, Oil)
 
-map('n', '<leader> ', '<cmd>FzfLua global<cr>', { desc = 'Files, buffers ($), symbols (@ #)' })
+map('n', '<leader> ', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
 map('n', '<leader>/', '<cmd>FzfLua blines<cr>', { desc = 'Search buffer' })
 map('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find' })
 map('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Buffers' })
