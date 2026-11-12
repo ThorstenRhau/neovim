@@ -24,7 +24,8 @@ vim.o.titlestring = (vim.env.SSH_TTY ~= nil and 'SSH ' or '') .. 'nvim %t%( %M%)
 vim.opt.fillchars:append({ diff = ' ', eob = ' ', foldinner = ' ', msgsep = '‾' })
 
 -- The line number, replaced by a glyph for the line's most severe diagnostic.
-local diagnostic_marks = { '✘', '▲', '●', '○' }
+-- local diagnostic_marks = { '✘', '▲', '●', '○' }
+local diagnostic_marks = { 'E', 'W', 'I', 'H' }
 local diagnostic_groups = { 'Error', 'Warn', 'Info', 'Hint' }
 
 -- Most severe diagnostic per line, per buffer, rebuilt when diagnostics change,
