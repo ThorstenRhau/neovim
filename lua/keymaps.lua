@@ -110,6 +110,25 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = 'Show diagnostic' })
 
 map('n', '<leader>gg', '<cmd>Neogit<cr>', { desc = 'Git status' })
 map('n', '<leader>gl', '<cmd>Neogit log<cr>', { desc = 'Git log' })
+map('n', '<leader>gR', function()
+  vim.cmd.tabnew()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.fn.jobstart({ 'tuicr' }, {
+    term = true,
+    -- tuicr's "open in editor" opens the file in a new tab of this Neovim.
+    -- shortcut: `env` hides the program name from tuicr, so it passes the path
+    -- without `+LINE`, which Nvim's --remote would treat as a file name. The
+    -- file opens at the top. A wrapper that calls :drop and jumps to the line
+    -- over RPC would keep the line.
+    env = { EDITOR = 'env nvim --server ' .. vim.v.servername .. ' --remote-tab' },
+    on_exit = function(_, code)
+      if code == 0 and vim.api.nvim_buf_is_valid(buf) then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end,
+  })
+  vim.cmd.startinsert()
+end, { desc = 'Review with tuicr' })
 
 -- Toggles
 
