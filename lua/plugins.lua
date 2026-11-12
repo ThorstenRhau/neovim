@@ -87,18 +87,10 @@ require('blink.cmp').setup({
 -- Fuzzy finder.
 require('fzf-lua').setup({
   'border-fused',
-  defaults = { git_icons = true },
-  -- Replaces the vim.ui.select prompt, for example in code actions.
-  ui_select = {},
+  ui_select = {}, -- Replaces the vim.ui.select prompt, for example in code actions.
   -- Color fzf from the colorscheme's FzfLuaFzf* groups.
   fzf_colors = true,
-  winopts = {
-    width = 0.95,
-    height = 0.95,
-    preview = { layout = 'flex', flip_columns = 120, horizontal = 'right:55%' },
-    -- Keep themed match colors instead of reversed blocks in treesitter pickers.
-    treesitter = { fzf_colors = false },
-  },
+  defaults = { git_icons = true, formatter = 'path.filename_first' },
   files = { follow = true },
   grep = {
     hidden = true,
@@ -106,12 +98,20 @@ require('fzf-lua').setup({
     -- fzf-lua clears RIPGREP_CONFIG_PATH, so exclude .git here.
     rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
   },
-  oldfiles = { include_current_session = true },
   -- man -k rebuilds its index on each call on macOS, and fzf-lua runs it
   -- twice. ~/github/macOS/scripts/update-system.sh writes this cache.
   manpages = {
     cmd = 'cat ' .. vim.fn.shellescape(vim.fn.stdpath('cache') .. '/manpages.txt') .. ' 2>/dev/null || man -k .',
   },
+  previewers = {
+    builtin = { limit_b = 200 * 1024 }, -- Skip previews of files over 200KB.
+  },
+  winopts = {
+    fullscreen = true,
+    preview = { horizontal = 'right:65%' },
+    treesitter = { fzf_colors = false },
+  },
+  oldfiles = { include_current_session = true },
 })
 
 -- File explorer.
