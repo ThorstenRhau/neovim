@@ -86,15 +86,22 @@ require('blink.cmp').setup({
 
 -- Fuzzy finder.
 require('fzf-lua').setup({
-  'border-fused',
-  ui_select = {}, -- Replaces the vim.ui.select prompt, for example in code actions.
+  { 'ivy' },
+  -- Replaces the vim.ui.select prompt, for example in
+  -- code actions, with a popup sized to the item count.
+  ui_select = function(o, items)
+    local preview = o.kind == 'codeaction' and 0.20 or 0
+    local height = math.min(math.max((#items + 6) / vim.o.lines + preview, 0.15), 0.70)
+    return { 'default', winopts = { fullscreen = false, height = height, width = 0.60, row = 0.40 } }
+  end,
   -- Color fzf from the colorscheme's FzfLuaFzf* groups.
   fzf_colors = true,
-  defaults = { git_icons = true, formatter = 'path.filename_first' },
+  defaults = { git_icons = true },
   files = { follow = true },
   grep = {
     hidden = true,
     follow = true,
+    fzf_opts = { ['--history'] = vim.fs.joinpath(vim.fn.stdpath('data'), 'fzf_search_hist') }, -- <C-p>/<C-n> recall queries.
     -- fzf-lua clears RIPGREP_CONFIG_PATH, so exclude .git here.
     rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --glob=!.git/ -e',
   },
@@ -107,9 +114,8 @@ require('fzf-lua').setup({
     builtin = { limit_b = 200 * 1024 }, -- Skip previews of files over 200KB.
   },
   winopts = {
-    fullscreen = true,
-    preview = { horizontal = 'right:65%' },
-    treesitter = { fzf_colors = false },
+    border = 'rounded',
+    treesitter = { enabled = true, fzf_colors = false },
   },
   oldfiles = { include_current_session = true },
 })
