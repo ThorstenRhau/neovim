@@ -93,7 +93,14 @@ map('n', '<leader>sg', '<cmd>FzfLua live_grep<cr>', { desc = 'Grep text' })
 map('n', '<leader>sw', function()
   local fzf = require('fzf-lua')
   -- rg honors the last case flag, so replace --smart-case instead of adding to it.
-  fzf.grep_cword({ rg_opts = fzf.config.globals.grep.rg_opts:gsub('%-%-smart%-case', '--ignore-case') })
+  fzf.grep_cword({
+    rg_opts = fzf
+      .config
+      .globals
+      .grep
+      .rg_opts--[[@cast -?]]
+      :gsub('%-%-smart%-case', '--ignore-case'),
+  })
 end, { desc = 'Word under cursor (ignore case)' })
 map('n', '<leader>sh', '<cmd>FzfLua helptags<cr>', { desc = 'Help pages' })
 map('n', '<leader>sd', '<cmd>FzfLua diagnostics_document<cr>', { desc = 'Document diagnostics' })
