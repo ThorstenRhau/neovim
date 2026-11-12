@@ -145,8 +145,8 @@ has changed since, review it normally.
   for situations outside normal workflows.
 - Neogit's `graph_style = 'kitty'`: its private-use glyphs are in no
   installed font file, but Ghostty's built-in fallback renders them.
-- Empty lualine icons and `icons_enabled = false`: the plain look is
-  deliberate.
+- The statusline in `lua/statusline.lua` has no icons and no animated
+  spinner: the plain look is deliberate.
 
 ## Evidence rule
 

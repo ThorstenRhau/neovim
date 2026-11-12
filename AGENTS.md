@@ -9,8 +9,10 @@ releases.
 - Prefer direct Neovim settings and plugin setup. Add fault handling only for
   problems demonstrated in normal workflows, not for hypothetical scenarios.
 - `init.lua` enables `vim.loader`, sets leaders, and loads `lua/options.lua`,
-  `plugins.lua`, `keymaps.lua`, `lsp.lua`, and `autocmds.lua`.
-  Keep these modules direct and self-contained.
+  `plugins.lua`, `statusline.lua`, `keymaps.lua`, `lsp.lua`, and
+  `autocmds.lua`. Keep these modules direct and self-contained.
+- `lua/statusline.lua` holds the whole statusline: native 'statusline' items,
+  colorscheme highlight groups, and data from Neovim and gitsigns.
 - Declare packages and the Tree-sitter update hook in `lua/plugins.lua` using
   native `vim.pack.add()`. Configure plugins eagerly during startup.
 - External language servers, formatters, and linters are Homebrew-managed; see

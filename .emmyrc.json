@@ -11,7 +11,6 @@
       "~/.local/share/nvim/site/pack/core/opt/conform.nvim/lua",
       "~/.local/share/nvim/site/pack/core/opt/fzf-lua/lua",
       "~/.local/share/nvim/site/pack/core/opt/gitsigns.nvim/lua",
-      "~/.local/share/nvim/site/pack/core/opt/lualine.nvim/lua",
       "~/.local/share/nvim/site/pack/core/opt/mini.align/lua",
       "~/.local/share/nvim/site/pack/core/opt/mini.clue/lua",
       "~/.local/share/nvim/site/pack/core/opt/mini.icons/lua",

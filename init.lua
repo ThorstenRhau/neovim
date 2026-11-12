@@ -5,6 +5,7 @@ vim.g.maplocalleader = 'ö'
 
 require('options')
 require('plugins')
+require('statusline')
 require('keymaps')
 require('lsp')
 require('autocmds')
