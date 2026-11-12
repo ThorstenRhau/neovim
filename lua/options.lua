@@ -27,15 +27,38 @@ vim.opt.fillchars:append({ diff = ' ', eob = ' ', foldinner = ' ', msgsep = '‾
 local diagnostic_marks = { '✘', '▲', '●', '○' }
 local diagnostic_groups = { 'Error', 'Warn', 'Info', 'Hint' }
 
+-- Most severe diagnostic per line, per buffer, rebuilt when diagnostics change,
+-- so each redraw looks a line up instead of scanning every diagnostic.
+local worst_severity = {}
+vim.api.nvim_create_autocmd('DiagnosticChanged', {
+  group = vim.api.nvim_create_augroup('statuscolumn_diagnostics', { clear = true }),
+  callback = function(event)
+    local by_line = {}
+    for _, d in ipairs(vim.diagnostic.get(event.buf)) do
+      for lnum = d.lnum, d.end_lnum or d.lnum do
+        if not by_line[lnum] or d.severity < by_line[lnum] then
+          by_line[lnum] = d.severity
+        end
+      end
+    end
+    worst_severity[event.buf] = next(by_line) and by_line or nil
+  end,
+})
+vim.api.nvim_create_autocmd('BufWipeout', {
+  group = 'statuscolumn_diagnostics',
+  callback = function(event)
+    worst_severity[event.buf] = nil
+  end,
+})
+
 function vim.statuscolumn_number()
   if vim.v.virtnum ~= 0 then
     return ''
   end
-  local counts = vim.diagnostic.count(0, { lnum = vim.v.lnum - 1 })
-  for level = 1, 4 do
-    if counts[level] then
-      return ('%%#Diagnostic%s#%s%%*'):format(diagnostic_groups[level], diagnostic_marks[level])
-    end
+  local by_line = worst_severity[vim.api.nvim_get_current_buf()]
+  local level = by_line and by_line[vim.v.lnum - 1]
+  if level then
+    return ('%%#Diagnostic%s#%s%%*'):format(diagnostic_groups[level], diagnostic_marks[level])
   end
   if not (vim.wo.number or vim.wo.relativenumber) then
     return ''
