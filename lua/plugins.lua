@@ -86,11 +86,15 @@ require('blink.cmp').setup({
 
 -- Fuzzy finder.
 require('fzf-lua').setup({
-  'ivy',
+  'border-fused',
   defaults = { git_icons = true },
   -- Replaces the vim.ui.select prompt, for example in code actions.
   ui_select = {},
-  winopts = { border = 'rounded' },
+  winopts = {
+    width = 0.95,
+    height = 0.95,
+    preview = { layout = 'flex', flip_columns = 120, horizontal = 'right:55%' },
+  },
   files = { follow = true },
   grep = {
     hidden = true,
