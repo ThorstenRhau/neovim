@@ -5,6 +5,7 @@ local map = vim.keymap.set
 map('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
 map('n', '<leader>l', vim.pack.update, { desc = 'Update plugins' })
 map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+map('n', '<leader>,', '<C-^>', { desc = 'Previous buffer' })
 
 -- Emacs-style line editing in insert mode and on the command line. The
 -- command line already has <C-e> for end and <C-b> for start.
