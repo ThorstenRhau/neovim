@@ -1,6 +1,6 @@
 local group = vim.api.nvim_create_augroup('editor', { clear = true })
 
--- Highlight yanked text briefly.
+-- Flash yanked text once
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
   callback = function()
@@ -8,25 +8,33 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Restore the cursor to its last position in regular buffers.
+-- Restore the last cursor position
+local skip_restore = { 'gitcommit', 'gitrebase', 'help' }
+
 vim.api.nvim_create_autocmd('BufReadPost', {
   group = group,
   callback = function(event)
-    local filetype = vim.bo[event.buf].filetype
+    local buf = event.buf
+    local filetype = vim.bo[buf].filetype
     if filetype == '' then
-      filetype = vim.filetype.match({ buf = event.buf }) or ''
+      filetype = vim.filetype.match({ buf = buf }) or ''
     end
-    if vim.bo[event.buf].buftype ~= '' or vim.list_contains({ 'gitcommit', 'gitrebase', 'help' }, filetype) then
+    if vim.bo[buf].buftype ~= '' or vim.list_contains(skip_restore, filetype) then
       return
     end
-    local line = vim.api.nvim_buf_get_mark(event.buf, '"')[1]
-    if line > 0 and line <= vim.api.nvim_buf_line_count(event.buf) then
+    local line = vim.api.nvim_buf_get_mark(buf, '"')[1]
+    if line > 0 and line <= vim.api.nvim_buf_line_count(buf) then
       vim.cmd.normal({ args = { 'g`"' }, bang = true })
     end
   end,
 })
 
--- Enable Tree-sitter and expression folding for supported filetypes.
+-- Tree-sitter highlighting and folding
+local undo_treesitter = table.concat({
+  'call v:lua.vim.treesitter.stop()',
+  'call map(win_findbuf(bufnr()), {_, win -> win_execute(win, "setlocal foldmethod< foldexpr<")})',
+}, '|')
+
 vim.api.nvim_create_autocmd('FileType', {
   group = group,
   pattern = {
@@ -59,24 +67,24 @@ vim.api.nvim_create_autocmd('FileType', {
     'yaml',
   },
   callback = function(event)
-    vim.treesitter.start(event.buf)
-    for _, win in ipairs(vim.fn.win_findbuf(event.buf)) do
+    local buf = event.buf
+    vim.treesitter.start(buf)
+    for _, win in ipairs(vim.fn.win_findbuf(buf)) do
       vim.wo[win][0].foldmethod = 'expr'
       vim.wo[win][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     end
-    vim.b[event.buf].undo_ftplugin = (vim.b[event.buf].undo_ftplugin or '')
-      .. '\ncall v:lua.vim.treesitter.stop()'
-      .. '|call map(win_findbuf(bufnr()), {_, win -> win_execute(win, "setlocal foldmethod< foldexpr<")})'
+    vim.b[buf].undo_ftplugin = (vim.b[buf].undo_ftplugin or '') .. '\n' .. undo_treesitter
   end,
 })
 
--- Hide trailing-space markers while typing.
+-- Hide trailing whitespace markers in insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = group,
   callback = function()
     vim.opt_local.listchars:remove('trail')
   end,
 })
+
 vim.api.nvim_create_autocmd('InsertLeave', {
   group = group,
   callback = function()
@@ -84,9 +92,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
--- Run configured linters when leaving insert mode and writing, not when
--- opening, so reading other people's code stays quiet.
--- actionlint reads any YAML as a workflow, so run it only on workflow files.
+-- Lint when leaving insert mode and on write
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {
   group = group,
   callback = function()
@@ -99,21 +105,19 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {
   end,
 })
 
--- Manual restore previous session
+-- Restore last session
 local session = vim.fn.stdpath('state') .. '/last-session.vim'
+local started_without_files = vim.fn.argc(-1) == 0
+
 vim.keymap.set('n', '<leader>S', function()
   vim.cmd('source ' .. vim.fn.fnameescape(session))
 end, { desc = 'Restore last session' })
 
--- Save the interactive session before exiting Neovim. Only when started
--- without file arguments, so `git commit` and quick edits keep the session.
-local started_without_files = vim.fn.argc(-1) == 0
 vim.api.nvim_create_autocmd('VimLeavePre', {
   group = group,
   callback = function()
-    if not started_without_files or #vim.api.nvim_list_uis() == 0 then
-      return
+    if started_without_files and #vim.api.nvim_list_uis() > 0 then
+      vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
     end
-    vim.cmd('mksession! ' .. vim.fn.fnameescape(session))
   end,
 })

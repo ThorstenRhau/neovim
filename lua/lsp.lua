@@ -1,5 +1,5 @@
--- Without a project config, Pyrefly falls back to a preset that hides most
--- type errors. A pyrefly.toml or [tool.pyrefly] still takes precedence.
+-- Server settings
+
 vim.lsp.config('pyrefly', {
   settings = { python = { pyrefly = { typeCheckingMode = 'default' } } },
 })
@@ -9,10 +9,7 @@ local function not_line_length(d)
   return d.code ~= 'MD013'
 end
 
--- Let gq reflow Markdown paragraphs through rumdl's line-length rule instead
--- of the built-in formatter that options.lua sets. Disabling MD013 would also
--- disable the reflow, so drop only its diagnostics. rumdl also formats
--- Markdown for the format key.
+-- rumdl reflows Markdown for gq. Hide its line-length diagnostics.
 vim.lsp.config('rumdl', {
   init_options = { settings = { MD013 = { reflow = true, ['reflow-mode'] = 'normalize' } } },
   handlers = {
@@ -53,20 +50,14 @@ vim.lsp.config('yamlls', {
   },
 })
 
--- sourcekit-lsp also offers C and C++, where clangd already attaches. Two
--- servers on one buffer would send duplicate diagnostics and semantic tokens.
 vim.lsp.config('sourcekit', {
   filetypes = { 'swift' },
 })
 
--- Biome also attaches to JSON, YAML and Markdown, which prettier and rumdl
--- own here. Limit it to JavaScript and TypeScript to avoid duplicate
--- diagnostics and a second formatter on Markdown.
 vim.lsp.config('biome', {
   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
 })
 
--- Check with clippy on save instead of plain `cargo check`.
 vim.lsp.config('rust_analyzer', {
   settings = { ['rust-analyzer'] = { check = { command = 'clippy' } } },
 })
@@ -75,30 +66,28 @@ vim.lsp.enable({
   'bashls',
   'biome',
   'clangd',
+  'emmylua_ls',
   'gopls',
+  'jsonls',
+  'pyrefly',
+  'ruby_lsp',
+  'ruff',
+  'rumdl',
   'rust_analyzer',
   'sourcekit',
-  'tsc',
-  'pyrefly',
-  'ruff',
-  'ruby_lsp',
-  'emmylua_ls',
-  'rumdl',
-  'jsonls',
-  'yamlls',
   'tombi',
+  'tsc',
+  'yamlls',
 })
+
+-- Diagnostics
 
 vim.diagnostic.config({
   severity_sort = true,
-  -- No signs, so the single sign column stays free for Git markers. The
-  -- statuscolumn in options.lua replaces the line number with a glyph.
   signs = false,
   float = { source = true },
 })
 
--- Show the cursor line's diagnostics in a float when the cursor rests.
--- Virtual lines start at the diagnostic's column and get clipped on long lines.
 vim.api.nvim_create_autocmd('CursorHold', {
   group = vim.api.nvim_create_augroup('diagnostic_float', { clear = true }),
   callback = function()
@@ -106,12 +95,16 @@ vim.api.nvim_create_autocmd('CursorHold', {
   end,
 })
 
+-- Buffer-local mappings
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp_attach', { clear = true }),
   callback = function(event)
-    local map = function(lhs, rhs, desc)
-      vim.keymap.set('n', lhs, rhs, { buf = event.buf, desc = desc })
+    local buf = event.buf
+    local function map(lhs, rhs, desc)
+      vim.keymap.set('n', lhs, rhs, { buf = buf, desc = desc })
     end
+
     map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Definitions')
     map('gri', '<cmd>FzfLua lsp_implementations<cr>', 'Implementations')
     map('grr', '<cmd>FzfLua lsp_references<cr>', 'References')
@@ -121,12 +114,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('<leader>co', '<cmd>FzfLua lsp_document_symbols<cr>', 'Outline')
     map('<leader>ss', '<cmd>FzfLua lsp_live_workspace_symbols<cr>', 'Workspace symbols')
     map('<leader>th', function()
-      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }), { bufnr = event.buf })
+      local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = buf })
+      vim.lsp.inlay_hint.enable(not enabled, { bufnr = buf })
     end, 'Inlay hints')
   end,
 })
 
--- Show server progress, such as indexing, as native progress messages.
+-- Progress messages
+
 vim.api.nvim_create_autocmd('LspProgress', {
   group = vim.api.nvim_create_augroup('lsp_progress', { clear = true }),
   callback = function(event)

@@ -1,14 +1,7 @@
--- Statusline built from native 'statusline' items. Neovim calls render() for
--- each window it redraws. Colors come from the colorscheme: StatusLine and
--- StatusLineNC, with %$Group$ adding a group's foreground on top.
--- Optional parts render only when they have something to say, and the
--- secondary ones also need a wide enough screen.
 local M = {}
 
--- Nerd Font lock, shown after the name of a readonly or unmodifiable buffer.
 local lock = vim.fn.nr2char(0xF023)
 
--- Foreground for the mode letter. Normal mode keeps the StatusLine color.
 local mode_groups = {
   I = 'DiagnosticOk',
   V = 'Statement',
@@ -22,8 +15,6 @@ local function colored(group, text)
   return ('%%$%s$%s%%*'):format(group, text)
 end
 
--- One letter per mode. Blockwise visual and select are control characters.
--- Without an argument, mode() returns only the first character of the mode.
 local function mode()
   local m = vim.fn.mode()
   local letter = m == '\22' and 'V' or m == '\19' and 'S' or m:upper()
@@ -31,7 +22,6 @@ local function mode()
   return group and colored(group, letter) or letter
 end
 
--- Path relative to the working directory, cut from the left when it is too long.
 local function filename()
   local name = '%<%f'
   if vim.bo.modified then
@@ -43,12 +33,9 @@ local function filename()
   return name
 end
 
--- Branch and line counts from gitsigns. Buffers gitsigns is not attached to
--- show the branch of the working directory.
 local function git(parts)
   local head = vim.b.gitsigns_head or vim.g.gitsigns_head
   if head and head ~= '' then
-    -- Branch names may contain '%', which the statusline would parse.
     parts[#parts + 1] = (head:gsub('%%', '%%%%'))
   end
   local status = vim.b.gitsigns_status_dict
@@ -71,25 +58,21 @@ local function recording()
   return reg ~= '' and colored('DiagnosticError', '@' .. reg) or ''
 end
 
--- Position among the matches of the last search, while they are highlighted.
 local function searchcount()
   if vim.v.hlsearch == 0 then
     return ''
   end
-  -- An invalid pattern such as `\(` stays the last search and raises here. An
-  -- error in the statusline makes Neovim reset the option.
+  -- An invalid last search, such as \(, raises an error and Neovim resets 'statusline'
   local ok, count = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 500 })
   if not ok or not count.total then
     return ''
   end
-  -- Past maxcount, current and total are maxcount + 1.
   local function capped(n)
     return n > count.maxcount and '>' .. count.maxcount or tostring(n)
   end
   return ('[%s/%s]'):format(capped(count.current), capped(count.total))
 end
 
--- Size of the visual selection: lines, characters on one line, or rows x columns.
 local function selectioncount()
   local m = vim.fn.mode()
   if m ~= 'v' and m ~= 'V' and m ~= '\22' then
@@ -97,18 +80,15 @@ local function selectioncount()
   end
   local lines = math.abs(vim.fn.line('v') - vim.fn.line('.')) + 1
   if m == '\22' then
-    -- Columns are screen columns, so wide and multibyte characters count right.
     local cols = math.abs(vim.fn.virtcol('v') - vim.fn.virtcol('.')) + 1
     return lines .. 'x' .. cols
   end
   if m == 'V' or lines > 1 then
     return tostring(lines)
   end
-  -- col() counts bytes, which overcounts multibyte characters.
   return tostring(vim.fn.wordcount().visual_chars)
 end
 
--- Names of the attached language servers, marked while a server works.
 local function lsp()
   local names = {}
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
@@ -117,7 +97,6 @@ local function lsp()
   return table.concat(names, ' ')
 end
 
--- Only show encoding and format when they differ from utf-8 and unix.
 local function encoding()
   local fenc, ff = vim.bo.fileencoding, vim.bo.fileformat
   if (fenc == '' or fenc == 'utf-8') and ff == 'unix' then
@@ -133,7 +112,7 @@ local function add(parts, text)
 end
 
 function M.render()
-  -- 'statusline' expressions run with the drawn window as the current one.
+  -- Inactive window
   if tonumber(vim.g.actual_curwin) ~= vim.api.nvim_get_current_win() then
     return ' ' .. filename() .. ' '
   end
@@ -165,10 +144,7 @@ end
 
 vim.o.statusline = "%{%v:lua.require'statusline'.render()%}"
 
--- Neovim redraws the statusline on cursor moves, mode changes and diagnostic
--- changes. These events change what it shows without any of those. LspDetach
--- and RecordingLeave fire before the client or the recording is gone, so the
--- redraw waits until after them.
+-- Neovim does not redraw the statusline for these events
 local group = vim.api.nvim_create_augroup('statusline', { clear = true })
 vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach', 'RecordingEnter', 'RecordingLeave' }, {
   group = group,
