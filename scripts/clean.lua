@@ -16,8 +16,8 @@ local targets = {}
 for _, kind in ipairs({ 'data', 'state', 'cache' }) do
   table.insert(targets, { path = vim.fn.stdpath(kind), recursive = true, runtime = true })
 end
-for _, name in ipairs({ 'nvim-pack-lock.json', '.codex-lsp-cache', 'nvim.log' }) do
-  table.insert(targets, { path = config .. '/' .. name, recursive = name == '.codex-lsp-cache' })
+for _, name in ipairs({ 'nvim-pack-lock.json', 'nvim.log' }) do
+  table.insert(targets, { path = config .. '/' .. name })
 end
 
 -- Validate every target before removing anything, including resolved parent links.

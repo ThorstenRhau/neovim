@@ -7,9 +7,6 @@ tasks/
 # spell files
 spell/
 
-# Generated Lua LSP cache
-.codex-lsp-cache/
-
 # Neovim log file
 nvim.log
 
