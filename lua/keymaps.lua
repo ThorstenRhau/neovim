@@ -123,22 +123,36 @@ end, { desc = 'Review with tuicr' })
 
 -- Toggles
 
-map('n', '<leader>ts', '<cmd>setlocal spell!<cr>', { desc = 'Spell check' })
-map('n', '<leader>tw', '<cmd>setlocal wrap!<cr>', { desc = 'Line wrap' })
+local function toggled(name, on)
+  vim.notify(name .. ' ' .. (on and 'on' or 'off'))
+end
+
+map('n', '<leader>ts', function()
+  vim.wo.spell = not vim.wo.spell
+  toggled('Spell check', vim.wo.spell)
+end, { desc = 'Spell check' })
+
+map('n', '<leader>tw', function()
+  vim.wo.wrap = not vim.wo.wrap
+  toggled('Line wrap', vim.wo.wrap)
+end, { desc = 'Line wrap' })
 
 map('n', '<leader>tl', function()
   local on = not vim.wo.number
   vim.opt_local.number = on
   vim.opt_local.relativenumber = on
+  toggled('Line numbers', on)
 end, { desc = 'Line numbers' })
 
 map('n', '<leader>tc', function()
   vim.b.completion_auto = vim.b.completion_auto == false
-  vim.notify('Auto completion ' .. (vim.b.completion_auto and 'on' or 'off'))
+  toggled('Auto completion', vim.b.completion_auto)
 end, { desc = 'Auto completion' })
 
 map('n', '<leader>td', function()
-  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+  local on = not vim.diagnostic.is_enabled()
+  vim.diagnostic.enable(on)
+  toggled('Diagnostics', on)
 end, { desc = 'Diagnostics' })
 
 -- Key hints
