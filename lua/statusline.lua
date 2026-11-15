@@ -19,7 +19,16 @@ local function mode()
   local m = vim.fn.mode()
   local letter = m == '\22' and 'V' or m == '\19' and 'S' or m:upper()
   local group = mode_groups[letter]
-  return group and colored(group, letter) or letter
+  return colored(group and 'StatuslineMode' .. group or 'StatuslineModeNormal', letter)
+end
+
+-- Bold copies of the mode colors, so only the mode letter turns bold
+local function set_mode_highlights()
+  vim.api.nvim_set_hl(0, 'StatuslineModeNormal', { bold = true })
+  for _, name in pairs(mode_groups) do
+    local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+    vim.api.nvim_set_hl(0, 'StatuslineMode' .. name, { fg = hl.fg, bold = true })
+  end
 end
 
 local function filename()
@@ -146,6 +155,8 @@ vim.o.statusline = "%{%v:lua.require'statusline'.render()%}"
 
 -- Neovim does not redraw the statusline for these events
 local group = vim.api.nvim_create_augroup('statusline', { clear = true })
+set_mode_highlights()
+vim.api.nvim_create_autocmd('ColorScheme', { group = group, callback = set_mode_highlights })
 vim.api.nvim_create_autocmd({ 'LspAttach', 'LspDetach', 'RecordingEnter', 'RecordingLeave' }, {
   group = group,
   callback = function()
