@@ -43,6 +43,17 @@ local worst_severity = {}
 
 local group = vim.api.nvim_create_augroup('statuscolumn_diagnostics', { clear = true })
 
+-- Bold copies of the diagnostic colors, so only the status column letters turn bold
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = group,
+  callback = function()
+    for _, name in ipairs(diagnostic_groups) do
+      local hl = vim.api.nvim_get_hl(0, { name = 'Diagnostic' .. name, link = false })
+      vim.api.nvim_set_hl(0, 'StatusColumnDiagnostic' .. name, { fg = hl.fg, bold = true })
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('DiagnosticChanged', {
   group = group,
   callback = function(event)
@@ -79,7 +90,10 @@ function vim.statuscolumn_number()
   local by_line = worst_severity[vim.api.nvim_get_current_buf()]
   local level = by_line and by_line[vim.v.lnum - 1]
   if level then
-    return ('%%#Diagnostic%s#%s%%* '):format(diagnostic_groups[level], diagnostic_marks[level])
+    return ('%%#StatusColumnDiagnostic%s#%s%%* '):format(
+      diagnostic_groups[level],
+      diagnostic_marks[level]
+    )
   end
   if not (vim.wo.number or vim.wo.relativenumber) then
     -- Neovim sizes the column from the last line, so pad every line while letters can appear.
