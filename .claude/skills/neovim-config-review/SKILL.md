@@ -34,9 +34,9 @@ are also audit criteria.
 ## Scope
 
 A full audit starts from `git ls-files`: every tracked file is in scope except
-agent configuration (`.claude/`, `.agents/`, `.codex/`, `.mcp.json`,
-`CLAUDE.md`). That includes `after/ftplugin/`, the `Makefile` and Git hook,
-the style and lint policy files, and `scripts/clean.lua`. Read `clean.lua`,
+agent configuration (`.claude/`, `CLAUDE.md`). That includes
+`after/ftplugin/`, the `Makefile` and Git hook, the style and lint policy
+files, and `scripts/clean.lua`. Read `clean.lua`,
 but never run `make clean`: it deletes the live installation. `README.md` and
 `AGENTS.md` are checked for drift from what the configuration does. The
 language servers, formatters, linters, and parsers the configuration uses are
@@ -82,9 +82,9 @@ and macOS has no `timeout` command.
   `lua/vim/`). `doc/deprecated.txt` and `doc/news.txt` list removals and
   changes for the installed release.
 
-Use these first. Fall back to official upstream documentation, directly or
-through Context7, only when local information is missing or insufficient, and
-confirm it matches the installed revision.
+Use these first. Fall back to official upstream documentation only when local
+information is missing or insufficient, and confirm it matches the installed
+revision.
 
 ## What to check
 

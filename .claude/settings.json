@@ -5,7 +5,6 @@
     }
   },
   "enabledPlugins": {
-    "context7@claude-plugins-official": true,
     "emmylua-lsp@nvim-config": true
   },
   "hooks": {

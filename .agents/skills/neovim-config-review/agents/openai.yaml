@@ -1,3 +1,0 @@
-interface:
-  display_name: "Neovim Config Review"
-  short_description: "Audit config files, plugins, keymaps, and installed tools"
