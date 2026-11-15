@@ -155,6 +155,15 @@ map('n', '<leader>td', function()
   toggled('Diagnostics', on)
 end, { desc = 'Diagnostics' })
 
+map('n', '<leader>tv', function()
+  local on = not vim
+    .diagnostic
+    .config()--[[@cast -?]]
+    .virtual_lines
+  vim.diagnostic.config({ virtual_lines = on })
+  toggled('Diagnostic text', on)
+end, { desc = 'Diagnostic text' })
+
 -- Key hints
 
 local clue = require('mini.clue')

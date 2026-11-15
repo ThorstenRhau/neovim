@@ -85,6 +85,7 @@ vim.lsp.enable({
 vim.diagnostic.config({
   severity_sort = true,
   signs = false,
+  virtual_lines = false,
   float = { source = true },
 })
 
