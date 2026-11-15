@@ -54,7 +54,14 @@ vim.api.nvim_create_autocmd('DiagnosticChanged', {
         end
       end
     end
+    local had = worst_severity[event.buf] ~= nil
     worst_severity[event.buf] = next(by_line) and by_line or nil
+    -- Setting the option makes Neovim re-measure the column, which it otherwise only grows
+    if had ~= (worst_severity[event.buf] ~= nil) then
+      for _, win in ipairs(vim.fn.win_findbuf(event.buf)) do
+        vim.wo[win].statuscolumn = vim.wo[win].statuscolumn
+      end
+    end
   end,
 })
 
@@ -72,15 +79,18 @@ function vim.statuscolumn_number()
   local by_line = worst_severity[vim.api.nvim_get_current_buf()]
   local level = by_line and by_line[vim.v.lnum - 1]
   if level then
-    return ('%%#Diagnostic%s#%s%%*'):format(diagnostic_groups[level], diagnostic_marks[level])
+    return ('%%#Diagnostic%s#%s%%* '):format(diagnostic_groups[level], diagnostic_marks[level])
   end
   if not (vim.wo.number or vim.wo.relativenumber) then
-    return ''
+    -- Neovim sizes the column from the last line, so pad every line while letters can appear.
+    -- The %* keeps Neovim from collapsing the two spaces into one.
+    return by_line and ' %* ' or ''
   end
-  return tostring(vim.wo.relativenumber and vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum)
+  return tostring(vim.wo.relativenumber and vim.v.relnum > 0 and vim.v.relnum or vim.v.lnum) .. ' '
 end
 
-vim.o.statuscolumn = '%s%=%{%v:lua.vim.statuscolumn_number()%} '
+-- The function adds the trailing space, so the column vanishes when it has nothing to show
+vim.o.statuscolumn = '%s%=%{%v:lua.vim.statuscolumn_number()%}'
 
 -- Search
 vim.o.ignorecase = true
