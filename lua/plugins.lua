@@ -76,7 +76,7 @@ require('blink.cmp').setup({
         return vim.b.completion_auto ~= false
       end,
     },
-    documentation = { auto_show = true, auto_show_delay_ms = 500 },
+    documentation = { auto_show = true },
   },
   signature = { enabled = true },
   cmdline = { completion = { list = { selection = { preselect = false } } } },
@@ -139,10 +139,6 @@ local gitsigns = require('gitsigns')
 
 gitsigns.setup({
   signs = {
-    add = { text = '┃' },
-    change = { text = '┃' },
-    delete = { text = '▁' },
-    topdelete = { text = '▔' },
     changedelete = { text = '┃' },
     untracked = { text = '┃' },
   },
