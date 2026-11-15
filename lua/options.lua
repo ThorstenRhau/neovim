@@ -139,4 +139,4 @@ vim.o.updatetime = 300
 vim.o.virtualedit = 'block'
 vim.opt.diffopt:append({ 'algorithm:histogram', 'hiddenoff' })
 vim.opt.sessionoptions:remove({ 'blank', 'help', 'terminal' })
-vim.opt.shada:append({ 'rgitsigns:', 'rhealth:', 'rman:', 'rfile:///var/folders/' })
+vim.opt.shada:append({ 'rgitsigns:', 'rhealth:', 'rman:', 'rnvim-pack:', 'r/opt/homebrew/' })
