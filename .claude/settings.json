@@ -1,7 +1,12 @@
 {
+  "extraKnownMarketplaces": {
+    "nvim-config": {
+      "source": { "source": "directory", "path": "./.claude/marketplace" }
+    }
+  },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
+    "emmylua-lsp@nvim-config": true
   },
   "hooks": {
     "PostToolUse": [

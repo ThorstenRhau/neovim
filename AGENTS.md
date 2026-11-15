@@ -29,11 +29,13 @@ releases.
   projects get emmylua_ls defaults. It disables the type checks that mostly
   report false positives here: plugins annotate their types for LuaLS, and
   emmylua_ls treats indexing a `table<K, V>` as never nil.
-- `workspace.library` in `.emmyrc.json` lists the `lua/` directory of each
-  `vim.pack` plugin, because emmylua_ls resolves `require()` only directly
-  under a library root and does not expand globs. Add or remove the entry
-  when a plugin with a `lua/` directory is added to or removed from
-  `lua/plugins.lua`.
+- `workspace.library` in `.emmyrc.json` lists `$VIMRUNTIME`, which
+  emmylua_ls expands from its environment. Neovim sets it, and Claude Code's
+  `emmylua-lsp` plugin sets it in its `env`. The list also has the `lua/`
+  directory of each `vim.pack` plugin, because emmylua_ls resolves
+  `require()` only directly under a library root and does not expand globs.
+  Add or remove the entry when a plugin with a `lua/` directory is added to
+  or removed from `lua/plugins.lua`.
 
 ## Validation and review
 

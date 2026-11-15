@@ -1,0 +1,11 @@
+{
+  "name": "nvim-config",
+  "owner": { "name": "Thorsten Rhau" },
+  "plugins": [
+    {
+      "name": "emmylua-lsp",
+      "source": "./plugins/emmylua-lsp",
+      "description": "EmmyLua language server for this Neovim configuration"
+    }
+  ]
+}

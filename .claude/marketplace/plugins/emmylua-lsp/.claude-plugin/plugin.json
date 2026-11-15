@@ -1,0 +1,12 @@
+{
+  "name": "emmylua-lsp",
+  "version": "1.0.0",
+  "description": "EmmyLua language server for this Neovim configuration",
+  "lspServers": {
+    "lua": {
+      "command": "emmylua_ls",
+      "env": { "VIMRUNTIME": "/opt/homebrew/share/nvim/runtime" },
+      "extensionToLanguage": { ".lua": "lua" }
+    }
+  }
+}

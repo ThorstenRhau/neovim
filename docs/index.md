@@ -17,6 +17,8 @@ not explain by itself.
   Rust and Swift through their language servers, without conform entries.
 - [ADR-0004](decisions/0004-ruby-through-ruby-lsp.md): lint and format Ruby
   through Ruby LSP and the project's bundled RuboCop, not nvim-lint or conform.
+- [ADR-0005](decisions/0005-claude-code-emmylua-plugin.md): give Claude Code
+  emmylua_ls through a project-local plugin, not the official `lua-lsp`.
 
 ## Maintenance
 
