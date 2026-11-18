@@ -23,7 +23,7 @@ brew install neovim git fzf fd ripgrep node tree-sitter-cli \
   vscode-langservers-extracted yaml-language-server \
   rust rust-analyzer go gopls typescript ruby ruby-lsp \
   prettier ruff shfmt stylua tombi \
-  actionlint biome shellcheck selene swiftlint yamllint
+  actionlint biome shellcheck selene swiftlint yamllint tuicr
 ```
 
 Tree-sitter parser compilation needs Xcode Command Line Tools
