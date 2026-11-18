@@ -16,8 +16,13 @@ local function colored(group, text)
 end
 
 local function mode()
-  local m = vim.fn.mode()
-  local letter = m == '\22' and 'V' or m == '\19' and 'S' or m:upper()
+  -- The first character names the mode; later ones are sub-states (no, niI, ic, Rv, cv, ...).
+  -- 'r' and '!' are the hit-enter and shell prompts, shown like Command-line.
+  local c = vim.fn.mode():sub(1, 1)
+  local letter = c == '\22' and 'V'
+    or c == '\19' and 'S'
+    or (c == 'r' or c == '!') and 'C'
+    or c:upper()
   local group = mode_groups[letter]
   return colored(group and 'StatuslineMode' .. group or 'StatuslineModeNormal', letter)
 end
