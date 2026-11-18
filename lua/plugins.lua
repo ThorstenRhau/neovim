@@ -63,7 +63,7 @@ require('token').setup({
   },
 })
 
-vim.cmd.colorscheme('token')
+vim.cmd.colorscheme(vim.env.TOKEN_APPEARANCE or 'token')
 
 -- Completion
 
