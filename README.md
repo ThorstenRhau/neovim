@@ -37,5 +37,5 @@ Ruby lints and formats with RuboCop only in projects whose Gemfile includes
 Start `nvim` to install packages, then install the Tree-sitter parsers:
 
 ```vim
-:TSInstall bash comment diff editorconfig git_config git_rebase gitattributes gitcommit gitignore go javascript json lua luadoc luap make markdown markdown_inline python query regex ruby rust swift toml tsx typescript vim vimdoc yaml
+:TSInstall bash comment diff editorconfig git_config git_rebase gitattributes gitcommit gitignore go html javascript json latex lua luadoc luap make markdown markdown_inline python query regex ruby rust swift toml tsx typescript vim vimdoc yaml
 ```
